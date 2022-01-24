@@ -1,9 +1,12 @@
 import Link from "next/link";
+import SignOut from "./SignOut";
 
 export default function Test2(){
     return(
-        <Link href="/">
-            <a> RETOUR </a>
+        <>
+        <SignOut/>
+        <Link href="/components/Test2">
+            <a> Hello </a>
         </Link>
-    )
+    </>)
 }
