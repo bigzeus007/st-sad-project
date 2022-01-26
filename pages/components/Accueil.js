@@ -10,13 +10,17 @@ export default function Accueil(){
     
     const firestore=db;
 
+    /*
+
     (async function getdata(){
 
     const querySnapshot = await getDocs(collection(db, "users2"));
 querySnapshot.forEach((doc) => {
-  console.log(`${doc.id} => ${doc.data()}`);
+  let {myData}=doc.data;
+  console.log(`${doc.id} => ${myData}`);
 });
     })();
+    */
 
 
      /* (async function test(){
