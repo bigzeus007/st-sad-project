@@ -24,7 +24,7 @@
     --tran-05: all 0.3s ease;
 }
 
-body{
+.body{
     min-height: 100vh;
     background-color: var(--body-color);
     transition: var(--tran-05);
@@ -35,7 +35,7 @@ body{
     color: #fff;
 }
 
-body.dark{
+.dark{
     --body-color: #18191a;
     --sidebar-color: #242526;
     --primary-color: #3a3b3c;
@@ -155,7 +155,7 @@ header .image-text .profession{
     transition: var(--tran-05);
 }
 
-body.dark .sidebar header .toggle{
+.dark .sidebar header .toggle{
     color: var(--text-color);
 }
 
@@ -206,8 +206,8 @@ body.dark .sidebar header .toggle{
 .sidebar li a:hover .text{
     color: var(--sidebar-color);
 }
-body.dark .sidebar li a:hover .icon,
-body.dark .sidebar li a:hover .text{
+.dark .sidebar li a:hover .icon,
+.dark .sidebar li a:hover .text{
     color: var(--text-color);
 }
 
@@ -239,10 +239,10 @@ body.dark .sidebar li a:hover .text{
 .mode .sun-moon i.sun{
     opacity: 0;
 }
-body.dark .mode .sun-moon i.sun{
+.dark .mode .sun-moon i.sun{
     opacity: 1;
 }
-body.dark .mode .sun-moon i.moon{
+.dark .mode .sun-moon i.moon{
     opacity: 0;
 }
 
@@ -279,7 +279,7 @@ body.dark .mode .sun-moon i.moon{
     transition: var(--tran-04);
 }
 
-body.dark .switch::before{
+.dark .switch::before{
     left: 20px;
 }
 
@@ -305,6 +305,6 @@ body.dark .switch::before{
     height: 100vh;
     width: calc(100% - 78px);
 }
-body.dark .home .text{
+.dark .home .text{
     color: var(--text-color);
 }
