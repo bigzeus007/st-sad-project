@@ -5,7 +5,7 @@ import { GoogleOutlined, FacebookOutlined } from "@ant-design/icons";
 
 import firebase from "firebase/compat/app";
 
-import { auth } from "../../firebase";
+import { auth } from "../firebase";
 
 export default function Login() {
   return (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SignOut from "./SignOut";
-import { db } from "../../firebase";
+import { db } from "../firebase";
 import { collection, getDocs, addDoc, } from "firebase/firestore"; 
 import { NotificationTwoTone } from "@ant-design/icons";
 
