@@ -1,14 +1,20 @@
 import Link from "next/link";
 import SignOut from "./SignOut";
 import { db } from "../firebase";
+import NavBar from "../components/commun/navBar/NavBar";
+import CardflipTest from "../components/commun/flipCard/CarflipTest"
 import { collection, getDocs, addDoc, } from "firebase/firestore"; 
 import { NotificationTwoTone } from "@ant-design/icons";
+
 
 
 
 export default function Accueil(){
     
     const firestore=db;
+
+
+    
 
     /*
 
@@ -81,13 +87,9 @@ try {
   })();
   */
     return(
-        <>
-        <SignOut/>
-
-        
-
-        
-
+      <>
+      <SignOut/>
+        <NavBar/>
         
         </>
     )
