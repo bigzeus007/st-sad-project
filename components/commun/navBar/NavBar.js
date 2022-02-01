@@ -1,6 +1,7 @@
 import react from "react";
 import {useRef, useState} from "react";
 import { auth } from "../../../firebase";
+import SlideShowEffect from "../slideShowEffect/SlideShowEffect.tsx";
 
 export default function NavBar({ profile }) {
 
@@ -108,11 +109,9 @@ export default function NavBar({ profile }) {
       <section className="home">
         <div className="text"> MATRIX</div>
         
-        <button>Entree CS</button>
-        <button>Entree Tech</button>
-        <button>Entree CQ</button>
-        <button>Entree CA</button>
-        <button>Entree Admin</button>
+       
+        <SlideShowEffect/>
+        
       </section>
       </div>
     </>
