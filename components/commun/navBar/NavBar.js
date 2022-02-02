@@ -1,7 +1,7 @@
 import react from "react";
 import {useRef, useState} from "react";
 import { auth } from "../../../firebase";
-import SlideShowEffect from "../slideShowEffect/SlideShowEffect.tsx";
+import SlideShowEffect from "../slideShowEffect/SlideShowEffect.jsx";
 
 export default function NavBar({ profile }) {
 
