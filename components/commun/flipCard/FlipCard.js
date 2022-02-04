@@ -11,13 +11,16 @@ const CardStyle = {
   backgroundColor: "#75cfb8"
 };
 
-function Card(props) {
+function Card({ }) {
   const [isFlipped, setFlipped] = React.useState(false);
+  console.log(props)
 
   return (
+
+    
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-      <div
-        id="card"
+        <div
+        id={props.id}
         style={CardStyle}
         className="CardFront"
         onClick={() => setFlipped((prev) => !prev)}
@@ -28,6 +31,7 @@ function Card(props) {
           </span>
         </div>
       </div>
+
       <div
         style={CardStyle}
         onClick={() => setFlipped((prev) => !prev)}
@@ -35,6 +39,8 @@ function Card(props) {
       >
         <p>{props.back}</p>
       </div>
+      
+    
     </ReactCardFlip>
   );
 }
