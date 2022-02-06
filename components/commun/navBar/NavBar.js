@@ -4,6 +4,7 @@ import { auth } from "../../../firebase";
 import content from "../flipCard/content";
 import Card from "../flipCard/FlipCard";
 import SlideShowEffect from "../slideShowEffect/SlideShowEffect.jsx";
+import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js"
 
 export default function NavBar({ profile }) {
   const [toggle, setToggle] = useState("close");
@@ -14,6 +15,9 @@ export default function NavBar({ profile }) {
   const darkModeToggle = (toggle) => {
     toggle === "dark" ? setDarkMode("light") : setDarkMode("dark");
   };
+
+
+ 
 
   return (
     <>
@@ -126,11 +130,10 @@ export default function NavBar({ profile }) {
         </nav>
 
         <section className="home">
-        <div className="text"> MATRIX</div>
-          {content.map((car) => {return<Card props={car} />;
-          })}
+        <ReactFirebaseFileUpload/>
         </section>
       </div>
+      
     </>
   );
 }
