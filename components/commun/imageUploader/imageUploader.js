@@ -1,58 +1,48 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../../firebase"
 
-import { storage } from "../../../firebase";
-
- const ReactFirebaseFileUpload = () => {
-  const [image, setImage] = useState(null);
-  const [url, setUrl] = useState("");
+function ImageUploader() {
   const [progress, setProgress] = useState(0);
-
-  const handleChange = e => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
+  const formHandler = (e) => {
+    e.preventDefault();
+    const file = e.target[0].files[0];
+    uploadFiles(file);
   };
 
-  const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+  const uploadFiles = (file) => {
+    //
+    if (!file) return;
+    const sotrageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(sotrageRef, file);
+
     uploadTask.on(
       "state_changed",
-      snapshot => {
-        const progress = Math.round(
+      (snapshot) => {
+        const prog = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        setProgress(progress);
+        setProgress(prog);
       },
-      error => {
-        console.log(error);
-      },
+      (error) => console.log(error),
       () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then(url => {
-            setUrl(url);
-          });
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+        });
       }
     );
   };
 
-  console.log("image: ", image);
-
   return (
-    <div>
-      <progress value={progress} max="100" />
-      <br />
-      <br />
-      <input type="file" onChange={(e)=>handleChange(e)} />
-      <button onClick={()=>handleUpload}>Upload</button>
-      <br />
-      {url}
-      <br />
-      <img src={url || "http://via.placeholder.com/300"} alt="firebase-image" />
+    <div className="App">
+      <form onSubmit={formHandler}>
+        <input type="file" className="input" />
+        <button type="submit">Upload</button>
+      </form>
+      <hr />
+      <h2>Uploading done {progress}%</h2>
     </div>
   );
-};
+}
 
-export default ReactFirebaseFileUpload;
+export default ImageUploader;
