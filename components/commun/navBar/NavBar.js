@@ -4,9 +4,9 @@ import { auth } from "../../../firebase";
 import content from "../flipCard/content";
 import Card from "../flipCard/FlipCard";
 import SlideShowEffect from "../slideShowEffect/SlideShowEffect.jsx";
-import ImageUploader from "../imageUploader/imageUploader.js"
+import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js"
 
-export default function NavBar({ profile }) {
+export default function NavBar() {
   const [toggle, setToggle] = useState("close");
   const [darkMode, setDarkMode] = useState("");
   const sideBarToggle = (toggle) => {
@@ -130,7 +130,16 @@ export default function NavBar({ profile }) {
         </nav>
 
         <section className="home">
-        <ImageUploader/>
+        <div className="text"> MATRIX</div>
+        <div style={{display:"flex"}}>
+          {content.map((car) => {return<Card key={car.id} props={car} />;
+          })}
+          </div>
+
+          <div style={{display:"flex"}}>
+            
+          
+          </div>
         </section>
       </div>
       

@@ -3,6 +3,8 @@ import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 import myPicture from "../../../public/carPicture.jpg";
 
+let initialPhoto = myPicture;
+
 const CardStyle = {
   border: "1px solid #03506f",
   borderRadius: "30px",
@@ -13,7 +15,45 @@ const CardStyle = {
   backgroundColor: "#75cfb8",
 };
 
-function Card({ props }) {
+const initialCar = {
+  id: 89,
+  csName:"TARHI",
+  note:[{
+    sender:"NOTE DE TEXT",
+    senderTime:"note created at: ",
+    noteText:"MY TEXT",
+  }],
+  photo:{
+    carPhoto: initialPhoto,
+    createdaT:"created at: ",
+  },
+ 
+  deliveryTimeAdjustment:[{
+    deadLineTime:"17:00",
+    deadLineDay:"Lundi 07/08/22",
+    who:"Said",
+    when:"now",
+    why:"Explication",
+    isCustomerInformed:"Non", }],
+
+  emoji: "😅",
+  carTasks:{
+
+    myService:false,
+    mecanical:false,
+    electrical:false,
+    body:false,
+    divers:{
+      newOne:false,
+      diversNote:"divers note",
+    },
+    EstimatedTime:"EstimatedTime",
+  },
+  
+
+};
+
+function Card({ props = initialCar}) {
   const [isFlipped, setFlipped] = React.useState(false);
   console.log(props);
 
@@ -56,14 +96,14 @@ function Card({ props }) {
                 {props.emoji}
               </span>
 
-              
+
 
               <Image
                 alt="Mountains"
                 src={myPicture}
                 layout="fill"
-                width={2}
-                height={2}
+                width={20}
+                height={1}
               />
             </div>
           </div>
@@ -73,7 +113,16 @@ function Card({ props }) {
             onClick={() => setFlipped((prev) => !prev)}
             className="CardBack"
           >
-            <p>{props.back}</p>
+            <p>{props.emoji}</p>
+
+            <p>{props.carTasks.myService && <div>Vidange</div>}</p>
+            <p>{props.carTasks.mecanical==true && "Mecanique"}</p>
+            <p>{props.carTasks.electrical==true && "electrique"}</p>
+            <p>{props.carTasks.body == true && "carrosserie"}</p>
+            <p>{props.carTasks.divers.newOne == true && props.carTasks.divers.diversNote}</p>
+            <p>{props.deliveryTimeAdjustment.map((adjustment=>{return adjustment.deadLineTime}))}</p>
+            
+
           </div>
         </ReactCardFlip>
       </div>
