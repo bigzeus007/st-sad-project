@@ -3,7 +3,7 @@ import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 import myPicture from "../../../public/carPicture.jpg";
 
-let initialPhoto = myPicture;
+const initialPhoto = myPicture;
 
 const CardStyle = {
   border: "1px solid #03506f",
@@ -100,10 +100,9 @@ function Card({ props = initialCar}) {
 
               <Image
                 alt="Mountains"
-                src={myPicture}
+                src={initialPhoto}
                 layout="fill"
-                width={20}
-                height={1}
+                quality={10}
               />
             </div>
           </div>
@@ -115,7 +114,7 @@ function Card({ props = initialCar}) {
           >
             <p>{props.emoji}</p>
 
-            <p>{props.carTasks.myService && <div>Vidange</div>}</p>
+            <p>{props.carTasks.myService && "Vidange"}</p>
             <p>{props.carTasks.mecanical==true && "Mecanique"}</p>
             <p>{props.carTasks.electrical==true && "electrique"}</p>
             <p>{props.carTasks.body == true && "carrosserie"}</p>
