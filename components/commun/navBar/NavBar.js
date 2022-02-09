@@ -2,9 +2,10 @@ import react from "react";
 import { useRef, useState } from "react";
 import { auth } from "../../../firebase";
 import content from "../flipCard/content";
-import Card from "../flipCard/FlipCard";
+import ChefAtelierCs from "../../specific/ca/ChefAtelierCs";
 import SlideShowEffect from "../slideShowEffect/SlideShowEffect.jsx";
 import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js"
+import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
 
 export default function NavBar() {
   const [toggle, setToggle] = useState("close");
@@ -129,17 +130,25 @@ export default function NavBar() {
           </div>
         </nav>
 
-        <section className="home">
-        <div className="text"> MATRIX</div>
+        <section className="home" >
+        <div className="text"> CHRONOS</div>
+
+
         <div style={{display:"flex"}}>
-          {content.map((car) => {return<Card key={car.id} props={car} />;
+          {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div>
 
-          <div style={{display:"flex"}}>
-            
-          
+          <div style={{display:"block"}}>
+              IN THE MIDDLE
+            </div>
+
+            <div style={{display:"flex"}}>
+          {content.map((car) => {return<ChefAtelierAtelier  key={car.id} props={car} />;
+          })}
           </div>
+
+
         </section>
       </div>
       

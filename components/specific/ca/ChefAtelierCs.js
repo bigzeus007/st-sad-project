@@ -11,7 +11,7 @@ const CardStyle = {
   padding: "2vw",
   margin: "2vw",
   width: "15vw",
-  height: "35vh",
+  height: "40vh",
   backgroundColor: "#75cfb8",
 };
 
@@ -53,7 +53,7 @@ const initialCar = {
 
 };
 
-function Card({ props = initialCar}) {
+function ChefAtelierCs({ props = initialCar}) {
   const [isFlipped, setFlipped] = React.useState(false);
   console.log(props);
 
@@ -91,16 +91,14 @@ function Card({ props = initialCar}) {
             className="CardFront"
             onClick={() => setFlipped((prev) => !prev)}
           >
-            <div>
-              <span className="emoji" role="img" aria-label="emojis" >
-                {props.emoji}
-              </span>
+            <div >
+              
 
 
 
               <Image
                 alt="Mountains"
-                src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fword-image-36.jpeg?alt=media&token=92981557-c11f-4b65-b445-9f2fb5b3049a"
+                src={initialPhoto}
                 layout="fill"
                 quality={10}
               />
@@ -129,4 +127,4 @@ function Card({ props = initialCar}) {
   );
 }
 
-export default Card;
+export default ChefAtelierCs;
