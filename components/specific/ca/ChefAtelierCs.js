@@ -92,14 +92,11 @@ function ChefAtelierCs({ props = initialCar}) {
             onClick={() => setFlipped((prev) => !prev)}
           >
             <div >
-              
-
-
-
               <Image
                 alt="Mountains"
                 src={initialPhoto}
                 layout="fill"
+                
                 quality={10}
               />
             </div>
@@ -113,10 +110,10 @@ function ChefAtelierCs({ props = initialCar}) {
             <p>{props.emoji}</p>
 
             <p>{props.carTasks.myService && "Vidange"}</p>
-            <p>{props.carTasks.mecanical==true && "Mecanique"}</p>
-            <p>{props.carTasks.electrical==true && "electrique"}</p>
-            <p>{props.carTasks.body == true && "carrosserie"}</p>
-            <p>{props.carTasks.divers.newOne == true && props.carTasks.divers.diversNote}</p>
+            <p>{props.carTasks.mecanical && "Mecanique"}</p>
+            <p>{props.carTasks.electrical && "electrique"}</p>
+            <p>{props.carTasks.body && "carrosserie"}</p>
+            <p>{props.carTasks.divers.newOne && props.carTasks.divers.diversNote}</p>
             <p>{props.deliveryTimeAdjustment.map((adjustment=>{return adjustment.deadLineTime}))}</p>
             
 
