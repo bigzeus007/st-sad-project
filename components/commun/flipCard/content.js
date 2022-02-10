@@ -26,11 +26,48 @@ const content = [
       why:"Explication",
       isCustomerInformed:"Non", }],
   
-    emoji: "😅🤩😛",
+    emoji: "😅🤩😛😅🤩😛",
     carTasks:{
   
       myService:false,
       mecanical:false,
+      electrical:false,
+      body:false,
+      divers:{
+        newOne:false,
+        diversNote:"divers note",
+      },
+      EstimatedTime:"EstimatedTime",
+    },
+    
+  
+  },
+  {
+    id: 39,
+    csName:"TARHI",
+    note:[{
+      sender:"NOTE DE TEXT",
+      senderTime:"note created at: ",
+      noteText:"MY TEXT",
+    }],
+    photo:{
+      carPhoto: carPicture,
+      createdaT:"created at: ",
+    },
+   
+    deliveryTimeAdjustment:[{
+      deadLineTime:"17:00",
+      deadLineDay:"Lundi 07/08/22",
+      who:"Said",
+      when:"now",
+      why:"Explication",
+      isCustomerInformed:"Non", }],
+  
+    emoji: "😅🤩😛",
+    carTasks:{
+  
+      myService:true,
+      mecanical:true,
       electrical:false,
       body:false,
       divers:{

@@ -6,6 +6,9 @@ import ChefAtelierCs from "../../specific/ca/ChefAtelierCs";
 import SlideShowEffect from "../slideShowEffect/SlideShowEffect.jsx";
 import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js"
 import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
+import App from "../flipCard/CarflipTest";
+import Carousel from "../carousel/carousel";
+import MyCarousel from "../carousel/MyCarousel";
 
 export default function NavBar() {
   const [toggle, setToggle] = useState("close");
@@ -143,10 +146,9 @@ export default function NavBar() {
               IN THE MIDDLE
             </div>
 
-            <div style={{display:"flex"}}>
-          {content.map((car) => {return<ChefAtelierAtelier  key={car.id} props={car} />;
-          })}
-          </div>
+            <MyCarousel></MyCarousel>
+
+            
 
 
         </section>
