@@ -2,6 +2,7 @@ import React from "react";
 import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 import myPicture from "../../../public/carPicture.jpg";
+import myCar from "../images/start.svg"
 
 const initialPhoto = myPicture;
 
@@ -17,6 +18,8 @@ const CardStyle = {
 
 const initialCar = {
   id: 89,
+  position:"",
+  responsibility:"",
   csName:"TARHI",
   note:[{
     sender:"NOTE DE TEXT",
@@ -99,8 +102,8 @@ function Card({ props = initialCar}) {
 
 
               <Image
-                alt="Mountains"
-                src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fword-image-36.jpeg?alt=media&token=92981557-c11f-4b65-b445-9f2fb5b3049a"
+                alt="Car"
+                src={myCar}
                 layout="fill"
                 quality={10}
               />
