@@ -10,18 +10,38 @@ import techPneus from  "../../../public/techPneus.jpg"
 
 const initialPhoto = myPicture;
 
+
+
 const MainCarCard = styled.div`
   color: blue;
   border: 1px solid #03506f;
   display: flex;
+  align-items: center;
   position: relative;
   height: 40vh;
   width: 200px;
   border: 1px solid #03506f;
   margin: 20px;
-  border-radius: 0 12px 20px 50px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 12px 50px 50px 50px;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.6);
   box-sizing: border-box;
+
+  div{
+    position: absolute;
+    background-color:royalblue;
+    box-sizing:border-box;
+    border-radius:10px;
+    border:2px solid royalblue;
+    display:flex;
+    top: -25px;
+    z-index:1;
+    opacity:0.75;
+
+  }
+  img {
+  border-radius: 20%;
+}
+
 `;
 
 const initialCar = {
@@ -65,6 +85,10 @@ const initialCar = {
 };
 
 function ChefAtelierAtelier({ props = initialCar }) {
+
+
+  
+
   const [isFlipped, setFlipped] = React.useState(false);
   console.log(props);
 
@@ -99,9 +123,11 @@ function ChefAtelierAtelier({ props = initialCar }) {
             id={props.id}
             onClick={() => setFlipped((prev) => !prev)}
           >
-            <div style={{ position: "absolute", top: "-25px" }}>
+            <div >
               
-              <img src="../../commun/images/techMec.png" alt="alt"/>
+              {props.carTasks.myService&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8" alt="alt"/>}
+              <img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FchefAtelierNotNeeded.png?alt=media&token=87d0a6b7-74da-44a3-89d4-6231394cae58" alt="alt"/>
+
             </div>
 
             
