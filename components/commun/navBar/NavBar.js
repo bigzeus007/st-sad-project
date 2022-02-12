@@ -137,16 +137,19 @@ export default function NavBar() {
         <div className="text"> CHRONOS</div>
 
 
-        <div style={{display:"flex"}}>
+        {/* <div style={{display:"flex"}}>
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
+          </div> */}
+          <div style={{height:"50vh"}}>
+          <ChefAtelierAtelier></ChefAtelierAtelier>
           </div>
 
-          <div style={{display:"block"}}>
-              IN THE MIDDLE
-            </div>
 
-            <MyCarousel></MyCarousel>
+
+          <div style={{width:"100%",height:"50vh",border:"red 2px solid"}}>
+          <MyCarousel></MyCarousel>
+          </div>
 
             
 

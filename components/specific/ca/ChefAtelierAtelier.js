@@ -2,58 +2,69 @@ import React from "react";
 import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 import myPicture from "../../../public/carPicture.jpg";
+import styled from "styled-components";
+import MyServiceCarIcons from "../../commun/MyServiceCarIcons/MyServiceCarIcons";
+import MyIcons from "../../commun/images/images";
+import techMec from "../../commun/images/techMec.png";
+import techPneus from  "../../../public/techPneus.jpg"
 
 const initialPhoto = myPicture;
 
-const CardStyle = {
-  border: "1px solid #03506f",
-  borderRadius: "30px",
-  padding: "2vw",
-  margin: "2vw",
-  width: "15vw",
-  height: "40vh",
-  backgroundColor: "#75cfb8",
-};
+const MainCarCard = styled.div`
+  color: blue;
+  border: 1px solid #03506f;
+  display: flex;
+  position: relative;
+  height: 40vh;
+  width: 200px;
+  border: 1px solid #03506f;
+  margin: 20px;
+  border-radius: 0 12px 20px 50px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+`;
 
 const initialCar = {
   id: 89,
-  csName:"TARHI",
-  note:[{
-    sender:"NOTE DE TEXT",
-    senderTime:"note created at: ",
-    noteText:"MY TEXT",
-  }],
-  photo:{
-    carPhoto: initialPhoto,
-    createdaT:"created at: ",
-  },
- 
-  deliveryTimeAdjustment:[{
-    deadLineTime:"17:00",
-    deadLineDay:"Lundi 07/08/22",
-    who:"Said",
-    when:"now",
-    why:"Explication",
-    isCustomerInformed:"Non", }],
-
-  emoji: "😅",
-  carTasks:{
-
-    myService:false,
-    mecanical:false,
-    electrical:false,
-    body:false,
-    divers:{
-      newOne:false,
-      diversNote:"divers note",
+  csName: "TARHI",
+  note: [
+    {
+      sender: "NOTE DE TEXT",
+      senderTime: "note created at: ",
+      noteText: "MY TEXT",
     },
-    EstimatedTime:"EstimatedTime",
+  ],
+  photo: {
+    carPhoto: initialPhoto,
+    createdaT: "created at: ",
   },
-  
 
+  deliveryTimeAdjustment: [
+    {
+      deadLineTime: "17:00",
+      deadLineDay: "Lundi 07/08/22",
+      who: "Said",
+      when: "now",
+      why: "Explication",
+      isCustomerInformed: "Non",
+    },
+  ],
+
+  emoji: "😅😅😅😅😅😅😅😅😅😅",
+  carTasks: {
+    myService: true,
+    mecanical: false,
+    electrical: false,
+    body: false,
+    divers: {
+      newOne: false,
+      diversNote: "divers note",
+    },
+    EstimatedTime: "EstimatedTime",
+  },
 };
 
-function ChefAtelierAtelier({ props = initialCar}) {
+function ChefAtelierAtelier({ props = initialCar }) {
   const [isFlipped, setFlipped] = React.useState(false);
   console.log(props);
 
@@ -69,64 +80,68 @@ function ChefAtelierAtelier({ props = initialCar}) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     const myData = document.getElementById(data);
-    console.log(myData)
-    console.log(ev.target)
+    console.log(myData);
+    console.log(ev.target);
     //ev.target.appendChild(document.getElementById(data));
   }
 
   return (
-    <div 
-    onDrop={(e) => drop(e)}
-    >
+    <div onDrop={(e) => drop(e)}>
       <div
         draggable="true"
         onDragStart={(e) => drag(e)}
         onDragOver={(e) => allowDrop(e)}
-        
       >
         <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-          <div
-            id={props.id}
-            style={CardStyle}
+          <MainCarCard
             className="CardFront"
+            key={props.id}
+            id={props.id}
             onClick={() => setFlipped((prev) => !prev)}
           >
-            <div >
-              <span className="emoji" role="img" aria-label="emojis" >
-                {props.emoji}
-              </span>
+            <div style={{ position: "absolute", top: "-25px" }}>
+              
+              <img src="../../commun/images/techMec.png" alt="alt"/>
+            </div>
 
-
-
+            
               <Image
-                alt="Mountains"
-                src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fword-image-36.jpeg?alt=media&token=92981557-c11f-4b65-b445-9f2fb5b3049a"
+                alt="carToAffect"
+                src={props.photo.carPhoto}
                 layout="fill"
+                width={100}
+                height={100}
                 quality={10}
               />
-            </div>
-          </div>
+            
+          </MainCarCard>
 
-          <div
-            style={CardStyle}
+          <MainCarCard
             onClick={() => setFlipped((prev) => !prev)}
             className="CardBack"
           >
             <p>{props.emoji}</p>
 
             <p>{props.carTasks.myService && "Vidange"}</p>
-            <p>{props.carTasks.mecanical==true && "Mecanique"}</p>
-            <p>{props.carTasks.electrical==true && "electrique"}</p>
+            <p>{props.carTasks.mecanical == true && "Mecanique"}</p>
+            <p>{props.carTasks.electrical == true && "electrique"}</p>
             <p>{props.carTasks.body == true && "carrosserie"}</p>
-            <p>{props.carTasks.divers.newOne == true && props.carTasks.divers.diversNote}</p>
-            <p>{props.deliveryTimeAdjustment.map((adjustment=>{return adjustment.deadLineTime}))}</p>
-            
-
-          </div>
+            <p>
+              {props.carTasks.divers.newOne == true &&
+                props.carTasks.divers.diversNote}
+            </p>
+            <p>
+              {props.deliveryTimeAdjustment.map((adjustment) => {
+                return adjustment.deadLineTime;
+              })}
+            </p>
+          </MainCarCard>
         </ReactCardFlip>
       </div>
     </div>
   );
 }
+
+console.log(MyIcons)
 
 export default ChefAtelierAtelier;

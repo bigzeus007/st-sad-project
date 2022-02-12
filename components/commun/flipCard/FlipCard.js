@@ -3,15 +3,16 @@ import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 import myPicture from "../../../public/carPicture.jpg";
 import myCar from "../images/start.svg"
+import carIcon from "../images/carIcon.png"
 
 const initialPhoto = myPicture;
 
 const CardStyle = {
   border: "1px solid #03506f",
   borderRadius: "30px",
-  padding: "2vw",
-  margin: "2vw",
-  width: "15vw",
+  padding: "1vw",
+  margin: "1vw",
+  width: "20vw",
   height: "35vh",
   backgroundColor: "#75cfb8",
 };
@@ -21,13 +22,14 @@ const initialCar = {
   position:"",
   responsibility:"",
   csName:"TARHI",
+  
   note:[{
     sender:"NOTE DE TEXT",
     senderTime:"note created at: ",
     noteText:"MY TEXT",
   }],
   photo:{
-    carPhoto: initialPhoto,
+    carPhoto: myCar,
     createdaT:"created at: ",
   },
  
@@ -39,7 +41,7 @@ const initialCar = {
     why:"Explication",
     isCustomerInformed:"Non", }],
 
-  emoji: "😅",
+  emoji: carIcon,
   carTasks:{
 
     myService:false,
@@ -95,15 +97,10 @@ function Card({ props = initialCar}) {
             onClick={() => setFlipped((prev) => !prev)}
           >
             <div>
-              <span className="emoji" role="img" aria-label="emojis" >
-                {props.emoji}
-              </span>
-
-
-
+              
               <Image
                 alt="Car"
-                src={myCar}
+                src={props.photo.carPhoto}
                 layout="fill"
                 quality={10}
               />
@@ -115,8 +112,7 @@ function Card({ props = initialCar}) {
             onClick={() => setFlipped((prev) => !prev)}
             className="CardBack"
           >
-            <p>{props.emoji}</p>
-
+          
             <p>{props.carTasks.myService && "Vidange"}</p>
             <p>{props.carTasks.mecanical==true && "Mecanique"}</p>
             <p>{props.carTasks.electrical==true && "electrique"}</p>

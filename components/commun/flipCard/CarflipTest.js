@@ -15,7 +15,7 @@ function App() {
 
       <div
         className="container-fluid"
-        style={{ display: "flex", flexWrap: "wrap", margin: "10px 130px" }}
+        style={{ display: "flex", flexWrap: "wrap",  }}
       >
         {content.map(newCard=> {return createEntry(newCard)})}
       </div>

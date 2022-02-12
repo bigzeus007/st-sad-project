@@ -63,7 +63,7 @@ const content = [
       why:"Explication",
       isCustomerInformed:"Non", }],
   
-    emoji: "😅🤩😛",
+    emoji: "😅🤩😅🤩😛😛😅🤩😛",
     carTasks:{
   
       myService:true,

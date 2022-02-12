@@ -12,7 +12,7 @@ export default function MyCarousel(){
     const setting = {
       dragSpeed: 1.25,
       itemWidth: 300,
-      itemHeight: 180,
+      itemHeight: 500,
       itemSideOffsets: 15,
     }
 
