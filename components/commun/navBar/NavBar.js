@@ -143,7 +143,7 @@ export default function NavBar() {
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div> */}
-          <div style={{height:"40vh"}}>
+          <div style={{height:"45vh"}}>
             <Tech></Tech>
           {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </div>

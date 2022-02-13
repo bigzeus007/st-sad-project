@@ -62,7 +62,7 @@ const MainCarCard = styled.div`
 
 `;
 
-const initialCar = {
+export const initialCar = {
   id: 89,
   position:1,
   responsability:[{name:"",startingTime:""}],
