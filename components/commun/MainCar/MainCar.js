@@ -65,8 +65,10 @@ const MainCarCard = styled.div`
 export const initialCar = {
   id: 89,
   position:1,
-  responsability:[{name:"",startingTime:""}],
+  responsabilitiesHistory:[{name:"",startingTime:""}],
   csName: "TARHI",
+  responsability:"amine",
+  startingTime:"startedAt ",
   note: [
     {
       sender: "NOTE DE TEXT",
@@ -187,4 +189,4 @@ function MainCar({ props = initialCar }) {
 }
 
 
-export default ChefAtelierAtelier;
+export default MainCar;

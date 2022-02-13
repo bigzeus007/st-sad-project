@@ -8,6 +8,7 @@ const content = [
   {
     id: 89,
     csName:"TARHI",
+    responsibility:"amine",
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -45,11 +46,18 @@ const content = [
   {
     id: 39,
     csName:"TARHI",
+    responsibility:"yassine",
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
-      noteText:"MY TEXT",
-    }],
+      noteText:"MY TEXT testing said",
+    },
+    {
+      sender:"NOTE DE TEXT 2",
+      senderTime:"note created at: ",
+      noteText:"MY TEXT testing amine",
+    }
+  ],
     photo:{
       carPhoto: carPicture,
       createdaT:"created at: ",

@@ -3,10 +3,7 @@ import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 import myPicture from "../../../public/carPicture.jpg";
 import styled from "styled-components";
-import MyServiceCarIcons from "../../commun/MyServiceCarIcons/MyServiceCarIcons";
-import MyIcons from "../../commun/images/images";
-import techMec from "../../commun/images/techMec.png";
-import techPneus from  "../../../public/techPneus.jpg"
+
 
 const initialPhoto = myPicture;
 

@@ -5,7 +5,7 @@ import content from "../flipCard/content";
 import ChefAtelierCs from "../../specific/ca/ChefAtelierCs";
 import SlideShowEffect from "../slideShowEffect/SlideShowEffect.jsx";
 import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js"
-import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
+
 import App from "../flipCard/CarflipTest";
 import Carousel from "../carousel/carousel";
 import MyCarousel from "../carousel/MyCarousel";
