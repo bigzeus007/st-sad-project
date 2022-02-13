@@ -33,23 +33,27 @@ export default function ChefAtelierGarage(){
 
     `
     const Button= styled.button`
+    font-size:1.5vw;
     box-shadow: 0px 5px 5px 0px;
     border-radius: 0px 5px 5px 50px;
     background-color:${props=>props.availability? "green":"red"};
 
     `
 
+    const listAtelier=["express","mecanique","diagnostic","bodyCar"]
+
 
 
     return (
         
         <GlobalAtelier>
-            <Atelier className="express">
-                {techList.filter(tech=>(tech.atelierAffectation=="express")).map(filtredList=>(<Button availability={filtredList.availability}>{filtredList.nom}</Button>))}
-            </Atelier>
-            <Atelier className="mecanique"></Atelier>
-            <Atelier className="diagnostic"></Atelier>
-            <Atelier className="bodyCar"></Atelier>
+            {listAtelier.map((atelier)=>(
+            <Atelier className={atelier}>
+                {techList.filter(tech=>(tech.active===true && tech.atelierAffectation==`${atelier}`)).map(filtredList=>(<Button availability={filtredList.availability}>{filtredList.nom}</Button>))}
+            </Atelier>))
+            
+            }
+            
         </GlobalAtelier>
 
     )
