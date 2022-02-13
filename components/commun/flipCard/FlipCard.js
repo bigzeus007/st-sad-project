@@ -3,20 +3,60 @@ import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 import myPicture from "../../../public/carPicture.jpg";
 import myCar from "../images/start.svg"
-import carIcon from "../images/carIcon.png"
+import carIcon from "../images/carIcon.png";
+import styled from "styled-components";
 
 const initialPhoto = myPicture;
 
-const CardStyle = {
-  border: "1px solid #03506f",
-  borderRadius: "30px",
-  padding: "1vw",
-  margin: "1vw",
-  width: "20vw",
-  height: "35vh",
-  backgroundColor: "#75cfb8",
-};
+const MainCarCard = styled.div`
+  color: blue;
+  border: 1px solid #03506f;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40vh;
+  width: 200px;
+  border: 1px solid #03506f;
+  margin: 20px;
+  border-radius: 50px;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
 
+  #ventesAdd, .interventions{
+    position: absolute;
+    left:10px;
+    background-color:royalblue;
+    box-sizing:border-box;
+    border-radius:10px;
+    border:2px solid royalblue;
+    display:flex;
+    
+    z-index:1;
+    opacity:0.75;
+
+  }
+  .interventions{
+    top: -25px;
+  }
+  #ventesAdd{
+  
+    bottom: -5px;
+  }
+  
+  img {
+  border-radius: 20%;
+}
+#cardDescription{
+  display:grid;
+  position:absolute;
+  margin:10px;
+ 
+  p{
+    position:relative;
+  }
+}
+
+`;
 const initialCar = {
   id: 89,
   position:"",
@@ -74,8 +114,7 @@ function Card({ props = initialCar}) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     const myData = document.getElementById(data);
-    console.log(myData)
-    console.log(ev.target)
+
     //ev.target.appendChild(document.getElementById(data));
   }
 
@@ -90,9 +129,8 @@ function Card({ props = initialCar}) {
         
       >
         <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-          <div
+          <MainCarCard
             id={props.id}
-            style={CardStyle}
             className="CardFront"
             onClick={() => setFlipped((prev) => !prev)}
           >
@@ -105,10 +143,9 @@ function Card({ props = initialCar}) {
                 quality={10}
               />
             </div>
-          </div>
+          </MainCarCard>
 
-          <div
-            style={CardStyle}
+          <MainCarCard
             onClick={() => setFlipped((prev) => !prev)}
             className="CardBack"
           >
@@ -121,7 +158,7 @@ function Card({ props = initialCar}) {
             <p>{props.deliveryTimeAdjustment.map((adjustment=>{return adjustment.deadLineTime}))}</p>
             
 
-          </div>
+          </MainCarCard>
         </ReactCardFlip>
       </div>
     </div>

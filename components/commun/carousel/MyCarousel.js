@@ -23,14 +23,14 @@ export default function MyCarousel(){
     }
 
     return(
-      <div className={styles.container}>
-        <h1>Drag the carousel along the x-axies...</h1>
+      <div >
+        <h1>.................................................</h1>
         <Carousel _data={items} {...setting}>
           {
             items.map((i, _i) => (
               <div
                 key={_i}
-                className={styles.item}
+               
                 style={{ ...itemStyle }}>
                 <Card ></Card>
               </div>

@@ -198,6 +198,5 @@ function ChefAtelierAtelier({ props = initialCar }) {
   );
 }
 
-console.log(MyIcons)
 
 export default ChefAtelierAtelier;

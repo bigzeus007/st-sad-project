@@ -9,6 +9,7 @@ import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
 import App from "../flipCard/CarflipTest";
 import Carousel from "../carousel/carousel";
 import MyCarousel from "../carousel/MyCarousel";
+import Tech from "../../specific/tech/Tech";
 
 export default function NavBar() {
   const [toggle, setToggle] = useState("close");
@@ -141,13 +142,14 @@ export default function NavBar() {
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div> */}
-          <div style={{height:"50vh"}}>
-          <ChefAtelierAtelier></ChefAtelierAtelier>
+          <div style={{height:"40vh"}}>
+            <Tech></Tech>
+          {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </div>
 
 
 
-          <div style={{width:"100%",height:"50vh",border:"red 2px solid"}}>
+          <div style={{height:"40vh"}}>
           <MyCarousel></MyCarousel>
           </div>
 
