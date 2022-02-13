@@ -22,24 +22,42 @@ const MainCarCard = styled.div`
   width: 200px;
   border: 1px solid #03506f;
   margin: 20px;
-  border-radius: 12px 50px 50px 50px;
+  border-radius: 50px;
   box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.6);
   box-sizing: border-box;
 
-  div{
+  #ventesAdd, .interventions{
     position: absolute;
+    left:10px;
     background-color:royalblue;
     box-sizing:border-box;
     border-radius:10px;
     border:2px solid royalblue;
     display:flex;
-    top: -25px;
+    
     z-index:1;
     opacity:0.75;
 
   }
+  .interventions{
+    top: -25px;
+  }
+  #ventesAdd{
+  
+    bottom: -5px;
+  }
+  
   img {
   border-radius: 20%;
+}
+#cardDescription{
+  display:grid;
+  position:absolute;
+  margin:10px;
+ 
+  p{
+    position:relative;
+  }
 }
 
 `;
@@ -73,12 +91,18 @@ const initialCar = {
   emoji: "😅😅😅😅😅😅😅😅😅😅",
   carTasks: {
     myService: true,
-    mecanical: false,
-    electrical: false,
-    body: false,
+    mecanical: true,
+    electrical: true,
+    body: true,
     divers: {
-      newOne: false,
-      diversNote: "divers note",
+      pneus: true,
+      plaquettes: true,
+      batterie: true,
+      lavage:true,
+      divers: {
+        newOne: false,
+        diversNote: "divers note",
+      },
     },
     EstimatedTime: "EstimatedTime",
   },
@@ -123,11 +147,13 @@ function ChefAtelierAtelier({ props = initialCar }) {
             id={props.id}
             onClick={() => setFlipped((prev) => !prev)}
           >
-            <div >
+            <div className="interventions" >
               
               {props.carTasks.myService&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8" alt="alt"/>}
-              <img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FchefAtelierNotNeeded.png?alt=media&token=87d0a6b7-74da-44a3-89d4-6231394cae58" alt="alt"/>
-
+              {props.carTasks.electrical&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechDiag.png?alt=media&token=a5bdaf9d-2345-4602-899b-0ced2aecb112" alt="alt"/>}
+              {props.carTasks.mecanical&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481" alt="alt"/>}
+              {props.carTasks.body&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87" alt="alt"/>}
+              
             </div>
 
             
@@ -139,6 +165,13 @@ function ChefAtelierAtelier({ props = initialCar }) {
                 height={100}
                 quality={10}
               />
+              <div id="ventesAdd" className="ventesAdd">
+              {props.carTasks.divers.pneus&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechPneus.jpg?alt=media&token=23822ca7-c965-46cb-af3d-368b64cc97f1" alt="alt"/>}
+              {props.carTasks.divers.plaquettes&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2Fplaquettes.png?alt=media&token=34a631ca-9487-4e38-a833-33b58616818b" alt="alt"/>}
+              {props.carTasks.divers.batterie&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FchargingBattery.png?alt=media&token=c5fb0fa1-5fd3-4c48-8504-5c896d7d9075" alt="alt"/>}
+              {props.carTasks.divers.lavage&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2Flavage.jpg?alt=media&token=08d4e304-19c7-4e2e-a75d-40784c998c5b" alt="alt"/>}
+
+              </div>
             
           </MainCarCard>
 
@@ -146,21 +179,18 @@ function ChefAtelierAtelier({ props = initialCar }) {
             onClick={() => setFlipped((prev) => !prev)}
             className="CardBack"
           >
-            <p>{props.emoji}</p>
-
+            <div id="cardDescription">
+           <p>CS : {props.csName}</p>
             <p>{props.carTasks.myService && "Vidange"}</p>
-            <p>{props.carTasks.mecanical == true && "Mecanique"}</p>
-            <p>{props.carTasks.electrical == true && "electrique"}</p>
-            <p>{props.carTasks.body == true && "carrosserie"}</p>
-            <p>
-              {props.carTasks.divers.newOne == true &&
-                props.carTasks.divers.diversNote}
-            </p>
-            <p>
-              {props.deliveryTimeAdjustment.map((adjustment) => {
+            <p>{props.carTasks.mecanical && "Mecanique"}</p>
+            <p>{props.carTasks.electrical && "electrique"}</p>
+            <p>{props.carTasks.body && "carrosserie"}</p>
+            <p>{props.carTasks.divers.plaquettes && "Plaquettes"}</p>
+            <p>{props.deliveryTimeAdjustment.map((adjustment) => {
                 return adjustment.deadLineTime;
               })}
             </p>
+            </div>
           </MainCarCard>
         </ReactCardFlip>
       </div>
