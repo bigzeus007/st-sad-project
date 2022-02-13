@@ -24,7 +24,7 @@ export default function MyCarousel(){
 
     return(
       <div >
-        <h1>.................................................</h1>
+       
         <Carousel _data={items} {...setting}>
           {
             items.map((i, _i) => (

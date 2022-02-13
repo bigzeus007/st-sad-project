@@ -64,6 +64,8 @@ const MainCarCard = styled.div`
 
 const initialCar = {
   id: 89,
+  position:1,
+  responsability:[{name:"",startingTime:""}],
   csName: "TARHI",
   note: [
     {

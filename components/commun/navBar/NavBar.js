@@ -10,6 +10,7 @@ import App from "../flipCard/CarflipTest";
 import Carousel from "../carousel/carousel";
 import MyCarousel from "../carousel/MyCarousel";
 import Tech from "../../specific/tech/Tech";
+import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
 
 export default function NavBar() {
   const [toggle, setToggle] = useState("close");
@@ -150,7 +151,7 @@ export default function NavBar() {
 
 
           <div style={{height:"40vh"}}>
-          <MyCarousel></MyCarousel>
+          <ChefAtelierGarage></ChefAtelierGarage>
           </div>
 
             

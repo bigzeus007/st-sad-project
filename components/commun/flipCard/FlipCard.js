@@ -63,6 +63,7 @@ const initialCar = {
   responsibility:"",
   csName:"TARHI",
   
+  
   note:[{
     sender:"NOTE DE TEXT",
     senderTime:"note created at: ",
