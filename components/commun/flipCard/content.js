@@ -8,9 +8,10 @@ const {listTech}=techList;
 const content = [
   {
     id: 89,
+    whereIsTheCar:"Amine",
     csName:"TARHI",
     responsibility:"amine",
-    affectationChefAtelier:["amine","yassine"],
+    affectationChefAtelier:["Amine","yassine"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -47,6 +48,7 @@ const content = [
   },
   {
     id: 39,
+    whereIsTheCar:"E-Parking",
     csName:"TARHI",
     responsibility:"yassine",
     affectationChefAtelier:["Amine","yassine"],
@@ -94,6 +96,7 @@ const content = [
   {
     id: 887,
     csName:"TARHI",
+    whereIsTheCar:"E-Parking",
     responsibility:"yassine",
     startingTime:"staefegoedAt ",
     affectationChefAtelier:["JAWAD","yassine"],
@@ -134,6 +137,7 @@ const content = [
   {
     id: 819,
     csName:"TARHI",
+    whereIsTheCar:"E-Parking",
     responsibility:"amine",
     startingTime:"star4454tedAt ",
     affectationChefAtelier:["Amine"],
@@ -174,6 +178,7 @@ const content = [
   {
     id: 71,
     csName:"TARHI",
+    whereIsTheCar:"Pending",
     responsibility:"Amine",
     startingTime:"starkd7d7dtedAt ",
     affectationChefAtelier:["Amine","yassine"],
@@ -214,7 +219,8 @@ const content = [
   {
     id: 89,
     csName:"TARHI",
-    responsibility:"amine",
+    whereIsTheCar:"Pending",
+    responsibility:"Amine",
     affectationChefAtelier:["Amine","yassine"],
     note:[{
       sender:"NOTE DE TEXT",
@@ -253,8 +259,9 @@ const content = [
   {
     id: 41,
     csName:"TARHI",
-    responsibility:"amine",
-    affectationChefAtelier:["amine","yassine"],
+    whereIsTheCar:"Pending",
+    responsibility:"Amine",
+    affectationChefAtelier:["Amine","yassine"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
