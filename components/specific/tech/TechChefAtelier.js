@@ -66,6 +66,9 @@ export default function TechChefAtelier() {
         .filter(({affectationChefAtelier}) => {
           return affectationChefAtelier.includes(actual.nom);
         })
+        .filter(({whereIsTheCar})=>{
+          return whereIsTheCar === "Pending";
+        })
         .map((element) => (
           <MainCar props={element}></MainCar>
         ))}
