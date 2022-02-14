@@ -16,15 +16,18 @@ const MainCarCard = styled.div`
   color: blue;
   border: 1px solid #03506f;
   display: flex;
-  align-items: center;
+  right:-70px;
+  
+
   position: relative;
   height: 40vh;
-  width: 200px;
+  width: 40%;
   border: 1px solid #03506f;
   margin: 20px;
   border-radius: 50px;
   box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.6);
   box-sizing: border-box;
+
 
   #ventesAdd, .interventions{
     position: absolute;
@@ -153,7 +156,7 @@ function MainCar({ props = initialCar }) {
           >
             <div className="interventions" >
               
-              {props.carTasks.myService&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8" alt="alt"/>}
+              {props.carTasks.myService &&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8" alt="alt"/>}
               {props.carTasks.electrical&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechDiag.png?alt=media&token=a5bdaf9d-2345-4602-899b-0ced2aecb112" alt="alt"/>}
               {props.carTasks.mecanical&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481" alt="alt"/>}
               {props.carTasks.body&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87" alt="alt"/>}
@@ -178,9 +181,18 @@ function MainCar({ props = initialCar }) {
               </div>
             
           </MainCarCard>
-
-          <MainCarCard>
          
+          <MainCarCard
+          className="CardBack"
+          key={props.id}
+          id={props.id}
+          onClick={() => setFlipped((prev) => !prev)}
+          >
+          <>
+              {props.csName}
+              <br/>
+              {props.startingTime}
+              </>
           </MainCarCard>
         </ReactCardFlip>
       </div>

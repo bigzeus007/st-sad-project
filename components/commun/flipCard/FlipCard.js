@@ -151,8 +151,8 @@ function Card({ props = initialCar}) {
             className="CardBack"
           >
           
-            <p>{props.carTasks.myService && "Vidange"}</p>
-            <p>{props.carTasks.mecanical==true && "Mecanique"}</p>
+            <p>{props.carTasks.myService==false && "Vidange"}</p>
+            <p>{props.carTasks.mecanical==false && "Mecanique"}</p>
             <p>{props.carTasks.electrical==true && "electrique"}</p>
             <p>{props.carTasks.body == true && "carrosserie"}</p>
             <p>{props.carTasks.divers.newOne == true && props.carTasks.divers.diversNote}</p>

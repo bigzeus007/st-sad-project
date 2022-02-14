@@ -5,7 +5,7 @@ export const techList=[
     {
         id:1,
         nom:"Amine",
-        active:false,
+        active:true,
         atelierAffectation:"express",
         availability:true,
         workingDayDuration:"5h",

@@ -22,7 +22,7 @@ const content = [
     },
    
     deliveryTimeAdjustment:[{
-      deadLineTime:"17:00",
+      deadLineTime:"17:45",
       deadLineDay:"Lundi 07/08/22",
       who:"Said",
       when:"now",
@@ -49,7 +49,8 @@ const content = [
     id: 39,
     csName:"TARHI",
     responsibility:"yassine",
-    affectationChefAtelier:["amine","yassine"],
+    affectationChefAtelier:["Amine","yassine"],
+    startingTime:"starvrgtedAt ",
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -67,7 +68,7 @@ const content = [
     },
    
     deliveryTimeAdjustment:[{
-      deadLineTime:"17:00",
+      deadLineTime:"00:00",
       deadLineDay:"Lundi 07/08/22",
       who:"Said",
       when:"now",
@@ -94,6 +95,8 @@ const content = [
     id: 887,
     csName:"TARHI",
     responsibility:"yassine",
+    startingTime:"staefegoedAt ",
+    affectationChefAtelier:["JAWAD","yassine"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -105,7 +108,7 @@ const content = [
     },
    
     deliveryTimeAdjustment:[{
-      deadLineTime:"17:00",
+      deadLineTime:"55:00",
       deadLineDay:"Lundi 07/08/22",
       who:"Said",
       when:"now",
@@ -132,6 +135,8 @@ const content = [
     id: 819,
     csName:"TARHI",
     responsibility:"amine",
+    startingTime:"star4454tedAt ",
+    affectationChefAtelier:["Amine"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -143,7 +148,7 @@ const content = [
     },
    
     deliveryTimeAdjustment:[{
-      deadLineTime:"17:00",
+      deadLineTime:"29:00",
       deadLineDay:"Lundi 07/08/22",
       who:"Said",
       when:"now",
@@ -169,7 +174,9 @@ const content = [
   {
     id: 71,
     csName:"TARHI",
-    responsibility:"amine",
+    responsibility:"Amine",
+    startingTime:"starkd7d7dtedAt ",
+    affectationChefAtelier:["Amine","yassine"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -208,7 +215,7 @@ const content = [
     id: 89,
     csName:"TARHI",
     responsibility:"amine",
-    affectationChefAtelier:["amine","yassine"],
+    affectationChefAtelier:["Amine","yassine"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -220,7 +227,7 @@ const content = [
     },
    
     deliveryTimeAdjustment:[{
-      deadLineTime:"17:00",
+      deadLineTime:"21:00",
       deadLineDay:"Lundi 07/08/22",
       who:"Said",
       when:"now",
@@ -247,6 +254,7 @@ const content = [
     id: 41,
     csName:"TARHI",
     responsibility:"amine",
+    affectationChefAtelier:["amine","yassine"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -258,7 +266,7 @@ const content = [
     },
    
     deliveryTimeAdjustment:[{
-      deadLineTime:"17:00",
+      deadLineTime:"15:00",
       deadLineDay:"Lundi 07/08/22",
       who:"Said",
       when:"now",

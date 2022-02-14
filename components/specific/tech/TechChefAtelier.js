@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "../../commun/flipCard/FlipCard";
-import { initialCar } from "../../commun/MainCar/MainCar";
+import MainCar, { initialCar } from "../../commun/MainCar/MainCar";
 import content from "../../commun/flipCard/content";
 import { techList } from "./techList";
 
@@ -9,7 +9,7 @@ export default function TechChefAtelier() {
   const myContent = content;
 
   function checkProfilTech(checking) {
-    return checking.nom == "yassine";
+    return checking.nom == "Amine";
   }
   const actual = techList.find(checkProfilTech);
 
@@ -21,15 +21,16 @@ export default function TechChefAtelier() {
   console.log(doing);
 
   const TechZone = styled.div`
-    position: absolute;
-    top: 8vh;
-    left: 0px;
-    width: 29vw;
+    position: relative;
+   overflow-x:scroll;
+   
+    width: 93%;
+  
 
-    display: grid;
+    display: flex;
 
-    grid-template-columns: 100% 100% 100%;
-    justify-items: center;
+ 
+   
     > div {
       border: 5px solid red;
       width: 100%;
@@ -62,13 +63,11 @@ export default function TechChefAtelier() {
   return (
     <TechZone>
       {myContent
-        .filter((content) => {
-          return content.affectationChefAtelier.includes(
-            `${actual.nom}`.toString()
-          );
+        .filter(({affectationChefAtelier}) => {
+          return affectationChefAtelier.includes(actual.nom);
         })
-        .map(({ element }) => (
-          <Card props={element}></Card>
+        .map((element) => (
+          <MainCar props={element}></MainCar>
         ))}
     </TechZone>
   );

@@ -9,8 +9,10 @@ import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js"
 import App from "../flipCard/CarflipTest";
 import Carousel from "../carousel/carousel";
 import MyCarousel from "../carousel/MyCarousel";
+import Tech from "../../specific/tech/Tech";
 import TechChefAtelier from "../../specific/tech/TechChefAtelier";
 import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
+import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
 
 export default function NavBar() {
   const [toggle, setToggle] = useState("close");
@@ -144,14 +146,14 @@ export default function NavBar() {
           })}
           </div> */}
           <div style={{height:"45vh"}}>
-            <TechChefAtelier></TechChefAtelier>
+            <Tech></Tech>
           {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </div>
 
 
 
           <div style={{height:"40vh"}}>
-          <ChefAtelierGarage></ChefAtelierGarage>
+          <TechChefAtelier></TechChefAtelier>
           </div>
 
             
