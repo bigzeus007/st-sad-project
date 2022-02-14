@@ -3,13 +3,16 @@ import styled from "styled-components";
 import Card from "../../commun/flipCard/FlipCard";
 import { initialCar } from "../../commun/MainCar/MainCar";
 import content from "../../commun/flipCard/content";
+import { techList } from "./techList";
 
 export default function Tech(){
 
     const myContent = content;
-    const actual = "yassine";
 
-    function checkDoing(checking){return checking.responsibility===`${actual}` };
+    function checkProfilTech(checking){return checking.nom=="yassine" };
+    const actual = techList.find(checkProfilTech);
+
+    function checkDoing(checking){return checking.responsibility===`${actual.nom}` };
 
     const doing = myContent.find(checkDoing)
     console.log(doing)
@@ -30,6 +33,8 @@ export default function Tech(){
     justify-items:center;
     >div{
         border:5px solid red;
+        width:100%;
+        font-size:2vw;
     }
     `
     const Note=styled.div`
@@ -68,7 +73,12 @@ export default function Tech(){
             
             <Card/>
             <div>
-                {doing.note.map(({noteText}) => {return <Note>{noteText.toLowerCase()}<br/></Note> })}
+                CS  : {doing.csName}
+                <br/>
+                {doing.carTasks.EstimatedTime}
+                <br/>
+                {actual.availability? "OCCUPE":"LIBRE"}
+               
                 <TechButton>BLOQUER</TechButton>
                 </div>
             

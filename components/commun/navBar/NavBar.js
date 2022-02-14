@@ -9,7 +9,7 @@ import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js"
 import App from "../flipCard/CarflipTest";
 import Carousel from "../carousel/carousel";
 import MyCarousel from "../carousel/MyCarousel";
-import Tech from "../../specific/tech/Tech";
+import TechChefAtelier from "../../specific/tech/TechChefAtelier";
 import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
 
 export default function NavBar() {
@@ -144,7 +144,7 @@ export default function NavBar() {
           })}
           </div> */}
           <div style={{height:"45vh"}}>
-            <Tech></Tech>
+            <TechChefAtelier></TechChefAtelier>
           {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </div>
 
