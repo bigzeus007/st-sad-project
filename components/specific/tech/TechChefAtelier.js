@@ -4,12 +4,17 @@ import Card from "../../commun/flipCard/FlipCard";
 import MainCar, { initialCar } from "../../commun/MainCar/MainCar";
 import content from "../../commun/flipCard/content";
 import { techList } from "./techList";
+import { auth } from "../../../firebase";
+import { getAuth } from "firebase/auth";
 
-export default function TechChefAtelier() {
-  const myContent = content;
+export default function TechChefAtelier({props}) {
+  
+  const auth = getAuth();
+  const user = auth.currentUser;
+  console.log(user.email)
 
   function checkProfilTech(checking) {
-    return checking.nom == "Amine";
+    return checking.email === user.email;
   }
   const actual = techList.find(checkProfilTech);
 
@@ -17,7 +22,7 @@ export default function TechChefAtelier() {
     return checking.responsibility === `${actual.nom}`;
   }
 
-  const doing = myContent.find(checkDoing);
+  const doing = content.find(checkDoing);
   console.log(doing);
 
   const TechZone = styled.div`
@@ -62,7 +67,7 @@ export default function TechChefAtelier() {
 
   return (
     <TechZone>
-      {myContent
+      {props
         .filter(({affectationChefAtelier}) => {
           return affectationChefAtelier.includes(actual.nom);
         })
@@ -70,7 +75,7 @@ export default function TechChefAtelier() {
           return whereIsTheCar === "Pending";
         })
         .map((element) => (
-          <MainCar props={element}></MainCar>
+          <MainCar key={element.id} props={element}></MainCar>
         ))}
     </TechZone>
   );

@@ -5,6 +5,7 @@ export const techList=[
     {
         id:1,
         nom:"Amine",
+        email:"tarhisaid@gmail.com",
         active:true,
         atelierAffectation:"express",
         availability:true,

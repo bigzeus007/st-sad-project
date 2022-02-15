@@ -2,22 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import Card from "../../commun/flipCard/FlipCard";
 import { initialCar } from "../../commun/MainCar/MainCar";
-import content from "../../commun/flipCard/content";
-import { techList } from "./techList";
 
-export default function Tech() {
-  const myContent = content;
+import { techList } from "./techList";
+import { auth } from "../../../firebase";
+
+export default function Tech({props}) {
+  
 
   function checkProfilTech(checking) {
-    return checking.nom == "yassine";
+    return checking.email == auth.currentUser.email;
   }
   const actual = techList.find(checkProfilTech);
 
   function checkDoing(checking) {
-    return checking.responsibility === `${actual.nom}`;
+    return checking.whereIsTheCar === `${actual.nom}`;
   }
 
-  const doing = myContent.find(checkDoing);
+  const doing = props.find(checkDoing);
   console.log(doing);
 
   const TechZone = styled.div`

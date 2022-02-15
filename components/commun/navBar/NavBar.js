@@ -4,7 +4,7 @@ import { auth } from "../../../firebase";
 import content from "../flipCard/content";
 import ChefAtelierCs from "../../specific/ca/ChefAtelierCs";
 import SlideShowEffect from "../slideShowEffect/SlideShowEffect.jsx";
-import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js"
+import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js";
 
 import App from "../flipCard/CarflipTest";
 import Carousel from "../carousel/carousel";
@@ -15,6 +15,7 @@ import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
 import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
 
 export default function NavBar() {
+  const user = auth.currentUser;
   const [toggle, setToggle] = useState("close");
   const [darkMode, setDarkMode] = useState("");
   const sideBarToggle = (toggle) => {
@@ -23,9 +24,6 @@ export default function NavBar() {
   const darkModeToggle = (toggle) => {
     toggle === "dark" ? setDarkMode("light") : setDarkMode("dark");
   };
-
-
- 
 
   return (
     <>
@@ -137,31 +135,55 @@ export default function NavBar() {
           </div>
         </nav>
 
-        <section className="home" >
-        <div className="text"> CHRONOS</div>
+        <section className="home">
+          <div
+            style={{
+              width: "100vw",
+              height: "10vh",
+              border: "5px yellow solid",
+            }}
+            className="text"
+          >
+            {" "}
+            CHRONOS{" "}
+            <div
+              style={{
+                position: "absolute",
+                display:"flex",
+                height: "10vh",
+                width:"auto",
+                top: "0px",
+                right: "0px",
+              }}
+            >
+              <p>Bonjour : {user.displayName}</p>
 
+              <img
+                style={{
+                  borderRadius: "50%",
+                  width:"10vh",
+                  objectFit: "fill",
+                }}
+                src={user.photoURL}
+                alt="photo profil"
+              ></img>
+            </div>
+          </div>
 
-        {/* <div style={{display:"flex"}}>
+          {/* <div style={{display:"flex"}}>
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div> */}
-          <div style={{height:"45vh"}}>
-            <Tech></Tech>
-          {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
+          <div style={{ height: "45vh", border: "5px black solid" }}>
+            <Tech props={content}></Tech>
+            {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </div>
 
-
-
-          <div style={{height:"40vh"}}>
-          <TechChefAtelier></TechChefAtelier>
+          <div style={{ height: "40vh" }}>
+            <TechChefAtelier props={content}></TechChefAtelier>
           </div>
-
-            
-
-
         </section>
       </div>
-      
     </>
   );
 }

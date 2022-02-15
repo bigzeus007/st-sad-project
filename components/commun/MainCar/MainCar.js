@@ -121,6 +121,7 @@ function MainCar({ props = initialCar }) {
   
 
   const [isFlipped, setFlipped] = React.useState(false);
+  
   console.log(props);
 
   function allowDrop(ev) {
@@ -128,6 +129,7 @@ function MainCar({ props = initialCar }) {
   }
 
   function drag(ev) {
+    console.log(ev.target)
     ev.dataTransfer.setData("text", ev.target.id);
   }
 
@@ -135,7 +137,7 @@ function MainCar({ props = initialCar }) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     const myData = document.getElementById(data);
-    console.log(myData);
+    console.log(`myData : ${myData}`);
     console.log(ev.target);
     //ev.target.appendChild(document.getElementById(data));
   }
