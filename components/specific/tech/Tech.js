@@ -74,7 +74,7 @@ export default function Tech({props}) {
         <TechButton>TERMINER</TechButton>
       </div>
 
-      <Card />
+      <Card props={doing}/>
       <div>
         CS : {doing.csName}
         <br />

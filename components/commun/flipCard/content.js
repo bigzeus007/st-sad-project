@@ -33,12 +33,12 @@ const content = [
     emoji: "😅🤩😛😅🤩😛",
     carTasks:{
   
-      myService:false,
+      myService:true,
       mecanical:false,
       electrical:false,
       body:false,
       divers:{
-        newOne:false,
+        newOne:true,
         diversNote:"divers note",
       },
       EstimatedTime:"EstimatedTime",
@@ -163,9 +163,9 @@ const content = [
     carTasks:{
   
       myService:false,
-      mecanical:false,
+      mecanical:true,
       electrical:false,
-      body:false,
+      body:true,
       divers:{
         newOne:false,
         diversNote:"divers note",
@@ -206,7 +206,7 @@ const content = [
       myService:false,
       mecanical:false,
       electrical:false,
-      body:false,
+      body:true,
       divers:{
         newOne:false,
         diversNote:"divers note",
@@ -245,7 +245,7 @@ const content = [
   
       myService:false,
       mecanical:false,
-      electrical:false,
+      electrical:true,
       body:false,
       divers:{
         newOne:false,
@@ -283,7 +283,7 @@ const content = [
     emoji: "😅🤩😛😅🤩😛",
     carTasks:{
   
-      myService:false,
+      myService:true,
       mecanical:false,
       electrical:false,
       body:false,

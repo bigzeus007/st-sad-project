@@ -7,6 +7,7 @@ import MyServiceCarIcons from "../../commun/MyServiceCarIcons/MyServiceCarIcons"
 import MyIcons from "../../commun/images/images";
 import techMec from "../../commun/images/techMec.png";
 import techPneus from  "../../../public/techPneus.jpg"
+import { useState, useEffect } from "react";
 
 const initialPhoto = myPicture;
 
@@ -117,6 +118,9 @@ export const initialCar = {
 
 function MainCar({ props = initialCar }) {
 
+  const [dragged,setDragged] = useState()
+
+
 
   
 
@@ -129,7 +133,9 @@ function MainCar({ props = initialCar }) {
   }
 
   function drag(ev) {
-    console.log(ev.target)
+    console.log(props.id)
+    setDragged(props.id)
+
     ev.dataTransfer.setData("text", ev.target.id);
   }
 
@@ -137,8 +143,10 @@ function MainCar({ props = initialCar }) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     const myData = document.getElementById(data);
+
     console.log(`myData : ${myData}`);
-    console.log(ev.target);
+    console.log(props.id);
+    
     //ev.target.appendChild(document.getElementById(data));
   }
 
