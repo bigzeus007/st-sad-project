@@ -13,6 +13,7 @@ import Tech from "../../specific/tech/Tech";
 import TechChefAtelier from "../../specific/tech/TechChefAtelier";
 import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
 import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
+import {StyledFooter} from "../../../styles/Footer.styled"
 
 export default function NavBar() {
   const user = auth.currentUser;
@@ -175,7 +176,9 @@ export default function NavBar() {
           })}
           </div> */}
           <div style={{ height: "45vh", border: "5px black solid" }}>
-            <Tech props={content}></Tech>
+
+            {/* <StyledFooter></StyledFooter> */}
+            {/* <Tech props={content}></Tech> */}
             {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </div>
 
