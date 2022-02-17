@@ -179,7 +179,7 @@ export default function NavBar() {
           </div> */}
           <div style={{ height: "45vh", border: "5px black solid",}}>
             
-            <MySubmitButton></MySubmitButton>
+            <Pisteur props={content}></Pisteur>
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
             {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
