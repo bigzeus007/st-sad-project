@@ -66,12 +66,16 @@ const MainCarCard = styled.div`
 
 `;
 
+
+
 export const initialCar = {
   id: 89,
-  position:1,
+  position:1,//a supprimer
+  whereIsTheCar:1,
   responsabilitiesHistory:[{name:"",startingTime:""}],
-  csName: "TARHI",
-  responsability:"amine",
+  affectationChefAtelier:["Amine","yassine","TARHI"],
+  csName: "TARHI", // a supprimer
+  responsability:"Amine",
   startingTime:"startedAt ",
   note: [
     {

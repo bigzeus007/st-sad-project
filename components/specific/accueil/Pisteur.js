@@ -3,6 +3,8 @@ import { techList } from "../tech/techList";
 import { getAuth } from "firebase/auth";
 import Card from "../../commun/flipCard/FlipCard";
 import content from "../../commun/flipCard/content";
+import MainCar from "../../commun/MainCar/MainCar";
+import { TechZone } from "../../../styles/TechZone";
 
 
 
@@ -22,26 +24,27 @@ export default function Pisteur({props}) {
       console.log(user)
 
       function checkParkTech(checking) {
-        return checking.nom === getUser.email;
+        return checking.affectationChefAtelier.includes(`${user.nom}`);
       }
+      
 
-    const parkPisteur = content.filter(checkProfilTech)
+    const parkPisteur = content.filter(checkParkTech)
     console.log(parkPisteur)
-
+    console.log("parkPisteur")
     console.log(parkPisteur)
 
 
     return (
-        <div>
+        <TechZone>
 
-            <Card ></Card>
+            {parkPisteur.map((car)=>(<MainCar key={car.id} props={car}></MainCar>))}
 
             
 
 
 
 
-        </div>
+        </TechZone>
     );
     
 }

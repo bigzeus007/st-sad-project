@@ -9,9 +9,10 @@ const content = [
   {
     id: 89,
     whereIsTheCar:"Amine",
-    csName:"TARHI",
-    responsibility:"amine",
-    affectationChefAtelier:["Amine","yassine"],
+    csName:"TARHI", // a supprimer
+    responsibility:"Amine",
+    responsabilitiesHistory:[{name:"",startingTime:""}],
+    affectationChefAtelier:["Amine","yassine","TARHI"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
@@ -51,7 +52,7 @@ const content = [
     whereIsTheCar:"E-Parking",
     csName:"TARHI",
     responsibility:"yassine",
-    affectationChefAtelier:["Amine","yassine"],
+    affectationChefAtelier:["Amine","yassine","TARHI"],
     startingTime:"starvrgtedAt ",
     note:[{
       sender:"NOTE DE TEXT",
@@ -99,7 +100,7 @@ const content = [
     whereIsTheCar:"E-Parking",
     responsibility:"yassine",
     startingTime:"staefegoedAt ",
-    affectationChefAtelier:["JAWAD","yassine"],
+    affectationChefAtelier:["JAWAD","yassine","TARHI"],
     note:[{
       sender:"NOTE DE TEXT",
       senderTime:"note created at: ",
