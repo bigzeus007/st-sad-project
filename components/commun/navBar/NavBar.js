@@ -14,6 +14,8 @@ import TechChefAtelier from "../../specific/tech/TechChefAtelier";
 import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
 import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
 import {StyledFooter} from "../../../styles/Footer.styled"
+import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
+import Pisteur from "../../specific/accueil/Pisteur";
 
 export default function NavBar() {
   const user = auth.currentUser;
@@ -175,8 +177,9 @@ export default function NavBar() {
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div> */}
-          <div style={{ height: "45vh", border: "5px black solid" }}>
-
+          <div style={{ height: "45vh", border: "5px black solid",}}>
+            
+            <MySubmitButton></MySubmitButton>
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
             {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
