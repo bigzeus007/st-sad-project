@@ -11,7 +11,7 @@ import { TechZone } from "../../../styles/TechZone";
 export default function Pisteur({props}) {
 
     const getUser = getAuth().currentUser;
-    console.log(getUser.email)
+
 
     
 
@@ -21,17 +21,15 @@ export default function Pisteur({props}) {
         return checking.email === getUser.email;
       }
       const user = techList.find(checkProfilTech)
-      console.log(user)
+     
 
       function checkParkTech(checking) {
         return checking.affectationChefAtelier.includes(`${user.nom}`);
       }
       
 
-    const parkPisteur = content.filter(checkParkTech)
-    console.log(parkPisteur)
-    console.log("parkPisteur")
-    console.log(parkPisteur)
+    const parkPisteur = props.filter(checkParkTech)
+ 
 
 
     return (
