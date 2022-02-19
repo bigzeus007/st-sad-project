@@ -1,21 +1,13 @@
 import react from "react";
 import { useRef, useState } from "react";
 import { auth } from "../../../firebase";
-import content from "../flipCard/content";
-import ChefAtelierCs from "../../specific/ca/ChefAtelierCs";
-import SlideShowEffect from "../slideShowEffect/SlideShowEffect.jsx";
-import ReactFirebaseFileUpload from "../imageUploader/imageUploader.js";
 
-import App from "../flipCard/CarflipTest";
-import Carousel from "../carousel/carousel";
-import MyCarousel from "../carousel/MyCarousel";
-import Tech from "../../specific/tech/Tech";
-import TechChefAtelier from "../../specific/tech/TechChefAtelier";
-import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
-import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
-import {StyledFooter} from "../../../styles/Footer.styled"
-import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import Pisteur from "../../specific/accueil/Pisteur";
+import content, { initialCar } from "../flipCard/content";
+import { techList } from "../flipCard/techList";
+
+
+import ToDo from "../genericComponents/ToDo";
+import MainCar from "../MainCar/MainCar";
 
 export default function NavBar() {
   const user = auth.currentUser;
@@ -177,16 +169,16 @@ export default function NavBar() {
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div> */}
-          <div style={{ height: "45vh", border: "5px black solid",}}>
+          <div style={{ height: "50vh",width:"100vw",display:"flex" , border: "5px black solid",}}>
             
-            <Pisteur props={content}></Pisteur>
+            {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
             {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </div>
 
-          <div style={{ height: "40vh" }}>
-            <TechChefAtelier props={content}></TechChefAtelier>
+          <div style={{ height: "50vh",width:"100vw", border: "5px black solid"}}>
+            <MainCar props={initialCar} techList={techList}></MainCar>
           </div>
         </section>
       </div>

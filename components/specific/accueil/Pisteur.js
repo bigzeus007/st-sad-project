@@ -1,5 +1,5 @@
 import React from "react";
-import { techList } from "../tech/techList"; 
+import { techList } from "../../commun/flipCard/techList"; 
 import { getAuth } from "firebase/auth";
 import Card from "../../commun/flipCard/FlipCard";
 import content from "../../commun/flipCard/content";
@@ -11,10 +11,6 @@ import { TechZone } from "../../../styles/TechZone";
 export default function Pisteur({props}) {
 
     const getUser = getAuth().currentUser;
-
-
-    
-
 
 
     function checkProfilTech(checking) {

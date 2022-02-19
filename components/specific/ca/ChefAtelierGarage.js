@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { techList } from "../tech/techList";
+import { techList } from "../../commun/flipCard/techList";
 import { useState } from "react";
 
 export default function ChefAtelierGarage() {

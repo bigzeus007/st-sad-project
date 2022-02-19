@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Card from "../../commun/flipCard/FlipCard";
 import { initialCar } from "../../commun/MainCar/MainCar";
 
-import { techList } from "./techList";
+import { techList } from "../../commun/flipCard/techList";
 import { auth } from "../../../firebase";
 
 export default function Tech({props}) {
@@ -63,9 +63,9 @@ export default function Tech({props}) {
   return (
     <TechZone>
       <div>
-        {doing.note.map(({ noteText }) => {
+        {doing.note.map(({ noteText },index) => {
           return (
-            <Note>
+            <Note key={index}>
               {noteText.toLowerCase()}
               <br />
             </Note>
