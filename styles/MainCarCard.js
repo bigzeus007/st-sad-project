@@ -2,19 +2,20 @@ import styled from "styled-components";
 
 
 export const MainCarCard = styled.div`
+
   color: blue;
-  border: 1px solid #03506f;
+  
   display: flex;
-  right:-70px;
+  word-wrap: break-word;
   
 
   position: relative;
-  height: 40vh;
+  height: 35vh;
   width: 40%;
   border: 1px solid #03506f;
   margin: 20px;
   border-radius: 50px;
-  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.6);
+  box-shadow: 20px 20px 20px 10px black;
   box-sizing: border-box;
 
 

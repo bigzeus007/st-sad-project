@@ -1,6 +1,7 @@
 import react from "react";
 import { useRef, useState } from "react";
 import { auth } from "../../../firebase";
+import TopNavBar from "../../../styles/TopNavBar";
 
 import content, { initialCar } from "../flipCard/content";
 import { techList } from "../flipCard/techList";
@@ -177,9 +178,9 @@ export default function NavBar() {
             {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </div>
 
-          <div style={{ height: "50vh",width:"100vw", border: "5px black solid"}}>
+          <TopNavBar >
             <MainCar props={initialCar} techList={techList}></MainCar>
-          </div>
+          </TopNavBar>
         </section>
       </div>
     </>

@@ -25,7 +25,7 @@ const initialCar = {
   responsabilitiesHistory:[{name:"",startingTime:""}],
   affectationChefAtelier:["Amine","yassine","TARHI"],
   responsability:"TARHI",
-  startingTime:"startedAt ",
+  startingTime:"startedAt text to wrap mthode check multiple line stop reading",
   note: [
     {
       sender: "NOTE DE TEXT",

@@ -4,23 +4,25 @@ export const TechZone = styled.div`
 position: relative;
 overflow-x:scroll;
 
-width: 93%;
+width: 100%;
 
 
 display: flex;
+align-content: space-around;
+
 
 
 
 > div {
-  border: 5px solid red;
+  
   width: 100%;
-  font-size: 2vw;
+  font-size: 2rem;
 }
 `;
 const Note = styled.div`
 position: relative;
 display: flex;
-font-size: 1em;
+font-size: 1rem;
 color: royalblue;
 font-weight: bold;
 `;
@@ -34,7 +36,7 @@ font-size: 2vw;
 background-color: greenyellow;
 color: blue;
 font-weight: bolder;
-border-radius: 35%35%;
+border-radius: 35% 35%;
 :hover {
   background-color: green;
 }
