@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Card from "../flipCard/FlipCard";
+import ToDo from "../genericComponents/ToDo";
 import Carousel from './Carousel';
 import styles from "./MyCarousel.module.css";
 
@@ -32,7 +33,7 @@ export default function MyCarousel(){
                 key={_i}
                
                 style={{ ...itemStyle }}>
-                <Card ></Card>
+                <ToDo ></ToDo>
               </div>
             ))
           }

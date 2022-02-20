@@ -4,7 +4,7 @@ const CardComponent = styled.div`
 
 
 
-width:470px;
+
 
 }
 

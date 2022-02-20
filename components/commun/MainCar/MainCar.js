@@ -45,7 +45,7 @@ function MainCar({ props = initialCar }, { techList = initialTech }) {
 
   return (
     <CardComponent>
-      <div className="MainCard" onDrop={(e) => drop(e)}>
+      <div className="" onDrop={(e) => drop(e)}>
         <div
           draggable="true"
           onDragStart={(e) => drag(e)}

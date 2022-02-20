@@ -8,7 +8,7 @@ width: 100%;
 
 
 display: flex;
-align-content: space-around;
+
 
 
 
@@ -16,13 +16,13 @@ align-content: space-around;
 > div {
   
   width: 100%;
-  font-size: 2rem;
+  font-size: 1vw;
 }
 `;
 const Note = styled.div`
 position: relative;
 display: flex;
-font-size: 1rem;
+font-size: 1vw;
 color: royalblue;
 font-weight: bold;
 `;

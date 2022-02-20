@@ -2,6 +2,7 @@ import react from "react";
 import { useRef, useState } from "react";
 import { auth } from "../../../firebase";
 import TopNavBar from "../../../styles/TopNavBar";
+import Carousel from "../carousel/MyCarousel";
 
 import content, { initialCar } from "../flipCard/content";
 import { techList } from "../flipCard/techList";
@@ -170,16 +171,18 @@ export default function NavBar() {
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div> */}
-          <div style={{ height: "50vh",width:"100vw",display:"flex" , border: "5px black solid",}}>
-            
+          <TopNavBar >
+          <MainCar props={initialCar} techList={techList}></MainCar>
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
             {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
-          </div>
+          </TopNavBar>
 
           <TopNavBar >
-            <MainCar props={initialCar} techList={techList}></MainCar>
+           
+              <ToDo props={content} techList={techList}></ToDo>
+            
           </TopNavBar>
         </section>
       </div>

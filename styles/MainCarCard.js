@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// carPhoto :unit
 
 export const MainCarCard = styled.div`
 
@@ -7,15 +8,16 @@ export const MainCarCard = styled.div`
   
   display: flex;
   word-wrap: break-word;
+  flex-wrap:nowrap;
   
 
   position: relative;
   height: 35vh;
-  width: 40%;
-  border: 1px solid #03506f;
-  margin: 20px;
+  width: 190px;
+  
+ 
   border-radius: 50px;
-  box-shadow: 20px 20px 20px 10px black;
+  box-shadow: 15px 15px 15px 10px black;
   box-sizing: border-box;
 
 
@@ -25,7 +27,7 @@ export const MainCarCard = styled.div`
     background-color:royalblue;
     box-sizing:border-box;
     border-radius:10px;
-    border:2px solid royalblue;
+    
     display:flex;
     
     z-index:1;
@@ -33,7 +35,7 @@ export const MainCarCard = styled.div`
 
   }
   .interventions{
-    top: -25px;
+    top: 0px;
   }
   #ventesAdd{
   

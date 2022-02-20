@@ -294,10 +294,10 @@ header .image-text .profession{
     transition: var(--tran-05);
 }
 .home .text{
-    font-size: 3vw;
+    font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
-    padding: 12px 3vw;
+    padding: 12px 60px;
 }
 
 .sidebar.close ~ .home{
