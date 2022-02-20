@@ -5,15 +5,13 @@ import styled from "styled-components";
 export const MainCarCard = styled.div`
 
   color: blue;
-  
+ 
   display: flex;
   word-wrap: break-word;
-  flex-wrap:nowrap;
+ 
+  min-height:25vw;
   
-
-  position: relative;
-  height: 35vh;
-  width: 190px;
+  min-width:15vw;
   
  
   border-radius: 50px;

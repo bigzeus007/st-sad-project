@@ -6,6 +6,8 @@ import Carousel from "../carousel/MyCarousel";
 
 import content, { initialCar } from "../flipCard/content";
 import { techList } from "../flipCard/techList";
+import CarEntry from "../genericComponents/CarEntry";
+import TakePicture from "../genericComponents/TakePicture";
 
 
 import ToDo from "../genericComponents/ToDo";
@@ -172,7 +174,7 @@ export default function NavBar() {
           })}
           </div> */}
           <TopNavBar >
-          <MainCar props={initialCar} techList={techList}></MainCar>
+          <CarEntry props={content,techList} ></CarEntry>
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
@@ -180,8 +182,8 @@ export default function NavBar() {
           </TopNavBar>
 
           <TopNavBar >
-           
-              <ToDo props={content} techList={techList}></ToDo>
+            <TakePicture></TakePicture>
+            {/* <ToDo props={content,techList} ></ToDo> */}
             
           </TopNavBar>
         </section>

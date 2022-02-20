@@ -1,5 +1,12 @@
-// import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
+import usersReducer from './usersReducer'
+import postsReducer from './carsReducer'
 
-// export const store = configureStore({
-//   reducer: {},
-// })
+const store = configureStore({
+  reducer: {
+    users: usersReducer,
+    cars: carsReducer,
+  },
+})
+
+export default store
