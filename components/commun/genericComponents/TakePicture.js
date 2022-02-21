@@ -4,6 +4,7 @@ import { Button } from "../../../styles/Button.styled";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import { getStorage,getDownloadURL, ref, uploadString } from "firebase/storage";
 import { storage } from "../../../firebase";
+import CarDetailsOptions from "./CarDetailsOptions";
 
 
 export default function TakePicture() {
@@ -13,6 +14,18 @@ export default function TakePicture() {
   const [image,setImage]=useState(null);
   const [customer,setCustomer]=useState(null);
   const inputRef=useRef(null);
+  const [csName,setCsName]=useState('')
+
+  const csChoice=(e)=>{
+    setCsName(e.target.id===csName ? "green":"grey");  
+
+  }
+
+  const [rdv,setRdv]=useState(false)
+
+  const buttonRdvStyl = {
+    color: "red",
+  };
  
 
   
@@ -92,11 +105,30 @@ const storageRef = ref(storage, customer);
     <div style={{display:"flex",width:"100%",height:"100%",justifyContent:"center" }}>
      
         <div style={{display:`${takePictureSwitch}`,width:"auto",height:"80%",}}>
+            
+
+        <div>
+      <button style={buttonRdvStyl} onClick={()=>setRdv(false)}>SANS RDV</button>
+      <button onClick={()=>setRdv(true)}>AVEC RDV</button>
+      <div style={{display:`${rdv?"flex":"none"}`}}>
+        <input type="time"></input>
+        <div>
+          <button id="ELMOURZBANI" style={{backgroundColor:"yellowgreen"}} onClick={(e)=>csChoice(e)}>ELMOURZBANI</button>
+          <button id="HILALI" style={{backgroundColor:"grey"}} onClick={(e)=>setCsName(e.target.id)}>HILALI</button>
+          <button id="ESSAIH" style={{backgroundColor:`${csChoice}`}} onClick={(e)=>setCsName(e.target.id)}>ESSAIH</button>
+          <button id="BASSIR" style={{backgroundColor:`${csChoice}`}} onClick={(e)=>setCsName(e.target.id)}>BASSIR</button>
+        </div>
+      </div>
+    </div>
+
+
+            <div>
           <canvas style={{borderRadius:"20%", width:"375px"}} ref={photoRef}/>
           <button style={{position:"absolute", }} onClick={closePhoto}>Annuler</button>
           <div style={{position:"absolute", bottom:"20%",left:"44%"}}>
           <button onClick={()=>submitMyCarPhot(image)} disabled={customer?false:true}>Submit</button>
           <input ref={inputRef} type="text" onChange={(e)=>(setCustomer(e.target.value))} placeholder="NOM CLIENT"></input>
+          </div>
           </div>
         </div>
         
