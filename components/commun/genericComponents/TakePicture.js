@@ -35,7 +35,7 @@ export default function TakePicture() {
   };
 
   const takePhoto = () => {
-    const width = 160;
+    const width = 450;
     const height = 320;
     let photo = photoRef.current;
     let video = videoRef.current;
@@ -64,14 +64,14 @@ export default function TakePicture() {
   
 
   return (
-    <div style={{display:"flex",position:"relative", justifyItems:"center"}}>
+    <div style={{display:"flex",width:"100%",height:"100%",justifyContent:"space-around" }}>
      
-        <div style={{display:"flex",width:"30vw",height:"35vh",border:"5px solid black"}}>
-          <canvas ref={photoRef}/>
+        <div style={{display:"flex",width:"25%",height:"80%",}}>
+          <canvas style={{borderRadius:"20%"}} ref={photoRef}/>
           <button style={{position:"absolute", }} onClick={closePhoto}>Annuler</button>
         </div>
       
-      <div style={{display:"flex",height:"16em"}}>
+      <div style={{display:"flex",width:"25%",height:"80%"}}>
         <video ref={videoRef} style={{borderRadius:"20%"}}/>
         <button style={{position:"absolute"}}  onClick={takePhoto}>>Prendre photo</button>
       </div>
