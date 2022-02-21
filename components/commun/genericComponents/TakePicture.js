@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import styled from "styled-components";
-
+import { Button } from "../../../styles/Button.styled";
+import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
+import { getStorage,getDownloadURL, ref, uploadString } from "firebase/storage";
+import { storage } from "../../../firebase";
 
 
 export default function TakePicture() {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
   const [hasPhoto, setHasPhoto] = useState(false);
+  const [image,setImage]=useState(null);
+  const [customer,setCustomer]=useState("");
+
   
+const storageRef = ref(storage, customer);
   
+  const submitMyCarPhot = (photo)=>{
+
+    console.log(photo)
+    uploadString(storageRef, photo, 'data_url').then((snapshot) => {
+      console.log('Uploaded a data_url string!');
+    });
+  }
 
   const getVideo = () => {
       const constraints={
@@ -44,7 +57,10 @@ export default function TakePicture() {
 
     let ctx = photo.getContext("2d");
     ctx.drawImage(video, 0, 0, photo.width, photo.height);
-   
+
+    const imageCaptured = photo.toDataURL();
+    
+   setImage(imageCaptured);
     setHasPhoto(true);
   };
 
@@ -60,18 +76,21 @@ export default function TakePicture() {
   }, [videoRef]);
 
   const [carStatus, setCarStatus] = useState("none");
-
+  const takePictureSwitch = hasPhoto? "flex":"none";
   
 
   return (
-    <div style={{display:"flex",width:"100%",height:"100%",justifyContent:"space-around" }}>
+    <div style={{display:"flex",width:"100%",height:"100%",justifyContent:"center" }}>
      
-        <div style={{display:"flex",width:"25%",height:"80%",}}>
+        <div style={{display:`${takePictureSwitch}`,width:"40%",height:"80%",}}>
           <canvas style={{borderRadius:"20%"}} ref={photoRef}/>
           <button style={{position:"absolute", }} onClick={closePhoto}>Annuler</button>
+          <button onClick={()=>submitMyCarPhot(image)} >Submit</button>
+          <input type="text" onChange={(e)=>(setCustomer(e.target.value))} placeholder="NOM CLIENT"></input>
         </div>
+        
       
-      <div style={{display:"flex",width:"25%",height:"80%"}}>
+      <div style={{display:`${hasPhoto? "none":"flex"}`,width:"40%",height:"80%"}}>
         <video ref={videoRef} style={{borderRadius:"20%"}}/>
         <button style={{position:"absolute"}}  onClick={takePhoto}>>Prendre photo</button>
       </div>
