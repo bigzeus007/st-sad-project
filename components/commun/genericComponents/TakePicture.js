@@ -11,7 +11,9 @@ export default function TakePicture() {
   const photoRef = useRef(null);
   const [hasPhoto, setHasPhoto] = useState(false);
   const [image,setImage]=useState(null);
-  const [customer,setCustomer]=useState("");
+  const [customer,setCustomer]=useState(null);
+  const inputRef=useRef(null);
+ 
 
   
 const storageRef = ref(storage, customer);
@@ -47,6 +49,12 @@ const storageRef = ref(storage, customer);
       });
   };
 
+  const emptyInput = ()=>{
+      let myInput = inputRef.current;
+      myInput.value=null;
+      setCustomer(null);
+  }
+
   const takePhoto = () => {
     const width = 450;
     const height = 320;
@@ -61,6 +69,7 @@ const storageRef = ref(storage, customer);
     const imageCaptured = photo.toDataURL();
     
    setImage(imageCaptured);
+   emptyInput();
     setHasPhoto(true);
   };
 
@@ -82,11 +91,13 @@ const storageRef = ref(storage, customer);
   return (
     <div style={{display:"flex",width:"100%",height:"100%",justifyContent:"center" }}>
      
-        <div style={{display:`${takePictureSwitch}`,width:"40%",height:"80%",}}>
-          <canvas style={{borderRadius:"20%"}} ref={photoRef}/>
+        <div style={{display:`${takePictureSwitch}`,width:"auto",height:"80%",}}>
+          <canvas style={{borderRadius:"20%", width:"375px"}} ref={photoRef}/>
           <button style={{position:"absolute", }} onClick={closePhoto}>Annuler</button>
-          <button onClick={()=>submitMyCarPhot(image)} >Submit</button>
-          <input type="text" onChange={(e)=>(setCustomer(e.target.value))} placeholder="NOM CLIENT"></input>
+          <div style={{position:"absolute", bottom:"20%",left:"44%"}}>
+          <button onClick={()=>submitMyCarPhot(image)} disabled={customer?false:true}>Submit</button>
+          <input ref={inputRef} type="text" onChange={(e)=>(setCustomer(e.target.value))} placeholder="NOM CLIENT"></input>
+          </div>
         </div>
         
       
