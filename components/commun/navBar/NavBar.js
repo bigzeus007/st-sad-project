@@ -1,6 +1,7 @@
 import react from "react";
 import { useRef, useState } from "react";
 import { auth } from "../../../firebase";
+import RdvOrNotInput from "../../../styles/RdvOrNotInput";
 import TopNavBar from "../../../styles/TopNavBar";
 import Carousel from "../carousel/MyCarousel";
 
@@ -182,7 +183,9 @@ export default function NavBar() {
           </TopNavBar>
 
           <TopNavBar >
-            <TakePicture></TakePicture>
+            {/* <ToDo props={content}></ToDo> */}
+            <RdvOrNotInput></RdvOrNotInput>
+            {/* <TakePicture></TakePicture> */}
             {/* <ToDo props={content,techList} ></ToDo> */}
             
           </TopNavBar>
