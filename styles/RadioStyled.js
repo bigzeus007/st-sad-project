@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCs } from "../src/csReducer";
 
 export default function RadioStyled(){
+    const theCs = useSelector((state) => state.csSelected.value)
+  const dispatch = useDispatch()
 
 
 const Selection = styled.section`
@@ -47,48 +51,43 @@ input[type="radio"]#control_05:checked + label {
   background: red;
   border-color: red;
 }
-
-
-
-
-
 `
 
 
     return(
          <div style={{position:"absolute",top:"20vh"}}>
         <Selection>
-        <div >
+        <button onClick={()=>dispatch(selectCs("MOURZBANI"), console.log(theCs))}>
           <input type="radio" id="control_01" name="select" value="1" />
-          <label for="control_01">
+          <label htmlFor="control_01">
             <h2>ELMOURZBANI</h2>
            
           </label>
-        </div>
+        </button>
         <div>
           <input type="radio" id="control_02" name="select" value="2"/>
-          <label for="control_02">
+          <label htmlFor="control_02">
             <h2>HILALI</h2>
           
           </label>
         </div>
         <div>
           <input type="radio" id="control_03" name="select" value="3"/>
-          <label for="control_03">
-            <h2>ESSQIH</h2>
+          <label htmlFor="control_03">
+            <h2>ESSAIH</h2>
             
           </label>
         </div>
         <div>
           <input type="radio" id="control_04" name="select" value="4" />
-          <label for="control_04">
+          <label htmlFor="control_04">
             <h2>BASSIR</h2>
             
           </label>
         </div>
         <div>
           <input type="radio" id="control_05" name="select" value="5"/>
-          <label for="control_05">
+          <label htmlFor="control_05">
             
           </label>
         </div>

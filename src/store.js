@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import usersReducer from './usersReducer'
-import postsReducer from './carsReducer'
+
+import csReducer from './csReducer';
 
 const store = configureStore({
   reducer: {
-    users: usersReducer,
-    cars: carsReducer,
+    csSelected: csReducer,
   },
 })
 
