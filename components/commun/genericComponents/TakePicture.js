@@ -115,51 +115,51 @@ export default function TakePicture() {
           height: "100%",
         }}
       >
-        <div>
-          <button style={buttonRdvStyl} onClick={() => setRdv(false)}>
+        <div style={{display:"flex",position:"absolute", left:"20%"}}>
+          <button onClick={() => setRdv(false)}>
             SANS RDV
           </button>
           <button onClick={() => setRdv(true)}>AVEC RDV</button>
-          <div style={{ display: `${rdv ? "flex" : "none"}` }}>
+
+          <div style={{ display: `${rdv ? "flex" : "none"}`, flexWrap:"wrap"}}>
             <input type="time"></input>
-            <div>
-              <button
-                id="ELMOURZBANI"
-                style={{ backgroundColor: "yellowgreen" }}
-                onClick={(e) => csChoice(e)}
-              >
+            <div >
+                    <div style={{display:"block"}}>
+              <input id="radio-2" name="radio" type="radio" />
+              <label for="radio-2" class="radio-label">
                 ELMOURZBANI
-              </button>
-              <button
-                id="HILALI"
-                style={{ backgroundColor: "grey" }}
-                onClick={(e) => setCsName(e.target.id)}
-              >
+              </label>
+              </div>
+
+              <div style={{display:"block", }}>
+              <input id="radio-2" name="radio" type="radio" />
+              <label for="radio-2" class="radio-label">
                 HILALI
-              </button>
-              <button
-                id="ESSAIH"
-                style={{ backgroundColor: `${csChoice}` }}
-                onClick={(e) => setCsName(e.target.id)}
-              >
+              </label>
+              </div>
+
+              <div style={{display:"block"}}>
+              <input id="radio-2" name="radio" type="radio" />
+              <label for="radio-2" class="radio-label">
                 ESSAIH
-              </button>
-              <button
-                id="BASSIR"
-                style={{ backgroundColor: `${csChoice}` }}
-                onClick={(e) => setCsName(e.target.id)}
-              >
+              </label>
+              </div>
+
+              <div style={{display:"block"}}>
+              <input id="radio-2" name="radio" type="radio" />
+              <label for="radio-2" class="radio-label">
                 BASSIR
-              </button>
+              </label>
+              </div>
             </div>
           </div>
-        </div>
+        
 
         <div>
-          <button style={{ position: "absolute" }} onClick={closePhoto}>
+          <button onClick={closePhoto}>
             Annuler
           </button>
-          <div style={{ position: "absolute", bottom: "20%", left: "44%" }}>
+          <div >
             <button
               onClick={() => submitMyCarPhot(image)}
               disabled={customer ? false : true}
@@ -174,26 +174,33 @@ export default function TakePicture() {
             ></input>
           </div>
         </div>
+        </div>
       </div>
-      <div id="laboZone" style={{display:"flex",justifyContent: "flex-end",borderRadius: "20%",
-              }}>
-       
-          <button
-            
-            onClick={takePhoto}
-            style={{ borderRadius: "20%",display:`${hasPhoto ? "none" : "flex"}`}}
-            
-            
-          >
-            <video
-              ref={videoRef}
-              style={{ borderRadius: "20%", objectFit:"fill"}}
-              width="197vw" height="277vw"
-              
-            />
-          </button>
-        
-        <canvas style={{ borderRadius: "20%", width:"15vw",height:"21vw",display: `${takePictureSwitch}`,}}  ref={photoRef} />
+      <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
+        <button
+          onClick={takePhoto}
+          style={{
+            borderRadius: "20%",
+            display: `${hasPhoto ? "none" : "flex"}`,
+          }}
+        >
+          <video
+            ref={videoRef}
+            style={{ borderRadius: "20%", objectFit: "fill" }}
+            width="197vw"
+            height="277vw"
+          />
+        </button>
+
+        <canvas
+          style={{
+            borderRadius: "20%",
+            width: "13vw",
+            height: "18vw",
+            display: `${takePictureSwitch}`,
+          }}
+          ref={photoRef}
+        />
       </div>
     </div>
   );
