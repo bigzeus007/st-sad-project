@@ -68,7 +68,7 @@ export default function TakePicture() {
   };
 
   const takePhoto = () => {
-    const width = 320;
+    const width = 250;
     const height = 480;
     let photo = photoRef.current;
     let video = videoRef.current;
@@ -177,27 +177,23 @@ export default function TakePicture() {
       </div>
       <div id="laboZone" style={{display:"flex",justifyContent: "flex-end",borderRadius: "20%",
               }}>
-        <div
-          style={{
-            display: `${hasPhoto ? "none" : "flex"}`,
-            
-          }}
-        >
+       
           <button
-            style={{
-              position: "absolute",
-              
-            }}
+            
             onClick={takePhoto}
+            style={{ borderRadius: "20%",display:`${hasPhoto ? "none" : "flex"}`}}
+            
+            
           >
             <video
               ref={videoRef}
-              style={{ borderRadius: "20%", objectFfit:"fill",width:"320px",height:"480px"}}
-              width="320px" height="480px"
+              style={{ borderRadius: "20%", objectFit:"fill"}}
+              width="197vw" height="277vw"
+              
             />
           </button>
-        </div>
-        <canvas style={{ borderRadius: "20%",objectFfit:"fill" }} width="320px" height="480px" ref={photoRef} />
+        
+        <canvas style={{ borderRadius: "20%", width:"15vw",height:"21vw",display: `${takePictureSwitch}`,}}  ref={photoRef} />
       </div>
     </div>
   );
