@@ -10,6 +10,12 @@ import {
 } from "firebase/storage";
 import { storage } from "../../../firebase";
 import CarDetailsOptions from "./CarDetailsOptions";
+import RadioStyled from "../../../styles/RadioStyled";
+
+import { useSelector, useDispatch } from "react-redux";
+import{rdvTimeSelected} from "../../../src/csReducer";
+
+
 
 export default function TakePicture() {
   const videoRef = useRef(null);
@@ -19,6 +25,7 @@ export default function TakePicture() {
   const [customer, setCustomer] = useState(null);
   const inputRef = useRef(null);
   const [csName, setCsName] = useState("");
+  const [rdvTime, setRdvTime] = useState("");
 
   const csChoice = (e) => {
     setCsName(e.target.id === csName ? "green" : "grey");
@@ -92,6 +99,8 @@ export default function TakePicture() {
     setHasPhoto(false);
   };
 
+  
+
   useEffect(() => {
     getVideo();
   }, [videoRef]);
@@ -122,36 +131,10 @@ export default function TakePicture() {
           <button onClick={() => setRdv(true)}>AVEC RDV</button>
 
           <div style={{ display: `${rdv ? "flex" : "none"}`, flexWrap:"wrap"}}>
-            <input type="time"></input>
-            <div >
-                    <div style={{display:"block"}}>
-              <input id="radio-2" name="radio" type="radio" />
-              <label for="radio-2" class="radio-label">
-                ELMOURZBANI
-              </label>
-              </div>
+            <input type="time" onChange={(e)=>setRdvTime(e.target.value)} ></input>
+            
+            <RadioStyled></RadioStyled>
 
-              <div style={{display:"block", }}>
-              <input id="radio-2" name="radio" type="radio" />
-              <label for="radio-2" class="radio-label">
-                HILALI
-              </label>
-              </div>
-
-              <div style={{display:"block"}}>
-              <input id="radio-2" name="radio" type="radio" />
-              <label for="radio-2" class="radio-label">
-                ESSAIH
-              </label>
-              </div>
-
-              <div style={{display:"block"}}>
-              <input id="radio-2" name="radio" type="radio" />
-              <label for="radio-2" class="radio-label">
-                BASSIR
-              </label>
-              </div>
-            </div>
           </div>
         
 

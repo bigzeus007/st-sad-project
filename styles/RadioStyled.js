@@ -3,12 +3,11 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCs } from "../src/csReducer";
 
-export default function RadioStyled() {
-  const theCs = useSelector((state) => state.csSelected.value);
-  const dispatch = useDispatch();
 
-  const Selection = styled.section`
+
+const Selection = styled.section`
     display: flex;
+    flex-direction:column;
 
     color: hsla(215, 5%, 50%, 1);
 
@@ -44,11 +43,19 @@ export default function RadioStyled() {
     }
   `;
 
+
+
+export default function RadioStyled() {
+  const theCs = useSelector((state) => state.csSelected.serviceAdvisor);
+  const dispatch = useDispatch();
+
+  
+
   return (
-    <div style={{ position: "absolute", top: "20vh" }}>
+    <div style={{ position: "absolute", top: "10vh" }}>
       <Selection>
         <button
-          onClick={() => dispatch(selectCs("MOURZBANI"), console.log(theCs))}
+          onClick={() => (dispatch(selectCs("MOURZBANI"), console.log(theCs)))}
         >
           <input type="radio" id="control_01" name="select" value="1" />
           <label htmlFor="control_01">
