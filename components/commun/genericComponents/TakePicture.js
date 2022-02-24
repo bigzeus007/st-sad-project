@@ -13,7 +13,7 @@ import CarDetailsOptions from "./CarDetailsOptions";
 import RadioStyled from "../../../styles/RadioStyled";
 
 import { useSelector, useDispatch } from "react-redux";
-import{rdvTimeSelected} from "../../../src/csReducer";
+import{rdvTimeSelected, rdvStatus,customerName} from "../../../src/csReducer";
 
 
 
@@ -26,16 +26,17 @@ export default function TakePicture() {
   const inputRef = useRef(null);
   const [csName, setCsName] = useState("");
   const [rdvTime, setRdvTime] = useState("");
+  const rdvState = useSelector((state) => state.csSelected.rdvFixed);
+  const dispatch = useDispatch();
+  const customerIdentity = useSelector((state) => state.csSelected.customerSetName);
 
   const csChoice = (e) => {
     setCsName(e.target.id === csName ? "green" : "grey");
   };
 
-  const [rdv, setRdv] = useState(false);
 
-  const buttonRdvStyl = {
-    color: "red",
-  };
+
+
 
   const storageRef = ref(storage, customer);
 
@@ -125,12 +126,16 @@ export default function TakePicture() {
         }}
       >
         <div style={{display:"flex",position:"absolute", left:"20%"}}>
-          <button onClick={() => setRdv(false)}>
+
+
+          <button onClick={() => (dispatch(rdvStatus(false)) , console.log(rdvState))}>
+
+
             SANS RDV
           </button>
-          <button onClick={() => setRdv(true)}>AVEC RDV</button>
+          <button onClick={() => (dispatch(rdvStatus(true)) , console.log(rdvState))}>AVEC RDV</button>
 
-          <div style={{ display: `${rdv ? "flex" : "none"}`, flexWrap:"wrap"}}>
+          <div style={{ display: `${rdvState ? "flex" : "none"}`, flexWrap:"wrap"}}>
             <input type="time" onChange={(e)=>setRdvTime(e.target.value)} ></input>
             
             <RadioStyled></RadioStyled>
@@ -145,14 +150,14 @@ export default function TakePicture() {
           <div >
             <button
               onClick={() => submitMyCarPhot(image)}
-              disabled={customer ? false : true}
+              disabled={customerIdentity ? false : true}
             >
               Submit
             </button>
             <input
               ref={inputRef}
               type="text"
-              onChange={(e) => setCustomer(e.target.value)}
+              onChange={(e) => (dispatch(customerName(e.target.value)), console.log(customerIdentity))}
               placeholder="NOM CLIENT"
             ></input>
           </div>

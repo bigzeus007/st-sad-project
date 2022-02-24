@@ -54,9 +54,13 @@ export default function RadioStyled() {
   return (
     <div style={{ position: "absolute", top: "10vh" }}>
       <Selection>
+
+
         <button
           onClick={() => (dispatch(selectCs("MOURZBANI"), console.log(theCs)))}
         >
+
+            
           <input type="radio" id="control_01" name="select" value="1" />
           <label htmlFor="control_01">
             <h2>ELMOURZBANI</h2>
