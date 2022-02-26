@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  serviceAdvisor: null,
+  serviceAdvisor: "",
   rdvTime:null,
   rdvFixed:false,
   customerSetName:"",

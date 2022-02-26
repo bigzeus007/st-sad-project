@@ -57,7 +57,7 @@ export default function RadioStyled() {
 
 
         <button
-          onClick={() => (dispatch(selectCs("MOURZBANI"), console.log(theCs)))}
+          onClick={() => dispatch(selectCs("MOURZBANI"))}
         >
 
             
@@ -67,7 +67,7 @@ export default function RadioStyled() {
           </label>
         </button>
         <button
-          onClick={() => dispatch(selectCs("HILALI"), console.log(theCs))}
+          onClick={() => dispatch(selectCs("HILALI"))}
         >
           <div>
             <input type="radio" id="control_02" name="select" value="2" />
@@ -78,7 +78,7 @@ export default function RadioStyled() {
         </button>
 
         <button
-          onClick={() => dispatch(selectCs("ESSAIH"), console.log(theCs))}
+          onClick={() => dispatch(selectCs("ESSAIH"))}
         >
           <div>
             <input type="radio" id="control_03" name="select" value="3" />
@@ -88,7 +88,7 @@ export default function RadioStyled() {
           </div>
         </button>
         <button
-          onClick={() => dispatch(selectCs("BASSIR"), console.log(theCs))}
+          onClick={() => dispatch(selectCs("BASSIR"))}
         >
           <div>
             <input type="radio" id="control_04" name="select" value="4" />

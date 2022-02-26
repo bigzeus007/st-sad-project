@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRef } from "react";
 import { Button } from "../../../styles/Button.styled";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
+import { db } from "../../../firebase";
 import {
   getStorage,
   getDownloadURL,
@@ -11,16 +12,22 @@ import {
 import { storage } from "../../../firebase";
 import CarDetailsOptions from "./CarDetailsOptions";
 import RadioStyled from "../../../styles/RadioStyled";
+import { doc, setDoc } from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
-import{rdvTimeSelected, rdvStatus,customerName} from "../../../src/csReducer";
-
-
+import {
+  rdvTimeSelected,
+  rdvStatus,
+  customerName,
+  selectCs,
+} from "../../../src/csReducer";
+import { async } from "@firebase/util";
 
 export default function TakePicture() {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
   const [hasPhoto, setHasPhoto] = useState(false);
+  const [cameraStatus, setCameraStatus] = useState(false);
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
   const inputRef = useRef(null);
@@ -28,23 +35,19 @@ export default function TakePicture() {
   const [rdvTime, setRdvTime] = useState("");
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
   const dispatch = useDispatch();
-  const customerIdentity = useSelector((state) => state.csSelected.customerSetName);
+  const customerIdentity = useSelector(
+    (state) => state.csSelected.customerSetName
+  );
 
   const csChoice = (e) => {
     setCsName(e.target.id === csName ? "green" : "grey");
   };
 
-
-
-
-
-  const storageRef = ref(storage, customer);
+  const storageRef = ref(storage, `${customerIdentity}`);
 
   const submitMyCarPhot = (photo) => {
     console.log(photo);
-    uploadString(storageRef, photo, "data_url").then((snapshot) => {
-      console.log("Uploaded a data_url string!");
-    });
+    uploadString(storageRef, photo, "data_url").then(closePhoto);
   };
 
   const getVideo = () => {
@@ -75,6 +78,24 @@ export default function TakePicture() {
     setCustomer(null);
   };
 
+// STOP CAMERA
+
+function stopStreamedVideo(videoElem) {
+    const stream = videoElem.srcObject;
+    const tracks = stream.getTracks();
+  
+    tracks.forEach(function(track) {
+      track.stop();
+    });
+  
+    videoElem.srcObject = null;
+  }
+
+
+
+
+
+
   const takePhoto = () => {
     const width = 250;
     const height = 480;
@@ -91,6 +112,7 @@ export default function TakePicture() {
     setImage(imageCaptured);
     emptyInput();
     setHasPhoto(true);
+    stopStreamedVideo(video);
   };
 
   const closePhoto = () => {
@@ -98,98 +120,129 @@ export default function TakePicture() {
     let ctx = photo.getContext("2d");
     ctx.clearRect(0, 0, photo.width, photo.height);
     setHasPhoto(false);
+   
+    
   };
 
-  
+  const meMoCamStatus = useMemo(()=> cameraStatus,[cameraStatus])
 
   useEffect(() => {
     getVideo();
-  }, [videoRef]);
-
+  }, [videoRef],meMoCamStatus);
+  
   const [carStatus, setCarStatus] = useState("none");
   const takePictureSwitch = hasPhoto ? "flex" : "none";
 
+  const handleSubmit = async (image) => {
+    await setDoc(doc(db, "cars", `${customerIdentity}`), {
+      name: { customerIdentity },
+      rdvFixed: { rdvState },
+      serviceAdvisor: { csName },
+      rdvTimeFixed: { rdvTime },
+    });
+    await submitMyCarPhot(image);
+
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "40vh",
-        justifyContent: "flex-end",
-      }}
-    >
-      <div
+    <div >
+        {cameraStatus?
+      (<div
         style={{
-          display: `${takePictureSwitch}`,
+          display: "flex",
           width: "100%",
-          height: "100%",
+          height: "40vh",
+          justifyContent: "flex-end",
         }}
       >
-        <div style={{display:"flex",position:"absolute", left:"20%"}}>
-
-
-          <button onClick={() => (dispatch(rdvStatus(false)) , console.log(rdvState))}>
-
-
-            SANS RDV
-          </button>
-          <button onClick={() => (dispatch(rdvStatus(true)) , console.log(rdvState))}>AVEC RDV</button>
-
-          <div style={{ display: `${rdvState ? "flex" : "none"}`, flexWrap:"wrap"}}>
-            <input type="time" onChange={(e)=>setRdvTime(e.target.value)} ></input>
-            
-            <RadioStyled></RadioStyled>
-
-          </div>
-        
-
-        <div>
-          <button onClick={closePhoto}>
-            Annuler
-          </button>
-          <div >
-            <button
-              onClick={() => submitMyCarPhot(image)}
-              disabled={customerIdentity ? false : true}
-            >
-              Submit
-            </button>
-            <input
-              ref={inputRef}
-              type="text"
-              onChange={(e) => (dispatch(customerName(e.target.value)), console.log(customerIdentity))}
-              placeholder="NOM CLIENT"
-            ></input>
-          </div>
-        </div>
-        </div>
-      </div>
-      <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
-        <button
-          onClick={takePhoto}
+        <div
           style={{
-            borderRadius: "20%",
-            display: `${hasPhoto ? "none" : "flex"}`,
+            display: `${takePictureSwitch}`,
+            width: "100%",
+            height: "100%",
           }}
         >
-          <video
-            ref={videoRef}
-            style={{ borderRadius: "20%", objectFit: "fill" }}
-            width="197vw"
-            height="277vw"
-          />
-        </button>
+          <div style={{ display: "flex", position: "absolute", left: "20%" }}>
+            <button
+              onClick={() => (
+                dispatch(rdvStatus(false))
+              )}
+            >
+              SANS RDV
+            </button>
+            <button
+              onClick={() => (dispatch(rdvStatus(true)))}
+            >
+              AVEC RDV
+            </button>
 
-        <canvas
-          style={{
-            borderRadius: "20%",
-            width: "13vw",
-            height: "18vw",
-            display: `${takePictureSwitch}`,
-          }}
-          ref={photoRef}
-        />
-      </div>
+            <div
+              style={{
+                display: `${rdvState ? "flex" : "none"}`,
+                flexWrap: "wrap",
+              }}
+            >
+              <input
+                type="time"
+                onChange={(e) => setRdvTime(e.target.value)}
+              ></input>
+
+              <RadioStyled></RadioStyled>
+            </div>
+
+            <div>
+              <button onClick={closePhoto}>Annuler</button>
+              <div>
+                <button
+                  onClick={() => handleSubmit(image)}
+                  disabled={customerIdentity ? false : true}
+                >
+                  Submit
+                </button>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  onChange={(e) => (
+                    dispatch(customerName(e.target.value)),
+                    console.log(customerIdentity)
+                  )}
+                  placeholder="NOM CLIENT"
+                ></input>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
+          <button
+            onClick={takePhoto}
+            style={{
+              borderRadius: "20%",
+              display: `${hasPhoto ? "none" : "flex"}`,
+            }}
+          >
+            <video
+              ref={videoRef}
+              style={{ borderRadius: "20%", objectFit: "fill" }}
+              width="197vw"
+              height="277vw"
+            />
+          </button>
+
+          <canvas
+            style={{
+              borderRadius: "20%",
+              width: "13vw",
+              height: "18vw",
+              display: `${takePictureSwitch}`,
+            }}
+            ref={photoRef}
+          />
+        </div>
+      </div>)
+      :
+      <button onClick={()=>setCameraStatus(!cameraStatus)}>TEST</button>
+}
     </div>
   );
 }

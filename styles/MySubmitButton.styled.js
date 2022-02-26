@@ -92,4 +92,4 @@ content: '';
 
 `
 
-export const MySubmitButton = ()=>{return <MyContainer><MyButton> Submit    </MyButton></MyContainer>}
+export const MySubmitButton = ()=>{return <MyContainer><MyButton> Take picture    </MyButton></MyContainer>}

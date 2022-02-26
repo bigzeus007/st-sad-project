@@ -4,6 +4,7 @@ import { auth } from "../../../firebase";
 import RadioStyled from "../../../styles/RadioStyled";
 import RdvOrNotInput from "../../../styles/RdvOrNotInput";
 import TopNavBar from "../../../styles/TopNavBar";
+import NewCarEntry from "../../specific/accueil/NewCarEntry";
 import Carousel from "../carousel/MyCarousel";
 
 import content, { initialCar } from "../flipCard/content";
@@ -188,7 +189,8 @@ export default function NavBar() {
             {/* <ToDo props={content}></ToDo> */}
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
-            <TakePicture></TakePicture>
+            <NewCarEntry/>
+            {/* <TakePicture></TakePicture> */}
             {/* <ToDo props={content,techList} ></ToDo> */}
             
           </TopNavBar>
