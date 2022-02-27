@@ -41,22 +41,15 @@ export default function TakePicture() {
   );
   const theCs = useSelector((state) => state.csSelected.serviceAdvisor);
 
-
-
   const csChoice = (e) => {
     setCsName(e.target.id === csName ? "green" : "grey");
   };
 
-  const storageRef = ref(storage, `${customerIdentity}`);
+  const storageRef = ref(storage, `cars/${customerIdentity}`);
 
   const submitMyCarPhot = (photo) => {
-    console.log(photo);
     uploadString(storageRef, photo, "data_url").then(closePhoto);
   };
-
-
-
-
 
   const getVideo = () => {
     const constraints = {
@@ -72,7 +65,6 @@ export default function TakePicture() {
         var video = videoRef.current;
 
         video.srcObject = stream;
-        
 
         video.play();
       })
@@ -89,7 +81,7 @@ export default function TakePicture() {
 
   // STOP CAMERA
 
- const stopStreamedVideo=(videoElem)=>{
+  const stopStreamedVideo = (videoElem) => {
     const stream = videoElem.srcObject;
     const tracks = stream.getTracks();
 
@@ -98,7 +90,7 @@ export default function TakePicture() {
     });
 
     videoElem.srcObject = null;
-  }
+  };
 
   const takePhoto = () => {
     const width = 250;
@@ -121,29 +113,34 @@ export default function TakePicture() {
 
   const closePhoto = () => {
     let photo = photoRef.current;
-  
+
     let ctx = photo.getContext("2d");
     ctx.clearRect(0, 0, photo.width, photo.height);
     setHasPhoto(false);
+    setLaboZone(false);
   };
 
   const meMoCamStatus = useMemo(() => hasPhoto, [hasPhoto]);
 
   useEffect(() => {
-      if(laboZone){getVideo()}
-    
+    if (laboZone) {
+      getVideo();
+    }
   }, [videoRef]);
 
   const [carStatus, setCarStatus] = useState("none");
   const takePictureSwitch = hasPhoto ? "flex" : "none";
 
   const handleSubmit = async (image) => {
-      
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
-      name: customerIdentity,
-      rdvFixed: rdvState ,
+      customerName: customerIdentity,
+      rdvFixed: rdvState,
       serviceAdvisor: theCs,
-      rdvTimeFixed: rdvTime ,
+      rdvTimeFixed: rdvTime,
+      whereIsTheCar:"Parking-E",
+      affected:[`${theCs}`],
+      isItInGoodPlace:false,
+      basyCar:false,
     });
     console.log(theCs);
     await submitMyCarPhot(image);
@@ -184,7 +181,13 @@ export default function TakePicture() {
           </div>
 
           <div>
-            <button onClick={() => {closePhoto(),setLaboZone(false)}}>Annuler</button>
+            <button
+              onClick={() => {
+                closePhoto(), setLaboZone(false);
+              }}
+            >
+              Annuler
+            </button>
             <div>
               <button
                 onClick={() => handleSubmit(image)}
@@ -234,7 +237,11 @@ export default function TakePicture() {
       </div>
     </div>
   ) : (
-    <div onClick={()=>{setLaboZone(true),getVideo()}}>
+    <div
+      onClick={() => {
+        setLaboZone(true), getVideo();
+      }}
+    >
       <MySubmitButton />
     </div>
   );
