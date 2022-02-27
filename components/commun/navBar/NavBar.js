@@ -1,10 +1,13 @@
-import react from "react";
+import react, { useEffect, useMemo } from "react";
 import { useRef, useState } from "react";
 import { auth } from "../../../firebase";
+import { getFirestore, collection, getDocs, doc, onSnapshot } from 'firebase/firestore';
+import { db } from "../../../firebase";
 import RadioStyled from "../../../styles/RadioStyled";
 import RdvOrNotInput from "../../../styles/RdvOrNotInput";
 import TopNavBar from "../../../styles/TopNavBar";
 import NewCarEntry from "../../specific/accueil/NewCarEntry";
+import Pisteur from "../../specific/accueil/Pisteur";
 import Carousel from "../carousel/MyCarousel";
 
 import content, { initialCar } from "../flipCard/content";
@@ -13,19 +16,47 @@ import CarEntry from "../genericComponents/CarEntry";
 import TakePicture from "../genericComponents/TakePicture";
 
 
+
 import ToDo from "../genericComponents/ToDo";
 import MainCar from "../MainCar/MainCar";
+import { async } from "@firebase/util";
+
+
+
 
 export default function NavBar() {
+
   const user = auth.currentUser;
   const [toggle, setToggle] = useState("close");
   const [darkMode, setDarkMode] = useState("");
+  // const [carsList,setCarsList]=useState(null)
   const sideBarToggle = (toggle) => {
     toggle === "close" ? setToggle("") : setToggle("close");
   };
   const darkModeToggle = (toggle) => {
     toggle === "dark" ? setDarkMode("light") : setDarkMode("dark");
   };
+
+  
+  // async function getCarsData(myDb) {
+    
+  //   const carsCol = collection(myDb, 'cars');
+  //   const carsSnapshot = await getDocs(carsCol);
+  //   const list = carsSnapshot.docs.map(doc => doc.data());
+  //   setCarsList(list);
+    
+    
+  // }
+
+  // const myMemo = useMemo(()=>{getCarsData(db),[db]})
+
+  // console.log(`db changed : ${myMemo}`);
+
+
+ 
+  
+ 
+
 
   return (
     <>
@@ -177,7 +208,8 @@ export default function NavBar() {
           })}
           </div> */}
           <TopNavBar >
-          <CarEntry props={content,techList} ></CarEntry>
+          <TakePicture></TakePicture>
+          
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
@@ -190,7 +222,7 @@ export default function NavBar() {
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
             {/* <NewCarEntry/> */}
-            <TakePicture></TakePicture>
+            <Pisteur ></Pisteur>
             {/* <ToDo props={content,techList} ></ToDo> */}
             
           </TopNavBar>

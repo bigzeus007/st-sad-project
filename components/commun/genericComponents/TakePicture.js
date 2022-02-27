@@ -31,7 +31,7 @@ export default function TakePicture() {
   const [laboZone, setLaboZone] = useState(false);
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
-  const [createdAt,setCreatedAt]=useState(null);
+  const [createdAt, setCreatedAt] = useState(null);
   const inputRef = useRef(null);
   const [csName, setCsName] = useState("");
   const [rdvTime, setRdvTime] = useState("");
@@ -94,7 +94,7 @@ export default function TakePicture() {
   };
 
   const takePhoto = () => {
-    const picTime=new Date();
+    const picTime = new Date();
     const width = 250;
     const height = 480;
     let photo = photoRef.current;
@@ -137,14 +137,24 @@ export default function TakePicture() {
   const handleSubmit = async (image) => {
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
       customerName: customerIdentity,
-      createdAt:createdAt,
+      createdAt: createdAt,
       rdvFixed: rdvState,
       serviceAdvisor: theCs,
       rdvTimeFixed: rdvTime,
-      whereIsTheCar:"Parking-E",
-      affected:[`${theCs}`],
-      isItInGoodPlace:false,
-      basyCar:false,
+      whereIsTheCar: "Parking-E",
+      affected: [`${theCs}`],
+      isItInGoodPlace: true,
+      basyCar: false,
+      myService: false,
+      electrical: false,
+      body: false,
+      mecanical: false,
+      pneus: false,
+      plaquettes: false,
+      batterie: false,
+      lavage: false,
+
+
     });
     console.log(theCs);
     await submitMyCarPhot(image);

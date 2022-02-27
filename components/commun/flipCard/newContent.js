@@ -2,6 +2,7 @@
 
 const initialCar = {
   customerName:"customerIdentity",//firebaseName
+  createdAt:"createdAt",//firebaseName
   rdvFixed: "rdvState",//firebaseName
   serviceAdvisor: "theCs",//firebaseName
   rdvTimeFixed: "rdvTime",//firebaseName
