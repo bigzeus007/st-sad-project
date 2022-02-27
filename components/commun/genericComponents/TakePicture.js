@@ -39,6 +39,7 @@ export default function TakePicture() {
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
+  const theCs = useSelector((state) => state.csSelected.serviceAdvisor);
 
 
 
@@ -137,12 +138,14 @@ export default function TakePicture() {
   const takePictureSwitch = hasPhoto ? "flex" : "none";
 
   const handleSubmit = async (image) => {
+      
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
-      name: { customerIdentity },
-      rdvFixed: { rdvState },
-      serviceAdvisor: { csName },
-      rdvTimeFixed: { rdvTime },
+      name: customerIdentity,
+      rdvFixed: rdvState ,
+      serviceAdvisor: theCs,
+      rdvTimeFixed: rdvTime ,
     });
+    console.log(theCs);
     await submitMyCarPhot(image);
   };
 
