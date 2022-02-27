@@ -32,7 +32,6 @@ export default function Pisteur() {
   
 
   const carsRef = collection(db, "cars");
-  const testCarRef = doc(carsRef, "JE SUIS SANS RDV");
   const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"),where("rdvTimeFixed", "==", ""));
 
 

@@ -26,7 +26,20 @@ import { async } from "@firebase/util";
 
 export default function NavBar() {
 
-  const user = auth.currentUser;
+  
+
+  function checkProfilTech(checking) {
+    return checking.email == auth.currentUser.email;
+  }
+  const user = techList.find(checkProfilTech);
+
+  // function checkDoing(checking) {
+  //   return checking.whereIsTheCar === `${user.nom}`;
+  // }
+const profil = user.job;
+
+
+
   const [toggle, setToggle] = useState("close");
   const [darkMode, setDarkMode] = useState("");
   // const [carsList,setCarsList]=useState(null)
@@ -208,7 +221,8 @@ export default function NavBar() {
           })}
           </div> */}
           <TopNavBar >
-          <TakePicture></TakePicture>
+
+          {profil=="Pisteur"&&<TakePicture></TakePicture>}
           
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
@@ -222,7 +236,8 @@ export default function NavBar() {
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
             {/* <NewCarEntry/> */}
-            <Pisteur ></Pisteur>
+            {profil=="Pisteur"&&<Pisteur ></Pisteur>}
+            
             {/* <ToDo props={content,techList} ></ToDo> */}
             
           </TopNavBar>
