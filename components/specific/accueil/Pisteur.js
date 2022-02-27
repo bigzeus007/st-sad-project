@@ -33,15 +33,13 @@ export default function Pisteur() {
 
   const carsRef = collection(db, "cars");
   const testCarRef = doc(carsRef, "JE SUIS SANS RDV");
+  const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"),where("rdvTimeFixed", "==", ""));
 
 
-  console.log(testCarRef);
-  console.log(carsRef);
 
-  console.log(carsList)
 
   useEffect(()=>
-    onSnapshot(carsRef,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
+    onSnapshot(myParking,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
     
   ,[])
 
