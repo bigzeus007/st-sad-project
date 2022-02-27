@@ -8,7 +8,8 @@ import { getStorage, ref,getDownloadURL } from "firebase/storage";
 
 import { useState } from "react";
 
-import { initialTech, initialCar } from "../flipCard/content";
+import { initialTech} from "../flipCard/content";
+import { initialCar } from "../flipCard/newContent";
 import { auth } from "../../../firebase";
 
 function MainCar({ props }, { techList = initialTech }) {
@@ -20,7 +21,7 @@ function MainCar({ props }, { techList = initialTech }) {
 
   const storage = getStorage();
 const spaceRef = ref(storage, `cars/${props.customerName}`);
-getDownloadURL(spaceRef).then(url=>setCarImage(url));
+getDownloadURL(spaceRef).then(url=>setCarImage(url)).catch(err=>setCarImage("https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"));
 
   const user = auth.currentUser;
 
@@ -97,7 +98,7 @@ getDownloadURL(spaceRef).then(url=>setCarImage(url));
 
               <Image
                 alt="carToAffect"
-                src={carImage?carImage:"https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"}
+                src={carImage}
                 layout="fill"
                 width={100}
                 height={100}

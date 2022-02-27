@@ -49,7 +49,7 @@ export default function TakePicture() {
   const storageRef = ref(storage, `cars/${customerIdentity}`);
 
   const submitMyCarPhot = (photo) => {
-    uploadString(storageRef, photo, "data_url").then(closePhoto);
+    uploadString(storageRef, photo, "data_url").then().then(closePhoto);
   };
 
   const getVideo = () => {
@@ -135,7 +135,10 @@ export default function TakePicture() {
   const takePictureSwitch = hasPhoto ? "flex" : "none";
 
   const handleSubmit = async (image) => {
+    await submitMyCarPhot(image);
+    
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
+      
       customerName: customerIdentity,
       createdAt: createdAt,
       rdvFixed: rdvState,
@@ -155,9 +158,10 @@ export default function TakePicture() {
       lavage: false,
 
 
+
     });
     console.log(theCs);
-    await submitMyCarPhot(image);
+    
   };
 
   return laboZone ? (

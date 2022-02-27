@@ -1,21 +1,27 @@
-
-
 const initialCar = {
-  customerName:"customerIdentity",//firebaseName
-  createdAt:"createdAt",//firebaseName
-  rdvFixed: "rdvState",//firebaseName
-  serviceAdvisor: "theCs",//firebaseName
-  rdvTimeFixed: "rdvTime",//firebaseName
-  carPhoto:"name : customerName",//firebaseName
-  whereIsTheCar:"Pending",//firebaseName
-  affected:[],//firebaseName
-  isItInGoodPlace:false,//firebaseName
-  basyCar:false,//firebaseName
+  customerName: "customerIdentity", //firebaseName
+  createdAt: "createdAt", //firebaseName
+  rdvFixed: "rdvState", //firebaseName
+  serviceAdvisor: "theCs", //firebaseName
+  rdvTimeFixed: "rdvTime", //firebaseName
+  whereIsTheCar: "Pending", //firebaseName
+  affected: [], //firebaseName
+  isItInGoodPlace: false, //firebaseName
+  basyCar: false, //firebaseName
+  myService: false,//firebaseName
+  electrical: false,//firebaseName
+  body: false,//firebaseName
+  mecanical: false,//firebaseName
+  pneus: false,//firebaseName
+  plaquettes: false,//firebaseName
+  batterie: false,//firebaseName
+  lavage: false,//firebaseName
 
-  responsabilitiesHistory:[{name:"",startingTime:""}],
-  affectationChefAtelier:["Amine","yassine","TARHI"],
-  responsability:"TARHI",
-  startingTime:"startedAt text to wrap mthode check multiple line stop reading",
+  responsabilitiesHistory: [{ name: "", startingTime: "" }],
+  affectationChefAtelier: ["Amine", "yassine", "TARHI"],
+  responsability: "TARHI",
+  startingTime:
+    "startedAt text to wrap mthode check multiple line stop reading",
   note: [
     {
       sender: "NOTE DE TEXT",
@@ -24,7 +30,8 @@ const initialCar = {
     },
   ],
   photo: {
-    carPhoto: "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9",
+    carPhoto:
+      "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9",
     createdaT: "created at: ",
   },
 
@@ -49,7 +56,7 @@ const initialCar = {
       pneus: true,
       plaquettes: true,
       batterie: true,
-      lavage:true,
+      lavage: true,
       divers: {
         newOne: false,
         diversNote: "divers note",
