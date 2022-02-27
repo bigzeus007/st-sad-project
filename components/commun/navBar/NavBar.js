@@ -189,8 +189,8 @@ export default function NavBar() {
             {/* <ToDo props={content}></ToDo> */}
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
-            <NewCarEntry/>
-            {/* <TakePicture></TakePicture> */}
+            {/* <NewCarEntry/> */}
+            <TakePicture></TakePicture>
             {/* <ToDo props={content,techList} ></ToDo> */}
             
           </TopNavBar>

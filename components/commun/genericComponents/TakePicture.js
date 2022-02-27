@@ -28,6 +28,7 @@ export default function TakePicture() {
   const photoRef = useRef(null);
   const [hasPhoto, setHasPhoto] = useState(false);
   const [cameraStatus, setCameraStatus] = useState(false);
+  const [laboZone, setLaboZone] = useState(false);
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
   const inputRef = useRef(null);
@@ -38,6 +39,8 @@ export default function TakePicture() {
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
+
+
 
   const csChoice = (e) => {
     setCsName(e.target.id === csName ? "green" : "grey");
@@ -50,6 +53,10 @@ export default function TakePicture() {
     uploadString(storageRef, photo, "data_url").then(closePhoto);
   };
 
+
+
+
+
   const getVideo = () => {
     const constraints = {
       audio: false,
@@ -61,9 +68,10 @@ export default function TakePicture() {
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then((stream) => {
-        let video = videoRef.current;
+        var video = videoRef.current;
 
         video.srcObject = stream;
+        
 
         video.play();
       })
@@ -78,23 +86,18 @@ export default function TakePicture() {
     setCustomer(null);
   };
 
-// STOP CAMERA
+  // STOP CAMERA
 
-function stopStreamedVideo(videoElem) {
+ const stopStreamedVideo=(videoElem)=>{
     const stream = videoElem.srcObject;
     const tracks = stream.getTracks();
-  
+
     tracks.forEach(function(track) {
       track.stop();
     });
-  
+
     videoElem.srcObject = null;
   }
-
-
-
-
-
 
   const takePhoto = () => {
     const width = 250;
@@ -117,19 +120,19 @@ function stopStreamedVideo(videoElem) {
 
   const closePhoto = () => {
     let photo = photoRef.current;
+  
     let ctx = photo.getContext("2d");
     ctx.clearRect(0, 0, photo.width, photo.height);
     setHasPhoto(false);
-   
-    
   };
 
-  const meMoCamStatus = useMemo(()=> cameraStatus,[cameraStatus])
+  const meMoCamStatus = useMemo(() => hasPhoto, [hasPhoto]);
 
   useEffect(() => {
-    getVideo();
-  }, [videoRef],meMoCamStatus);
-  
+      if(laboZone){getVideo()}
+    
+  }, [videoRef]);
+
   const [carStatus, setCarStatus] = useState("none");
   const takePictureSwitch = hasPhoto ? "flex" : "none";
 
@@ -141,108 +144,95 @@ function stopStreamedVideo(videoElem) {
       rdvTimeFixed: { rdvTime },
     });
     await submitMyCarPhot(image);
-
   };
 
-  return (
-    <div >
-        {cameraStatus?
-      (<div
+  return laboZone ? (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        height: "40vh",
+        justifyContent: "flex-end",
+      }}
+    >
+      <div
         style={{
-          display: "flex",
+          display: `${takePictureSwitch}`,
           width: "100%",
-          height: "40vh",
-          justifyContent: "flex-end",
+          height: "100%",
         }}
       >
-        <div
-          style={{
-            display: `${takePictureSwitch}`,
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          <div style={{ display: "flex", position: "absolute", left: "20%" }}>
-            <button
-              onClick={() => (
-                dispatch(rdvStatus(false))
-              )}
-            >
-              SANS RDV
-            </button>
-            <button
-              onClick={() => (dispatch(rdvStatus(true)))}
-            >
-              AVEC RDV
-            </button>
+        <div style={{ display: "flex", position: "absolute", left: "20%" }}>
+          <button onClick={() => dispatch(rdvStatus(false))}>SANS RDV</button>
+          <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
 
-            <div
-              style={{
-                display: `${rdvState ? "flex" : "none"}`,
-                flexWrap: "wrap",
-              }}
-            >
-              <input
-                type="time"
-                onChange={(e) => setRdvTime(e.target.value)}
-              ></input>
+          <div
+            style={{
+              display: `${rdvState ? "flex" : "none"}`,
+              flexWrap: "wrap",
+            }}
+          >
+            <input
+              type="time"
+              onChange={(e) => setRdvTime(e.target.value)}
+            ></input>
 
-              <RadioStyled></RadioStyled>
-            </div>
+            <RadioStyled></RadioStyled>
+          </div>
 
+          <div>
+            <button onClick={() => {closePhoto(),setLaboZone(false)}}>Annuler</button>
             <div>
-              <button onClick={closePhoto}>Annuler</button>
-              <div>
-                <button
-                  onClick={() => handleSubmit(image)}
-                  disabled={customerIdentity ? false : true}
-                >
-                  Submit
-                </button>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  onChange={(e) => (
-                    dispatch(customerName(e.target.value)),
-                    console.log(customerIdentity)
-                  )}
-                  placeholder="NOM CLIENT"
-                ></input>
-              </div>
+              <button
+                onClick={() => handleSubmit(image)}
+                disabled={customerIdentity ? false : true}
+              >
+                Submit
+              </button>
+              <input
+                ref={inputRef}
+                type="text"
+                onChange={(e) => (
+                  dispatch(customerName(e.target.value)),
+                  console.log(customerIdentity)
+                )}
+                placeholder="NOM CLIENT"
+              ></input>
             </div>
           </div>
         </div>
+      </div>
 
-        <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
-          <button
-            onClick={takePhoto}
-            style={{
-              borderRadius: "20%",
-              display: `${hasPhoto ? "none" : "flex"}`,
-            }}
-          >
-            <video
-              ref={videoRef}
-              style={{ borderRadius: "20%", objectFit: "fill" }}
-              width="197vw"
-              height="277vw"
-            />
-          </button>
-
-          <canvas
-            style={{
-              borderRadius: "20%",
-              width: "13vw",
-              height: "18vw",
-              display: `${takePictureSwitch}`,
-            }}
-            ref={photoRef}
+      <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
+        <button
+          onClick={takePhoto}
+          style={{
+            borderRadius: "20%",
+            display: `${hasPhoto ? "none" : "flex"}`,
+          }}
+        >
+          <video
+            ref={videoRef}
+            style={{ borderRadius: "20%", objectFit: "fill" }}
+            width="197vw"
+            height="277vw"
           />
-        </div>
-      </div>)
-      :
-      <button onClick={()=>setCameraStatus(!cameraStatus)}>TEST</button>
-}
+        </button>
+
+        <canvas
+          style={{
+            borderRadius: "20%",
+            width: "13vw",
+            height: "18vw",
+            display: `${takePictureSwitch}`,
+          }}
+          ref={photoRef}
+        />
+      </div>
+    </div>
+  ) : (
+    <div onClick={()=>{setLaboZone(true),getVideo()}}>
+      <MySubmitButton />
     </div>
   );
 }
