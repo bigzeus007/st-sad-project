@@ -31,6 +31,7 @@ export default function TakePicture() {
   const [laboZone, setLaboZone] = useState(false);
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
+  const [createdAt,setCreatedAt]=useState(null);
   const inputRef = useRef(null);
   const [csName, setCsName] = useState("");
   const [rdvTime, setRdvTime] = useState("");
@@ -93,6 +94,7 @@ export default function TakePicture() {
   };
 
   const takePhoto = () => {
+    const picTime=new Date();
     const width = 250;
     const height = 480;
     let photo = photoRef.current;
@@ -106,6 +108,7 @@ export default function TakePicture() {
     const imageCaptured = photo.toDataURL();
 
     setImage(imageCaptured);
+    setCreatedAt(picTime);
     emptyInput();
     setHasPhoto(true);
     stopStreamedVideo(video);
@@ -134,6 +137,7 @@ export default function TakePicture() {
   const handleSubmit = async (image) => {
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
       customerName: customerIdentity,
+      createdAt:createdAt,
       rdvFixed: rdvState,
       serviceAdvisor: theCs,
       rdvTimeFixed: rdvTime,
