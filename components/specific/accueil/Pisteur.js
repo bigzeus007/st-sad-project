@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { techList } from "../../commun/flipCard/techList";
 import { getAuth } from "firebase/auth";
-import Card from "../../commun/flipCard/FlipCard";
-import content from "../../commun/flipCard/content";
+
 import MainCar from "../../commun/MainCar/MainCar";
 import { TechZone } from "../../../styles/TechZone";
 import { db } from "../../../firebase";
@@ -32,7 +31,7 @@ export default function Pisteur() {
   
 
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"),where("rdvTimeFixed", "==", ""));
+  const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"));
 
 
 

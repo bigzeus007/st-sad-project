@@ -64,9 +64,10 @@ getDownloadURL(spaceRef).then(url=>setCarImage(url)).catch(err=>setCarImage("htt
           <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
             <MainCarCard
               className="CardFront"
-              key={props.id}
-              id={props.id}
+              key={props.customerName}
+              id={props.customerName}
               onClick={() => setFlipped((prev) => !prev)}
+              onDrag={(e)=>console.log(e.target.name)}
             >
               <div className="interventions">
                 {props.myService && (
@@ -97,7 +98,8 @@ getDownloadURL(spaceRef).then(url=>setCarImage(url)).catch(err=>setCarImage("htt
               </div>
 
               <Image
-                alt="carToAffect"
+                alt={props.customerName}
+                name={props.customerName}
                 src={carImage}
                 layout="fill"
                 width={100}

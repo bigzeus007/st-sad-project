@@ -14,12 +14,13 @@ import content, { initialCar } from "../flipCard/content";
 import { techList } from "../flipCard/techList";
 import CarEntry from "../genericComponents/CarEntry";
 import TakePicture from "../genericComponents/TakePicture";
-
+import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier"
 
 
 import ToDo from "../genericComponents/ToDo";
 import MainCar from "../MainCar/MainCar";
 import { async } from "@firebase/util";
+import Accueil from "../../specific/accueil/Accueil";
 
 
 
@@ -222,7 +223,7 @@ const profil = user.job;
           </div> */}
           <TopNavBar >
 
-          {profil=="Pisteur"&&<TakePicture></TakePicture>}
+          {/* {profil=="Pisteur"&&<TakePicture></TakePicture>} */}
           
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
@@ -236,8 +237,8 @@ const profil = user.job;
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
             {/* <NewCarEntry/> */}
-            {profil=="Pisteur"&&<Pisteur ></Pisteur>}
-            
+            {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
+            {profil=="CPRV"&&<Accueil ></Accueil>}
             {/* <ToDo props={content,techList} ></ToDo> */}
             
           </TopNavBar>

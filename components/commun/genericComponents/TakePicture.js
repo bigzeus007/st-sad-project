@@ -12,7 +12,7 @@ import {
 import { storage } from "../../../firebase";
 import CarDetailsOptions from "./CarDetailsOptions";
 import RadioStyled from "../../../styles/RadioStyled";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -140,7 +140,7 @@ export default function TakePicture() {
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
       
       customerName: customerIdentity,
-      createdAt: createdAt,
+      createdAt: serverTimestamp(),
       rdvFixed: rdvState,
       serviceAdvisor: theCs,
       rdvTimeFixed: rdvTime,

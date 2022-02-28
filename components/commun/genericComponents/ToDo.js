@@ -18,7 +18,7 @@ export default function ToDo({ props }) {
     return checking.email === user.email;
   }
   const actual = techList.find(checkProfilTech);
-  const ToDoList = props.filter(({ affectationChefAtelier }) => {
+  const ToDoList = content.filter(({ affectationChefAtelier }) => {
     return affectationChefAtelier.includes(actual.nom);
   });
 
