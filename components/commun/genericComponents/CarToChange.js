@@ -20,6 +20,7 @@ import {
   query,
   where,
   onSnapshot,
+  getDoc,
 } from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -37,17 +38,8 @@ export default function CarToChange({ props }) {
   );
 
   const [carsList, setCarsList] = useState([]);
-  const carsRef = collection(db, "cars");
-  const myCarToChange = query(carsRef, where("customerName", "==", `${props}`));
-  useEffect(
-    () =>
-      onSnapshot(myCarToChange, (snapshot) =>
-        setCarsList(snapshot.docs.map((doc) => doc.data()))
-      ),
-
-    []
-  );
-
+ 
+  const [myCarToChange,setMyCarToChange] =useState("")
 
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
@@ -56,6 +48,8 @@ export default function CarToChange({ props }) {
   const [csName, setCsName] = useState("");
   const [rdvTime, setRdvTime] = useState("");
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
+  const carsRef = doc(db, "cars",`${props}`);
+  getDoc(carsRef).then((doc)=>setMyCarToChange(doc.data()))
   const dispatch = useDispatch();
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
@@ -149,7 +143,7 @@ export default function CarToChange({ props }) {
                   dispatch(customerName(e.target.value)),
                   
                 )}
-                placeholder="NOM CLIENT"
+                placeholder={`${myCarToChange.customerName}`}
               ></input>
             </div>
           </div>
