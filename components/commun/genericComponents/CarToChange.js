@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { useRef } from "react";
 import { Button } from "../../../styles/Button.styled";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
@@ -12,7 +13,15 @@ import {
 import { storage } from "../../../firebase";
 import CarDetailsOptions from "./CarDetailsOptions";
 import RadioStyled from "../../../styles/RadioStyled";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  serverTimestamp,
+  collection,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -23,15 +32,27 @@ import {
 } from "../../../src/csReducer";
 import { async } from "@firebase/util";
 
-export default function TakePicture() {
-  const videoRef = useRef(null);
-  const photoRef = useRef(null);
-  const [hasPhoto, setHasPhoto] = useState(false);
-  const [cameraStatus, setCameraStatus] = useState(false);
-  const [laboZone, setLaboZone] = useState(false);
+export default function CarToChange({ props }) {
+  const [carImage, setCarImage] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
+  );
+
+  const [carsList, setCarsList] = useState([]);
+  const carsRef = collection(db, "cars");
+  const myCarToChange = query(carsRef, where("customerName", "==", `${props}`));
+  useEffect(
+    () =>
+      onSnapshot(myCarToChange, (snapshot) =>
+        setCarsList(snapshot.docs.map((doc) => doc.data()))
+      ),
+
+    []
+  );
+  console.log(props);
+
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
-  const [createdAt, setCreatedAt] = useState(null);
+
   const inputRef = useRef(null);
   const [csName, setCsName] = useState("");
   const [rdvTime, setRdvTime] = useState("");
@@ -45,34 +66,15 @@ export default function TakePicture() {
   const csChoice = (e) => {
     setCsName(e.target.id === csName ? "green" : "grey");
   };
-
-  const storageRef = ref(storage, `cars/${customerIdentity}`);
-
-  const submitMyCarPhot = (photo) => {
-    uploadString(storageRef, photo, "data_url").then(closePhoto);
-  };
-
-  const getVideo = () => {
-    const constraints = {
-      audio: false,
-      video: {
-        facingMode: "environment",
-      },
-    };
-
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then((stream) => {
-        var video = videoRef.current;
-
-        video.srcObject = stream;
-
-        video.play();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  const storage = getStorage();
+  const spaceRef = ref(storage, `cars/${props.customerName}`);
+  getDownloadURL(spaceRef)
+    .then((url) => setCarImage(url))
+    .catch((err) =>
+      setCarImage(
+        "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
+      )
+    );
 
   const emptyInput = () => {
     let myInput = inputRef.current;
@@ -80,65 +82,8 @@ export default function TakePicture() {
     setCustomer(null);
   };
 
-  // STOP CAMERA
-
-  const stopStreamedVideo = (videoElem) => {
-    const stream = videoElem.srcObject;
-    const tracks = stream.getTracks();
-
-    tracks.forEach(function(track) {
-      track.stop();
-    });
-
-    videoElem.srcObject = null;
-  };
-
-  const takePhoto = () => {
-    const picTime = new Date();
-    const width = 250;
-    const height = 480;
-    let photo = photoRef.current;
-    let video = videoRef.current;
-    photo.width = width;
-    photo.height = height;
-
-    let ctx = photo.getContext("2d");
-    ctx.drawImage(video, 0, 0, photo.width, photo.height);
-
-    const imageCaptured = photo.toDataURL();
-
-    setImage(imageCaptured);
-    setCreatedAt(picTime);
-    emptyInput();
-    setHasPhoto(true);
-    stopStreamedVideo(video);
-  };
-
-  const closePhoto = () => {
-    let photo = photoRef.current;
-
-    let ctx = photo.getContext("2d");
-    ctx.clearRect(0, 0, photo.width, photo.height);
-    setHasPhoto(false);
-    setLaboZone(false);
-  };
-
-  const meMoCamStatus = useMemo(() => hasPhoto, [hasPhoto]);
-
-  useEffect(() => {
-    if (laboZone) {
-      getVideo();
-    }
-  }, [videoRef]);
-
-  const [carStatus, setCarStatus] = useState("none");
-  const takePictureSwitch = hasPhoto ? "flex" : "none";
-
   const handleSubmit = async (image) => {
-    await submitMyCarPhot(image);
-    
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
-      
       customerName: customerIdentity,
       createdAt: serverTimestamp(),
       rdvFixed: rdvState,
@@ -156,15 +101,10 @@ export default function TakePicture() {
       plaquettes: false,
       batterie: false,
       lavage: false,
-
-
-
     });
-    console.log(theCs);
-    
   };
 
-  return laboZone ? (
+  return (
     <div
       style={{
         display: "flex",
@@ -175,7 +115,6 @@ export default function TakePicture() {
     >
       <div
         style={{
-          display: `${takePictureSwitch}`,
           width: "100%",
           height: "100%",
         }}
@@ -186,7 +125,7 @@ export default function TakePicture() {
 
           <div
             style={{
-              display: `${rdvState ? "flex" : "none"}`,
+              display:  "none",
               flexWrap: "wrap",
             }}
           >
@@ -195,20 +134,20 @@ export default function TakePicture() {
               onChange={(e) => setRdvTime(e.target.value)}
             ></input>
 
-            <RadioStyled></RadioStyled>
+            <RadioStyled csStatus={props.serviceAdvisor}></RadioStyled>
           </div>
 
           <div>
             <button
               onClick={() => {
-                closePhoto(), setLaboZone(false);
+                
               }}
             >
               Annuler
             </button>
             <div>
               <button
-                onClick={() => handleSubmit(image)}
+                onClick={() => handleSubmit()}
                 disabled={customerIdentity ? false : true}
               >
                 Submit
@@ -218,7 +157,7 @@ export default function TakePicture() {
                 type="text"
                 onChange={(e) => (
                   dispatch(customerName(e.target.value)),
-                  console.log(customerIdentity)
+                  
                 )}
                 placeholder="NOM CLIENT"
               ></input>
@@ -228,39 +167,18 @@ export default function TakePicture() {
       </div>
 
       <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
-        <button
-          onClick={takePhoto}
-          style={{
-            borderRadius: "20%",
-            display: `${hasPhoto ? "none" : "flex"}`,
-          }}
-        >
-          <video
-            ref={videoRef}
-            style={{ borderRadius: "20%", objectFit: "fill" }}
-            width="197vw"
-            height="277vw"
-          />
-        </button>
+      
 
-        <canvas
-          style={{
-            borderRadius: "20%",
-            width: "13vw",
-            height: "18vw",
-            display: `${takePictureSwitch}`,
-          }}
-          ref={photoRef}
-        />
+      <Image
+                alt={props.customerName}
+                name={props.customerName}
+                src={carImage}
+                layout="fill"
+                width={20}
+                height={20}
+                
+              />
       </div>
-    </div>
-  ) : (
-    <div
-      onClick={() => {
-        setLaboZone(true), getVideo();
-      }}
-    >
-      <MySubmitButton />
     </div>
   );
 }

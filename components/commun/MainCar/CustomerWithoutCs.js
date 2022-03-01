@@ -13,6 +13,8 @@ import { initialCar } from "../flipCard/newContent";
 import { auth } from "../../../firebase";
 import { Timestamp } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
+import { carModification } from "../../../src/userReducer";
+import CarToChange from "../genericComponents/CarToChange";
 
 function CustomerWithoutCs({ props }, { techList = initialTech }) {
   const [carImage, setCarImage] = useState(
@@ -22,13 +24,12 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
   // user identification
 
   const storage = getStorage();
-  const [ change,setChange]=useState(false);
+  const [change, setChange] = useState(false);
 
-
-
-
-
-
+  const dispatch = useDispatch();
+  const toModify = useSelector((state) => state.userOptions.onModification);
+  const carToLab = useSelector((state) => state.userOptions.carToModify);
+  
 
   const spaceRef = ref(storage, `cars/${props.customerName}`);
   getDownloadURL(spaceRef)
@@ -46,14 +47,12 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
   }
   const userBdd = techList.find(checkProfilTech);
 
-  const arrivedTime = props.createdAt.toDate().toLocaleTimeString()
-  console.log(arrivedTime)
+  const arrivedTime = props.createdAt.toDate().toLocaleTimeString();
 
   // Drag and drop functions
 
   const [dragged, setDragged] = useState();
   const [isFlipped, setFlipped] = React.useState(false);
-  
 
   function allowDrop(ev) {
     ev.preventDefault();
@@ -73,8 +72,8 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
     //ev.target.appendChild(document.getElementById(data));
   }
 
-  return (change?
-    (<div
+  return(
+    <div
       style={{
         position: "relative",
         width: "15%",
@@ -83,30 +82,26 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
       }}
     >
       <div className="" onDrop={(e) => drop(e)}>
-    <button id={props.name} onClick={(e)=>setChange(e)}>
-        <img
-          alt={props.customerName}
-          name={props.customerName}
-          src={carImage}
-          
-          width="75%"
-          height="100%"
-          quality={10}
-        />
+        <button id={props.customerName} onClick={(e) => dispatch(carModification(props.customerName))}>
+          <img
+            alt={props.customerName}
+            name={props.customerName}
+            src={carImage}
+            width="75%"
+            height="100%"
+            quality={10}
+          />
         </button>
 
         <>
-        <br/>
+          <br />
           {props.customerName}
-          <br/>
+          <br />
           {`Heure Arriver : ${arrivedTime}`}
-
-        
-          
         </>
       </div>
     </div>)
-  );
+  
 }
 
 export default CustomerWithoutCs;

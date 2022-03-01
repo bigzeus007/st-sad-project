@@ -12,7 +12,7 @@ export default function ToDo({ props }) {
 
 
   const user = auth.currentUser;
-  console.log(user.email);
+  
 
   function checkProfilTech(checking) {
     return checking.email === user.email;

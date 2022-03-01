@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { techList } from "../../commun/flipCard/techList";
 import { getAuth } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { carModification } from "../../../src/userReducer";
 
-import MainCar from "../../commun/MainCar/MainCar";
+
 import { TechZone } from "../../../styles/TechZone";
 import { db } from "../../../firebase";
 
@@ -12,11 +14,14 @@ import {
   onSnapshot,
   query,
   where,
+  getDoc,
   getDocs,
   FieldPath,
 } from "firebase/firestore";
 import { getStorage, ref} from "firebase/storage";
 import CustomerWithoutCs from "../../commun/MainCar/CustomerWithoutCs";
+import { async } from "@firebase/util";
+import CarToChange from "../../commun/genericComponents/CarToChange";
 
 export default function Accueil() {
   //   q.get().then((querySnapshot) => {
@@ -90,8 +95,26 @@ export default function Accueil() {
 
   // const parkPisteur = props.filter(checkParkTech)
 
-  return isLoadin ? (
-    <div> isLoading...</div>
+  const dispatch = useDispatch();
+  const toModify = useSelector((state) => state.userOptions.onModification);
+  const carToLab = useSelector((state) => state.userOptions.carToModify);
+
+const theCarRef = doc(db,"cars",`${carToLab}`)
+const theCarSnap = query(carsRef, where("customerName", "==", ""));
+console.log(theCarRef)
+
+
+
+  return toModify ? (
+    <>
+      <button
+        id={carToLab}
+        onClick={(e) => dispatch(carModification())}
+      >
+        Retour
+      </button>
+      <CarToChange props={theCarSnap}></CarToChange>
+    </>
   ) : (
     <TechZone>
       {carsList.map((car)=>(<CustomerWithoutCs key={car.customerName} props={car}></CustomerWithoutCs>))}
