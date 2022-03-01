@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { useRef } from "react";
-import { Button } from "../../../styles/Button.styled";
-import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
+
+
 import { db } from "../../../firebase";
 import {
   getStorage,
@@ -48,7 +47,7 @@ export default function CarToChange({ props }) {
 
     []
   );
-  console.log(props);
+
 
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
@@ -66,8 +65,9 @@ export default function CarToChange({ props }) {
   const csChoice = (e) => {
     setCsName(e.target.id === csName ? "green" : "grey");
   };
+  
   const storage = getStorage();
-  const spaceRef = ref(storage, `cars/${props.customerName}`);
+  const spaceRef = ref(storage, `cars/${props}`);
   getDownloadURL(spaceRef)
     .then((url) => setCarImage(url))
     .catch((err) =>
@@ -76,11 +76,7 @@ export default function CarToChange({ props }) {
       )
     );
 
-  const emptyInput = () => {
-    let myInput = inputRef.current;
-    myInput.value = null;
-    setCustomer(null);
-  };
+ 
 
   const handleSubmit = async (image) => {
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
@@ -134,17 +130,11 @@ export default function CarToChange({ props }) {
               onChange={(e) => setRdvTime(e.target.value)}
             ></input>
 
-            <RadioStyled csStatus={props.serviceAdvisor}></RadioStyled>
+            <RadioStyled csStatus={props}></RadioStyled>
           </div>
 
           <div>
-            <button
-              onClick={() => {
-                
-              }}
-            >
-              Annuler
-            </button>
+           
             <div>
               <button
                 onClick={() => handleSubmit()}
@@ -169,15 +159,14 @@ export default function CarToChange({ props }) {
       <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
       
 
-      <Image
-                alt={props.customerName}
-                name={props.customerName}
-                src={carImage}
-                layout="fill"
-                width={20}
-                height={20}
-                
-              />
+      <img
+            alt={props}
+            name={props}
+            src={carImage}
+            width="75%"
+            height="100%"
+            quality={10}
+          />
       </div>
     </div>
   );

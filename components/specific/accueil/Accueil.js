@@ -97,23 +97,26 @@ export default function Accueil() {
 
   const dispatch = useDispatch();
   const toModify = useSelector((state) => state.userOptions.onModification);
-  const carToLab = useSelector((state) => state.userOptions.carToModify);
 
-const theCarRef = doc(db,"cars",`${carToLab}`)
-const theCarSnap = query(carsRef, where("customerName", "==", ""));
-console.log(theCarRef)
+  
+
+
+const carRef = doc(db, "cars", `${toModify}`);
+const myCarToModify = async ()=> await getDoc(carRef) 
+console.log(toModify)
+
 
 
 
   return toModify ? (
     <>
       <button
-        id={carToLab}
-        onClick={(e) => dispatch(carModification())}
+        id="toModify"
+        onClick={(e) => dispatch(carModification(null))}
       >
         Retour
       </button>
-      <CarToChange props={theCarSnap}></CarToChange>
+      <CarToChange props={toModify}></CarToChange>
     </>
   ) : (
     <TechZone>
