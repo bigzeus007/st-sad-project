@@ -40,20 +40,26 @@ export default function Accueil() {
   const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
 
 
+// const unsub = onSnapshot(
+//   myParking, 
+//     { includeMetadataChanges: true }, 
+//     doc=>console.log(doc.docs)
+//       // ...
+//     );
 
+
+   
 
   useEffect(()=>
     onSnapshot(myParking,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
     
   ,[])
 
-  // const unsub = onSnapshot(
-  //   testCarRef, 
-  //   { includeMetadataChanges: true }, 
-  //   (doc) => { console.log(doc)
-  //     // ...
-  //   });
+  console.log(carsList)
 
+//   const unsub = onSnapshot(collection(db, "cars"), (doc) => {
+//     console.log("Current data: ", doc.docChanges);
+// });
 
 
   // const docSnap = async()=> getDoc(testCarRef);
@@ -101,9 +107,9 @@ export default function Accueil() {
   
 
 
-const carRef = doc(db, "cars", `${toModify}`);
-const myCarToModify = async ()=> await getDoc(carRef) 
-console.log(toModify)
+// const carRef = doc(db, "cars", `${toModify}`);
+// const myCarToModify = async ()=> await getDoc(carRef) 
+
 
 
 
@@ -124,3 +130,5 @@ console.log(toModify)
     </TechZone>
   );
 }
+
+

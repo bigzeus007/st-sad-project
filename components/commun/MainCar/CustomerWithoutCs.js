@@ -51,26 +51,26 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
 
   // Drag and drop functions
 
-  const [dragged, setDragged] = useState();
-  const [isFlipped, setFlipped] = React.useState(false);
+  // const [dragged, setDragged] = useState();
+  // const [isFlipped, setFlipped] = React.useState(false);
 
-  function allowDrop(ev) {
-    ev.preventDefault();
-  }
+  // function allowDrop(ev) {
+  //   ev.preventDefault();
+  // }
 
-  function drag(ev) {
-    setDragged(props.id);
+  // function drag(ev) {
+  //   setDragged(props.id);
 
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
+  //   ev.dataTransfer.setData("text", ev.target.id);
+  // }
 
-  function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    const myData = document.getElementById(data);
+  // function drop(ev) {
+  //   ev.preventDefault();
+  //   var data = ev.dataTransfer.getData("text");
+  //   const myData = document.getElementById(data);
 
     //ev.target.appendChild(document.getElementById(data));
-  }
+  // }
 
   return(
     <div
@@ -82,7 +82,7 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
       }}
     >
       <div className="" onDrop={(e) => drop(e)}>
-        <button id={props.customerName} onClick={(e) => dispatch(carModification(props.customerName))}>
+        <button id={props.customerName} onClick={(e) => dispatch(carModification(props))}>
           <img
             alt={props.customerName}
             name={props.customerName}

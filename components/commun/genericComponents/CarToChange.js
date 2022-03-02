@@ -48,8 +48,8 @@ export default function CarToChange({ props }) {
   const [csName, setCsName] = useState("");
   const [rdvTime, setRdvTime] = useState("");
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
-  const carsRef = doc(db, "cars",`${props}`);
-  getDoc(carsRef).then((doc)=>setMyCarToChange(doc.data()))
+  // const carsRef = doc(db, "cars",`${props.customerName}`);
+  // DANGEROUS getDoc(carsRef).then((doc)=>setMyCarToChange(doc.data())) 
   const dispatch = useDispatch();
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
@@ -72,7 +72,7 @@ export default function CarToChange({ props }) {
 
  
 
-  const handleSubmit = async (image) => {
+  const handleSubmit = async () => {
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
       customerName: customerIdentity,
       createdAt: serverTimestamp(),
@@ -143,7 +143,7 @@ export default function CarToChange({ props }) {
                   dispatch(customerName(e.target.value)),
                   
                 )}
-                placeholder={`${myCarToChange.customerName}`}
+                placeholder={`${props.customerName}`}
               ></input>
             </div>
           </div>
