@@ -53,9 +53,12 @@ export default function TakePicture() {
   };
 
   function handlReturn(){
+    setRdvTime("");
    
     dispatch(selectCs(""));
     dispatch(rdvStatus(false));
+    
+    
     
   }
 
@@ -127,8 +130,10 @@ export default function TakePicture() {
 
     let ctx = photo.getContext("2d");
     ctx.clearRect(0, 0, photo.width, photo.height);
+    setRdvTime("");
     setHasPhoto(false);
     setLaboZone(false);
+    
     dispatch(selectCs(""));
     
   };
@@ -205,6 +210,8 @@ export default function TakePicture() {
             <input
               type="time"
               onChange={(e) => setRdvTime(e.target.value)}
+              value={rdvTime}
+              
             ></input>
 
             <RadioStyled></RadioStyled>
@@ -213,7 +220,7 @@ export default function TakePicture() {
           <div>
             <button
               onClick={() => {
-                closePhoto(), setLaboZone(false);
+                closePhoto();
               }}
             >
               Annuler
