@@ -4,6 +4,11 @@ import styled from "styled-components";
 
 
 
+
+
+
+
+
 const MyContainer  = styled.div`
 display:flex;
 justify-content:center;
@@ -11,6 +16,7 @@ align-items:center;
 `
 
 const MyButton = styled.button`
+
 
   min-width: 300px;
   min-height: 60px;
@@ -92,4 +98,4 @@ content: '';
 
 `
 
-export const MySubmitButton = ()=>{return <MyContainer><MyButton> Take picture    </MyButton></MyContainer>}
+export const MySubmitButton = ({props})=>{return <MyContainer><MyButton> {props}    </MyButton></MyContainer> }

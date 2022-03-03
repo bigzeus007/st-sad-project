@@ -52,6 +52,13 @@ export default function TakePicture() {
     uploadString(storageRef, photo, "data_url").then(closePhoto);
   };
 
+  function handlReturn(){
+   
+    dispatch(selectCs(""));
+    dispatch(rdvStatus(false));
+    
+  }
+
   const getVideo = () => {
     const constraints = {
       audio: false,
@@ -94,7 +101,7 @@ export default function TakePicture() {
   };
 
   const takePhoto = () => {
-    const picTime = new Date();
+    const picTime = Date.now(); // old one = new Date()
     const width = 250;
     const height = 480;
     let photo = photoRef.current;
@@ -113,6 +120,7 @@ export default function TakePicture() {
     setHasPhoto(true);
     stopStreamedVideo(video);
   };
+  
 
   const closePhoto = () => {
     let photo = photoRef.current;
@@ -121,6 +129,8 @@ export default function TakePicture() {
     ctx.clearRect(0, 0, photo.width, photo.height);
     setHasPhoto(false);
     setLaboZone(false);
+    dispatch(selectCs(""));
+    
   };
 
   const meMoCamStatus = useMemo(() => hasPhoto, [hasPhoto]);
@@ -140,12 +150,13 @@ export default function TakePicture() {
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
       
       customerName: customerIdentity,
+      customerCategory: "Normal",
       createdAt: serverTimestamp(),
       rdvFixed: rdvState,
-      serviceAdvisor: theCs,
+      serviceAdvisor: rdvState ? theCs:"",
       rdvTimeFixed: rdvTime,
       whereIsTheCar: "Parking-E",
-      affected: [`${theCs}`],
+      affected: theCs,
       isItInGoodPlace: true,
       basyCar: false,
       myService: false,
@@ -160,6 +171,7 @@ export default function TakePicture() {
 
 
     });
+    dispatch(selectCs(null));
     console.log(theCs);
     
   };
@@ -181,7 +193,7 @@ export default function TakePicture() {
         }}
       >
         <div style={{ display: "flex", position: "absolute", left: "20%" }}>
-          <button onClick={() => dispatch(rdvStatus(false))}>SANS RDV</button>
+          <button onClick={() => handlReturn()}>SANS RDV</button>
           <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
 
           <div
@@ -218,7 +230,7 @@ export default function TakePicture() {
                 type="text"
                 onChange={(e) => (
                   dispatch(customerName(e.target.value)),
-                  console.log(customerIdentity)
+                  
                 )}
                 placeholder="NOM CLIENT"
               ></input>

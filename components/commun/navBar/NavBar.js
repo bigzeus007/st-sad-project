@@ -223,7 +223,7 @@ const profil = user.job;
           </div> */}
           <TopNavBar >
 
-          {/* {profil=="Pisteur"&&<TakePicture></TakePicture>} */}
+          {profil=="Pisteur"&&<TakePicture></TakePicture>}
           
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}

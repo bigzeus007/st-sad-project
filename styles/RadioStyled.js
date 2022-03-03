@@ -56,47 +56,36 @@ export default function RadioStyled() {
       <Selection>
 
 
-        <button
-          onClick={() => dispatch(selectCs("MOURZBANI"))}
-        >
 
             
-          <input type="radio" id="control_01" name="select" value="1" />
+          <input type="radio" id="control_01" name="select" value="1" checked={theCs=="ELMOURZBANI"}  onChange={() => dispatch(selectCs("ELMOURZBANI"))}/>
           <label htmlFor="control_01">
             <h2>ELMOURZBANI</h2>
           </label>
-        </button>
-        <button
-          onClick={() => dispatch(selectCs("HILALI"))}
-        >
+        
+       
           <div>
-            <input type="radio" id="control_02" name="select" value="2" />
+            <input type="radio" id="control_02" name="select" value="2"  checked={theCs=="HILALI"} onChange={() => dispatch(selectCs("HILALI"))}/>
             <label htmlFor="control_02">
               <h2>HILALI</h2>
             </label>
           </div>
-        </button>
-
-        <button
-          onClick={() => dispatch(selectCs("ESSAIH"))}
-        >
+        
           <div>
-            <input type="radio" id="control_03" name="select" value="3" />
+            <input type="radio" id="control_03" name="select" value="3" checked={theCs=="ESSAIH"} onChange={() => dispatch(selectCs("ESSAIH"))}/>
             <label htmlFor="control_03">
               <h2>ESSAIH</h2>
             </label>
           </div>
-        </button>
-        <button
-          onClick={() => dispatch(selectCs("BASSIR"))}
-        >
+        
+        
           <div>
-            <input type="radio" id="control_04" name="select" value="4" />
+            <input type="radio" id="control_04" name="select" value="4" checked={theCs=="BASSIR"} onChange={() => dispatch(selectCs("BASSIR"))}/>
             <label htmlFor="control_04">
               <h2>BASSIR</h2>
             </label>
           </div>
-        </button>
+        
         <div>
           <input type="radio" id="control_05" name="select" value="5" />
           <label htmlFor="control_05"></label>

@@ -31,6 +31,7 @@ import {
   selectCs,
 } from "../../../src/csReducer";
 import { async } from "@firebase/util";
+import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 
 export default function CarToChange({ props }) {
   const [carImage, setCarImage] = useState(
@@ -38,15 +39,19 @@ export default function CarToChange({ props }) {
   );
 
   const [carsList, setCarsList] = useState([]);
+  const [myService, setMyService]=useState(props.myService)
+  const[electric,setElectric]=useState(props.electrical)
+  const [mecanique,setMecanique]=useState(props.mecanical)
+  const [body,setBody]=useState(props.body)
  
-  const [myCarToChange,setMyCarToChange] =useState("")
+  const [customerNameToModify,setCustomerNameToModify]=useState(props.customerName)
 
-  const [image, setImage] = useState(null);
-  const [customer, setCustomer] = useState(null);
+ 
+
 
   const inputRef = useRef(null);
   const [csName, setCsName] = useState("");
-  const [rdvTime, setRdvTime] = useState("");
+ 
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
   // const carsRef = doc(db, "cars",`${props.customerName}`);
   // DANGEROUS getDoc(carsRef).then((doc)=>setMyCarToChange(doc.data())) 
@@ -54,12 +59,13 @@ export default function CarToChange({ props }) {
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
-  const theCs = useSelector((state) => state.csSelected.serviceAdvisor);
+ 
 
-  const csChoice = (e) => {
-    setCsName(e.target.id === csName ? "green" : "grey");
-  };
+  // const csChoice = (e) => {
+  //   setCsName(e.target.id === csName ? "green" : "grey");
+  // };
   
+  //import car pictur from firestore
   const storage = getStorage();
   const spaceRef = ref(storage, `cars/${props.customerName}`);
  
@@ -73,24 +79,20 @@ export default function CarToChange({ props }) {
 
   const handleSubmit = async () => {
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
-      customerName: customerIdentity,
-      createdAt: serverTimestamp(),
-      rdvFixed: rdvState,
-      serviceAdvisor: theCs,
-      rdvTimeFixed: rdvTime,
-      whereIsTheCar: "Parking-E",
-      affected: [`${theCs}`],
-      isItInGoodPlace: true,
-      basyCar: false,
-      myService: false,
-      electrical: false,
-      body: false,
-      mecanical: false,
-      pneus: false,
-      plaquettes: false,
-      batterie: false,
-      lavage: false,
-    });
+      customerName: `${customerNameToModify}`,
+      
+      
+      
+      
+      
+      
+      
+      myService: `${myService}`,
+      electrical: `${electric}`,
+      body: `${body}`,
+      mecanical: `${mecanique}`,
+      
+    },{merge:true});
   };
 
   return (
@@ -102,65 +104,37 @@ export default function CarToChange({ props }) {
         justifyContent: "flex-end",
       }}
     >
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <div style={{ display: "flex", position: "absolute", left: "20%" }}>
-          <button onClick={() => dispatch(rdvStatus(false))}>SANS RDV</button>
-          <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
+      <div>
+        <p>{props.rdvFixed? <p>RDV : {props.rdvTimeFixed}</p>:"SANS RDV"}</p>
+        <input type="text" onChange={(e)=>setCustomerNameToModify(e.target.value)} defaultValue={props.customerName}></input>
+        
+       
+        <p>Emplacement : {props.whereIsTheCar}</p>
+        <p>TRAVAUX</p>
 
-          <div
-            style={{
-              display:  "none",
-              flexWrap: "wrap",
-            }}
-          >
-            <input
-              type="time"
-              onChange={(e) => setRdvTime(e.target.value)}
-            ></input>
+        {/* <input type="checkbox" id="Revision" name="Revision" checked={myService} onClick={()=>setMyService(!myService)}/>
+        <label htmlFor="Revision">Revision</label><br/>
+        <input type="checkbox" id="electric" name="electric" checked={electric} onClick={()=>setElectric(!electric)}/>
+        <label htmlFor="electric">Diag</label><br/>
+        <input type="checkbox" id="Carrosserie" name="Carrosserie" checked={body} onClick={()=>setBody(!body)}/>
+        <label htmlFor="Carrosserie">Carrosserie</label><br/>
+        <input type="checkbox" id="mecanique" name="mecanique" checked={mecanique} onClick={()=>setMecanique(!mecanique)}/>
+        <label htmlFor="mecanique">Mecanique</label><br/> */}
 
-            <RadioStyled csStatus={props}></RadioStyled>
-          </div>
 
-          <div>
-           
-            <div>
-              <button
-                onClick={() => handleSubmit()}
-                disabled={customerIdentity ? false : true}
-              >
-                Submit
-              </button>
-              <input
-                ref={inputRef}
-                type="text"
-                onChange={(e) => (
-                  dispatch(customerName(e.target.value)),
-                  
-                )}
-                placeholder={`${props.customerName}`}
-              ></input>
-            </div>
-          </div>
-        </div>
+      <div onClick={()=>handleSubmit()}><MySubmitButton props="Enregistrer" ></MySubmitButton></div>
+       
       </div>
-
-      <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
       
-
       <img
-            alt={props}
-            name={props}
+            alt="photoVehicle"
+            name="photoVehicle"
             src={carImage}
             width="75%"
             height="100%"
             quality={10}
           />
-      </div>
+      
     </div>
   );
 }
