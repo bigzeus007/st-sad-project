@@ -77,24 +77,18 @@ export default function CarToChange( {props} ) {
         "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
       )))
 
- 
+      const docref = collection(db, "cars");
 
   const handleSubmit = async () => {
-    await setDoc(doc(db, "cars", `${customerIdentity}`), {
-      customerName: `${customerNameToModify}`,
+    await setDoc(doc(docref, `${props.customerName}`), {
+          
       
+      myService: myService,
+      electrical: electric,
+      body: body,
+      mecanical: mecanique,
       
-      
-      
-      
-      
-      
-      myService: `${myService}`,
-      electrical: `${electric}`,
-      body: `${body}`,
-      mecanical: `${mecanique}`,
-      
-    },{merge:true});
+    },{merge:true})
   };
 
   return (
@@ -114,14 +108,14 @@ export default function CarToChange( {props} ) {
         <p>Emplacement : {props.whereIsTheCar}</p>
         <p>TRAVAUX</p>
 
-        {/* <input type="checkbox" id="Revision" name="Revision" checked={myService} onClick={()=>setMyService(!myService)}/>
+        <input type="checkbox" id="Revision" name="Revision" value={myService} onChange={()=>setMyService(!myService)}/>
         <label htmlFor="Revision">Revision</label><br/>
-        <input type="checkbox" id="electric" name="electric" checked={electric} onClick={()=>setElectric(!electric)}/>
+        <input type="checkbox" id="electric" name="electric" value={electric} onChange={()=>setElectric(!electric)}/>
         <label htmlFor="electric">Diag</label><br/>
-        <input type="checkbox" id="Carrosserie" name="Carrosserie" checked={body} onClick={()=>setBody(!body)}/>
+        <input type="checkbox" id="Carrosserie" name="Carrosserie" value={body} onChange={()=>setBody(!body)}/>
         <label htmlFor="Carrosserie">Carrosserie</label><br/>
-        <input type="checkbox" id="mecanique" name="mecanique" checked={mecanique} onClick={()=>setMecanique(!mecanique)}/>
-        <label htmlFor="mecanique">Mecanique</label><br/> */}
+        <input type="checkbox" id="mecanique" name="mecanique" value={mecanique} onChange={()=>setMecanique(!mecanique)}/>
+        <label htmlFor="mecanique">Mecanique</label><br/>
 
 
       <div onClick={()=>handleSubmit()}><MySubmitButton props="Enregistrer" ></MySubmitButton></div>

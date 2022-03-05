@@ -120,7 +120,7 @@ export default function Accueil() {
     <>
       <button
         id="toModify"
-        onClick={(e) => dispatch(carModification(null))}
+        onClick={(e) => setTomodify(null)}
       >
         Retour
       </button>
