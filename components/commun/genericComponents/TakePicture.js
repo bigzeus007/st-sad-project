@@ -279,7 +279,7 @@ export default function TakePicture() {
         setLaboZone(true), getVideo();
       }}
     >
-      <MySubmitButton />
+      <MySubmitButton props={"Demarrer"}/>
     </div>
   );
 }

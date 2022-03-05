@@ -28,7 +28,7 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
 
   const dispatch = useDispatch();
   const toModify = useSelector((state) => state.userOptions.onModification);
-  const carToLab = useSelector((state) => state.userOptions.carToModify);
+  // const carToLab = useSelector((state) => state.userOptions.carToModify);
   
 
   const spaceRef = ref(storage, `cars/${props.customerName}`);
@@ -76,22 +76,22 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
     <div
       style={{
         position: "relative",
-        width: "15%",
+        width: "100%",
         heigth: "100%",
         border: "2px red solid",
       }}
     >
-      <div className="" onDrop={(e) => drop(e)}>
-        <button id={props.customerName} onClick={(e) => dispatch(carModification(props))}>
+      <div className="" >
+        <div id={props.customerName} >
           <img
             alt={props.customerName}
             name={props.customerName}
             src={carImage}
-            width="75%"
+            width="100%"
             height="100%"
             quality={10}
           />
-        </button>
+        </div>
 
         <>
           <br />
