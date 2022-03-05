@@ -34,23 +34,26 @@ import { async } from "@firebase/util";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import CsAffected from "./csAffected";
 
-export default function CarToChange({ props }) {
+export default function CarToChangeByCs({ props }) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
-
+    const toDay= new Date().toISOString().substring(0, 10);
+    console.log(toDay)
   const [carsList, setCarsList] = useState([]);
   const [myService, setMyService] = useState(props.myService);
   const [electric, setElectric] = useState(props.electrical);
   const [mecanique, setMecanique] = useState(props.mecanical);
   const [body, setBody] = useState(props.body);
-
+  const [restitutionTime, setRestitutionTime]=useState(null)
+  const [restitutionDate, setRestitutionDate]=useState(null)
+  
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
   );
 
   const inputRef = useRef(null);
-  const [csName, setCsName] = useState("");
+  // const [csName, setCsName] = useState("");
 
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
   // const carsRef = doc(db, "cars",`${props.customerName}`);
@@ -59,7 +62,7 @@ export default function CarToChange({ props }) {
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
-  const choosenCs=useSelector((state)=>state.csSelected.serviceAdvisor)
+  // const choosenCs=useSelector((state)=>state.csSelected.serviceAdvisor)
 
   // const csChoice = (e) => {
   //   setCsName(e.target.id === csName ? "green" : "grey");
@@ -83,11 +86,13 @@ export default function CarToChange({ props }) {
     await setDoc(
       doc(docref, `${props.customerName}`),
       {
-        serviceAdvisor:choosenCs,
+        // serviceAdvisor:choosenCs,
         myService: myService,
         electrical: electric,
         body: body,
         mecanical: mecanique,
+        restitutionTime:restitutionTime,
+        restitutionDate:restitutionDate,
       },
       { merge: true }
     ).then(dispatch(carModification()));
@@ -107,11 +112,12 @@ export default function CarToChange({ props }) {
         <input
           type="text"
           onChange={(e) => setCustomerNameToModify(e.target.value)}
-          // value={setCustomerName} // was added on 05/03/22
           defaultValue={props.customerName}
         ></input>
-
+        <div>
         <p>Emplacement : {props.whereIsTheCar}</p>
+        
+        </div>
         <div>
           <p>TRAVAUX</p>
           <input
@@ -158,11 +164,36 @@ export default function CarToChange({ props }) {
 
         
 
-        <div onClick={() => handleSubmit()}>
+        <div onClick={() => restitutionTime?handleSubmit():alert("Ajouter heurerestitution")}>
           <MySubmitButton props="Enregistrer"></MySubmitButton>
         </div>
       </div>
-     <div> <CsAffected  defaultCs={props.serviceAdvisor}/></div>
+      <div>
+      <p>Responsabilite :{props.serviceAdvisor}</p>
+      <input
+              type="time"
+              onChange={(e) => setRestitutionTime(e.target.value)}
+              value={restitutionTime}
+              
+              
+            ></input>
+            <input
+            
+              type="date"
+              placeholder="dd-mm-yyyy"
+              onChange={(e) => setRestitutionDate(e.target.value)}
+              value={restitutionDate}
+              defaultValue={toDay}
+              
+              
+            ></input>
+            
+            
+            
+            
+            
+            
+            </div>
       <img
         alt="photoVehicle"
         name="photoVehicle"

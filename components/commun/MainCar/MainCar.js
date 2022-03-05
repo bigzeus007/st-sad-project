@@ -4,25 +4,32 @@ import Image from "next/image";
 
 import { MainCarCard } from "../../../styles/MainCarCard";
 import CardComponent from "../../../styles/CardComponent";
-import { getStorage, ref,getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import { useState } from "react";
 
-import { initialTech} from "../flipCard/content";
+import { initialTech } from "../flipCard/content";
 import { initialCar } from "../flipCard/newContent";
 import { auth } from "../../../firebase";
 
 function MainCar({ props }, { techList = initialTech }) {
+  const [carImage, setCarImage] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
+  );
 
-  const [carImage,setCarImage]=useState("https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9")
-
-  console.log(props)
+  console.log(props);
   // user identification
 
   const storage = getStorage();
-const spaceRef = ref(storage, `cars/${props.customerName}`);
+  const spaceRef = ref(storage, `cars/${props.customerName}`);
 
-getDownloadURL(spaceRef).then(url=>setCarImage(url)).catch(err=>setCarImage("https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"));
+  getDownloadURL(spaceRef)
+    .then((url) => setCarImage(url))
+    .catch((err) =>
+      setCarImage(
+        "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
+      )
+    );
 
   const user = auth.currentUser;
 
@@ -68,7 +75,7 @@ getDownloadURL(spaceRef).then(url=>setCarImage(url)).catch(err=>setCarImage("htt
               key={props.customerName}
               id={props.customerName}
               onClick={() => setFlipped((prev) => !prev)}
-              onDrag={(e)=>console.log(e.target.name)}
+              onDrag={(e) => console.log(e.target.name)}
             >
               <div className="interventions">
                 {props.myService && (
@@ -142,17 +149,16 @@ getDownloadURL(spaceRef).then(url=>setCarImage(url)).catch(err=>setCarImage("htt
               onClick={() => setFlipped((prev) => !prev)}
             >
               <>
-              {props.customerName}
+                {props.customerName}
                 <br />
 
                 {props.serviceAdvisor}
-              
-                
+
                 <br />
-                {props.rdvFixed? "RDV":"SANS RDV"}
+                {props.rdvFixed ? "RDV" : "SANS RDV"}
                 <br />
-                {props.rdvFixed? `Heure RDV :${props.rdvTimeFixed}`: null}
-                 </>
+                {props.rdvFixed ? `Heure RDV :${props.rdvTimeFixed}` : null}
+              </>
             </MainCarCard>
           </ReactCardFlip>
         </div>

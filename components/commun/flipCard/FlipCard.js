@@ -2,8 +2,8 @@ import React from "react";
 import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 import myPicture from "../../../public/carPicture.jpg";
-import myCar from "../images/start.svg"
-import carIcon from "../images/carIcon.png";
+import myCar from "../../../public/images/start.svg"
+import carIcon from "../../../public/images/carIcon.png";
 import styled from "styled-components";
 
 const initialPhoto = myPicture;

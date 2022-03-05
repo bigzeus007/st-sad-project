@@ -1,4 +1,4 @@
-import carPicture from "../images/carPicture.jpg"
+import carPicture from "../../../public/images/carPicture.jpg"
 import { techList } from "./techList";
 
 

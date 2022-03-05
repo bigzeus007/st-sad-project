@@ -22,6 +22,8 @@ import MainCar from "../MainCar/MainCar";
 import { async } from "@firebase/util";
 import Accueil from "../../specific/accueil/Accueil";
 import CsAffected from "../genericComponents/csAffected";
+import AccueilNext from "../../specific/accueil/AccueilNext";
+import CsCs from "../../specific/cs/CsCs";
 
 
 
@@ -224,8 +226,16 @@ const profil = user.job;
           </div> */}
           <TopNavBar >
 
-          {profil=="Pisteur"&&<TakePicture></TakePicture>}
+          {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
+          {/* {profil=="Pisteur"&&<TakePicture></TakePicture>} */}
+          {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
+
+          {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
+          {/* {profil=="CPRV"&&<Accueil ></Accueil>} */}
+          {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
+
           {/* <CsAffected></CsAffected> */}
+          {profil=="CS"&&<CsCs></CsCs>}
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
@@ -239,7 +249,13 @@ const profil = user.job;
             {/* <RadioStyled></RadioStyled> */}
             {/* <NewCarEntry/> */}
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
-            {profil=="CPRV"&&<Accueil ></Accueil>}
+
+
+            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
+            {/* {profil=="CPRV"&&<AccueilNext ></AccueilNext>}  */}
+            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
+           
+            
             {/* <ToDo props={content,techList} ></ToDo> */}
             
           </TopNavBar>

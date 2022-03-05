@@ -3,6 +3,8 @@ import { techList } from "../../commun/flipCard/techList";
 import { getAuth } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { carModification } from "../../../src/userReducer";
+
+
 import { TechZone } from "../../../styles/TechZone";
 import { db } from "../../../firebase";
 
@@ -20,21 +22,71 @@ import { getStorage, ref} from "firebase/storage";
 import CustomerWithoutCs from "../../commun/MainCar/CustomerWithoutCs";
 import { async } from "@firebase/util";
 import CarToChange from "../../commun/genericComponents/CarToChange";
-import CarToChangeByCs from "../../commun/genericComponents/CarToChangeByCs";
 
-export default function CsCs() {
-
+export default function AccueilNext() {
+  //   q.get().then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //         // doc.data() is never undefined for query doc snapshots
+  //         console.log(doc);
+  //     });
+  // });
 
   const [isLoadin, setIsLoading] = useState(false);
   const [carsList, setCarsList] = useState([]);
+  
+  
+
   const carsRef = collection(db, "cars");
- 
+  const myParking = query(carsRef, where("serviceAdvisor", "!=", ""));
+
+
+// const unsub = onSnapshot(
+//   myParking, 
+//     { includeMetadataChanges: true }, 
+//     doc=>console.log(doc.docs)
+//       // ...
+//     );
+
+
+   
 
   useEffect(()=>
     onSnapshot(myParking,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
     
   ,[])
 
+  console.log(carsList)
+
+//   const unsub = onSnapshot(collection(db, "cars"), (doc) => {
+//     console.log("Current data: ", doc.docChanges);
+// });
+
+
+  // const docSnap = async()=> getDoc(testCarRef);
+
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // doc.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
+
+  //   const myDoc = query(collection(db, "cars"), where("whereIsTheCar", "==", "Parking-E"));
+
+  // function getDataCollection(){
+  //   myDoc.onSnapshot().then((querySnapshot)=>{
+  //     const items=[];
+  //     querySnapshot.forEach((doc)=>{
+  //       console.log(doc)
+  //     })
+
+  //   })
+  // }
+  // getDataCollection()
+
+  // const unsub = onSnapshot(doc(myDoc, "JE SUIS SANS RDV"), (doc) => {
+  //   console.log("Current data: ", doc);
+  // });
 
   const getUser = getAuth().currentUser;
 
@@ -42,7 +94,6 @@ export default function CsCs() {
     return checking.email === getUser.email;
   }
   const user = techList.find(checkProfilTech);
-  const myParking = query(carsRef, where("serviceAdvisor", "==", `${user.nom}`));
 
   function checkParkTech(checking) {
     return checking.affectationChefAtelier.includes(`${user.nom}`);
@@ -60,17 +111,25 @@ export default function CsCs() {
     dispatch(carModification());
   }
 
+  
+
+
+// const carRef = doc(db, "cars", `${toModify}`);
+// const myCarToModify = async ()=> await getDoc(carRef) 
+
+
+
 
 
   return toModifyStatus ? (
     <>
       <button
-        id={toModify.customerName}
+        id="toModify"
         onClick={(e) => dispatch(carModification())}
       >
         Retour
       </button>
-      <CarToChangeByCs props={toModify}></CarToChangeByCs>
+      <CarToChange props={toModify}></CarToChange>
     </>
   ) : (
     <TechZone>

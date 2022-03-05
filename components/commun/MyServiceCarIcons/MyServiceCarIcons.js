@@ -1,7 +1,7 @@
 import React from "react";
-import MyIcons from "../images/images";
+import MyIcons from "../../../src/images";
 import styled from "styled-components";
-import Doing from "../images/Doing.png"
+
 
 export default function MyServiceCarIcons(carTasks) {
   const IntervetionsIcons = styled.img`
