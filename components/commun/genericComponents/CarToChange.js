@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { carModification } from "../../../src/userReducer";
 
 
 import { db } from "../../../firebase";
@@ -88,7 +89,8 @@ export default function CarToChange( {props} ) {
       body: body,
       mecanical: mecanique,
       
-    },{merge:true})
+    },{merge:true}).then(dispatch(carModification()));
+
   };
 
   return (
@@ -108,13 +110,13 @@ export default function CarToChange( {props} ) {
         <p>Emplacement : {props.whereIsTheCar}</p>
         <p>TRAVAUX</p>
 
-        <input type="checkbox" id="Revision" name="Revision" value={myService} onChange={()=>setMyService(!myService)}/>
+        <input type="checkbox" id="Revision" name="Revision" value={myService} checked={myService} onChange={()=>setMyService(!myService)}/>
         <label htmlFor="Revision">Revision</label><br/>
-        <input type="checkbox" id="electric" name="electric" value={electric} onChange={()=>setElectric(!electric)}/>
+        <input type="checkbox" id="electric" name="electric" value={electric} checked={electric} onChange={()=>setElectric(!electric)}/>
         <label htmlFor="electric">Diag</label><br/>
-        <input type="checkbox" id="Carrosserie" name="Carrosserie" value={body} onChange={()=>setBody(!body)}/>
+        <input type="checkbox" id="Carrosserie" name="Carrosserie" value={body} checked={body} onChange={()=>setBody(!body)}/>
         <label htmlFor="Carrosserie">Carrosserie</label><br/>
-        <input type="checkbox" id="mecanique" name="mecanique" value={mecanique} onChange={()=>setMecanique(!mecanique)}/>
+        <input type="checkbox" id="mecanique" name="mecanique" value={mecanique} checked={mecanique} onChange={()=>setMecanique(!mecanique)}/>
         <label htmlFor="mecanique">Mecanique</label><br/>
 
 

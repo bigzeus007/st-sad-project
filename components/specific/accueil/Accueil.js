@@ -102,9 +102,14 @@ export default function Accueil() {
   // const parkPisteur = props.filter(checkParkTech)
 
   const dispatch = useDispatch();
-  // const toModify = useSelector((state) => state.userOptions.onModification);
+   const toModifyStatus = useSelector((state) => state.userOptions.carToModifyStatus);
 
   const [toModify,setTomodify]=useState("")
+
+  const handlCarToModify=(car)=>{
+    setTomodify(car);
+    dispatch(carModification());
+  }
 
   
 
@@ -116,11 +121,11 @@ export default function Accueil() {
 
 
 
-  return toModify ? (
+  return toModifyStatus ? (
     <>
       <button
         id="toModify"
-        onClick={(e) => setTomodify(null)}
+        onClick={(e) => dispatch(carModification())}
       >
         Retour
       </button>
@@ -128,7 +133,7 @@ export default function Accueil() {
     </>
   ) : (
     <TechZone>
-      {carsList.map((car)=>(<button key={car.customerName} style={{width:"20vw",heigth:"100%"}} onClick={()=>{setTomodify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button>))}
+      {carsList.map((car)=>(<button key={car.customerName} style={{width:"20vw",heigth:"100%"}} onClick={()=>{handlCarToModify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button>))}
     </TechZone>
   );
 }

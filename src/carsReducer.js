@@ -1,32 +1,13 @@
 
 
-const noCar = {
-  customerName: 'no-car',
-  customerCategory: "Normal",
-  createdAt: "",
-  rdvFixed: false,
-  serviceAdvisor: null,
-  rdvTimeFixed: null,
-  whereIsTheCar: "Parking-E",
-  affected: null,
-  isItInGoodPlace: true,
-  basyCar: false,
-  myService: false,
-  electrical: false,
-  body: false,
-  mecanical: false,
-  pneus: false,
-  plaquettes: false,
-  batterie: false,
-  lavage: false,
-
-  };
+const initialCar = {
+  ;
 
 
 
   const carsSlice = createSlice({
     name: 'carSelected',
-    initialState,
+    initialCar,
     reducers: {
       carChange(state, action) {
         const {carModification} = action.payload

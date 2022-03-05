@@ -27,7 +27,7 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
   const [change, setChange] = useState(false);
 
   const dispatch = useDispatch();
-  const toModify = useSelector((state) => state.userOptions.onModification);
+  const toModify = useSelector((state) => state.userOptions.carToModifyStatus);
   // const carToLab = useSelector((state) => state.userOptions.carToModify);
   
 
