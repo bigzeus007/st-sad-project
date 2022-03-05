@@ -21,6 +21,7 @@ import ToDo from "../genericComponents/ToDo";
 import MainCar from "../MainCar/MainCar";
 import { async } from "@firebase/util";
 import Accueil from "../../specific/accueil/Accueil";
+import CsAffected from "../genericComponents/csAffected";
 
 
 
@@ -224,7 +225,7 @@ const profil = user.job;
           <TopNavBar >
 
           {profil=="Pisteur"&&<TakePicture></TakePicture>}
-          
+          {/* <CsAffected></CsAffected> */}
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
