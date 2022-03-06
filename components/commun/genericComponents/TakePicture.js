@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useRef } from "react";
 import { Button } from "../../../styles/Button.styled";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import { db } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import {
   getStorage,
   getDownloadURL,
@@ -138,7 +138,7 @@ export default function TakePicture() {
     
   };
 
-  const meMoCamStatus = useMemo(() => hasPhoto, [hasPhoto]);
+
 
   useEffect(() => {
     if (laboZone) {
@@ -148,6 +148,7 @@ export default function TakePicture() {
 
   const [carStatus, setCarStatus] = useState("none");
   const takePictureSwitch = hasPhoto ? "flex" : "none";
+ 
 
   const handleSubmit = async (image) => {
     await submitMyCarPhot(image);
@@ -168,20 +169,22 @@ export default function TakePicture() {
       electrical: false,
       body: false,
       mecanical: false,
-      pneus: false,
-      plaquettes: false,
-      batterie: false,
       lavage: false,
       restitutionTime:"",
-        restitutionDate:"",
+      restitutionDate:"",
+     
+   workingTeam:["CRV","CA","Pisteur"],  
+      carStory:[{who:"Pisteur",when:new Date().toISOString().substring(0, 16),what:"CarAdded"}],
 
+      historyComments:[{initiator:"",time:"",text:""}],
 
 
     });
     dispatch(selectCs(null));
-    console.log(theCs);
+    
     
   };
+
 
   return laboZone ? (
     <div

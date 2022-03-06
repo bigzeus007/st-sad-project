@@ -29,6 +29,7 @@ import Accueil from "../../specific/accueil/Accueil";
 import CsAffected from "../genericComponents/csAffected";
 import AccueilNext from "../../specific/accueil/AccueilNext";
 import CsCs from "../../specific/cs/CsCs";
+import AccueilCA from "../../specific/accueil/AccueilCA";
 
 export default function NavBar() {
   function checkProfilTech(checking) {
@@ -215,7 +216,7 @@ export default function NavBar() {
           </div> */}
           <TopNavBar>
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
-            {profil=="Pisteur"&&<TakePicture></TakePicture>}
+            {profil=="Pisteur"&&<TakePicture ></TakePicture>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
 
             {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
@@ -227,7 +228,8 @@ export default function NavBar() {
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
-            {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
+            {profil == "CA" && <AccueilCA user={user}></AccueilCA>}
+            {/* {profil == "CA" &&<ChefAtelierAtelier></ChefAtelierAtelier>} */}
           </TopNavBar>
 
           <TopNavBar>

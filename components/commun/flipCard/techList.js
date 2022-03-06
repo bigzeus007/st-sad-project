@@ -1,9 +1,9 @@
 export const techList = [
   {
     id: 0,
-    nom: "HILALI",
+    nom: "TARHI",
     email: "tarhisaid@gmail.com",
-    job: "CS",
+    job: "Pisteur",
     active: true,
     atelierAffectation: "E-PARKING",
     availability: true,
