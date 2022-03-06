@@ -39,14 +39,14 @@ export default function CarToChangeByCs({ props }) {
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
     const toDay= new Date().toISOString().substring(0, 10);
-    console.log(toDay)
+  
   const [carsList, setCarsList] = useState([]);
   const [myService, setMyService] = useState(props.myService);
   const [electric, setElectric] = useState(props.electrical);
   const [mecanique, setMecanique] = useState(props.mecanical);
   const [body, setBody] = useState(props.body);
-  const [restitutionTime, setRestitutionTime]=useState(null)
-  const [restitutionDate, setRestitutionDate]=useState(null)
+  const [restitutionTime, setRestitutionTime]=useState("")
+  const [restitutionDate, setRestitutionDate]=useState(toDay)
   
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
@@ -182,8 +182,9 @@ export default function CarToChangeByCs({ props }) {
               type="date"
               placeholder="dd-mm-yyyy"
               onChange={(e) => setRestitutionDate(e.target.value)}
-              value={restitutionDate}
-              defaultValue={toDay}
+              
+              defaultValue={restitutionDate}
+              min={restitutionDate}
               
               
             ></input>

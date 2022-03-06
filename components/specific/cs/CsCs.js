@@ -27,14 +27,12 @@ export default function CsCs() {
 
   const [isLoadin, setIsLoading] = useState(false);
   const [carsList, setCarsList] = useState([]);
-  const carsRef = collection(db, "cars");
+ 
  
 
-  useEffect(()=>
-    onSnapshot(myParking,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
-    
-  ,[])
+ 
 
+console.log(carsList)
 
   const getUser = getAuth().currentUser;
 
@@ -42,8 +40,15 @@ export default function CsCs() {
     return checking.email === getUser.email;
   }
   const user = techList.find(checkProfilTech);
-  const myParking = query(carsRef, where("serviceAdvisor", "==", `${user.nom}`));
+  const carsRef = collection(db, "cars");
+  const myParking = query(carsRef, where("serviceAdvisor", "==", `${user.nom}`),where("restitutionTime", "==", ""));
 
+  useEffect(()=>
+  onSnapshot(myParking,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
+  
+,[])
+console.log(carsList.filter((car)=>car.restitutionTime==""))
+ 
   function checkParkTech(checking) {
     return checking.affectationChefAtelier.includes(`${user.nom}`);
   }

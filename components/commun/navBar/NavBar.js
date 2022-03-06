@@ -1,7 +1,13 @@
 import react, { useEffect, useMemo } from "react";
 import { useRef, useState } from "react";
 import { auth } from "../../../firebase";
-import { getFirestore, collection, getDocs, doc, onSnapshot } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
 import { db } from "../../../firebase";
 import RadioStyled from "../../../styles/RadioStyled";
 import RdvOrNotInput from "../../../styles/RdvOrNotInput";
@@ -14,8 +20,7 @@ import content, { initialCar } from "../flipCard/content";
 import { techList } from "../flipCard/techList";
 import CarEntry from "../genericComponents/CarEntry";
 import TakePicture from "../genericComponents/TakePicture";
-import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier"
-
+import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
 
 import ToDo from "../genericComponents/ToDo";
 import MainCar from "../MainCar/MainCar";
@@ -25,13 +30,7 @@ import CsAffected from "../genericComponents/csAffected";
 import AccueilNext from "../../specific/accueil/AccueilNext";
 import CsCs from "../../specific/cs/CsCs";
 
-
-
-
 export default function NavBar() {
-
-  
-
   function checkProfilTech(checking) {
     return checking.email == auth.currentUser.email;
   }
@@ -40,9 +39,7 @@ export default function NavBar() {
   // function checkDoing(checking) {
   //   return checking.whereIsTheCar === `${user.nom}`;
   // }
-const profil = user.job;
-
-
+  const profil = user.job;
 
   const [toggle, setToggle] = useState("close");
   const [darkMode, setDarkMode] = useState("");
@@ -54,26 +51,18 @@ const profil = user.job;
     toggle === "dark" ? setDarkMode("light") : setDarkMode("dark");
   };
 
-  
   // async function getCarsData(myDb) {
-    
+
   //   const carsCol = collection(myDb, 'cars');
   //   const carsSnapshot = await getDocs(carsCol);
   //   const list = carsSnapshot.docs.map(doc => doc.data());
   //   setCarsList(list);
-    
-    
+
   // }
 
   // const myMemo = useMemo(()=>{getCarsData(db),[db]})
 
   // console.log(`db changed : ${myMemo}`);
-
-
- 
-  
- 
-
 
   return (
     <>
@@ -199,9 +188,9 @@ const profil = user.job;
             <div
               style={{
                 position: "absolute",
-                display:"flex",
+                display: "flex",
                 height: "10vh",
-                width:"auto",
+                width: "auto",
                 top: "0px",
                 right: "0px",
               }}
@@ -211,7 +200,7 @@ const profil = user.job;
               <img
                 style={{
                   borderRadius: "50%",
-                  width:"10vh",
+                  width: "10vh",
                   objectFit: "fill",
                 }}
                 src={user.photoURL}
@@ -224,40 +213,35 @@ const profil = user.job;
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div> */}
-          <TopNavBar >
+          <TopNavBar>
+            {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
+            {profil=="Pisteur"&&<TakePicture></TakePicture>}
+            {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
 
-          {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
-          {/* {profil=="Pisteur"&&<TakePicture></TakePicture>} */}
-          {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
+            {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
+            {profil=="CPRV"&&<Accueil ></Accueil>}
+            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
-          {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-          {/* {profil=="CPRV"&&<Accueil ></Accueil>} */}
-          {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-
-          {/* <CsAffected></CsAffected> */}
-          {profil=="CS"&&<CsCs></CsCs>}
+            {/* <CsAffected></CsAffected> */}
+            {profil == "CS" && <CsCs></CsCs>}
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
             {/* <ChefAtelierAtelier></ChefAtelierAtelier> */}
           </TopNavBar>
 
-          <TopNavBar >
-            
+          <TopNavBar>
             {/* <ToDo props={content}></ToDo> */}
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
             {/* <NewCarEntry/> */}
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
 
+            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
+            {profil=="CPRV"&&<AccueilNext ></AccueilNext>} 
+            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
-            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-            {/* {profil=="CPRV"&&<AccueilNext ></AccueilNext>}  */}
-            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-           
-            
             {/* <ToDo props={content,techList} ></ToDo> */}
-            
           </TopNavBar>
         </section>
       </div>

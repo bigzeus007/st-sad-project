@@ -37,7 +37,7 @@ export default function Accueil() {
   
 
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
+  const myParking = query(carsRef, where("serviceAdvisor", "==", `${user.nom}`));
 
 
 // const unsub = onSnapshot(

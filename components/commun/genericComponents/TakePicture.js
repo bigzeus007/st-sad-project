@@ -172,6 +172,8 @@ export default function TakePicture() {
       plaquettes: false,
       batterie: false,
       lavage: false,
+      restitutionTime:"",
+        restitutionDate:"",
 
 
 
