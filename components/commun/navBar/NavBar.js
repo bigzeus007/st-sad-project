@@ -216,19 +216,19 @@ export default function NavBar() {
           </div> */}
           <TopNavBar>
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
-            {profil=="Pisteur"&&<TakePicture ></TakePicture>}
+            {/* {profil=="Pisteur"&&<TakePicture ></TakePicture>} */}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
 
             {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-            {profil=="CPRV"&&<Accueil ></Accueil>}
+           {/* //a revoir   {profil=="CPRV"&&<Accueil user={user} ></Accueil>} */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
             {/* <CsAffected></CsAffected> */}
-            {profil == "CS" && <CsCs></CsCs>}
+            {profil == "CS" && <CsCs user={user}></CsCs>}
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
-            {profil == "CA" && <AccueilCA user={user}></AccueilCA>}
+            {/* {profil == "CA" && <AccueilCA user={user}></AccueilCA>} */}
             {/* {profil == "CA" &&<ChefAtelierAtelier></ChefAtelierAtelier>} */}
           </TopNavBar>
 
@@ -240,7 +240,7 @@ export default function NavBar() {
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-            {profil=="CPRV"&&<AccueilNext ></AccueilNext>} 
+            {profil=="CPRV"&&<AccueilNext user={user} ></AccueilNext>} 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
             {/* <ToDo props={content,techList} ></ToDo> */}

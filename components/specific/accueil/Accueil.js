@@ -23,7 +23,7 @@ import CustomerWithoutCs from "../../commun/MainCar/CustomerWithoutCs";
 import { async } from "@firebase/util";
 import CarToChange from "../../commun/genericComponents/CarToChange";
 
-export default function Accueil() {
+export default function Accueil({user}) {
   //   q.get().then((querySnapshot) => {
   //     querySnapshot.forEach((doc) => {
   //         // doc.data() is never undefined for query doc snapshots
@@ -88,12 +88,12 @@ export default function Accueil() {
   //   console.log("Current data: ", doc);
   // });
 
-  const getUser = getAuth().currentUser;
+  // const getUser = getAuth().currentUser;
 
-  function checkProfilTech(checking) {
-    return checking.email === getUser.email;
-  }
-  const user = techList.find(checkProfilTech);
+  // function checkProfilTech(checking) {
+  //   return checking.email === getUser.email;
+  // }
+  // const user = techList.find(checkProfilTech);
 
   function checkParkTech(checking) {
     return checking.affectationChefAtelier.includes(`${user.nom}`);
@@ -121,7 +121,10 @@ export default function Accueil() {
 
 
 
-  return toModifyStatus ? (
+  return (
+    
+    
+    toModifyStatus ? (
     <>
       <button
         id="toModify"
@@ -135,7 +138,11 @@ export default function Accueil() {
     <TechZone>
       {carsList.map((car)=>(<button key={car.customerName} style={{width:"20vw",heigth:"100%"}} onClick={()=>{handlCarToModify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button>))}
     </TechZone>
-  );
+  )
+  
+  
+  
+  )
 }
 
 

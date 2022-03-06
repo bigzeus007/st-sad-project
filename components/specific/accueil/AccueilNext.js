@@ -23,7 +23,7 @@ import CustomerWithoutCs from "../../commun/MainCar/CustomerWithoutCs";
 import { async } from "@firebase/util";
 import CarToChange from "../../commun/genericComponents/CarToChange";
 
-export default function AccueilNext() {
+export default function AccueilNext({user}) {
   //   q.get().then((querySnapshot) => {
   //     querySnapshot.forEach((doc) => {
   //         // doc.data() is never undefined for query doc snapshots
@@ -37,7 +37,8 @@ export default function AccueilNext() {
   
 
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("serviceAdvisor", "!=", ""));
+  const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
+  
 
 
 // const unsub = onSnapshot(
@@ -55,7 +56,7 @@ export default function AccueilNext() {
     
   ,[])
 
-  console.log(carsList)
+
 
 //   const unsub = onSnapshot(collection(db, "cars"), (doc) => {
 //     console.log("Current data: ", doc.docChanges);
@@ -88,16 +89,16 @@ export default function AccueilNext() {
   //   console.log("Current data: ", doc);
   // });
 
-  const getUser = getAuth().currentUser;
+  // const getUser = getAuth().currentUser;
 
-  function checkProfilTech(checking) {
-    return checking.email === getUser.email;
-  }
-  const user = techList.find(checkProfilTech);
+  // function checkProfilTech(checking) {
+  //   return checking.email === getUser.email;
+  // }
+  // const user = techList.find(checkProfilTech);
 
-  function checkParkTech(checking) {
-    return checking.affectationChefAtelier.includes(`${user.nom}`);
-  }
+  // function checkParkTech(checking) {
+  //   return checking.affectationChefAtelier.includes(`${user.nom}`);
+  // }
 
   // const parkPisteur = props.filter(checkParkTech)
 
@@ -121,7 +122,10 @@ export default function AccueilNext() {
 
 
 
-  return toModifyStatus ? (
+  return(
+
+    
+        ( toModifyStatus ? (
     <>
       <button
         id="toModify"
@@ -135,7 +139,10 @@ export default function AccueilNext() {
     <TechZone>
       {carsList.map((car)=>(<button key={car.customerName} style={{width:"20vw",heigth:"100%"}} onClick={()=>{handlCarToModify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button>))}
     </TechZone>
-  );
+  )
+  )
+  
+  )
 }
 
 

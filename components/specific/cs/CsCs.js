@@ -22,24 +22,19 @@ import { async } from "@firebase/util";
 import CarToChange from "../../commun/genericComponents/CarToChange";
 import CarToChangeByCs from "../../commun/genericComponents/CarToChangeByCs";
 
-export default function CsCs() {
+export default function CsCs({user}) {
 
 
   const [isLoadin, setIsLoading] = useState(false);
   const [carsList, setCarsList] = useState([]);
- 
- 
-
- 
 
 
+  // const getUser = getAuth().currentUser;
 
-  const getUser = getAuth().currentUser;
-
-  function checkProfilTech(checking) {
-    return checking.email === getUser.email;
-  }
-  const user = techList.find(checkProfilTech);
+  // function checkProfilTech(checking) {
+  //   return checking.email === getUser.email;
+  // }
+  // const user = techList.find(checkProfilTech);
   const carsRef = collection(db, "cars");
   const myParking = query(carsRef, where("serviceAdvisor", "==", `${user.nom}`),where("restitutionTime", "==", ""));
 
