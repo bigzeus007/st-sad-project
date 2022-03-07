@@ -23,6 +23,7 @@ import CustomerWithoutCs from "../../commun/MainCar/CustomerWithoutCs";
 import { async } from "@firebase/util";
 import CarToChange from "../../commun/genericComponents/CarToChange";
 import CarToAffect from "../../commun/genericComponents/CarToAffect";
+import { resetState } from "../../../src/caReducer";
 
 export default function AccueilCA({user}) {
   //   q.get().then((querySnapshot) => {
@@ -126,7 +127,7 @@ export default function AccueilCA({user}) {
     <>
       <button
         id="toModify"
-        onClick={(e) => dispatch(carModification())}
+        onClick={(e) => (dispatch(carModification()),dispatch(resetState()))}
       >
         Retour
       </button>

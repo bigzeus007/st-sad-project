@@ -33,6 +33,7 @@ import {
 import { async } from "@firebase/util";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import CsAffected from "./csAffected";
+import { resetState } from "../../../src/caReducer";
 
 export default function CarToAffect({ props }) {
   const [carImage, setCarImage] = useState(
@@ -81,14 +82,15 @@ export default function CarToAffect({ props }) {
     await setDoc(
       doc(docref, `${props.customerName}`),
       {
-        serviceAdvisor: choosenCs,
-        myService: myService,
-        electrical: electric,
-        body: body,
-        mecanical: mecanique,
+        isItInGoodPlace:false,
+        
+        myService: techAffected.express,
+        electrical: techAffected.electrique,
+        body: techAffected.bodyCar,
+        mecanical: techAffected.mecanique,
       },
       { merge: true }
-    ).then(dispatch(carModification()));
+    ).then(dispatch(carModification()),dispatch(resetState()));
   };
 
   const listTechByWS = [{ nom: "", atelierAffectation: "" }];
@@ -122,7 +124,7 @@ export default function CarToAffect({ props }) {
         <p>Emplacement : {props.whereIsTheCar}</p>
         <div>
           <p>TRAVAUX</p>
-          {props.myService && <div>Express: {techAffected.express}</div>}
+          {props.myService && <div>Express: {techAffected.express}<button>-</button></div>}
           {props.myService && <div>Mecanique: {techAffected.mecanique}</div>}
           {props.myService && <div>Diag: {techAffected.electrique}</div>}
           {props.myService && <div>Carrosserie: {techAffected.bodyCar}</div>}
