@@ -1,18 +1,18 @@
 export const techList = [
   {
-    id: 0,
+    id: 999,
     nom: "HILALI",
     email: "tarhisaid@gmail.com",
-    job: "CPRV",
+    job: "CA",
     active: true,
-    atelierAffectation: "E-PARKING",
+    atelierAffectation: "showroom",
     availability: true,
     workingDayDuration: "5h",
     enAttente: 2,
     termines: 3,
   },
   {
-    id: 555,
+    id: 20,
     nom: "ZAINAB",
     email: "",
     job: "CPRV",
@@ -24,7 +24,7 @@ export const techList = [
     termines: 1,
   },
   {
-    id: 100,
+    id: 21,
     nom: "BASSIR",
     email: "",
     job: "CS",
@@ -36,7 +36,7 @@ export const techList = [
     termines: 1,
   },
   {
-    id: 120,
+    id: 22,
     nom: "ESSAIH",
     email: "",
     job: "CS",
@@ -48,7 +48,7 @@ export const techList = [
     termines: 3,
   },
   {
-    id: 110,
+    id: 23,
     nom: "HILALI",
     email: "",
     job: "CS",
@@ -60,7 +60,7 @@ export const techList = [
     termines: 3,
   },
   {
-    id: 100,
+    id: 24,
     nom: "ELMOURZBANI",
     email: "",
     job: "CS",

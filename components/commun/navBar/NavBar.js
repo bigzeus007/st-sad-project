@@ -30,6 +30,7 @@ import CsAffected from "../genericComponents/csAffected";
 import AccueilNext from "../../specific/accueil/AccueilNext";
 import CsCs from "../../specific/cs/CsCs";
 import AccueilCA from "../../specific/accueil/AccueilCA";
+import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
 
 export default function NavBar() {
   function checkProfilTech(checking) {
@@ -216,11 +217,11 @@ export default function NavBar() {
           </div> */}
           <TopNavBar>
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
-            {/* {profil=="Pisteur"&&<TakePicture ></TakePicture>} */}
+            {profil=="Pisteur"&&<TakePicture ></TakePicture>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
 
             {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-           {/* //a revoir   {profil=="CPRV"&&<Accueil user={user} ></Accueil>} */}
+            {/* {profil=="CPRV"&&<Accueil user={user} ></Accueil>} */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
             {/* <CsAffected></CsAffected> */}
@@ -228,7 +229,7 @@ export default function NavBar() {
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
-            {/* {profil == "CA" && <AccueilCA user={user}></AccueilCA>} */}
+            {profil == "CA" && <AccueilCA user={user}></AccueilCA>}
             {/* {profil == "CA" &&<ChefAtelierAtelier></ChefAtelierAtelier>} */}
           </TopNavBar>
 
@@ -238,6 +239,7 @@ export default function NavBar() {
             {/* <RadioStyled></RadioStyled> */}
             {/* <NewCarEntry/> */}
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
+            {profil == "CA" && <ChefAtelierGarage> </ChefAtelierGarage>}
 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
             {profil=="CPRV"&&<AccueilNext user={user} ></AccueilNext>} 

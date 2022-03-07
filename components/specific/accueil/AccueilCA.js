@@ -22,6 +22,7 @@ import { getStorage, ref} from "firebase/storage";
 import CustomerWithoutCs from "../../commun/MainCar/CustomerWithoutCs";
 import { async } from "@firebase/util";
 import CarToChange from "../../commun/genericComponents/CarToChange";
+import CarToAffect from "../../commun/genericComponents/CarToAffect";
 
 export default function AccueilCA({user}) {
   //   q.get().then((querySnapshot) => {
@@ -129,7 +130,7 @@ export default function AccueilCA({user}) {
       >
         Retour
       </button>
-      <CarToChange props={toModify}></CarToChange>
+      <CarToAffect props={toModify}></CarToAffect>
     </>
   ) : (
     <TechZone>
