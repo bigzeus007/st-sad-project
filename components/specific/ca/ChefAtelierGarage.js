@@ -29,7 +29,7 @@ const Atelier = styled.div`
 
   border: 2px blue solid;
 `;
-const Button = styled.button`
+const Button = styled.div`
   font-size: 1.5vw;
   box-shadow: 0px 5px 5px 0px;
   border-radius: 10px 10px 10px 10px;
@@ -40,12 +40,12 @@ const Button = styled.button`
 `;
 
 export default function ChefAtelierGarage() {
-  const [techArea, setTechArea] = useState(false);
+  // const [techArea, setTechArea] = useState(false);
   const dispatch = useDispatch();
 
-  const techSelected = (e) => {
-    setTechArea(!techArea);
-  };
+  // const techSelected = (e) => {
+  //   setTechArea(!techArea);
+  // };
 
   const listAtelier = ["express", "mecanique", "electrique", "bodyCar"];
   const techName = useSelector((state)=>state.selectedByCa)
@@ -63,10 +63,10 @@ export default function ChefAtelierGarage() {
                 tech.active === true && tech.atelierAffectation == `${atelier}`
             )
             .map((filtredList) => (
-              <button  draggable={true} onDragStart={()=>dispatch(selectTech([atelier,filtredList.nom]))}>
+              <button key={filtredList.nom}  draggable={true} onDragStart={()=>dispatch(selectTech([atelier,filtredList.nom]))}>
               <Button
                 key={filtredList.id.toString()}
-                onClick={(e) => setTechArea(!techArea)}
+                // onClick={(e) => setTechArea(!techArea)}
                 availability={filtredList.availability}
               >
                 <h3>{filtredList.nom}</h3>

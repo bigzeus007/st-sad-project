@@ -33,7 +33,7 @@ import {
 import { async } from "@firebase/util";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import CsAffected from "./csAffected";
-import { resetState } from "../../../src/caReducer";
+import { resetState, selectTech } from "../../../src/caReducer";
 
 export default function CarToAffect({ props }) {
   const [carImage, setCarImage] = useState(
@@ -83,6 +83,7 @@ export default function CarToAffect({ props }) {
       doc(docref, `${props.customerName}`),
       {
         isItInGoodPlace:false,
+        affected: "technicians",
         
         myService: techAffected.express,
         electrical: techAffected.electrique,
@@ -124,10 +125,10 @@ export default function CarToAffect({ props }) {
         <p>Emplacement : {props.whereIsTheCar}</p>
         <div>
           <p>TRAVAUX</p>
-          {props.myService && <div>Express: {techAffected.express}<button>-</button></div>}
-          {props.myService && <div>Mecanique: {techAffected.mecanique}</div>}
-          {props.myService && <div>Diag: {techAffected.electrique}</div>}
-          {props.myService && <div>Carrosserie: {techAffected.bodyCar}</div>}
+          {props.myService && <div>Express: {techAffected.express}<button onClick={()=>dispatch(selectTech(["express",""]))}>-</button></div>}
+          {props.myService && <div>Mecanique: {techAffected.mecanique}<button onClick={()=>dispatch(selectTech(["mecanique",""]))}>-</button></div>}
+          {props.myService && <div>Diag: {techAffected.electrique}<button onClick={()=>dispatch(selectTech(["electrique",""]))}>-</button></div>}
+          {props.myService && <div>Carrosserie: {techAffected.bodyCar}<button onClick={()=>dispatch(selectTech(["bodyCar",""]))}>-</button></div>}
           <br />
         </div>
 
