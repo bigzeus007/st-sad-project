@@ -88,7 +88,7 @@ const initialCar = {
     myService:false,
     mecanical:false,
     electrical:false,
-    body:false,
+    bodyCar:false,
     divers:{
       newOne:false,
       diversNote:"divers note",
@@ -154,7 +154,7 @@ function Card({ props = initialCar}) {
             <p>{props.carTasks.myService==false && "Vidange"}</p>
             <p>{props.carTasks.mecanical==false && "Mecanique"}</p>
             <p>{props.carTasks.electrical==true && "electrique"}</p>
-            <p>{props.carTasks.body == true && "carrosserie"}</p>
+            <p>{props.carTasks.bodyCar == true && "carrosserie"}</p>
             <p>{props.carTasks.divers.newOne == true && props.carTasks.divers.diversNote}</p>
             <p>{props.deliveryTimeAdjustment.map((adjustment=>{return adjustment.deadLineTime}))}</p>
             

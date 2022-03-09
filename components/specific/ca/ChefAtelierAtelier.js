@@ -90,7 +90,7 @@ const initialCar = {
     myService: true,
     mecanical: true,
     electrical: true,
-    body: true,
+    bodyCar: true,
     divers: {
       pneus: true,
       plaquettes: true,
@@ -149,7 +149,7 @@ function ChefAtelierAtelier({ props = initialCar }) {
               {props.carTasks.myService&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8" alt="alt"/>}
               {props.carTasks.electrical&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechDiag.png?alt=media&token=a5bdaf9d-2345-4602-899b-0ced2aecb112" alt="alt"/>}
               {props.carTasks.mecanical&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481" alt="alt"/>}
-              {props.carTasks.body&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87" alt="alt"/>}
+              {props.carTasks.bodyCar&&<img src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87" alt="alt"/>}
               
             </div>
 
@@ -181,7 +181,7 @@ function ChefAtelierAtelier({ props = initialCar }) {
             <p>{props.carTasks.myService && "Vidange"}</p>
             <p>{props.carTasks.mecanical && "Mecanique"}</p>
             <p>{props.carTasks.electrical && "electrique"}</p>
-            <p>{props.carTasks.body && "carrosserie"}</p>
+            <p>{props.carTasks.bodyCar && "carrosserie"}</p>
             <p>{props.carTasks.divers.plaquettes && "Plaquettes"}</p>
             <p>{props.deliveryTimeAdjustment.map((adjustment) => {
                 return adjustment.deadLineTime;

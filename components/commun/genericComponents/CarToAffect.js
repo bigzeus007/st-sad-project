@@ -44,7 +44,7 @@ export default function CarToAffect({ props }) {
   const [myService, setMyService] = useState(props.myService);
   const [electric, setElectric] = useState(props.electrical);
   const [mecanique, setMecanique] = useState(props.mecanical);
-  const [body, setBody] = useState(props.body);
+  const [bodyCar, setbodyCar] = useState(props.bodyCar);
 
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
@@ -85,10 +85,10 @@ export default function CarToAffect({ props }) {
         isItInGoodPlace:false,
         affected: "technicians",
         
-        myService: techAffected.express,
-        electrical: techAffected.electrique,
-        body: techAffected.bodyCar,
-        mecanical: techAffected.mecanique,
+        myService: techAffected.myService,
+        electrical: techAffected.electrical,
+        bodyCar: techAffected.bodyCar,
+        mecanical: techAffected.mecanical,
       },
       { merge: true }
     ).then(dispatch(carModification()),dispatch(resetState()));
@@ -125,9 +125,9 @@ export default function CarToAffect({ props }) {
         <p>Emplacement : {props.whereIsTheCar}</p>
         <div>
           <p>TRAVAUX</p>
-          {props.myService && <div>Express: {techAffected.express}<button onClick={()=>dispatch(selectTech(["express",""]))}>-</button></div>}
-          {props.myService && <div>Mecanique: {techAffected.mecanique}<button onClick={()=>dispatch(selectTech(["mecanique",""]))}>-</button></div>}
-          {props.myService && <div>Diag: {techAffected.electrique}<button onClick={()=>dispatch(selectTech(["electrique",""]))}>-</button></div>}
+          {props.myService && <div>Express: {techAffected.myService}<button onClick={()=>dispatch(selectTech(["myService",""]))}>-</button></div>}
+          {props.myService && <div>Mecanique: {techAffected.mecanical}<button onClick={()=>dispatch(selectTech(["mecanical",""]))}>-</button></div>}
+          {props.myService && <div>Diag: {techAffected.electrical}<button onClick={()=>dispatch(selectTech(["electrical",""]))}>-</button></div>}
           {props.myService && <div>Carrosserie: {techAffected.bodyCar}<button onClick={()=>dispatch(selectTech(["bodyCar",""]))}>-</button></div>}
           <br />
         </div>

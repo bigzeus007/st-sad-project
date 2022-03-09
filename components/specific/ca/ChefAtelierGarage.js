@@ -5,33 +5,23 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTech } from "../../../src/caReducer";
 
-const GlobalAtelier = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 40vw 40vw;
 
-  margin: 10px 0px 0px 15px;
-  border: 2px blue solid;
-`;
 const Atelier = styled.div`
-  position: relative;
-  display: grid;
-  grid-template-columns: 32% 32% 32%;
-  grid-template-rows: auto;
+  display:inline-block;
+ 
+
   padding: 5px;
-
-  justify-content: space-evenly;
-
-  height: 100%;
-  width: 100%;
-
-  border: 2px blue solid;
+  
+  background-color:transparent;
 `;
 const Button = styled.div`
-  font-size: 1.5vw;
-  box-shadow: 0px 5px 5px 0px;
+  position:relative;
+  box-sizing:border-box;
+ 
+  margin:2px;
+  padding:5px;
+  font-size: 0.5em;
+  box-shadow: 0px 10px 15px 0px;
   border-radius: 10px 10px 10px 10px;
   background-color: ${(props) => (props.availability ? "green" : "red")};
   :hover {
@@ -47,14 +37,15 @@ export default function ChefAtelierGarage() {
   //   setTechArea(!techArea);
   // };
 
-  const listAtelier = ["express", "mecanique", "electrique", "bodyCar"];
+  const listAtelier = ["myService", "mecanical", "electrical", "bodyCar"];
   const techName = useSelector((state)=>state.selectedByCa)
 
   // const toggleTech=(element)=> techName.includes({nom:element.nom,atelier:element.atelierAffectation})
 
 
   return (
-    <GlobalAtelier>
+    <>
+    
       {listAtelier.map((atelier) => (
         <Atelier key={atelier} className={atelier}>
           {techList
@@ -63,7 +54,7 @@ export default function ChefAtelierGarage() {
                 tech.active === true && tech.atelierAffectation == `${atelier}`
             )
             .map((filtredList) => (
-              <button key={filtredList.nom}  draggable={true} onDragStart={()=>dispatch(selectTech([atelier,filtredList.nom]))}>
+              <button style={{backgroundColor:"transparent",height:"5em",width:"5em",boxSizing:"border-box"}} key={filtredList.nom}  draggable={true} onDragStart={()=>dispatch(selectTech([atelier,filtredList.nom]))}>
               <Button
                 key={filtredList.id.toString()}
                 // onClick={(e) => setTechArea(!techArea)}
@@ -78,6 +69,6 @@ export default function ChefAtelierGarage() {
             ))}
         </Atelier>
       ))}
-    </GlobalAtelier>
-  );
+    
+    </>);
 }

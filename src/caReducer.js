@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  express: "",
-  mecanique: "",
-  electrique: "",
+  myService: "",
+  mecanical: "",
+  electrical: "",
   bodyCar: "",
 };
 
@@ -14,17 +14,17 @@ const caSlice = createSlice({
     selectTech: (state, action) => {
       const [atelier,nom]=action.payload
         switch (atelier) {
-        case "express":
-          return state = { ...state, express: nom }
+        case "myService":
+          return state = { ...state, myService: nom }
         
-        case "mecanique":
+        case "mecanical":
           return state = { 
             ...state,
-            mecanique: nom 
+            mecanical: nom 
           }
         
-        case "electrique":
-          return state = { ...state, electrique: nom }
+        case "electrical":
+          return state = { ...state, electrical: nom }
         
         case "bodyCar":
           return state = { ...state, bodyCar: nom }

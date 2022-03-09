@@ -31,6 +31,7 @@ import AccueilNext from "../../specific/accueil/AccueilNext";
 import CsCs from "../../specific/cs/CsCs";
 import AccueilCA from "../../specific/accueil/AccueilCA";
 import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
+import AccueilTech from "../../specific/accueil/AccueilTech";
 
 export default function NavBar() {
   function checkProfilTech(checking) {
@@ -223,13 +224,14 @@ export default function NavBar() {
             {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
             {/* {profil=="CPRV"&&<Accueil user={user} ></Accueil>} */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-
+            {profil == "CA" && <AccueilCA user={user}></AccueilCA>}
             {/* <CsAffected></CsAffected> */}
             {profil == "CS" && <CsCs user={user}></CsCs>}
+            {/* {profil == "CS" && <CsCs user={user}></CsCs>} */}
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
-            {profil == "CA" && <AccueilCA user={user}></AccueilCA>}
+            {profil == "technicien" && <AccueilTech user={user}></AccueilTech>}
             {/* {profil == "CA" &&<ChefAtelierAtelier></ChefAtelierAtelier>} */}
           </TopNavBar>
 
@@ -239,7 +241,7 @@ export default function NavBar() {
             {/* <RadioStyled></RadioStyled> */}
             {/* <NewCarEntry/> */}
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
-            {profil == "CA" && <ChefAtelierGarage> </ChefAtelierGarage>}
+            {profil == "CA" && <ChefAtelierGarage></ChefAtelierGarage>}
 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
             {profil=="CPRV"&&<AccueilNext user={user} ></AccueilNext>} 

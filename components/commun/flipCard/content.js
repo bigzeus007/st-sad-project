@@ -54,7 +54,7 @@ const initialCar = {
     myService: true,
     mecanical: true,
     electrical: true,
-    body: true,
+    bodyCar: true,
     divers: {
       pneus: true,
       plaquettes: true,
@@ -101,7 +101,7 @@ const content = [
       myService:true,
       mecanical:false,
       electrical:false,
-      body:false,
+      bodyCar:false,
       divers:{
         newOne:true,
         diversNote:"divers note",
@@ -148,7 +148,7 @@ const content = [
       myService:true,
       mecanical:true,
       electrical:false,
-      body:false,
+      bodyCar:false,
       divers:{
         newOne:false,
         diversNote:"divers note",
@@ -189,7 +189,7 @@ const content = [
       myService: true,
       mecanical:false,
       electrical:true,
-      body:false,
+      bodyCar:false,
       divers:{
         newOne:false,
         diversNote:"divers note",
@@ -230,7 +230,7 @@ const content = [
       myService:false,
       mecanical:true,
       electrical:false,
-      body:true,
+      bodyCar:true,
       divers:{
         newOne:false,
         diversNote:"divers note",
@@ -271,7 +271,7 @@ const content = [
       myService:false,
       mecanical:false,
       electrical:false,
-      body:true,
+      bodyCar:true,
       divers:{
         newOne:false,
         diversNote:"divers note",
@@ -311,7 +311,7 @@ const content = [
       myService:false,
       mecanical:false,
       electrical:true,
-      body:false,
+      bodyCar:false,
       divers:{
         newOne:false,
         diversNote:"divers note",
@@ -351,7 +351,7 @@ const content = [
       myService:true,
       mecanical:false,
       electrical:false,
-      body:false,
+      bodyCar:false,
       divers:{
         newOne:false,
         diversNote:"divers note",

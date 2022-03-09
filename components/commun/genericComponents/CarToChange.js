@@ -43,7 +43,7 @@ export default function CarToChange({ props }) {
   const [myService, setMyService] = useState(props.myService);
   const [electric, setElectric] = useState(props.electrical);
   const [mecanique, setMecanique] = useState(props.mecanical);
-  const [body, setBody] = useState(props.body);
+  const [bodyCar, setBodyCar] = useState(props.bodyCar);
 
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
@@ -86,7 +86,7 @@ export default function CarToChange({ props }) {
         serviceAdvisor:choosenCs,
         myService: myService,
         electrical: electric,
-        body: body,
+        bodyCar: bodyCar,
         mecanical: mecanique,
       },
       { merge: true }
@@ -138,9 +138,9 @@ export default function CarToChange({ props }) {
             type="checkbox"
             id="Carrosserie"
             name="Carrosserie"
-            value={body}
-            checked={body}
-            onChange={() => setBody(!body)}
+            value={bodyCar}
+            checked={bodyCar}
+            onChange={() => setBodyCar(!bodyCar)}
           />
           <label htmlFor="Carrosserie">Carrosserie</label>
           <br />

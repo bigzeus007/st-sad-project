@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 const TopNavBar = styled.div`
 position:relative;
-display:flex;
+/* display:grid; */
+
 justify-content:center;
-height:"40%";
+
 
 
 

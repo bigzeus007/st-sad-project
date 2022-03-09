@@ -10,7 +10,7 @@ const initialCar = {
   basyCar: false, //firebaseName
   myService: false,//firebaseName
   electrical: false,//firebaseName
-  body: false,//firebaseName
+  bodyCar: false,//firebaseName
   mecanical: false,//firebaseName
   pneus: false,//firebaseName
   plaquettes: false,//firebaseName
@@ -51,7 +51,7 @@ const initialCar = {
     myService: true,
     mecanical: true,
     electrical: true,
-    body: true,
+    bodyCar: true,
     divers: {
       pneus: true,
       plaquettes: true,

@@ -97,7 +97,7 @@ function MainCar({ props }, { techList = initialTech }) {
                     alt="alt"
                   />
                 )}
-                {props.body && (
+                {props.bodyCar && (
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87"
                     alt="alt"

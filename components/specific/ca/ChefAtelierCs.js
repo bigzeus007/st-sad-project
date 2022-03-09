@@ -42,7 +42,7 @@ const initialCar = {
     myService:false,
     mecanical:false,
     electrical:false,
-    body:false,
+    bodyCar:false,
     divers:{
       newOne:false,
       diversNote:"divers note",
@@ -112,7 +112,7 @@ function ChefAtelierCs({ props = initialCar}) {
             <p>{props.carTasks.myService && "Vidange"}</p>
             <p>{props.carTasks.mecanical && "Mecanique"}</p>
             <p>{props.carTasks.electrical && "electrique"}</p>
-            <p>{props.carTasks.body && "carrosserie"}</p>
+            <p>{props.carTasks.bodyCar && "carrosserie"}</p>
             <p>{props.carTasks.divers.newOne && props.carTasks.divers.diversNote}</p>
             <p>{props.deliveryTimeAdjustment.map((adjustment=>{return adjustment.deadLineTime}))}</p>
             

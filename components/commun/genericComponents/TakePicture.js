@@ -167,7 +167,7 @@ export default function TakePicture() {
       basyCar: false,
       myService: "",
       electrical: "",
-      body: "",
+      bodyCar: "",
       mecanical: "",
       lavage: false,
       restitutionTime:"",
