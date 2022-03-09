@@ -180,33 +180,36 @@ export default function NavBar() {
         <section className="home">
           <div
             style={{
-              width: "100vw",
-              height: "10vh",
-              border: "5px yellow solid",
+              
+              width: "100%",
+              height: "5.5vw",
+              color:"green",
+              marginLeft:"20px",
+              fontSize:"4vw",
+             
             }}
-            className="text"
+            
           >
-            {" "}
-            CHRONOS{" "}
+            {" "}Babel{" "}
             <div
               style={{
                 position: "absolute",
                 display: "flex",
-                height: "10vh",
+                color:"black",
                 width: "auto",
-                top: "0px",
+                top: "1vh",
                 right: "0px",
               }}
             >
-              <p>Bonjour : {user.displayName}</p>
+              <p style={{fontSize:"3vw"}}>Bonjour : {user.nom}</p>
 
               <img
                 style={{
                   borderRadius: "50%",
-                  width: "10vh",
-                  objectFit: "fill",
+                  width: "5vw",
+                  objectFit: "contain",
                 }}
-                src={user.photoURL}
+                src={auth.currentUser.photoURL}
                 alt="photo profil"
               ></img>
             </div>

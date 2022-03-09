@@ -62,7 +62,7 @@
 
 /* ===== Reusable code - Here ===== */
 .sidebar li{
-    height: 50px;
+    height: 45px;
     list-style: none;
     display: flex;
     align-items: center;
@@ -188,7 +188,6 @@ header .image-text .profession{
 }
 .sidebar li a{
     list-style: none;
-    height: 100%;
     background-color: transparent;
     display: flex;
     align-items: center;

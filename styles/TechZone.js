@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const TechZone = styled.div`
 position: relative;
-overflow-x:scroll;
 
-width: 100vw;
+
+
 
 
 display: flex;
