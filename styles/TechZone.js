@@ -2,22 +2,8 @@ import styled from "styled-components";
 
 export const TechZone = styled.div`
 position: relative;
-
-
-
-
-
 display: flex;
 
-
-
-
-
-> div {
-  
-  width: 100%;
-  font-size: 1vw;
-}
 `;
 const Note = styled.div`
 position: relative;

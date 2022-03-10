@@ -43,6 +43,8 @@ export default function NavBar() {
   //   return checking.whereIsTheCar === `${user.nom}`;
   // }
   const profil = user.job;
+  const carPic = auth.currentUser.photoURL?auth.currentUser.photoURL:false;
+  
 
   const [toggle, setToggle] = useState("close");
   const [darkMode, setDarkMode] = useState("");
@@ -205,11 +207,12 @@ export default function NavBar() {
 
               <img
                 style={{
+                  fontSize:"10px",
                   borderRadius: "50%",
                   width: "5vw",
                   objectFit: "contain",
                 }}
-                src={auth.currentUser.photoURL}
+                src={auth.currentUser.photoUR}
                 alt="photo profil"
               ></img>
             </div>

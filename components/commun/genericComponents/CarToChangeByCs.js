@@ -199,7 +199,7 @@ export default function CarToChangeByCs({ props }) {
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}
-        width="75%"
+        width="55%"
         height="100%"
         quality={10}
       />

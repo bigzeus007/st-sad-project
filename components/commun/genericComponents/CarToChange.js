@@ -99,12 +99,14 @@ export default function CarToChange({ props }) {
         display: "flex",
         width: "100%",
         height: "40vh",
-        justifyContent: "flex-end",
+        justifyContent: "center",
+        fontSize:"1.5vw",
       }}
     >
-      <div>
+      <div style={{position:"absolute",left:"110px"}}>
         <div>{props.rdvFixed ? <p>RDV : {props.rdvTimeFixed}</p> : "SANS RDV"}</div>
         <input
+        style={{width:"20vw"}}
           type="text"
           onChange={(e) => setCustomerNameToModify(e.target.value)}
           // value={setCustomerName} // was added on 05/03/22
@@ -162,13 +164,14 @@ export default function CarToChange({ props }) {
           <MySubmitButton props="Enregistrer"></MySubmitButton>
         </div>
       </div>
-     <div> <CsAffected  defaultCs={props.serviceAdvisor}/></div>
+     <div style={{position:"absolute",left:"10px"}}> <CsAffected  defaultCs={props.serviceAdvisor}/></div>
       <img
+      style={{position:"absolute",left:"10px",top:"5vh",borderRadius:"30px"}}
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}
-        width="75%"
-        height="100%"
+        width="100vw"
+        height="200vh"
         quality={10}
       />
     </div>

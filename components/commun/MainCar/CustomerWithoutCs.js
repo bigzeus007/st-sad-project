@@ -78,9 +78,9 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
     <div
       style={{
         position: "relative",
-        width: "100%",
-        heigth: "100%",
-        border: "2px red solid",
+        backgroundColor:"transparent",
+        padding:"1px",
+        fontSize:"1vw",
       }}
     >
       <div className="" >
@@ -102,13 +102,13 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
         </div>
 
         <>
-          <br />
+        
           {props.customerName}
           <br />
           {`Heure Arriver : ${arrivedTime}`}
           <br />
           {props.rdvTimeFixed&&`RDV A: ${props.rdvTimeFixed}`}
-          <br />
+        
         </>
       </div>
     </div>)

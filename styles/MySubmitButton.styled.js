@@ -16,14 +16,16 @@ align-items:center;
 `
 
 const MyButton = styled.button`
+  position:absolute;
+  /* left:10px;
+  top:-80vh; */
 
-
-  min-width: 300px;
-  min-height: 60px;
+  width: 15vw;
+  height: 8vh;
   font-family: 'Nunito', sans-serif;
-  font-size: 22px;
+  font-size: 1.5vw;
   text-transform: uppercase;
-  letter-spacing: 1.3px;
+  letter-spacing: 1px;
   font-weight: 700;
   color: #313133;
   background: #4FD1C5;
@@ -35,7 +37,7 @@ background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 10
   cursor: pointer;
   outline: none;
   position: relative;
-  padding: 10px;
+ 
   }
 
 ::before {
@@ -83,13 +85,13 @@ content: '';
 
 @keyframes ring {
   0% {
-    width: 30px;
-    height: 30px;
+    width: 3vw;
+    height: 3vw;
     opacity: 1;
   }
   100% {
-    width: 300px;
-    height: 300px;
+    width: 7vw;
+    height: 7vw;
     opacity: 0;
   }
 }

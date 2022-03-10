@@ -129,6 +129,7 @@ export default function AccueilNext({user}) {
     <>
       <button
         id="toModify"
+        style={{position:"absolute",right:"3vw",width:"10vw",height:"37.5vh",backgroundColor:"burlywood"}}
         onClick={(e) => dispatch(carModification())}
       >
         Retour
@@ -137,7 +138,7 @@ export default function AccueilNext({user}) {
     </>
   ) : (
     <TechZone>
-      {carsList.map((car)=>(<button key={car.customerName} style={{width:"20vw",heigth:"100%"}} onClick={()=>{handlCarToModify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button>))}
+      {carsList.map((car)=>(<button key={car.customerName} style={{backgroundColor:"transparent",width:"10vw"}} onClick={()=>{handlCarToModify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button>))}
     </TechZone>
   )
   )

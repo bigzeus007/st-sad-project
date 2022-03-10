@@ -25,9 +25,9 @@ useEffect(()=>{console.log(csToCheck)},[csSelected])
 
 
   return (
-    <select defaultValue={defaultCs} onChange={(e)=>handlSelectCs(e.target.value)}>
+    <select defaultValue={defaultCs} onChange={(e)=>handlSelectCs(e.target.value)} required>
         
-        <option value={null}>SANS RDV</option>
+        
       <option value="ELMOURZBANI">ELMOURZBANI</option>
       <option value="HILALI">HILALI</option>
       <option value="ESSAIH">ESSAIH</option>
