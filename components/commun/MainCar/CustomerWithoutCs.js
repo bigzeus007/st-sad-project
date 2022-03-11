@@ -31,7 +31,6 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
   const dispatch = useDispatch();
   const toModify = useSelector((state) => state.userOptions.carToModifyStatus);
   // const carToLab = useSelector((state) => state.userOptions.carToModify);
-  
 
   const spaceRef = ref(storage, `cars/${props.customerName}`);
   getDownloadURL(spaceRef)
@@ -71,48 +70,62 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
   //   var data = ev.dataTransfer.getData("text");
   //   const myData = document.getElementById(data);
 
-    //ev.target.appendChild(document.getElementById(data));
+  //ev.target.appendChild(document.getElementById(data));
   // }
 
-  return(
-    <div
-      style={{
-        position: "relative",
-        backgroundColor:"transparent",
-        padding:"1px",
-        fontSize:"1vw",
-      }}
-    >
-      <div className="" >
-        <div style={{display:"flex", position:"absolute",top:"0px",}}>
-          {props.myService&&(<img style={{width:"3vw"}} src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8" alt="image-revision"></img>)}
-          {props.mecanical&&(<img style={{width:"3vw"}} src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481" alt="image-mecanique"></img>)}
-          {props.electrical&&(<img style={{width:"3vw"}} src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechDiag.png?alt=media&token=a5bdaf9d-2345-4602-899b-0ced2aecb112" alt="image-Diag-Auto"></img>)}
-          {props.bodyCar&&(<img style={{width:"3vw"}} src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87" alt="image-carrosserie"></img>)}
-          </div>
-        <div id={props.customerName} >
+  return (
+   
+      <div className="">
+        <div className="iconList">
+          {props.myService && (
+            <img
+              className="icon"
+              src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8"
+              alt="image-revision"
+            ></img>
+          )}
+          {props.mecanical && (
+            <img
+              className="icon"
+              src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481"
+              alt="image-mecanique"
+            ></img>
+          )}
+          {props.electrical && (
+            <img
+              className="icon"
+              src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechDiag.png?alt=media&token=a5bdaf9d-2345-4602-899b-0ced2aecb112"
+              alt="image-Diag-Auto"
+            ></img>
+          )}
+          {props.bodyCar && (
+            <img
+              className="icon"
+              src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87"
+              alt="image-carrosserie"
+            ></img>
+          )}
+        </div>
+        <div id={props.customerName}>
           <img
             alt={props.customerName}
             name={props.customerName}
             src={carImage}
-            width="100%"
-            height="100%"
+            className="carPhoto"
             quality={10}
           />
+          <p>Arr:{arrivedTime} </p>
+          
         </div>
 
-        <>
-        
+        <div className="cardInfos">
           {props.customerName}
           <br />
-          {`Heure Arriver : ${arrivedTime}`}
-          <br />
-          {props.rdvTimeFixed&&`RDV A: ${props.rdvTimeFixed}`}
-        
-        </>
+          {props.rdvTimeFixed && `RDV A: ${props.rdvTimeFixed}`}
+        </div>
       </div>
-    </div>)
-  
+    
+  );
 }
 
 export default CustomerWithoutCs;

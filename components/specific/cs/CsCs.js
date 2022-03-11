@@ -36,7 +36,7 @@ export default function CsCs({user}) {
   // }
   // const user = techList.find(checkProfilTech);
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("serviceAdvisor", "==", `${user.nom}`),where("restitutionTime", "==", ""));
+  const myParking = query(carsRef, where("serviceAdvisor", "==", `${user.nom}`),where("restitutionTime", "!=", ""));
 
   useEffect(()=>
   onSnapshot(myParking,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
@@ -74,7 +74,7 @@ export default function CsCs({user}) {
     </>
   ) : (
     <TechZone>
-      {carsList.map((car)=>(<button key={car.customerName} style={{width:"20vw",heigth:"100%"}} onClick={()=>{handlCarToModify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button>))}
+      {carsList.map((car)=>(<div key={car.customerName} className={car.rdvTimeFixed?"carCard srdv":"cardCard rdv"} ><button  onClick={()=>{handlCarToModify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button></div>))}
     </TechZone>
   );
 }
