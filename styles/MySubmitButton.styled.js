@@ -13,10 +13,13 @@ const MyContainer  = styled.div`
 display:flex;
 justify-content:center;
 align-items:center;
+
 `
 
 const MyButton = styled.button`
   position:absolute;
+  top:-15vh;
+  left:100%;
   /* left:10px;
   top:-80vh; */
 
@@ -40,11 +43,24 @@ background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 10
  
   }
 
+  @keyframes ring {
+  0% {
+    width: 3vw;
+    height: 3vw;
+    opacity: 1;
+  }
+  100% {
+    width: 7vw;
+    height: 7vw;
+    opacity: 0;
+  }
+}
+
 ::before {
 content: '';
-  border-radius: 1000px;
-  min-width: calc(300px + 12px);
-  min-height: calc(60px + 12px);
+  border-radius: 100vw;
+  min-width: calc(15vw + 3vw);
+  min-height: calc(10vh + 3vh);
   border: 6px solid #00FFCB;
   box-shadow: 0 0 60px rgba(0,255,203,.64);
   position: absolute;
@@ -67,9 +83,9 @@ content: '';
 
 ::after {
   content: '';
-  width: 30px; height: 30px;
+  width: 7vw; height: 7vh;
   border-radius: 100%;
-  border: 6px solid #00FFCB;
+  border: 1vw solid #00FFCB;
   position: absolute;
   z-index: -1;
   top: 50%;
@@ -83,18 +99,7 @@ content: '';
   display: none;
 }
 
-@keyframes ring {
-  0% {
-    width: 3vw;
-    height: 3vw;
-    opacity: 1;
-  }
-  100% {
-    width: 7vw;
-    height: 7vw;
-    opacity: 0;
-  }
-}
+
 
 
 
