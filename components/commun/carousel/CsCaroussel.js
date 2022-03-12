@@ -1,8 +1,7 @@
-
-
-
 import ToDo from "../genericComponents/ToDo";
-import Carousel from './Carousel';
+import Carousel from "./Carousel";
+import MyIcons from "../../../src/images";
+
 // import styles from "./MyCarousel.module.css";
 import React, { useEffect, useState } from "react";
 // import { techList } from "../../commun/flipCard/techList";
@@ -30,12 +29,9 @@ import { TechZone } from "../../../styles/TechZone";
 // import CarToChange from "../../commun/genericComponents/CarToChange";
 import CarToChangeByCs from "../../commun/genericComponents/CarToChangeByCs";
 
-
-
-export default function CsCaroussel({user}){
+export default function CsCaroussel({ user }) {
   const [isLoadin, setIsLoading] = useState(false);
   const [carsList, setCarsList] = useState([]);
-
 
   // const getUser = getAuth().currentUser;
 
@@ -44,14 +40,21 @@ export default function CsCaroussel({user}){
   // }
   // const user = techList.find(checkProfilTech);
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("serviceAdvisor", "==", `${user.nom}`),where("restitutionTime", "!=", ""));
+  const myParking = query(
+    carsRef,
+    where("serviceAdvisor", "==", `${user.nom}`),
+    where("restitutionTime", "!=", "")
+  );
 
-  useEffect(()=>
-  onSnapshot(myParking,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
-  
-,[])
+  useEffect(
+    () =>
+      onSnapshot(myParking, (snapshot) =>
+        setCarsList(snapshot.docs.map((doc) => doc.data()))
+      ),
 
- 
+    []
+  );
+
   function checkParkTech(checking) {
     return checking.affectationChefAtelier.includes(`${user.nom}`);
   }
@@ -59,52 +62,61 @@ export default function CsCaroussel({user}){
   // const parkPisteur = props.filter(checkParkTech)
 
   const dispatch = useDispatch();
-   const toModifyStatus = useSelector((state) => state.userOptions.carToModifyStatus);
+  const toModifyStatus = useSelector(
+    (state) => state.userOptions.carToModifyStatus
+  );
 
-  const [toModify,setTomodify]=useState("")
+  const [toModify, setTomodify] = useState("");
 
-  const handlCarToModify=(car)=>{
+  const handlCarToModify = (car) => {
     setTomodify(car);
     dispatch(carModification());
-  }
+  };
 
+  const items = carsList;
 
-    
-    const items = carsList
+  const setting = {
+    dragSpeed: 1.25,
+    itemWidth: 300,
+    itemHeight: 500,
+    itemSideOffsets: 15,
+  };
 
-    const setting = {
-      dragSpeed: 1.25,
-      itemWidth: 300,
-      itemHeight: 500,
-      itemSideOffsets: 15,
-    }
+  const itemStyle = {
+    width: `${setting.itemWidth}px`,
+    height: `${setting.itemHeight}px`,
+    margin: `0px ${setting.itemSideOffsets}px`,
+  };
 
-    const itemStyle = {
-      width: `${setting.itemWidth}px`,
-      height: `${setting.itemHeight}px`,
-      margin: `0px ${setting.itemSideOffsets}px`
-    }
+  
 
-    return toModifyStatus ? (
-      <>
-        <button
-          id={toModify.customerName}
-          onClick={(e) => dispatch(carModification())}
-        >
-          Retour
-        </button>
-        <CarToChangeByCs props={toModify}></CarToChangeByCs>
-      </>
-    ) : (
-
-      <TechZone >
-       
-        <Carousel _data={items} {...setting}>
-        {carsList.map((car)=>(<div key={car.customerName} className={car.rdvTimeFixed?"carCard srdv":"carCard rdv"} ><button className="PhotoButton"  onClick={()=>{handlCarToModify(car)}}><CustomerWithoutCs  key={car.customerName} props={car}></CustomerWithoutCs></button></div>))}
-        </Carousel>
-
-      </TechZone>
-      )
-
+  return toModifyStatus ? (
+    <>
+      <CarToChangeByCs props={toModify}></CarToChangeByCs>
+      
+    </>
+  ) : (
+    <TechZone>
+      <Carousel _data={items} {...setting}>
+        {carsList.map((car) => (
+          <div
+            key={car.customerName}
+            className={car.rdvTimeFixed ? "carCard rdv" : "carCard srdv"}
+          >
+            <button
+              className="PhotoButton"
+              onClick={() => {
+                handlCarToModify(car);
+              }}
+            >
+              <CustomerWithoutCs
+                key={car.customerName}
+                props={car}
+              ></CustomerWithoutCs>
+            </button>
+          </div>
+        ))}
+      </Carousel>
+    </TechZone>
+  );
 }
-

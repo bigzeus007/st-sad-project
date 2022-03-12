@@ -15,13 +15,13 @@ import techMec from "../public/images/techMec.png";
 import techMecAlt from "../public/images/techMecAlt.jpg";
 import techPneus from "../public/images/techPneus.jpg";
 
-
-
+import returnBack from "../public/images/returnBack.png"
 
 
 
 
 const MyIcons = {
+    returnBack:returnBack,
     carIcon:carIcon,
     chefAtelierAlert:chefAtelierAlert,
     chefAtelierNotNeeded:chefAtelierNotNeeded,

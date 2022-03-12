@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { carModification } from "../../../src/userReducer";
-
+import MyIcons from "../../../src/images";
 import { db } from "../../../firebase";
 import {
   getStorage,
@@ -33,21 +33,22 @@ import {
 import { async } from "@firebase/util";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import CsAffected from "./csAffected";
+import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 
 export default function CarToChangeByCs({ props }) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
-    const toDay= new Date().toISOString().substring(0, 10);
-  
+  const toDay = new Date().toISOString().substring(0, 10);
+
   const [carsList, setCarsList] = useState([]);
   const [myService, setMyService] = useState(props.myService);
   const [electric, setElectric] = useState(props.electrical);
   const [mecanique, setMecanique] = useState(props.mecanical);
   const [bodyCar, setBodyCar] = useState(props.bodyCar);
-  const [restitutionTime, setRestitutionTime]=useState("")
-  const [restitutionDate, setRestitutionDate]=useState(toDay)
-  
+  const [restitutionTime, setRestitutionTime] = useState("");
+  const [restitutionDate, setRestitutionDate] = useState(toDay);
+
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
   );
@@ -91,36 +92,34 @@ export default function CarToChangeByCs({ props }) {
         electrical: electric,
         bodyCar: bodyCar,
         mecanical: mecanique,
-        restitutionTime:restitutionTime,
-        restitutionDate:restitutionDate,
+        restitutionTime: restitutionTime,
+        restitutionDate: restitutionDate,
       },
       { merge: true }
     ).then(dispatch(carModification()));
   };
+  
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "40vh",
-        justifyContent: "flex-end",
-      }}
-    >
+    <MyCarToChange>
+      <button
+       className="returnBack"
+        id={props.customerName}
+        onClick={(e) => dispatch(carModification())}
+      ></button>
       <div>
-        <div>{props.rdvFixed ? <p>RDV : {props.rdvTimeFixed}</p> : "SANS RDV"}</div>
-        <input
-          type="text"
-          onChange={(e) => setCustomerNameToModify(e.target.value)}
-          defaultValue={props.customerName}
-        ></input>
         <div>
-        <p>Emplacement : {props.whereIsTheCar}</p>
-        
+          {props.rdvFixed ? <p>RDV : {props.rdvTimeFixed}</p> : "SANS RDV"}
+        </div>
+        <div>   
+          <p>Client : {props.customerName}</p> </div>
+        <div>
+          <p>Emplacement : {props.whereIsTheCar}</p>
         </div>
         <div>
           <p>TRAVAUX</p>
           <input
+          className="trvx"
             type="checkbox"
             id="Revision"
             name="Revision"
@@ -131,6 +130,7 @@ export default function CarToChangeByCs({ props }) {
           <label htmlFor="Revision">Revision</label>
           <br />
           <input
+          className="trvx"
             type="checkbox"
             id="electric"
             name="electric"
@@ -141,6 +141,7 @@ export default function CarToChangeByCs({ props }) {
           <label htmlFor="electric">Diag</label>
           <br />
           <input
+          className="trvx"
             type="checkbox"
             id="Carrosserie"
             name="Carrosserie"
@@ -151,6 +152,7 @@ export default function CarToChangeByCs({ props }) {
           <label htmlFor="Carrosserie">Carrosserie</label>
           <br />
           <input
+          className="trvx"
             type="checkbox"
             id="mecanique"
             name="mecanique"
@@ -162,39 +164,31 @@ export default function CarToChangeByCs({ props }) {
           <br />
         </div>
 
-        
-
-        <div onClick={() => restitutionTime?handleSubmit():alert("Ajouter heurerestitution")}>
+        <div
+          onClick={() =>
+            restitutionTime ? handleSubmit() : alert("Ajouter heurerestitution")
+          }
+        >
           <MySubmitButton props="Enregistrer"></MySubmitButton>
         </div>
       </div>
       <div>
-      <p>Responsabilite :{props.serviceAdvisor}</p>
-      <input
-              type="time"
-              onChange={(e) => setRestitutionTime(e.target.value)}
-              value={restitutionTime}
-              
-              
-            ></input>
-            <input
-            
-              type="date"
-              placeholder="dd-mm-yyyy"
-              onChange={(e) => setRestitutionDate(e.target.value)}
-              
-              defaultValue={restitutionDate}
-              min={restitutionDate}
-              
-              
-            ></input>
-            
-            
-            
-            
-            
-            
-            </div>
+        <p>Responsabilite :{props.serviceAdvisor}</p>
+        <input
+        className="dateNdTime"
+          type="time"
+          onChange={(e) => setRestitutionTime(e.target.value)}
+          value={restitutionTime}
+        ></input>
+        <input
+        className="dateNdTime"
+          type="date"
+          placeholder="dd-mm-yyyy"
+          onChange={(e) => setRestitutionDate(e.target.value)}
+          defaultValue={restitutionDate}
+          min={restitutionDate}
+        ></input>
+      </div>
       <img
         alt="photoVehicle"
         name="photoVehicle"
@@ -203,6 +197,6 @@ export default function CarToChangeByCs({ props }) {
         height="100%"
         quality={10}
       />
-    </div>
+    </MyCarToChange>
   );
 }
