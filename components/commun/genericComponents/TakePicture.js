@@ -22,6 +22,7 @@ import {
   selectCs,
 } from "../../../src/csReducer";
 import { async } from "@firebase/util";
+import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
 
 export default function TakePicture() {
   const videoRef = useRef(null);
@@ -284,7 +285,7 @@ export default function TakePicture() {
         setLaboZone(true), getVideo();
       }}
     >
-      <MySubmitButton props={"Demarrer"}/>
+      <TakePitureButton props={"Demarrer"}/>
     </div>
   );
 }
