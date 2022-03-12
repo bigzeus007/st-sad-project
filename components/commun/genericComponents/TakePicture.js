@@ -192,8 +192,8 @@ export default function TakePicture() {
       style={{
         display: "flex",
         width: "100%",
-        height: "40vh",
-        justifyContent: "flex-end",
+        
+        justifyContent: "center",
       }}
     >
       <div
@@ -257,14 +257,15 @@ export default function TakePicture() {
           onClick={takePhoto}
           style={{
             borderRadius: "20%",
+            height:"47vh",
             display: `${hasPhoto ? "none" : "flex"}`,
           }}
         >
           <video
             ref={videoRef}
             style={{ borderRadius: "20%", objectFit: "fill" }}
-            width="197vw"
-            height="277vw"
+            width="100%"
+            height="100%"
           />
         </button>
 
