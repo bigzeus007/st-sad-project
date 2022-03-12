@@ -1,27 +1,20 @@
 import styled from "styled-components";
 
-
-
-
-
-
-
-
-
-
-const MyContainer  = styled.div`
-display:flex;
-justify-content:center;
-align-items:center;
-
-`
+const MyContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MyButton = styled.button`
+ 
   position:absolute;
-  top:-15vh;
+  bottom:10vh;
   left:100%;
   /* left:10px;
   top:-80vh; */
+
+ 
 
   width: 15vw;
   height: 8vh;
@@ -41,6 +34,21 @@ background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 10
   outline: none;
   position: relative;
  
+  }
+  @media screen and (max-width: 520px) {
+  {    width: 20vw;
+  height: 7vh;
+
+
+  }}
+  @media screen and (max-width: 350px) {
+     {
+       width:100%;
+      bottom:-3vh;
+  left:130%;
+  background:;
+      
+    }
   }
 
   @keyframes ring {
@@ -103,6 +111,12 @@ content: '';
 
 
 
-`
+`;
 
-export const MySubmitButton = ({props})=>{return <MyContainer><MyButton> {props}    </MyButton></MyContainer> }
+export const MySubmitButton = ({ props }) => {
+  return (
+    <MyContainer>
+      <MyButton> {props} </MyButton>
+    </MyContainer>
+  );
+};
