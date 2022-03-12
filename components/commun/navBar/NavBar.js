@@ -32,6 +32,7 @@ import CsCs from "../../specific/cs/CsCs";
 import AccueilCA from "../../specific/accueil/AccueilCA";
 import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
 import AccueilTech from "../../specific/accueil/AccueilTech";
+import CsCaroussel from "../carousel/CsCaroussel";
 
 export default function NavBar() {
   function checkProfilTech(checking) {
@@ -232,7 +233,7 @@ export default function NavBar() {
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
             {profil == "CA" && <AccueilCA user={user}></AccueilCA>}
             {/* <CsAffected></CsAffected> */}
-            {profil == "CS" && <CsCs user={user}></CsCs>}
+            {/* {profil == "CS" && <CsCs user={user}></CsCs>} */}
             {/* {profil == "CS" && <CsCs user={user}></CsCs>} */}
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
@@ -242,6 +243,7 @@ export default function NavBar() {
           </TopNavBar>
 
           <TopNavBar>
+          {profil == "CS" && <CsCaroussel user={user}></CsCaroussel>}
             {/* <ToDo props={content}></ToDo> */}
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}

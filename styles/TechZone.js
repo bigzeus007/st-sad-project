@@ -1,11 +1,30 @@
 import styled from "styled-components";
 
 export const TechZone = styled.div`
+border:1px blue solid;
 
-position: relative;
-display: flex;
-  flex-direction:row;
-  flex-wrap:wrap;
+
+.carCard{
+  position:relative;
+  border-radius:3vw;
+   
+  
+  border:2px red solid;
+margin-left:10px;
+  
+  width:25vw;
+  height:45vh;
+  
+  overflow:hidden;
+  
+}
+.PhotoButton{
+ position:absolute;
+ left:1vw;
+ top:1vh;
+
+  
+}
   
  
   
@@ -13,35 +32,57 @@ display: flex;
     background-color:red;
   }
   .srdv{
-    background-color:green;
+    background-color:yellow;
     
   }
 p{
   font-size:1.8vw;
+ 
 }
-.carCard{
-  position:relative;
+
+@media screen and (max-width: 515px) {
+  {
+    background-color: lightgreen;
+    
+  }}
+
+
+
+.iconList{
+  position:absolute;
+  padding-right:5px;
   
   
-  border:2px red solid;
-  width:16vw;
-  height:25vw;
-  overflow:hidden;
+  top:0px;
 }
 .icon{
-  width:3.5vw;
-  position:absolute;
+  width:3vw;
   
+  
+  
+}
+.visualData{
+  position: relative;
+  
+  
+  
+
 }
 .carPhoto{
-  width:11vw;
-  height:15vw;
+  width:15vw;
+  height:18vh;
   
 }
+
 .cardInfos{
-  font-size:1.9vw;
+
+ 
+  width:22vw;
+  height:15vh;
+  font-size:1.7vw;
   color:blue;
 }
+
 
 
 
@@ -54,18 +95,4 @@ font-size: 1vw;
 color: royalblue;
 font-weight: bold;
 `;
-const TechButton = styled.button`
-position: absolute;
-bottom: 0px;
-width: 22vw;
-display: block;
-font-size: 2vw;
 
-background-color: greenyellow;
-color: blue;
-font-weight: bolder;
-border-radius: 35% 35%;
-:hover {
-  background-color: green;
-}
-`;

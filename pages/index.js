@@ -8,10 +8,6 @@ export default function Home() {
   const [user] = useAuthState(auth);
   return (
     <>
-    
-      <header>
-        <h1>ST-project Using Next.js and Firebase</h1>
-      </header>
       
       <section>{user ? <Accueil /> : <Login />}</section>
     </>

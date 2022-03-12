@@ -2,12 +2,16 @@ import styled from "styled-components";
 
 const TopNavBar = styled.div`
 position:relative;
-height:45vh;
+box-sizing:border-box;
+font-size:3vw;
+
+
 width:100%;
-border:2px solid yellowgreen;
+height:47vh;
+border:1px solid yellowgreen;
 /* display:grid; */
 
-justify-content:center;
+
 
 
 
