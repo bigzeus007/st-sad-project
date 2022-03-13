@@ -80,7 +80,12 @@ content: '';
   display: none;
 }
 
-
+@media screen and (max-width: 800px) {
+     {
+      font-size: 3.5vw;
+      }
+    }
+  }
 
 
 

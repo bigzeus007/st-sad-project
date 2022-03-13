@@ -166,7 +166,7 @@ export default function CarToChangeByCs({ props }) {
 
         <div
           onClick={() =>
-            restitutionTime ? handleSubmit() : alert("Ajouter heurerestitution")
+            restitutionTime ? handleSubmit() : alert("Ajouter heure de restitution")
           }
         >
           <MySubmitButton props="Enregistrer"></MySubmitButton>

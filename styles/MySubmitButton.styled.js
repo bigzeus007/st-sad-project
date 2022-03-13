@@ -9,8 +9,8 @@ const MyContainer = styled.div`
 const MyButton = styled.button`
  
   position:absolute;
-  bottom:10vh;
-  left:100%;
+  bottom:-3vh;
+ 
   /* left:10px;
   top:-80vh; */
 

@@ -201,25 +201,21 @@ return(
     <div style={{display: "flex",justifyContent: "center",}} >
       <div style={{display: `${takePictureSwitch}`,}}
                       >
+            <ChooseRdvStatus>
+            <button onClick={() => handlReturn()}>SANS RDV</button>
+            <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
+            </ChooseRdvStatus>
 
-                        
-                          <ChooseRdvStatus>
-                          <button onClick={() => handlReturn()}>SANS RDV</button>
-                          <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
-                          </ChooseRdvStatus>
-         
-                          <NewButtonColored>
+            <NewButtonColored>
 
-                                      <div className="subscribe">
-                                
-                                            <a href="#" onClick={() => {closePhoto();}} className="btn-3d-can"><span>cancel</span></a>
-                                            <a href="#" onClick={() => handleSubmit(image)} style={{display:`${toggleSubmit() ? "block" : "none"}`}} className="btn-3d-sub"><span>submit</span></a><br />
-                                
-                                        </div>
-                          </NewButtonColored>
-
-             
-                          <RdvInfo>
+                <div className="subscribe">
+          
+                      <a href="#" onClick={() => {closePhoto();}} className="btn-3d-can"><span>cancel</span></a>
+                      <a href="#" onClick={() => handleSubmit(image)} style={{display:`${toggleSubmit() ? "block" : "none"}`}} className="btn-3d-sub"><span>submit</span></a><br />
+          
+                  </div>
+            </NewButtonColored>
+            <RdvInfo>
                 <div>
              
                 <input className="customerName" ref={inputRef} type="text" onChange={(e) => ( dispatch(customerName(e.target.value)),)} placeholder="NOM CLIENT"></input>

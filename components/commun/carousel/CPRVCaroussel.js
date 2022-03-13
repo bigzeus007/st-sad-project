@@ -21,16 +21,16 @@ import {
   // getDocs,
   // FieldPath,
 } from "firebase/firestore";
-import CustomerWithoutCs from "../../commun/MainCar/CustomerWithoutCs";
+import CustomerWithoutCs from "../MainCar/CustomerWithoutCs";
 import { TechZone } from "../../../styles/TechZone";
 // import { getStorage, ref} from "firebase/storage";
 // import CustomerWithoutCs from "../../commun/MainCar/CustomerWithoutCs";
 // import { async } from "@firebase/util";
 // import CarToChange from "../../commun/genericComponents/CarToChange";
-import CarToChangeByCs from "../../commun/genericComponents/CarToChangeByCs";
-import CarToChange from "../genericComponents/CarToChange";
+import CarToChangeByCs from "../genericComponents/CarToChangeByCs";
+import CarToChangeByCPRV from "../genericComponents/CarToChangeByCPRV";
 
-export default function CsCaroussel({ user }) {
+export default function CPRVCaroussel({ user }) {
   const [isLoadin, setIsLoading] = useState(false);
   const [carsList, setCarsList] = useState([]);
 
@@ -43,8 +43,7 @@ export default function CsCaroussel({ user }) {
   const carsRef = collection(db, "cars");
   const myParking = query(
     carsRef,
-    where("serviceAdvisor", "==", `${user.nom}`),
-    where("restitutionTime", "==", "")
+    where("serviceAdvisor", "==", ""),
   );
 
   useEffect(
@@ -93,7 +92,7 @@ export default function CsCaroussel({ user }) {
 
   return toModifyStatus ? (
     <>
-      <CarToChange props={toModify}></CarToChange>
+      <CarToChangeByCPRV props={toModify}></CarToChangeByCPRV>
       
     </>
   ) : (

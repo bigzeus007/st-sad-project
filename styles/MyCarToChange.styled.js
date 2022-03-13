@@ -4,13 +4,14 @@ export const MyCarToChange = styled.div`
   display: flex;
   flex-direction: row;
   float: right;
-  width: 80%;
-  height: 35vh;
+  
+  height: 40vh;
   padding-left: 2vw;
   font-size: 14px;
 
   img {
     width: 20vw;
+    
   }
   .dateNdTime {
     width: 20vw;

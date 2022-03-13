@@ -33,6 +33,8 @@ import AccueilCA from "../../specific/accueil/AccueilCA";
 import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
 import AccueilTech from "../../specific/accueil/AccueilTech";
 import CsCaroussel from "../carousel/CsCaroussel";
+import CPRVCaroussel from "../carousel/CPRVCaroussel";
+import CarToChangeByCs from "../genericComponents/CarToChangeByCs";
 
 export default function NavBar() {
   function checkProfilTech(checking) {
@@ -213,7 +215,7 @@ export default function NavBar() {
                   width: "5vw",
                   objectFit: "contain",
                 }}
-                src={auth.currentUser.photoUR}
+                src={carPic}
                 alt="photo profil"
               ></img>
             </div>
@@ -224,6 +226,7 @@ export default function NavBar() {
           })}
           </div> */}
           <TopNavBar>
+            
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
             {profil=="Pisteur"&&<TakePicture ></TakePicture>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
@@ -239,6 +242,7 @@ export default function NavBar() {
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
             {profil == "technicien" && <AccueilTech user={user}></AccueilTech>}
+           
             {/* {profil == "CA" &&<ChefAtelierAtelier></ChefAtelierAtelier>} */}
           </TopNavBar>
 
@@ -252,7 +256,7 @@ export default function NavBar() {
             {profil == "CA" && <ChefAtelierGarage></ChefAtelierGarage>}
 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-            {profil=="CPRV"&&<AccueilNext user={user} ></AccueilNext>} 
+            {profil=="CPRV"&&<CPRVCaroussel user={user} ></CPRVCaroussel>} 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
             {/* <ToDo props={content,techList} ></ToDo> */}
