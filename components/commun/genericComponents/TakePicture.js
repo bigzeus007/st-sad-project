@@ -24,6 +24,8 @@ import {
 import { async } from "@firebase/util";
 import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
 import NewButtonColored from "../../../styles/NewButtonColored.styled";
+import { ChooseRdvStatus, RdvInfo } from "../../../styles/ChooseRdvStatus.style";
+import RdvOrNotInput from "../../../styles/RdvOrNotInput";
 
 export default function TakePicture() {
   const videoRef = useRef(null);
@@ -164,6 +166,7 @@ return(
     await setDoc(doc(db, "cars", `${customerIdentity}`), {
       
       customerName: customerIdentity,
+      customerNameModify:customerIdentity,//to use to modify customerName
       customerCategory: "Normal",
       createdAt: serverTimestamp(),
       rdvFixed: rdvState,
@@ -195,70 +198,51 @@ return(
 
 
   return laboZone ? (
-    <div
-      style={{
-        display: "flex",
+    <div style={{display: "flex",justifyContent: "center",}} >
+      <div style={{display: `${takePictureSwitch}`,}}
+                      >
+
+                        
+                          <ChooseRdvStatus>
+                          <button onClick={() => handlReturn()}>SANS RDV</button>
+                          <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
+                          </ChooseRdvStatus>
+         
+                          <NewButtonColored>
+
+                                      <div className="subscribe">
+                                
+                                            <a href="#" onClick={() => {closePhoto();}} className="btn-3d-can"><span>cancel</span></a>
+                                            <a href="#" onClick={() => handleSubmit(image)} style={{display:`${toggleSubmit() ? "block" : "none"}`}} className="btn-3d-sub"><span>submit</span></a><br />
+                                
+                                        </div>
+                          </NewButtonColored>
+
+             
+                          <RdvInfo>
+                <div>
+             
+                <input className="customerName" ref={inputRef} type="text" onChange={(e) => ( dispatch(customerName(e.target.value)),)} placeholder="NOM CLIENT"></input>
+               
+                <div
+                      style={{
+                        display: `${rdvState ? "flex" : "none"}`,
+                        flexWrap: "wrap",
+                      }}>
+                 <input
+                 
+                 className="rdvTime"
+                    type="time"
+                    onChange={(e) => setRdvTime(e.target.value)}
+                    value={rdvTime}>
+                  </input>
+                  <br/>
+                  <RadioStyled></RadioStyled>
+                </div>
+                </div>   
+                </RdvInfo>
+                      
         
-        
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          display: `${takePictureSwitch}`,
-          
-        }}
-      >
-        <div >
-          <button onClick={() => handlReturn()}>SANS RDV</button>
-          <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
-
-          <div
-            style={{
-              display: `${rdvState ? "flex" : "none"}`,
-              flexWrap: "wrap",
-            }}
-          >
-            <input
-              type="time"
-              onChange={(e) => setRdvTime(e.target.value)}
-              value={rdvTime}
-              
-            ></input>
-
-            <RadioStyled></RadioStyled>
-          </div>
-          <NewButtonColored>
-
-          <div className="subscribe">
-    
-    <a href="#" onClick={() => {closePhoto();}} className="btn-3d-can"><span>cancel</span></a>
-    <a href="#" onClick={() => handleSubmit(image)} style={{display:`${toggleSubmit() ? "block" : "none"}`}} className="btn-3d-sub"><span>submit</span></a><br />
-    
-</div>
-</NewButtonColored>
-
-          <div>
-           
-            <div>
-              <button
-                onClick={() => handleSubmit(image)}
-                disabled={customerIdentity ? false : true}
-              >
-                Submit
-              </button>
-              <input
-                ref={inputRef}
-                type="text"
-                onChange={(e) => (
-                  dispatch(customerName(e.target.value)),
-                  
-                )}
-                placeholder="NOM CLIENT"
-              ></input>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>

@@ -6,21 +6,30 @@ import { selectCs } from "../src/csReducer";
 
 
 const Selection = styled.section`
+position:absolute;
+
     display: flex;
     flex-direction:column;
+    top:-5vh;
+    left:20vw;
 
     color: hsla(215, 5%, 50%, 1);
 
     h2 {
       color: hsla(215, 5%, 10%, 1);
-      font-size: 1.5vw;
+      font-size: 1.2vw;
+      
+      
     }
+   
+   
+
 
     input[type="radio"] {
       display: none;
     }
     label {
-      height: 5vh;
+      height: 10vh;
       cursor: pointer;
       display: block;
       background: white;
@@ -41,6 +50,27 @@ const Selection = styled.section`
       background: red;
       border-color: red;
     }
+
+    @media screen and (max-width: 620px) {
+     {
+      flex-direction:row;
+    top:15vh;
+    left:10vw;
+      
+    }
+  }
+  @media screen and (max-width: 450px) {
+     {
+      flex-direction:column;
+    top:10vh;
+    left:0vw;
+    height:20px;
+    
+    label {
+      height: 5vh;}
+      
+    }
+  }
   `;
 
 
@@ -52,7 +82,7 @@ export default function RadioStyled() {
   
 
   return (
-    <div style={{ position: "absolute", top: "10vh" }}>
+    <div >
       <Selection>
 
 
@@ -79,14 +109,14 @@ export default function RadioStyled() {
           </div>
         
         
-          <div>
+          <div style={{display:"none"}}>
             <input type="radio" id="control_04" name="select" value="4" checked={theCs=="BASSIR"} onChange={() => dispatch(selectCs("BASSIR"))}/>
             <label htmlFor="control_04">
               <h2>BASSIR</h2>
             </label>
           </div>
         
-        <div>
+        <div style={{display:"none"}}>
           <input type="radio" id="control_05" name="select" value="5" />
           <label htmlFor="control_05"></label>
         </div>
