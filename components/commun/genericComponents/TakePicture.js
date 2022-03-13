@@ -23,6 +23,7 @@ import {
 } from "../../../src/csReducer";
 import { async } from "@firebase/util";
 import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
+import NewButtonColored from "../../../styles/NewButtonColored.styled";
 
 export default function TakePicture() {
   const videoRef = useRef(null);
@@ -124,6 +125,12 @@ export default function TakePicture() {
     setHasPhoto(true);
     stopStreamedVideo(video);
   };
+
+  const toggleSubmit=()=>{
+return(
+  customerIdentity!=""&&((theCs!=""&&rdvTime!="")||(!rdvState))
+)
+  }
   
 
   const closePhoto = () => {
@@ -191,7 +198,7 @@ export default function TakePicture() {
     <div
       style={{
         display: "flex",
-        width: "100%",
+        
         
         justifyContent: "center",
       }}
@@ -199,11 +206,10 @@ export default function TakePicture() {
       <div
         style={{
           display: `${takePictureSwitch}`,
-          width: "100%",
-          height: "100%",
+          
         }}
       >
-        <div style={{ display: "flex", position: "absolute", left: "20%" }}>
+        <div >
           <button onClick={() => handlReturn()}>SANS RDV</button>
           <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
 
@@ -222,15 +228,18 @@ export default function TakePicture() {
 
             <RadioStyled></RadioStyled>
           </div>
+          <NewButtonColored>
+
+          <div className="subscribe">
+    
+    <a href="#" onClick={() => {closePhoto();}} className="btn-3d-can"><span>cancel</span></a>
+    <a href="#" onClick={() => handleSubmit(image)} style={{display:`${toggleSubmit() ? "block" : "none"}`}} className="btn-3d-sub"><span>submit</span></a><br />
+    
+</div>
+</NewButtonColored>
 
           <div>
-            <button
-              onClick={() => {
-                closePhoto();
-              }}
-            >
-              Annuler
-            </button>
+           
             <div>
               <button
                 onClick={() => handleSubmit(image)}
@@ -272,8 +281,10 @@ export default function TakePicture() {
         <canvas
           style={{
             borderRadius: "20%",
-            width: "13vw",
-            height: "18vw",
+            width: "20vw",
+            height: "47vh",
+            position:"absolute",
+            left:"10px",
             display: `${takePictureSwitch}`,
           }}
           ref={photoRef}
