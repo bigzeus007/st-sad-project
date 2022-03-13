@@ -180,6 +180,7 @@ export default function CarToChangeByCs({ props }) {
           onChange={(e) => setRestitutionTime(e.target.value)}
           value={restitutionTime}
         ></input>
+        <br/>
         <input
         className="dateNdTime"
           type="date"

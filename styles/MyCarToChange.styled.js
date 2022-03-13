@@ -14,6 +14,7 @@ export const MyCarToChange = styled.div`
     
   }
   .dateNdTime {
+    
     width: 20vw;
   }
   .trvx {

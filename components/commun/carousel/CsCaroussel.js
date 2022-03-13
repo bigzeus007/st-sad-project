@@ -93,7 +93,7 @@ export default function CsCaroussel({ user }) {
 
   return toModifyStatus ? (
     <>
-      <CarToChange props={toModify}></CarToChange>
+      <CarToChangeByCs props={toModify}></CarToChangeByCs>
       
     </>
   ) : (

@@ -204,7 +204,7 @@ return(
       </div>
     </div>
     <div>
-      <CsAffected></CsAffected>
+      <CsAffected defaultCs={props.serviceAdvisor}></CsAffected>
       {/* <input
       className="dateNdTime"
         type="time"
