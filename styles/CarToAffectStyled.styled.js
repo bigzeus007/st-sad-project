@@ -17,7 +17,9 @@ export const CarToAffectStyled = styled.div`
     height:43vh;
   }
   .workToDo{
-    margin-left:20px;
+    margin-left:10px;
+    button{border-radius:10px;border:none;box-shadow:0px 5px 5px 0px;}
+    
   }
   .dateNdTime {
     width: 20vw;

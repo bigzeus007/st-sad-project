@@ -126,12 +126,12 @@ export default function CarToAffect({ props }) {
         <h3>{props.customerName}</h3>
         <h3> {props.serviceAdvisor}</h3>
         <p>Emplacement : {props.whereIsTheCar}</p>
-        <div className="workToDo">
+        <div className="workToDoList">
           <p>TRAVAUX</p>
-          {props.myService && <div>Express: {techAffected.myService}<button onClick={()=>dispatch(selectTech(["myService",""]))}>-</button></div>}
-          {props.myService && <div>Mecanique: {techAffected.mecanical}<button onClick={()=>dispatch(selectTech(["mecanical",""]))}>-</button></div>}
-          {props.myService && <div>Diag: {techAffected.electrical}<button onClick={()=>dispatch(selectTech(["electrical",""]))}>-</button></div>}
-          {props.myService && <div>Carrosserie: {techAffected.bodyCar}<button onClick={()=>dispatch(selectTech(["bodyCar",""]))}>-</button></div>}
+          {props.myService && <div className="workToDo">Express: <button onClick={()=>dispatch(selectTech(["myService",""]))}>{techAffected.myService}</button></div>}
+          {props.myService && <div className="workToDo">Mecanique: <button onClick={()=>dispatch(selectTech(["mecanical",""]))}>{techAffected.mecanical}</button></div>}
+          {props.myService && <div className="workToDo">Diag: <button onClick={()=>dispatch(selectTech(["electrical",""]))}>{techAffected.electrical}</button></div>}
+          {props.myService && <div className="workToDo">Carrosserie: <button onClick={()=>dispatch(selectTech(["bodyCar",""]))}>{techAffected.bodyCar}</button></div>}
           <br />
         </div>
 

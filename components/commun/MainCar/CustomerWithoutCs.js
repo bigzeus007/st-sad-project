@@ -57,29 +57,7 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
 
   const arrivedTime = props.createdAt.toDate().toLocaleTimeString();
 
-  // Drag and drop functions
-
-  // const [dragged, setDragged] = useState();
-  // const [isFlipped, setFlipped] = React.useState(false);
-
-  // function allowDrop(ev) {
-  //   ev.preventDefault();
-  // }
-
-  // function drag(ev) {
-  //   setDragged(props.id);
-
-  //   ev.dataTransfer.setData("text", ev.target.id);
-  // }
-
-  // function drop(ev) {
-  //   ev.preventDefault();
-  //   var data = ev.dataTransfer.getData("text");
-  //   const myData = document.getElementById(data);
-
-  //ev.target.appendChild(document.getElementById(data));
-  // }
-
+  
   return (
     <div className="">
       <div id={props.customerName}>

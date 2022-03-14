@@ -35,6 +35,7 @@ import AccueilTech from "../../specific/accueil/AccueilTech";
 import CsCaroussel from "../carousel/CsCaroussel";
 import CPRVCaroussel from "../carousel/CPRVCaroussel";
 import CarToChangeByCs from "../genericComponents/CarToChangeByCs";
+import ChefAtelierSwip from "../../specific/ca/ChefAtelierSwip";
 
 export default function NavBar() {
   function checkProfilTech(checking) {
@@ -226,7 +227,7 @@ export default function NavBar() {
           })}
           </div> */}
           <TopNavBar>
-            
+            <ChefAtelierSwip></ChefAtelierSwip>
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
             {profil=="Pisteur"&&<TakePicture ></TakePicture>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
