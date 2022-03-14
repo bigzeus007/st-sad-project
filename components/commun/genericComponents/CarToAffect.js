@@ -34,6 +34,7 @@ import { async } from "@firebase/util";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import CsAffected from "./csAffected";
 import { resetState, selectTech } from "../../../src/caReducer";
+import { CarToAffectStyled } from "../../../styles/CarToAffectStyled.styled";
 
 export default function CarToAffect({ props }) {
   const [carImage, setCarImage] = useState(
@@ -84,7 +85,7 @@ export default function CarToAffect({ props }) {
       {
         isItInGoodPlace:false,
         affected: "technicians",
-        
+        whereIsTheCar:"Pending",
         myService: techAffected.myService,
         electrical: techAffected.electrical,
         bodyCar: techAffected.bodyCar,
@@ -107,23 +108,25 @@ export default function CarToAffect({ props }) {
   //const myElement= techAffected.filter((tech)=>tech.atelier=="express").map(element=>element.nom)
 
   return (
+    <CarToAffectStyled>
     <div
       onDrop={(e) => drop(e)}
       onDragOver={(e) => allowDrop(e)}
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "40vh",
-        justifyContent: "flex-end",
-      }}
-    >
+       >
+          <button
+          className="returnBack"
+        id="toModify"
+        onClick={(e) => (dispatch(carModification()), dispatch(resetState()))}
+      >
+      </button>
       <div>
         <h3>
           {props.rdvFixed ? <p>RDV : {props.rdvTimeFixed}</p> : "SANS RDV"}
         </h3>
         <h3>{props.customerName}</h3>
+        <h3> {props.serviceAdvisor}</h3>
         <p>Emplacement : {props.whereIsTheCar}</p>
-        <div>
+        <div className="workToDo">
           <p>TRAVAUX</p>
           {props.myService && <div>Express: {techAffected.myService}<button onClick={()=>dispatch(selectTech(["myService",""]))}>-</button></div>}
           {props.myService && <div>Mecanique: {techAffected.mecanical}<button onClick={()=>dispatch(selectTech(["mecanical",""]))}>-</button></div>}
@@ -136,15 +139,16 @@ export default function CarToAffect({ props }) {
           <MySubmitButton props="Enregistrer"></MySubmitButton>
         </div>
       </div>
-      <h2 style={{ color: "blue" }}> {props.serviceAdvisor}</h2>
+      
       <img
+
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}
-        width="75%"
-        height="100%"
+        
         quality={10}
       />
     </div>
+    </CarToAffectStyled>
   );
 }

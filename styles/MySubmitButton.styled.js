@@ -43,10 +43,7 @@ background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 10
   }}
   @media screen and (max-width: 350px) {
      {
-       width:100%;
-      bottom:-3vh;
-  left:130%;
-  background:;
+       
       
     }
   }
