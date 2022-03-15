@@ -34,11 +34,10 @@ export default function CarInSwiper({props}){
 
 
     return(
-        <div className="masterCard" style={{opacity:`${props.restitutionTime==""?"60%":"100%"}`,color:`${props.restitutionTime==""?"blue":"black"}`}}  >
+        <div className="masterCard" style={{opacity:`${props.restitutionTime==""?"60%":"100%"}`,}}  >
             <span className="rdvFixedIcon" style={{display:`${props.rdvFixed?"block":"none"}` }}>Next</span>
           <div id={props.customerName}>
-            <p>Arr:{arrivedTime} </p>
-            <p>RDV: {props.rdvTimeFixed}</p>
+            
             <div className="visualData">
               <img
                 alt={props.customerName}
@@ -57,7 +56,7 @@ export default function CarInSwiper({props}){
                 )}
                 {props.mecanical && (
                   <img
-                    className="icon"
+                    className="icon" 
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481"
                     alt="image-mecanique"
                   ></img>
@@ -81,7 +80,11 @@ export default function CarInSwiper({props}){
           </div>
     
           <div className="cardInfos">
-            {props.customerName}
+          <p>Arr :  {arrivedTime} </p>
+            {props.rdvTimeFixed&&<p>RDV : {props.rdvTimeFixed}</p>}
+            <p>Nom :  {props.customerName} </p>
+            
+            {props.restitutionTime&&<p>Heure Restitution : {props.restitutionTime}</p>}
             <br />
             {props.rdvTimeFixed && `RDV A: ${props.rdvTimeFixed}`}
           </div>

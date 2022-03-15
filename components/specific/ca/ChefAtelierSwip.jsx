@@ -40,18 +40,27 @@ body {
   margin: 0;
   padding: 0;
 }
+.cardInfos{
+    position:absolute;
+    top:0;
+}
+.masterCard{
+    color:white;
+
+}
 .rdvFixedIcon{
     position:absolute;
     font-size:1vw;
     color:red;
     padding-top:0.8vw;
+    padding-left:0.5vw;
     height:3vw;
     width:3vw;
-    bottom:0vw;
-    right:0vw;
+    bottom:6vw;
+    right:3vw;
     border-radius:50%;
     background-color:yellow;
-    z-index:10;
+    z-index:1;
     
     
 }
@@ -73,9 +82,7 @@ body {
     right:0px;
     top:0px;
 }
-icon{
-    width:auto;
-}
+
 .mySwiper{
     
 }
@@ -95,8 +102,9 @@ button{
 
 .swiper-slide {
     
-  text-align: left;
+  /* text-align: left; */
   font-size: 1.2vw;
+  padding-left:1vw;
 
   height: calc((100% - 30px) / 2) !important;
 
@@ -113,6 +121,12 @@ button{
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+.icon{
+    
+    width:3vw;
+    background-color:transparent;
+    opacity:0.5;
 }
 
 `
@@ -173,17 +187,16 @@ export default function ChefAtelierSwip() {
 
 
           <SwiperSlide key={car.customerName}>
-              <button
-              
+              <div className=""              
           key={car.customerName}
           disabled={car.restitutionTime==""}
-          style={{height:"3vw",width:"6vw"}}
+          style={{height:"auto",width:"auto"}}
           onClick={(e) => {
             handlCarToModify(car, e);
           }}
-        ></button>
+        >
               <CarInSwiper key={car.customerName} props={car}></CarInSwiper>
-              
+              </div>  
           </SwiperSlide>
         
       ))}
