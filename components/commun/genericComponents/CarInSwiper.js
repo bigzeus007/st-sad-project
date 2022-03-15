@@ -34,8 +34,8 @@ export default function CarInSwiper({props}){
 
 
     return(
-        <div className="masterCard"  >
-            <button style={{backgroundColor:`${props.rdvFixed?"green":"gray"}` }}>Editer</button>
+        <div className="masterCard" style={{opacity:`${props.restitutionTime==""?"60%":"100%"}`,color:`${props.restitutionTime==""?"blue":"black"}`}}  >
+            <span className="rdvFixedIcon" style={{display:`${props.rdvFixed?"block":"none"}` }}>Next</span>
           <div id={props.customerName}>
             <p>Arr:{arrivedTime} </p>
             <p>RDV: {props.rdvTimeFixed}</p>

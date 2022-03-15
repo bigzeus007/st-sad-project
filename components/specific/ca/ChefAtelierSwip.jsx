@@ -18,6 +18,9 @@ import { Grid, Pagination } from "swiper";
 import styled from "styled-components";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import CarInSwiper from "../../commun/genericComponents/CarInSwiper";
+import { useDispatch, useSelector } from "react-redux";
+import { carModification } from "../../../src/userReducer";
+import CarToAffect from "../../commun/genericComponents/CarToAffect";
 
 
 
@@ -37,15 +40,41 @@ body {
   margin: 0;
   padding: 0;
 }
+.rdvFixedIcon{
+    position:absolute;
+    font-size:1vw;
+    color:red;
+    padding-top:0.8vw;
+    height:3vw;
+    width:3vw;
+    bottom:0vw;
+    right:0vw;
+    border-radius:50%;
+    background-color:yellow;
+    z-index:10;
+    
+    
+}
 .carPhoto{
     
     position:absolute;
     z-index:-1;
     left:0vw;
-    top:4vh;
+    top:0vh;
     height:37vh;
     width:100%;
 
+}
+.iconList{
+    position:absolute;
+    display:flex;
+    flex-direction:column;
+    float:right;
+    right:0px;
+    top:0px;
+}
+icon{
+    width:auto;
 }
 .mySwiper{
     
@@ -54,7 +83,7 @@ body {
 .swiper {
   width: 100%;
   height: 100%;
-  border-radius:30vw;
+  /* border-radius:30vw; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -65,9 +94,10 @@ button{
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background:#fff;
+    
+  text-align: left;
+  font-size: 1.2vw;
+
   height: calc((100% - 30px) / 2) !important;
 
   /* Center slide text vertically */
@@ -78,7 +108,7 @@ button{
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
-  justify-content: center;
+  justify-content: left;
   -webkit-box-align: center;
   -ms-flex-align: center;
   -webkit-align-items: center;
@@ -90,7 +120,7 @@ button{
 export default function ChefAtelierSwip() {
     const [carsList, setCarsList] = useState([]);
     const carsRef = collection(db, "cars");
-    const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"),where("restitutionTime", "!=", ""));
+    const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"));
     useEffect(
         () =>
           onSnapshot(myParking, (snapshot) =>
@@ -99,7 +129,30 @@ export default function ChefAtelierSwip() {
     
         []
       );
+
+
+
+
+
+      const dispatch = useDispatch();
+      const toModifyStatus = useSelector(
+        (state) => state.userOptions.carToModifyStatus
+      );
+    
+
+
+      const [toModify, setTomodify] = useState("");
+
+      const handlCarToModify = (car, e) => {
+        setTomodify(car);
+        dispatch(carModification());
+        console.log("here i am")
+      };
+
   return (
+    toModifyStatus ? (     
+        <CarToAffect props={toModify}></CarToAffect>
+     ) : (
     <SwiperStyle>
       <Swiper
         slidesPerView={3}
@@ -116,20 +169,25 @@ export default function ChefAtelierSwip() {
         className="mySwiper"
       >
           {carsList.map((car) => (
-        // <button
-        //   key={car.customerName}
-        //   disabled={car.restitutionTime==""}
-        //   style={{ width: "20vw", heigth: "100%",background:`${car.restitutionTime==""?"pink":"green"}`,opacity:`${car.restitutionTime==""?"70%":"100%"}`,color:`${car.restitutionTime==""?"blue":"black"}`}}
-        //   onClick={(e) => {
-        //     // handlCarToModify(car, e);
-        //   }}
-        // >
-          <SwiperSlide>
+        
+
+
+          <SwiperSlide key={car.customerName}>
+              <button
+              
+          key={car.customerName}
+          disabled={car.restitutionTime==""}
+          style={{height:"3vw",width:"6vw"}}
+          onClick={(e) => {
+            handlCarToModify(car, e);
+          }}
+        ></button>
               <CarInSwiper key={car.customerName} props={car}></CarInSwiper>
+              
           </SwiperSlide>
-        // {/* </button> */}
+        
       ))}
       </Swiper>
     </SwiperStyle>
-  );
+  ))
 }
