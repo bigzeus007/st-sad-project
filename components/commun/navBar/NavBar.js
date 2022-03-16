@@ -227,7 +227,7 @@ export default function NavBar() {
           })}
           </div> */}
           <TopNavBar>
-            <ChefAtelierSwip></ChefAtelierSwip>
+          {profil == "CA" &&<ChefAtelierSwip></ChefAtelierSwip>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
             {profil=="Pisteur"&&<TakePicture ></TakePicture>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
@@ -235,7 +235,7 @@ export default function NavBar() {
             {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
             {/* {profil=="CPRV"&&<Accueil user={user} ></Accueil>} */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-            {profil == "CA" && <AccueilCA user={user}></AccueilCA>}
+            {/* {profil == "CA" && <AccueilCA user={user}></AccueilCA>} */}
             {/* <CsAffected></CsAffected> */}
             {/* {profil == "CS" && <CsCs user={user}></CsCs>} */}
             {/* {profil == "CS" && <CsCs user={user}></CsCs>} */}

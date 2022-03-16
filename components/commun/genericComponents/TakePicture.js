@@ -12,7 +12,7 @@ import {
 import { storage } from "../../../firebase";
 import CarDetailsOptions from "./CarDetailsOptions";
 import RadioStyled from "../../../styles/RadioStyled";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc,addDoc, setDoc, serverTimestamp, collection } from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -50,9 +50,10 @@ export default function TakePicture() {
     setCsName(e.target.id === csName ? "green" : "grey");
   };
 
-  const storageRef = ref(storage, `cars/${customerIdentity}`);
+  
 
-  const submitMyCarPhot = (photo) => {
+  const submitMyCarPhot = (photo,photoId) => {
+    const storageRef = ref(storage, `cars/${photoId}`);
     uploadString(storageRef, photo, "data_url").then(closePhoto);
   };
 
@@ -161,9 +162,7 @@ return(
  
 
   const handleSubmit = async (image) => {
-    await submitMyCarPhot(image);
-    
-    await setDoc(doc(db, "cars", `${customerIdentity}`), {
+    const docRef= await addDoc(collection(db, "cars"), {
       
       customerName: customerIdentity,
       customerNameModify:customerIdentity,//to use to modify customerName
@@ -191,6 +190,8 @@ return(
 
 
     });
+    await submitMyCarPhot(image,docRef.id);
+    
     dispatch(selectCs(null));
     
     

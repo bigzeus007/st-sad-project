@@ -51,7 +51,7 @@ body {
 .rdvFixedIcon{
     position:absolute;
     font-size:1vw;
-    color:red;
+    color:white;
     padding-top:0.8vw;
     padding-left:0.5vw;
     height:3vw;
@@ -59,7 +59,7 @@ body {
     bottom:6vw;
     right:3vw;
     border-radius:50%;
-    background-color:yellow;
+    background-color:#4088cc;
     z-index:1;
     
     
