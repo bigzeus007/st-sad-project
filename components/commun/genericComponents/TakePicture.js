@@ -62,9 +62,7 @@ export default function TakePicture() {
    
     dispatch(selectCs(""));
     dispatch(rdvStatus(false));
-    
-    
-    
+
   }
 
   const getVideo = () => {
@@ -191,6 +189,9 @@ return(
 
     });
     await submitMyCarPhot(image,docRef.id);
+    await setDoc(doc(db, "cars",docRef.id), {
+      id:docRef.id,
+    },{merge:true});
     
     dispatch(selectCs(null));
     

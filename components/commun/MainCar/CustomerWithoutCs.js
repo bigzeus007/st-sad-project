@@ -38,8 +38,8 @@ function CustomerWithoutCs({ props }, { techList = initialTech }) {
   const dispatch = useDispatch();
   const toModify = useSelector((state) => state.userOptions.carToModifyStatus);
   // const carToLab = useSelector((state) => state.userOptions.carToModify);
-
-  const spaceRef = ref(storage, `cars/${props.customerName}`);
+console.log(props.id.id,"hell")
+  const spaceRef = ref(storage, `cars/${props.id}`);
   getDownloadURL(spaceRef)
     .then((url) => setCarImage(url))
     .catch((err) =>
