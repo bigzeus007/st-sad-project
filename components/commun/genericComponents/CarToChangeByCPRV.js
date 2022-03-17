@@ -44,10 +44,10 @@ export default function CarToChangeByCPRV({props}) {
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
-  const choosenCs=useSelector((state)=>state.csSelected.serviceAdvisor)
+  // const choosenCs=useSelector((state) => state.csSelected.serviceAdvisor)
 
   const storage = getStorage();
-  const spaceRef = ref(storage, `cars/${props.customerName}`);
+  const spaceRef = ref(storage, `cars/${props.id}`);
 
   getDownloadURL(spaceRef)
     .then((url) => setCarImage(url))
@@ -61,9 +61,9 @@ export default function CarToChangeByCPRV({props}) {
 
     const handleSubmit = async () => {
       await setDoc(
-        doc(docref, `${props.customerName}`),
+        doc(docref, `${props.id}`),
         {
-          serviceAdvisor:choosenCs,
+          serviceAdvisor:theCs,
           myService: myService,
           electrical: electric,
           bodyCar: bodyCar,
@@ -90,7 +90,7 @@ const [csName, setCsName] = useState("");
 //     setCsName(e.target.id === csName ? "green" : "grey");
 //   };
 
- const storageRef = ref(storage, `cars/${customerIdentity}`);
+
 
 
   function handlReturn(){

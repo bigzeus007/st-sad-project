@@ -54,8 +54,7 @@ export default function CPRVCaroussel({ user }) {
 
     []
   );
-  
-  console.log(carsList)
+
 
   function checkParkTech(checking) {
     return checking.affectationChefAtelier.includes(`${user.nom}`);

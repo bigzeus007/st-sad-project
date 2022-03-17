@@ -67,7 +67,7 @@ export default function CarToAffect({ props }) {
 
   //import car pictur from firestore
   const storage = getStorage();
-  const spaceRef = ref(storage, `cars/${props.customerName}`);
+  const spaceRef = ref(storage, `cars/${props.id}`);
 
   getDownloadURL(spaceRef)
     .then((url) => setCarImage(url))

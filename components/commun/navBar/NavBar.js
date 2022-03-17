@@ -36,6 +36,7 @@ import CsCaroussel from "../carousel/CsCaroussel";
 import CPRVCaroussel from "../carousel/CPRVCaroussel";
 import CarToChangeByCs from "../genericComponents/CarToChangeByCs";
 import ChefAtelierSwip from "../../specific/ca/ChefAtelierSwip";
+import CPRVSwip from "../../specific/ca/CPRVSwip";
 
 export default function NavBar() {
   function checkProfilTech(checking) {
@@ -257,7 +258,8 @@ export default function NavBar() {
             {profil == "CA" && <ChefAtelierGarage></ChefAtelierGarage>}
 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-            {profil=="CPRV"&&<CPRVCaroussel user={user} ></CPRVCaroussel>} 
+            {profil=="CPRV"&&<CPRVSwip user={user} ></CPRVSwip>} 
+            {/* {profil=="CPRV"&&<CPRVCaroussel user={user} ></CPRVCaroussel>}  */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
             {/* <ToDo props={content,techList} ></ToDo> */}

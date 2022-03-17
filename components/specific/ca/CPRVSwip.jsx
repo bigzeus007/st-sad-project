@@ -113,10 +113,11 @@ const SwiperStyle = styled.div`
   }
 `;
 
-export default function ChefAtelierSwip() {
+export default function CPRVSwip({ user }) {
   const [carsList, setCarsList] = useState([]);
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"));
+  const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
+  
   useEffect(
     () =>
       onSnapshot(myParking, (snapshot) =>
@@ -126,6 +127,7 @@ export default function ChefAtelierSwip() {
     []
   );
 
+  console.log(carsList.map((el) => el));
   const dispatch = useDispatch();
   const toModifyStatus = useSelector(
     (state) => state.userOptions.carToModifyStatus
@@ -153,17 +155,17 @@ export default function ChefAtelierSwip() {
         className="mySwiper"
       >
         {carsList.map((car) => (
-          <SwiperSlide key={car.customerName}>
+          <SwiperSlide key={car.id}>
             <div
               className=""
-              key={car.customerName}
+              key={car.id}
               disabled={car.restitutionTime == ""}
               style={{ height: "auto", width: "auto" }}
               onClick={(e) => {
                 handlCarToModify(car, e);
               }}
             >
-              <CarInSwiper key={car.customerName} props={car}></CarInSwiper>
+              <CarInSwiper key={car.id} props={car}></CarInSwiper>
             </div>
           </SwiperSlide>
         ))}

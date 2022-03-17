@@ -12,7 +12,7 @@ export default function CarInSwiper({props}){
     //   const [change, setChange] = useState(false);
     
   
-      const spaceRef = ref(storage, `cars/${props.customerName}`);
+      const spaceRef = ref(storage, `cars/${props.id}`);
       getDownloadURL(spaceRef)
         .then((url) => setCarImage(url))
         .catch((err) =>

@@ -2,10 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   carToModifyStatus:false,
-  
-  
-
-
 }
 
 const userSlice = createSlice({
