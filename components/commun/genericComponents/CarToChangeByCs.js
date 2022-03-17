@@ -71,7 +71,7 @@ export default function CarToChangeByCs({ props }) {
 
   //import car pictur from firestore
   const storage = getStorage();
-  const spaceRef = ref(storage, `cars/${props.customerName}`);
+  const spaceRef = ref(storage, `cars/${props.id}`);
 
   getDownloadURL(spaceRef)
     .then((url) => setCarImage(url))
@@ -85,7 +85,7 @@ export default function CarToChangeByCs({ props }) {
 
   const handleSubmit = async () => {
     await setDoc(
-      doc(docref, `${props.customerName}`),
+      doc(docref, `${props.id}`),
       {
         // serviceAdvisor:choosenCs,
         myService: myService,

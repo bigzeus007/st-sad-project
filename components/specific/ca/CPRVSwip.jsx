@@ -115,25 +115,27 @@ const SwiperStyle = styled.div`
 
 export default function CPRVSwip({ user }) {
   const [carsList, setCarsList] = useState([]);
+  const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
   const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
   
-  useEffect(
-    () =>
-      onSnapshot(myParking, (snapshot) =>
-        setCarsList(snapshot.docs.map((doc) => doc.data()))
-      ),
+  useEffect(() =>  {
+    let start = true;//reverifying
+      onSnapshot(myParking, (snapshot) =>{if(start) setCarsList(snapshot.docs.map((doc) =>  doc.data()));
+      })
+       return () => { start = false };//reverifying
+    },
 
     []
   );
 
-  console.log(carsList.map((el) => el));
+  
   const dispatch = useDispatch();
   const toModifyStatus = useSelector(
     (state) => state.userOptions.carToModifyStatus
   );
 
-  const [toModify, setTomodify] = useState("");
+
 
   const handlCarToModify = (car, e) => {
     setTomodify(car);

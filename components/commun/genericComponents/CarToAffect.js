@@ -81,11 +81,11 @@ export default function CarToAffect({ props }) {
 
   const handleSubmit = async () => {
     await setDoc(
-      doc(docref, `${props.customerName}`),
+      doc(docref, `${props.id}`),
       {
         isItInGoodPlace:false,
         affected: "technicians",
-        whereIsTheCar:"Pending",
+        whereIsTheCar:(techAffected.myService!="")||(techAffected.mecanical!="")||(techAffected.electrical!="")||(techAffected.bodyCar!="")&&"Pending",
         myService: techAffected.myService,
         electrical: techAffected.electrical,
         bodyCar: techAffected.bodyCar,

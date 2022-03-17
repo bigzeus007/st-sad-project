@@ -6,9 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
-
 import { db } from "../../../firebase";
-
 // import required modules
 import { Grid, Pagination } from "swiper";
 import styled from "styled-components";
@@ -18,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { carModification } from "../../../src/userReducer";
 import CarToAffect from "../../commun/genericComponents/CarToAffect";
 import CarToChangeByCPRV from "../../commun/genericComponents/CarToChangeByCPRV";
+import CarToChangeByCs from "../../commun/genericComponents/CarToChangeByCs";
 
 const SwiperStyle = styled.div`
   position: relative;
@@ -113,10 +112,14 @@ const SwiperStyle = styled.div`
   }
 `;
 
-export default function ChefAtelierSwip() {
+export default function CSSwip({user}) {
   const [carsList, setCarsList] = useState([]);
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"));
+  const myParking = query(
+    carsRef,
+    where("serviceAdvisor", "==", `${user.nom}`),
+    where("restitutionTime", "==", "")
+  );
   useEffect(
     () =>
       onSnapshot(myParking, (snapshot) =>
@@ -140,7 +143,7 @@ export default function ChefAtelierSwip() {
   };
 
   return toModifyStatus ? (
-    <CarToAffect props={toModify}></CarToAffect>
+    <CarToChangeByCs props={toModify}></CarToChangeByCs>
   ) : (
     <SwiperStyle>
       <Swiper
@@ -157,7 +160,7 @@ export default function ChefAtelierSwip() {
             <div
               className=""
               key={car.customerName}
-              disabled={car.restitutionTime == ""}
+              // disabled={car.restitutionTime == ""}
               style={{ height: "auto", width: "auto" }}
               onClick={(e) => {
                 handlCarToModify(car, e);
