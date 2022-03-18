@@ -3,7 +3,7 @@ export const techList = [
     id: 999,
     nom: "HILALI",
     email: "tarhisaid@gmail.com",
-    job: "CA",
+    job: "Test",
     active: true,
     atelierAffectation: "",
     availability: true,

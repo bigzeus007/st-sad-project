@@ -18,7 +18,7 @@ import Carousel from "../carousel/MyCarousel";
 
 import content, { initialCar } from "../flipCard/content";
 import { techList } from "../flipCard/techList";
-import CarEntry from "../genericComponents/CarEntry";
+import CarEntry from "../genericComponents/TechCard";
 import TakePicture from "../genericComponents/TakePicture";
 import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
 
@@ -38,6 +38,7 @@ import CarToChangeByCs from "../genericComponents/CarToChangeByCs";
 import ChefAtelierSwip from "../../specific/ca/ChefAtelierSwip";
 import CPRVSwip from "../../specific/ca/CPRVSwip";
 import CSSwip from "../../specific/ca/CSSwip";
+import TechCard from "../genericComponents/TechCard";
 
 export default function NavBar() {
   function checkProfilTech(checking) {
@@ -233,7 +234,7 @@ export default function NavBar() {
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
             {profil=="Pisteur"&&<TakePicture ></TakePicture>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
-
+            {profil=="Test"&&<TechCard ></TechCard>}
             {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
             {/* {profil=="CPRV"&&<Accueil user={user} ></Accueil>} */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
@@ -255,7 +256,7 @@ export default function NavBar() {
             {/* <ToDo props={content}></ToDo> */}
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
-            {/* <NewCarEntry/> */}
+           
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
             {profil == "CA" && <ChefAtelierGarage></ChefAtelierGarage>}
 
