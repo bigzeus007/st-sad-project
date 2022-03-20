@@ -40,6 +40,8 @@ import CPRVSwip from "../../specific/ca/CPRVSwip";
 import CSSwip from "../../specific/ca/CSSwip";
 import TechCard from "../genericComponents/TechCard";
 
+import AjouterUser from "../../AjouterUser";
+
 export default function NavBar() {
   function checkProfilTech(checking) {
     return checking.email == auth.currentUser.email;
@@ -256,7 +258,7 @@ export default function NavBar() {
             {/* <ToDo props={content}></ToDo> */}
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
-           
+           {profil == "Test" && <AjouterUser user={user}></AjouterUser>}
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
             {profil == "CA" && <ChefAtelierGarage></ChefAtelierGarage>}
 

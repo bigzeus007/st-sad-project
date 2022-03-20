@@ -7,64 +7,70 @@ import techPhoto from "../../../public/images/carPicture.jpg";
 import { useState, useRef, useEffect } from "react";
 
 const CardTechStyled = styled.div`
- width:20%;
- height:25%;
- min-width:100px;
- max-height:25vh;
- 
- 
+  position: absolute;
   
-  .techCard {
+
+
+
+  .techInfos, .techCard {
     position: relative;
-    border: 1px blue solid;
+    border-radius: 3px 0px 0px 30px;
+    
+
+    
   }
+
 
   .progressIndicators {
     position: absolute;
-    display:flex;
-    background-color: red;
+    display: flex;
+    background-color: gray;
     top: 0;
     right: 0;
     width: 10%;
     height: 100%;
+    
   }
-  .progressBar{
-    width:50%;
-    height:100%;
+  .progressBar {
+    width: 50%;
+    height: 100%;
+  }
+  .tauDeChargeRestant {
+    background-color: greenyellow;
+  }
+  .tauOcuupationJournee {
+    height: 100%;
+    background-color: green;
+  }
 
-  }
-  .tauDeChargeRestant{
-    height:100%;
-    background-color:greenyellow;
-  }
-  .tauOcuupationJournee{
-    height:100%;
-    background-color:green;
-  }
 
-  .techIdentity {
-    width: 90%;
-    height: 50%;
-  }
 
   .techAffected {
-    position:absolute;
-    top:0;
-    background-color:transparent;
-    padding-top:25%;
-    color:white;
+    border:0px;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    padding-top: 25%;
+    color: white;
     width: 100%;
     height: 100%;
-    font-size: 2vw;
-    :hover{
-      color:green;
+    font-size: 10px;
+    :hover {
+      color: green;
     }
   }
-
+  .carNumer{
+    padding-top:0px;
+  }
   .techParkStat {
-    height: 40%;
+    display:inline-block;
+    margin-top:-10%;
+    height:25px;
+    font-size:14px;
     display: flex;
     justify-content: space-evenly;
+    
+  
   }
 `;
 
@@ -73,29 +79,32 @@ export default function TechCard() {
     photo: techPhoto,
     nom: "SAID",
     availability: false,
-    doingStartWorking:9.5,
+    doingStartWorking: 9.5,
     toDo: 2,
     done: 3,
-    hToDo:3,
-    hDone:1.5,
-    hDoing:1,
-    workDayHours:9,
-
+    hToDo: 3,
+    hDone: 1.5,
+    hDoing: 1,
+    workDayHours: 9,
     cardsHistory: ["cardID1", "cardID2"],
   };
 
-  let DoingProgress="30%";
-  let txOccupation="50%";
+  const [doingProgress, setDoingProgress] = useState("0");
 
   // Future use For adding progress bar
-  // const date=new Date();
+
   // let minutes = date.getMinutes();
   // let hour = date.getHours();
   // let nowTimeConverter=minutes/60+hour;
+  const [txOccupation, setTxOccupation] = useState(0);
 
-
-
-
+  setInterval(() => {
+    const date = new Date();
+    let secondes = date.getSeconds();
+    let minutes = date.getMinutes();
+    setDoingProgress(`${(secondes / 60) * 100}%`);
+    setTxOccupation(`${(minutes / 60) * 100}%`);
+  }, 200);
 
   //user check
   const checkUserEmail = auth.currentUser.email;
@@ -116,8 +125,11 @@ export default function TechCard() {
               <p>{props.nom}</p>
             ) : (
               <Image
-                // width={100}
-                // height={100}
+                 width={110}
+                  height={90}
+                  
+                // layout="fill"
+                // objectFit="fill"
                 className="techPhoto"
                 src={props.photo}
                 alt="techPhoto"
@@ -125,8 +137,18 @@ export default function TechCard() {
             )}
           </div>
           <div className="progressIndicators">
-            <div  className="progressBar"><div className="tauDeChargeRestant" style={{height:`${DoingProgress}`}}></div></div>
-            <div className="progressBar"><div className="tauOcuupationJournee"style={{height:`${txOccupation}`}}></div></div>
+            <div className="progressBar">
+              <div
+                className="tauDeChargeRestant"
+                style={{ height: `${doingProgress}` }}
+              ></div>
+            </div>
+            <div className="progressBar">
+              <div
+                className="tauOcuupationJournee"
+                style={{ height: `${txOccupation}` }}
+              ></div>
+            </div>
           </div>
           <button className="techAffected">Ajouter</button>
           <div className="techParkStat">
