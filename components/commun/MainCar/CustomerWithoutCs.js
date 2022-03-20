@@ -17,6 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { carModification } from "../../../src/userReducer";
 import CarToChange from "../genericComponents/CarToChange";
 import MyServiceCarIcons from "../MyServiceCarIcons/MyServiceCarIcons";
+import techListFb from "../../../src/staffListBdd.js";
 
 
 
@@ -25,7 +26,7 @@ import MyServiceCarIcons from "../MyServiceCarIcons/MyServiceCarIcons";
 
 
 
-function CustomerWithoutCs({ props }, { techList = initialTech }) {
+function CustomerWithoutCs({ props }, { techList = techListFb }) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );

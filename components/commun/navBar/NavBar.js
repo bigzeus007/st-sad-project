@@ -48,9 +48,11 @@ import AjouterUser from "../../AjouterUser";
 export default function NavBar() {
 
   const [user,setUser]=useState({})
+
     const actualUser = query(collection(db, "users"), where("email", "==", `${auth.currentUser.email}`));
-    const userTest= getDocs(actualUser);
-    userTest.then((elem)=>elem.forEach(inUser=>setUser(inUser.data())))
+    useEffect(()=>
+    getDocs(actualUser).then((elem)=>elem.forEach(inUser=>setUser(inUser.data())))
+    ,[])
 
   function checkProfilTech(checking) {
     return checking.email == auth.currentUser.email;

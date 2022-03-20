@@ -76,16 +76,16 @@ export default function Pisteur() {
   //   console.log("Current data: ", doc);
   // });
 
-  const getUser = getAuth().currentUser;
+  // const getUser = getAuth().currentUser;
 
-  function checkProfilTech(checking) {
-    return checking.email === getUser.email;
-  }
-  const user = techList.find(checkProfilTech);
+  // function checkProfilTech(checking) {
+  //   return checking.email === getUser.email;
+  // }
+  // const user = techList.find(checkProfilTech);
 
-  function checkParkTech(checking) {
-    return checking.affectationChefAtelier.includes(`${user.nom}`);
-  }
+  // function checkParkTech(checking) {
+  //   return checking.affectationChefAtelier.includes(`${user.nom}`);
+  // }
 
   // const parkPisteur = props.filter(checkParkTech)
 

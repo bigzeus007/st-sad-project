@@ -4,7 +4,7 @@ import { techList } from "../../commun/flipCard/techList";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTech } from "../../../src/caReducer";
-
+import techListFb from "../../../src/staffListBdd";
 
 const Atelier = styled.div`
   display:inline-block;
@@ -23,7 +23,7 @@ const Button = styled.div`
   font-size: 0.5em;
   box-shadow: 0px 10px 15px 0px;
   border-radius: 10px 10px 10px 10px;
-  background-color: ${(props) => (props.availability ? "green" : "red")};
+  background-color: ${(props) => (props.availability ? "bluegreen" : "red")};
   :hover {
     opacity: 0.7;
   }
@@ -37,8 +37,10 @@ export default function ChefAtelierGarage() {
   //   setTechArea(!techArea);
   // };
 
-  const listAtelier = ["myService", "mecanical", "electrical", "bodyCar"];
+  const listAtelier = ["express", "mecanique", "diagnostic", "carrosserie"];
   const techName = useSelector((state)=>state.selectedByCa)
+
+
 
   // const toggleTech=(element)=> techName.includes({nom:element.nom,atelier:element.atelierAffectation})
 
@@ -48,7 +50,7 @@ export default function ChefAtelierGarage() {
     
       {listAtelier.map((atelier) => (
         <Atelier key={atelier} className={atelier}>
-          {techList
+          {techListFb
             .filter(
               (tech) =>
                 tech.active === true && tech.atelierAffectation == `${atelier}`
@@ -56,14 +58,14 @@ export default function ChefAtelierGarage() {
             .map((filtredList) => (
               <button style={{backgroundColor:"transparent",height:"5em",width:"5em",boxSizing:"border-box"}} key={filtredList.nom}  draggable={true} onDragStart={()=>dispatch(selectTech([atelier,filtredList.nom]))}>
               <Button
-                key={filtredList.id.toString()}
+                key={filtredList.id}
                 // onClick={(e) => setTechArea(!techArea)}
                 availability={filtredList.availability}
               >
                 <h3>{filtredList.nom}</h3>
                 <br />
-                <h4>{`En attente : ${filtredList.enAttente}`}</h4>
-                <h4>{`Termine : ${filtredList.termines}`}</h4>
+                <h4>{`En attente : ${filtredList.toDo}`}</h4>
+                <h4>{`Termine : ${filtredList.done}`}</h4>
               </Button>
               </button>
             ))}
