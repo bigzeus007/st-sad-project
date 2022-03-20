@@ -1,28 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
-import Image from "next/image";
-import { carModification } from "../../../src/userReducer";
-import MyIcons from "../../../src/images";
-import { db } from "../../../firebase";
-import {
-  getStorage,
-  getDownloadURL,
-  ref,
-  uploadString,
-} from "firebase/storage";
+import React, { useEffect, useMemo, useState } from "react";
+import { useRef } from "react";
+import { Button } from "../../../styles/Button.styled";
+import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
+import { auth, db } from "../../../firebase";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase";
 import CarDetailsOptions from "./CarDetailsOptions";
 import RadioStyled from "../../../styles/RadioStyled";
-import {
-  doc,
-  setDoc,
-  serverTimestamp,
-  collection,
-  query,
-  where,
-  onSnapshot,
-  getDoc,
-} from "firebase/firestore";
-
+import { doc, setDoc, serverTimestamp, collection } from "firebase/firestore";
+import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 import { useSelector, useDispatch } from "react-redux";
 import {
   rdvTimeSelected,
@@ -30,46 +16,38 @@ import {
   customerName,
   selectCs,
 } from "../../../src/csReducer";
+import { carModification } from "../../../src/userReducer";
 import { async } from "@firebase/util";
-import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
+import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
+import NewButtonColored from "../../../styles/NewButtonColored.styled";
+import {
+  ChooseRdvStatus,
+  RdvInfo,
+} from "../../../styles/ChooseRdvStatus.style";
+import RdvOrNotInput from "../../../styles/RdvOrNotInput";
 import CsAffected from "./csAffected";
-import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 
-export default function CarToChangeByCs({ props }) {
+export default function CarToChangeByTech({ props },{user}) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
-  const toDay = new Date().toISOString().substring(0, 10);
-
-  const [carsList, setCarsList] = useState([]);
   const [express, setExpress] = useState(props.express);
   const [diagnostic, setDiagnostic] = useState(props.diagnostic);
   const [mecanique, setMecanique] = useState(props.mecanique);
   const [carrosserie, setCarrosserie] = useState(props.carrosserie);
-  const [restitutionTime, setRestitutionTime] = useState("");
-  const [restitutionDate, setRestitutionDate] = useState(toDay);
-
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
   );
 
   const inputRef = useRef(null);
-  // const [csName, setCsName] = useState("");
 
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
-  // const carsRef = doc(db, "cars",`${props.customerName}`);
-  // DANGEROUS getDoc(carsRef).then((doc)=>setMyCarToChange(doc.data()))
+
   const dispatch = useDispatch();
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
-  // const choosenCs=useSelector((state)=>state.csSelected.serviceAdvisor)
 
-  // const csChoice = (e) => {
-  //   setCsName(e.target.id === csName ? "green" : "grey");
-  // };
-
-  //import car pictur from firestore
   const storage = getStorage();
   const spaceRef = ref(storage, `cars/${props.id}`);
 
@@ -87,17 +65,38 @@ export default function CarToChangeByCs({ props }) {
     await setDoc(
       doc(docref, `${props.id}`),
       {
-        // serviceAdvisor:choosenCs,
-        express: express,
-        diagnostic: diagnostic,
-        carrosserie: carrosserie,
-        mecanique: mecanique,
-        restitutionTime: restitutionTime,
-        restitutionDate: restitutionDate,
+        whereIsTheCar: "Pending",
+        
+        
       },
       { merge: true }
     ).then(dispatch(carModification()));
   };
+
+  const photoRef = useRef(null);
+
+  const [csName, setCsName] = useState("");
+  const [rdvTime, setRdvTime] = useState("");
+
+  const theCs = useSelector((state) => state.csSelected.serviceAdvisor);
+
+
+
+  function handlReturn() {
+    setRdvTime("");
+
+    dispatch(selectCs(""));
+    dispatch(rdvStatus(false));
+  }
+
+ 
+
+  const toggleSubmit = () => {
+    return (
+      customerIdentity != "" && ((theCs != "" && rdvTime != "") || !rdvState)
+    );
+  };
+
 
   return (
     <MyCarToChange>
@@ -114,7 +113,7 @@ export default function CarToChangeByCs({ props }) {
           <p>Client : {props.customerName}</p>{" "}
         </div>
         <div>
-          <p>Emplacement : {props.whereIsTheCar}</p>
+          <p>Emplacement : Poste {props.whereIsTheCar}</p>
         </div>
         <div>
           <p>TRAVAUX</p>
@@ -125,7 +124,8 @@ export default function CarToChangeByCs({ props }) {
             name="Revision"
             value={express}
             checked={express}
-            onChange={() => setExpress(!express)}
+            readOnly={true}
+            
           />
           <label htmlFor="Revision">Revision</label>
           <br />
@@ -136,7 +136,8 @@ export default function CarToChangeByCs({ props }) {
             name="diagnostic"
             value={diagnostic}
             checked={diagnostic}
-            onChange={() => setDiagnostic(!diagnostic)}
+            readOnly={true}
+            
           />
           <label htmlFor="diagnostic">Diag</label>
           <br />
@@ -147,7 +148,8 @@ export default function CarToChangeByCs({ props }) {
             name="Carrosserie"
             value={carrosserie}
             checked={carrosserie}
-            onChange={() => setCarrosserie(!carrosserie)}
+            readOnly={true}
+           
           />
           <label htmlFor="Carrosserie">Carrosserie</label>
           <br />
@@ -158,39 +160,20 @@ export default function CarToChangeByCs({ props }) {
             name="mecanique"
             value={mecanique}
             checked={mecanique}
-            onChange={() => setMecanique(!mecanique)}
+            readOnly={true}
+            
           />
           <label htmlFor="mecanique">Mecanique</label>
           <br />
         </div>
 
-        <div
-          onClick={() =>
-            restitutionTime
-              ? handleSubmit()
-              : alert("Ajouter heure de restitution")
-          }
-        >
+        <div onClick={() => handleSubmit()}>
           <MySubmitButton props="Enregistrer"></MySubmitButton>
         </div>
       </div>
       <div>
-        <p>Responsabilite :{props.serviceAdvisor}</p>
-        <input
-          className="dateNdTime"
-          type="time"
-          onChange={(e) => setRestitutionTime(e.target.value)}
-          value={restitutionTime}
-        ></input>
-        <br />
-        <input
-          className="dateNdTime"
-          type="date"
-          placeholder="dd-mm-yyyy"
-          onChange={(e) => setRestitutionDate(e.target.value)}
-          defaultValue={restitutionDate}
-          min={restitutionDate}
-        ></input>
+        <h2>{props.serviceAdvisor}</h2>
+        
       </div>
       <img
         alt="photoVehicle"
@@ -201,5 +184,7 @@ export default function CarToChangeByCs({ props }) {
         quality={10}
       />
     </MyCarToChange>
+
+    
   );
 }

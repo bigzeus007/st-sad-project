@@ -78,26 +78,26 @@ function MainCar({ props }, { techList = initialTech }) {
               onDrag={(e) => console.log(e.target.name)}
             >
               <div className="interventions">
-                {props.myService && (
+                {props.express && (
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8"
                     alt="alt"
                   />
                 )}
 
-                {props.electrical && (
+                {props.diagnostic && (
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechDiag.png?alt=media&token=a5bdaf9d-2345-4602-899b-0ced2aecb112"
                     alt="alt"
                   />
                 )}
-                {props.mecanical && (
+                {props.mecanique && (
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481"
                     alt="alt"
                   />
                 )}
-                {props.bodyCar && (
+                {props.carrosserie && (
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87"
                     alt="alt"

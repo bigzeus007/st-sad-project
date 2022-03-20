@@ -40,10 +40,10 @@ export default function CarToChange({ props }) {
   );
 
   const [carsList, setCarsList] = useState([]);
-  const [myService, setMyService] = useState(props.myService);
-  const [electric, setElectric] = useState(props.electrical);
-  const [mecanique, setMecanique] = useState(props.mecanical);
-  const [bodyCar, setBodyCar] = useState(props.bodyCar);
+  const [express, setExpress] = useState(props.express);
+  const [diagnostic, setDiagnostic] = useState(props.diagnostic);
+  const [mecanique, setMecanique] = useState(props.mecanique);
+  const [carrosserie, setCarrosserie] = useState(props.carrosserie);
 
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
@@ -59,7 +59,7 @@ export default function CarToChange({ props }) {
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
-  const choosenCs=useSelector((state)=>state.csSelected.serviceAdvisor)
+  const choosenCs = useSelector((state) => state.csSelected.serviceAdvisor);
 
   // const csChoice = (e) => {
   //   setCsName(e.target.id === csName ? "green" : "grey");
@@ -83,11 +83,11 @@ export default function CarToChange({ props }) {
     await setDoc(
       doc(docref, `${props.customerName}`),
       {
-        serviceAdvisor:choosenCs,
-        myService: myService,
-        electrical: electric,
-        bodyCar: bodyCar,
-        mecanical: mecanique,
+        serviceAdvisor: choosenCs,
+        express: express,
+        diagnostic: diagnostic,
+        carrosserie: carrosserie,
+        mecanique: mecanique,
       },
       { merge: true }
     ).then(dispatch(carModification()));
@@ -100,13 +100,15 @@ export default function CarToChange({ props }) {
         width: "100%",
         height: "40vh",
         justifyContent: "center",
-        fontSize:"1.5vw",
+        fontSize: "1.5vw",
       }}
     >
-      <div style={{position:"absolute",left:"110px"}}>
-        <div>{props.rdvFixed ? <p>RDV : {props.rdvTimeFixed}</p> : "SANS RDV"}</div>
+      <div style={{ position: "absolute", left: "110px" }}>
+        <div>
+          {props.rdvFixed ? <p>RDV : {props.rdvTimeFixed}</p> : "SANS RDV"}
+        </div>
         <input
-        style={{width:"20vw"}}
+          style={{ width: "20vw" }}
           type="text"
           onChange={(e) => setCustomerNameToModify(e.target.value)}
           // value={setCustomerName} // was added on 05/03/22
@@ -120,29 +122,29 @@ export default function CarToChange({ props }) {
             type="checkbox"
             id="Revision"
             name="Revision"
-            value={myService}
-            checked={myService}
-            onChange={() => setMyService(!myService)}
+            value={express}
+            checked={express}
+            onChange={() => setExpress(!express)}
           />
           <label htmlFor="Revision">Revision</label>
           <br />
           <input
             type="checkbox"
-            id="electric"
-            name="electric"
-            value={electric}
-            checked={electric}
-            onChange={() => setElectric(!electric)}
+            id="diagnostic"
+            name="diagnostic"
+            value={diagnostic}
+            checked={diagnostic}
+            onChange={() => setDiagnostic(!diagnostic)}
           />
-          <label htmlFor="electric">Diag</label>
+          <label htmlFor="diagnostic">Diag</label>
           <br />
           <input
             type="checkbox"
             id="Carrosserie"
             name="Carrosserie"
-            value={bodyCar}
-            checked={bodyCar}
-            onChange={() => setBodyCar(!bodyCar)}
+            value={carrosserie}
+            checked={carrosserie}
+            onChange={() => setCarrosserie(!carrosserie)}
           />
           <label htmlFor="Carrosserie">Carrosserie</label>
           <br />
@@ -158,15 +160,21 @@ export default function CarToChange({ props }) {
           <br />
         </div>
 
-        
-
         <div onClick={() => handleSubmit()}>
           <MySubmitButton props="Enregistrer"></MySubmitButton>
         </div>
       </div>
-     <div style={{position:"absolute",left:"10px"}}> <CsAffected  defaultCs={props.serviceAdvisor}/></div>
+      <div style={{ position: "absolute", left: "10px" }}>
+        {" "}
+        <CsAffected defaultCs={props.serviceAdvisor} />
+      </div>
       <img
-      style={{position:"absolute",left:"10px",top:"5vh",borderRadius:"30px"}}
+        style={{
+          position: "absolute",
+          left: "10px",
+          top: "5vh",
+          borderRadius: "30px",
+        }}
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}

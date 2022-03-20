@@ -8,14 +8,14 @@ const initialCar = {
   affected: [], //firebaseName
   isItInGoodPlace: false, //firebaseName
   basyCar: false, //firebaseName
-  myService: false,//firebaseName
-  electrical: false,//firebaseName
-  bodyCar: false,//firebaseName
-  mecanical: false,//firebaseName
-  pneus: false,//firebaseName
-  plaquettes: false,//firebaseName
-  batterie: false,//firebaseName
-  lavage: false,//firebaseName
+  express: false, //firebaseName
+  diagnostic: false, //firebaseName
+  carrosserie: false, //firebaseName
+  mecanique: false, //firebaseName
+  pneus: false, //firebaseName
+  plaquettes: false, //firebaseName
+  batterie: false, //firebaseName
+  lavage: false, //firebaseName
 
   responsabilitiesHistory: [{ name: "", startingTime: "" }],
   affectationChefAtelier: ["Amine", "yassine", "TARHI"],
@@ -48,10 +48,10 @@ const initialCar = {
 
   emoji: "😅😅😅😅😅😅😅😅😅😅",
   carTasks: {
-    myService: true,
-    mecanical: true,
-    electrical: true,
-    bodyCar: true,
+    express: true,
+    mecanique: true,
+    diagnostic: true,
+    carrosserie: true,
     divers: {
       pneus: true,
       plaquettes: true,

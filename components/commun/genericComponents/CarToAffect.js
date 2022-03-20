@@ -42,10 +42,10 @@ export default function CarToAffect({ props }) {
   );
 
   const [carsList, setCarsList] = useState([]);
-  const [myService, setMyService] = useState(props.myService);
-  const [electric, setElectric] = useState(props.electrical);
-  const [mecanique, setMecanique] = useState(props.mecanical);
-  const [bodyCar, setbodyCar] = useState(props.bodyCar);
+  const [express, setExpress] = useState(props.express);
+  const [diagnostique, setDiagnostic] = useState(props.diagnostic);
+  const [mecanique, setMecanique] = useState(props.mecanique);
+  const [carrosserie, setCarrosserie] = useState(props.carrosserie);
 
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
@@ -83,16 +83,20 @@ export default function CarToAffect({ props }) {
     await setDoc(
       doc(docref, `${props.id}`),
       {
-        isItInGoodPlace:false,
+        isItInGoodPlace: false,
         affected: "technicians",
-        whereIsTheCar:(techAffected.express!="")||(techAffected.mecanique!="")||(techAffected.diagnostic!="")||(techAffected.carrosserie!="")&&"Pending",
-        myService: techAffected.express,
-        electrical: techAffected.diagnostic,
-        bodyCar: techAffected.carrosserie,
-        mecanical: techAffected.mecanique,
+        whereIsTheCar:
+          techAffected.express != "" ||
+          techAffected.mecanique != "" ||
+          techAffected.diagnostic != "" ||
+          (techAffected.carrosserie != "" && "Pending"),
+        express: techAffected.express,
+        diagnostic: techAffected.diagnostic,
+        carrosserie: techAffected.carrosserie,
+        mecanique: techAffected.mecanique,
       },
       { merge: true }
-    ).then(dispatch(carModification()),dispatch(resetState()));
+    ).then(dispatch(carModification()), dispatch(resetState()));
   };
 
   const listTechByWS = [{ nom: "", atelierAffectation: "" }];
@@ -109,46 +113,72 @@ export default function CarToAffect({ props }) {
 
   return (
     <CarToAffectStyled>
-    <div
-      onDrop={(e) => drop(e)}
-      onDragOver={(e) => allowDrop(e)}
-       >
-          <button
+      <div onDrop={(e) => drop(e)} onDragOver={(e) => allowDrop(e)}>
+        <button
           className="returnBack"
-        id="toModify"
-        onClick={(e) => (dispatch(carModification()), dispatch(resetState()))}
-      >
-      </button>
-      <div>
-        <h3>
-          {props.rdvFixed ? <p>RDV : {props.rdvTimeFixed}</p> : "SANS RDV"}
-        </h3>
-        <h3>{props.customerName}</h3>
-        <h3> {props.serviceAdvisor}</h3>
-        <p>Emplacement : {props.whereIsTheCar}</p>
-        <div className="workToDoList">
-          <p>TRAVAUX</p>
-          {props.myService && <div className="workToDo">Express: <button onClick={()=>dispatch(selectTech(["express",""]))}>{techAffected.express}</button></div>}
-          {props.mecanical && <div className="workToDo">Mecanique: <button onClick={()=>dispatch(selectTech(["mecanique",""]))}>{techAffected.mecanique}</button></div>}
-          {props.electrical && <div className="workToDo">Diag: <button onClick={()=>dispatch(selectTech(["diagnostic",""]))}>{techAffected.diagnostic}</button></div>}
-          {props.bodyCar && <div className="workToDo">Carrosserie: <button onClick={()=>dispatch(selectTech(["carrosserie",""]))}>{techAffected.carrosserie}</button></div>}
-          <br />
+          id="toModify"
+          onClick={(e) => (dispatch(carModification()), dispatch(resetState()))}
+        ></button>
+        <div>
+          <h3>
+            {props.rdvFixed ? <p>RDV : {props.rdvTimeFixed}</p> : "SANS RDV"}
+          </h3>
+          <h3>{props.customerName}</h3>
+          <h3> {props.serviceAdvisor}</h3>
+          <p>Emplacement : {props.whereIsTheCar}</p>
+          <div className="workToDoList">
+            <p>TRAVAUX</p>
+            {props.express && (
+              <div className="workToDo">
+                Express:{" "}
+                <button onClick={() => dispatch(selectTech(["express", ""]))}>
+                  {techAffected.express}
+                </button>
+              </div>
+            )}
+            {props.mecanique && (
+              <div className="workToDo">
+                Mecanique:{" "}
+                <button onClick={() => dispatch(selectTech(["mecanique", ""]))}>
+                  {techAffected.mecanique}
+                </button>
+              </div>
+            )}
+            {props.diagnostic && (
+              <div className="workToDo">
+                Diag:{" "}
+                <button
+                  onClick={() => dispatch(selectTech(["diagnostic", ""]))}
+                >
+                  {techAffected.diagnostic}
+                </button>
+              </div>
+            )}
+            {props.carrosserie && (
+              <div className="workToDo">
+                Carrosserie:{" "}
+                <button
+                  onClick={() => dispatch(selectTech(["carrosserie", ""]))}
+                >
+                  {techAffected.carrosserie}
+                </button>
+              </div>
+            )}
+            <br />
+          </div>
+
+          <div onClick={() => handleSubmit()}>
+            <MySubmitButton props="Enregistrer"></MySubmitButton>
+          </div>
         </div>
 
-        <div onClick={() => handleSubmit()}>
-          <MySubmitButton props="Enregistrer"></MySubmitButton>
-        </div>
+        <img
+          alt="photoVehicle"
+          name="photoVehicle"
+          src={carImage}
+          quality={10}
+        />
       </div>
-      
-      <img
-
-        alt="photoVehicle"
-        name="photoVehicle"
-        src={carImage}
-        
-        quality={10}
-      />
-    </div>
     </CarToAffectStyled>
   );
 }

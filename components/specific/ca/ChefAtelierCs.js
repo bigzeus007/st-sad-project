@@ -17,43 +17,45 @@ const CardStyle = {
 
 const initialCar = {
   id: 89,
-  csName:"TARHI",
-  note:[{
-    sender:"NOTE DE TEXT",
-    senderTime:"note created at: ",
-    noteText:"MY TEXT",
-  }],
-  photo:{
+  csName: "TARHI",
+  note: [
+    {
+      sender: "NOTE DE TEXT",
+      senderTime: "note created at: ",
+      noteText: "MY TEXT",
+    },
+  ],
+  photo: {
     carPhoto: initialPhoto,
-    createdaT:"created at: ",
+    createdaT: "created at: ",
   },
- 
-  deliveryTimeAdjustment:[{
-    deadLineTime:"17:00",
-    deadLineDay:"Lundi 07/08/22",
-    who:"Said",
-    when:"now",
-    why:"Explication",
-    isCustomerInformed:"Non", }],
+
+  deliveryTimeAdjustment: [
+    {
+      deadLineTime: "17:00",
+      deadLineDay: "Lundi 07/08/22",
+      who: "Said",
+      when: "now",
+      why: "Explication",
+      isCustomerInformed: "Non",
+    },
+  ],
 
   emoji: "😅",
-  carTasks:{
-
-    myService:false,
-    mecanical:false,
-    electrical:false,
-    bodyCar:false,
-    divers:{
-      newOne:false,
-      diversNote:"divers note",
+  carTasks: {
+    express: false,
+    mecanique: false,
+    diagnostic: false,
+    carrosserie: false,
+    divers: {
+      newOne: false,
+      diversNote: "divers note",
     },
-    EstimatedTime:"EstimatedTime",
+    EstimatedTime: "EstimatedTime",
   },
-  
-
 };
 
-function ChefAtelierCs({ props = initialCar}) {
+function ChefAtelierCs({ props = initialCar }) {
   const [isFlipped, setFlipped] = React.useState(false);
   console.log(props);
 
@@ -69,20 +71,17 @@ function ChefAtelierCs({ props = initialCar}) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     const myData = document.getElementById(data);
-    console.log(myData)
-    console.log(ev.target)
+    console.log(myData);
+    console.log(ev.target);
     //ev.target.appendChild(document.getElementById(data));
   }
 
   return (
-    <div 
-    onDrop={(e) => drop(e)}
-    >
+    <div onDrop={(e) => drop(e)}>
       <div
         draggable="true"
         onDragStart={(e) => drag(e)}
         onDragOver={(e) => allowDrop(e)}
-        
       >
         <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
           <div
@@ -91,12 +90,11 @@ function ChefAtelierCs({ props = initialCar}) {
             className="CardFront"
             onClick={() => setFlipped((prev) => !prev)}
           >
-            <div >
+            <div>
               <Image
                 alt="Mountains"
                 src={initialPhoto}
                 layout="fill"
-                
                 quality={10}
               />
             </div>
@@ -109,14 +107,18 @@ function ChefAtelierCs({ props = initialCar}) {
           >
             <p>{props.emoji}</p>
 
-            <p>{props.carTasks.myService && "Vidange"}</p>
-            <p>{props.carTasks.mecanical && "Mecanique"}</p>
-            <p>{props.carTasks.electrical && "electrique"}</p>
-            <p>{props.carTasks.bodyCar && "carrosserie"}</p>
-            <p>{props.carTasks.divers.newOne && props.carTasks.divers.diversNote}</p>
-            <p>{props.deliveryTimeAdjustment.map((adjustment=>{return adjustment.deadLineTime}))}</p>
-            
-
+            <p>{props.carTasks.express && "Vidange"}</p>
+            <p>{props.carTasks.mecanique && "Mecanique"}</p>
+            <p>{props.carTasks.diagnostic && "electrique"}</p>
+            <p>{props.carTasks.carrosserie && "carrosserie"}</p>
+            <p>
+              {props.carTasks.divers.newOne && props.carTasks.divers.diversNote}
+            </p>
+            <p>
+              {props.deliveryTimeAdjustment.map((adjustment) => {
+                return adjustment.deadLineTime;
+              })}
+            </p>
           </div>
         </ReactCardFlip>
       </div>

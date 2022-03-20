@@ -44,6 +44,8 @@ import CSSwip from "../../specific/ca/CSSwip";
 import TechCard from "../genericComponents/TechCard";
 
 import AjouterUser from "../../AjouterUser";
+import TechSwip from "../../specific/ca/TechSwip";
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
 
@@ -76,19 +78,9 @@ export default function NavBar() {
     toggle === "dark" ? setDarkMode("light") : setDarkMode("dark");
   };
 
-  // async function getCarsData(myDb) {
-
-  //   const carsCol = collection(myDb, 'cars');
-  //   const carsSnapshot = await getDocs(carsCol);
-  //   const list = carsSnapshot.docs.map(doc => doc.data());
-  //   setCarsList(list);
-
-  // }
-
-
-  // const myMemo = useMemo(()=>{getCarsData(db),[db]})
-
-  // console.log(`db changed : ${myMemo}`);
+  const toModifyStatus = useSelector(
+    (state) => state.userOptions.carToModifyStatus
+  );
 
   return (
     <>
@@ -248,7 +240,7 @@ export default function NavBar() {
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
             {profil=="Pisteur"&&<TakePicture ></TakePicture>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
-            {profil=="Test"&&<TechCard ></TechCard>}
+            {/* {profil=="CA"&&<TechCard ></TechCard>} */}
             {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
             {/* {profil=="CPRV"&&<Accueil user={user} ></Accueil>} */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
@@ -259,12 +251,19 @@ export default function NavBar() {
             {/* <MainCar/> */}
             {/* <StyledFooter></StyledFooter> */}
             {/* <Tech props={content}></Tech> */}
-            {profil == "technicien" && <AccueilTech user={user}></AccueilTech>}
+            {/* {profil == "technicien" && <AccueilTech user={user}></AccueilTech>} */}
            
+            
+            {profil == "technicien" && <TechSwip user={user}></TechSwip>}
+
+
+
             {/* {profil == "CA" &&<ChefAtelierAtelier></ChefAtelierAtelier>} */}
           </TopNavBar>
 
           <TopNavBar>
+
+          {profil == "technicien" && toModifyStatus==true && <TechSwip user={user}></TechSwip>}
           {/* {profil == "CS" && <CsCaroussel user={user}></CsCaroussel>} */}
           {profil == "CS" && <CSSwip user={user}></CSSwip>}
             {/* <ToDo props={content}></ToDo> */}
@@ -275,7 +274,7 @@ export default function NavBar() {
             {profil == "CA" && <ChefAtelierGarage></ChefAtelierGarage>}
 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}  {/*******WORKING************/}
-            {profil=="CPRV"&&<CPRVSwip user={user} ></CPRVSwip>} 
+            {profil=="CPRV" &&<CPRVSwip user={user} ></CPRVSwip>} 
             {/* {profil=="CPRV"&&<CPRVCaroussel user={user} ></CPRVCaroussel>}  */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 

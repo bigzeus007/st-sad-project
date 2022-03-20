@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { carModification } from "../../../src/userReducer";
 import CarToAffect from "../../commun/genericComponents/CarToAffect";
 import CarToChangeByCPRV from "../../commun/genericComponents/CarToChangeByCPRV";
+import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech";
 
 const SwiperStyle = styled.div`
   position: relative;
@@ -113,11 +114,11 @@ const SwiperStyle = styled.div`
   }
 `;
 
-export default function CPRVSwip({ user }) { 
+export default function TechSwip({ user }) { 
   const [carsList, setCarsList] = useState([]);
   const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
+  const myParking = query(carsRef, where(`${user.atelierAffectation}`, "==", `${user.nom}`));
   
   useEffect(() =>  {
     let start = true;//reverifying
@@ -125,7 +126,6 @@ export default function CPRVSwip({ user }) {
       })
        return () => { start = false };//reverifying
     },
-
     []
   );
 
@@ -144,7 +144,7 @@ export default function CPRVSwip({ user }) {
   };
 
   return toModifyStatus ? (
-    <CarToChangeByCPRV props={toModify}></CarToChangeByCPRV>
+    <CarToChangeByTech props={toModify}></CarToChangeByTech>
   ) : (
     <SwiperStyle>
       <Swiper
@@ -167,7 +167,7 @@ export default function CPRVSwip({ user }) {
                 handlCarToModify(car, e);
               }}
             >
-              <CarInSwiper key={car.id} props={car}></CarInSwiper>
+              <CarInSwiper key={car.id} props={car} user={user}></CarInSwiper>
             </div>
           </SwiperSlide>
         ))}

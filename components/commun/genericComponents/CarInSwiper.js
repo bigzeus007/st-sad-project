@@ -47,28 +47,28 @@ export default function CarInSwiper({props}){
                 quality={10}
               />
               <div className="iconList">
-                {props.myService && (
+                {props.express && (
                   <img
                     className="icon"
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8"
                     alt="image-revision"
                   ></img>
                 )}
-                {props.mecanical && (
+                {props.mecanique && (
                   <img
                     className="icon" 
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481"
                     alt="image-mecanique"
                   ></img>
                 )}
-                {props.electrical && (
+                {props.diagnostic && (
                   <img
                     className="icon"
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechDiag.png?alt=media&token=a5bdaf9d-2345-4602-899b-0ced2aecb112"
                     alt="image-Diag-Auto"
                   ></img>
                 )}
-                {props.bodyCar && (
+                {props.carrosserie && (
                   <img
                     className="icon"
                     src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87"
