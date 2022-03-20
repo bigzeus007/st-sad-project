@@ -5,7 +5,10 @@ import {
   getFirestore,
   collection,
   getDocs,
+  getDoc,
   doc,
+  query,
+  where,
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "../../../firebase";
@@ -43,10 +46,16 @@ import TechCard from "../genericComponents/TechCard";
 import AjouterUser from "../../AjouterUser";
 
 export default function NavBar() {
+
+  const [user,setUser]=useState({})
+    const actualUser = query(collection(db, "users"), where("email", "==", `${auth.currentUser.email}`));
+    const userTest= getDocs(actualUser);
+    userTest.then((elem)=>elem.forEach(inUser=>setUser(inUser.data())))
+
   function checkProfilTech(checking) {
     return checking.email == auth.currentUser.email;
   }
-  const user = techList.find(checkProfilTech);
+  // const user = techList.find(checkProfilTech);
 
   // function checkDoing(checking) {
   //   return checking.whereIsTheCar === `${user.nom}`;
@@ -73,6 +82,7 @@ export default function NavBar() {
   //   setCarsList(list);
 
   // }
+
 
   // const myMemo = useMemo(()=>{getCarsData(db),[db]})
 
@@ -258,11 +268,11 @@ export default function NavBar() {
             {/* <ToDo props={content}></ToDo> */}
             {/* <RdvOrNotInput></RdvOrNotInput> */}
             {/* <RadioStyled></RadioStyled> */}
-           {profil == "Test" && <AjouterUser user={user}></AjouterUser>}
+           {profil == "Test" && <AjouterUser user={user}></AjouterUser>} 
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
             {profil == "CA" && <ChefAtelierGarage></ChefAtelierGarage>}
 
-            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
+            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}  {/*******WORKING************/}
             {profil=="CPRV"&&<CPRVSwip user={user} ></CPRVSwip>} 
             {/* {profil=="CPRV"&&<CPRVCaroussel user={user} ></CPRVCaroussel>}  */}
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}

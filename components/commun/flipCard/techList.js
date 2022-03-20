@@ -4,7 +4,7 @@ export const techList = [
     nom: "HILALI",
     email: "tarhisaid@gmail.com",
     photo: "",
-    job: "Test",
+    job: "Pisteur",
     doingStartWorking: 9.5,
     toDo: 2,
     done: 3,
