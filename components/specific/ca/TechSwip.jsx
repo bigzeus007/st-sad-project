@@ -19,6 +19,12 @@ import { carModification } from "../../../src/userReducer";
 import CarToAffect from "../../commun/genericComponents/CarToAffect";
 import CarToChangeByCPRV from "../../commun/genericComponents/CarToChangeByCPRV";
 import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech";
+import NavBar from "../../commun/navBar/NavBar";
+import TopNavBar from "../../../styles/TopNavBar";
+
+const TechWorkPlaceStyled=styled.div`
+  
+`
 
 const SwiperStyle = styled.div`
   position: relative;
@@ -143,9 +149,8 @@ export default function TechSwip({ user }) {
     console.log("here i am");
   };
 
-  return toModifyStatus ? (
-    <CarToChangeByTech props={toModify}></CarToChangeByTech>
-  ) : (
+  return (<>
+  <TopNavBar>
     <SwiperStyle>
       <Swiper
         slidesPerView={3}
@@ -172,6 +177,15 @@ export default function TechSwip({ user }) {
           </SwiperSlide>
         ))}
       </Swiper>
+      
     </SwiperStyle>
-  );
+    </TopNavBar>
+    <TopNavBar>
+    {toModifyStatus ? (
+    <CarToChangeByTech props={toModify}></CarToChangeByTech>
+  ) :<h2>EN ATTENTE</h2>} 
+  </TopNavBar>
+    </>
+  )
+  
 }

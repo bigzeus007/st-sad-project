@@ -235,7 +235,7 @@ export default function NavBar() {
           {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
           })}
           </div> */}
-          <TopNavBar>
+          {/* <TopNavBar> */}
           {profil == "CA" &&<ChefAtelierSwip></ChefAtelierSwip>}
             {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
             {profil=="Pisteur"&&<TakePicture ></TakePicture>}
@@ -259,11 +259,11 @@ export default function NavBar() {
 
 
             {/* {profil == "CA" &&<ChefAtelierAtelier></ChefAtelierAtelier>} */}
-          </TopNavBar>
+          {/* </TopNavBar>
 
-          <TopNavBar>
+          <TopNavBar> */}
 
-          {profil == "technicien" && toModifyStatus==true && <TechSwip user={user}></TechSwip>}
+          {/* {profil == "technicien" && toModifyStatus==true && <TechSwip user={user}></TechSwip>} */}
           {/* {profil == "CS" && <CsCaroussel user={user}></CsCaroussel>} */}
           {profil == "CS" && <CSSwip user={user}></CSSwip>}
             {/* <ToDo props={content}></ToDo> */}
@@ -279,7 +279,7 @@ export default function NavBar() {
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
             {/* <ToDo props={content,techList} ></ToDo> */}
-          </TopNavBar>
+          {/* </TopNavBar> */}
         </section>
       </div>
     </>
