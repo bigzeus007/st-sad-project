@@ -21,6 +21,7 @@ import CarToChangeByCPRV from "../../commun/genericComponents/CarToChangeByCPRV"
 import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech";
 import NavBar from "../../commun/navBar/NavBar";
 import TopNavBar from "../../../styles/TopNavBar";
+import { Button } from "../../../styles/Button.styled";
 
 const TechWorkPlaceStyled=styled.div`
   
@@ -166,14 +167,14 @@ export default function TechSwip({ user }) {
             <div
               className=""
               key={car.id}
-              disabled={car.restitutionTime == ""}
-              style={{ height: "auto", width: "auto" }}
+              style={{display:`${car.id==toModify.id&&toModifyStatus?"none":"flex"}`}}
+   
               onClick={(e) => {
-                handlCarToModify(car, e);
+                car.restitutionTime !=""?handlCarToModify(car, e):null;
               }}
             >
-              <CarInSwiper key={car.id} props={car} user={user}></CarInSwiper>
-            </div>
+              <CarInSwiper key={car.id} props={car} user={user} ></CarInSwiper>
+              </div>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -183,7 +184,7 @@ export default function TechSwip({ user }) {
     <TopNavBar>
     {toModifyStatus ? (
     <CarToChangeByTech props={toModify}></CarToChangeByTech>
-  ) :<h2>EN ATTENTE</h2>} 
+  ) :<h2 style={{position:"absolute", left:"10vw"}}>EN ATTENTE</h2>} 
   </TopNavBar>
     </>
   )
