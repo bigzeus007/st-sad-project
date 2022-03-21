@@ -27,7 +27,7 @@ import {
 import RdvOrNotInput from "../../../styles/RdvOrNotInput";
 import CsAffected from "./csAffected";
 
-export default function CarToChangeByTech({ props },{user}) {
+export default function CarToChangeByTech({props,user}) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
@@ -58,16 +58,29 @@ export default function CarToChangeByTech({ props },{user}) {
         "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
       )
     );
+  console.log(props,user)
 
   const docref = collection(db, "cars");
 
   const handleSubmit = async () => {
-    await setDoc(
+
+   if(user.atelierAffectation=="express") {await setDoc(doc(docref, `${props.id}`),{express:""},{merge: true })}
+   if(user.atelierAffectation=="mecanique") {await setDoc(doc(docref, `${props.id}`),{mecanique:""},{merge: true })}
+   if(user.atelierAffectation=="diagnostic") {await setDoc(doc(docref, `${props.id}`),{diagnostic:""},{merge: true })}
+   if(user.atelierAffectation=="carrosserie") {await setDoc(doc(docref, `${props.id}`),{carrosserie:""},{merge: true })}
+   await setDoc(
       doc(docref, `${props.id}`),
       {
-        whereIsTheCar: "Pending",
-        
-        
+        isItInGoodPlace: false,
+
+        basyCar: false,
+        carStory: [
+          {
+            who: `${user.nom}`,
+            when: new Date().toISOString().substring(0, 16),
+            what: "workDone",
+          },
+        ],
       },
       { merge: true }
     ).then(dispatch(carModification()));
@@ -80,8 +93,6 @@ export default function CarToChangeByTech({ props },{user}) {
 
   const theCs = useSelector((state) => state.csSelected.serviceAdvisor);
 
-
-
   function handlReturn() {
     setRdvTime("");
 
@@ -89,14 +100,11 @@ export default function CarToChangeByTech({ props },{user}) {
     dispatch(rdvStatus(false));
   }
 
- 
-
   const toggleSubmit = () => {
     return (
       customerIdentity != "" && ((theCs != "" && rdvTime != "") || !rdvState)
     );
   };
-
 
   return (
     <MyCarToChange>
@@ -125,7 +133,6 @@ export default function CarToChangeByTech({ props },{user}) {
             value={express}
             checked={express}
             readOnly={true}
-            
           />
           <label htmlFor="Revision">Revision</label>
           <br />
@@ -137,7 +144,6 @@ export default function CarToChangeByTech({ props },{user}) {
             value={diagnostic}
             checked={diagnostic}
             readOnly={true}
-            
           />
           <label htmlFor="diagnostic">Diag</label>
           <br />
@@ -149,7 +155,6 @@ export default function CarToChangeByTech({ props },{user}) {
             value={carrosserie}
             checked={carrosserie}
             readOnly={true}
-           
           />
           <label htmlFor="Carrosserie">Carrosserie</label>
           <br />
@@ -161,19 +166,18 @@ export default function CarToChangeByTech({ props },{user}) {
             value={mecanique}
             checked={mecanique}
             readOnly={true}
-            
           />
           <label htmlFor="mecanique">Mecanique</label>
           <br />
+          <div>Heure de restitution : {props.restitutionTime}</div>
         </div>
 
         <div onClick={() => handleSubmit()}>
-          <MySubmitButton props="Enregistrer"></MySubmitButton>
+          <MySubmitButton props="Terminer"></MySubmitButton>
         </div>
       </div>
       <div>
         <h2>{props.serviceAdvisor}</h2>
-        
       </div>
       <img
         alt="photoVehicle"
@@ -184,7 +188,5 @@ export default function CarToChangeByTech({ props },{user}) {
         quality={10}
       />
     </MyCarToChange>
-
-    
   );
 }

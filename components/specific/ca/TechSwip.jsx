@@ -183,7 +183,7 @@ export default function TechSwip({ user }) {
     </TopNavBar>
     <TopNavBar>
     {toModifyStatus ? (
-    <CarToChangeByTech props={toModify}></CarToChangeByTech>
+    <CarToChangeByTech props={toModify} user={user}></CarToChangeByTech>
   ) :<h2 style={{position:"absolute", left:"10vw"}}>EN ATTENTE</h2>} 
   </TopNavBar>
     </>
