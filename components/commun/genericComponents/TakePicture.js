@@ -173,6 +173,7 @@ return(
       affected: theCs,
       isItInGoodPlace: true,
       basyCar: false,
+      workToDo:{express:"",diagnostic: "",carrosserie: "",mecanique: ""},
       express: "",
       diagnostic: "",
       carrosserie: "",

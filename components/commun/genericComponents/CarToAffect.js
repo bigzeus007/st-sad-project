@@ -84,12 +84,9 @@ export default function CarToAffect({ props }) {
       doc(docref, `${props.id}`),
       {
         isItInGoodPlace: false,
-        affected: "technicians",
-        whereIsTheCar:
-          techAffected.express != "" ||
-          techAffected.mecanique != "" ||
-          techAffected.diagnostic != "" ||
-          (techAffected.carrosserie != "" && "Pending"),
+        affected: "technicien",
+        workToDo:{express:techAffected.express,diagnostic:techAffected.diagnostic,carrosserie:techAffected.carrosserie,mecanique:techAffected.mecanique},
+
         express: techAffected.express,
         diagnostic: techAffected.diagnostic,
         carrosserie: techAffected.carrosserie,

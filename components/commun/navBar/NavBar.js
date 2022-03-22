@@ -271,7 +271,7 @@ export default function NavBar() {
             {/* <RadioStyled></RadioStyled> */}
            {profil == "Test" && <AjouterUser user={user}></AjouterUser>} 
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
-            {profil == "CA" && <ChefAtelierGarage></ChefAtelierGarage>}
+       
 
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}  {/*******WORKING************/}
             {profil=="CPRV" &&<CPRVSwip user={user} ></CPRVSwip>} 

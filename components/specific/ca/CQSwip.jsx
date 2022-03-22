@@ -18,7 +18,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { carModification } from "../../../src/userReducer";
 import CarToAffect from "../../commun/genericComponents/CarToAffect";
 import CarToChangeByCPRV from "../../commun/genericComponents/CarToChangeByCPRV";
-import ChefAtelierGarage from "./ChefAtelierGarage";
+import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech";
+import NavBar from "../../commun/navBar/NavBar";
+import TopNavBar from "../../../styles/TopNavBar";
+import { Button } from "../../../styles/Button.styled";
+
+const TechWorkPlaceStyled=styled.div`
+  
+`
 
 const SwiperStyle = styled.div`
   position: relative;
@@ -32,7 +39,6 @@ const SwiperStyle = styled.div`
     margin: 0;
     padding: 0;
   }
-
   .cardInfos {
     position: absolute;
     top: 0;
@@ -115,35 +121,37 @@ const SwiperStyle = styled.div`
   }
 `;
 
-export default function ChefAtelierSwip() {
+export default function CQSwip({ user }) { 
   const [carsList, setCarsList] = useState([]);
+  const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("whereIsTheCar", "==", "Parking-E"),where("isItInGoodPlace","==",true));
-  useEffect(
-    () =>
-      onSnapshot(myParking, (snapshot) =>
-        setCarsList(snapshot.docs.map((doc) => doc.data()))
-      ),
-
+  const myParking = query(carsRef, where(`${user.atelierAffectation}`, "==", `${user.nom}`));
+  
+  useEffect(() =>  {
+    let start = true;//reverifying
+      onSnapshot(myParking, (snapshot) =>{if(start) setCarsList(snapshot.docs.map((doc) =>  doc.data()));
+      })
+       return () => { start = false };//reverifying
+    },
     []
   );
 
+  
   const dispatch = useDispatch();
   const toModifyStatus = useSelector(
     (state) => state.userOptions.carToModifyStatus
   );
 
-  const [toModify, setTomodify] = useState("");
+
 
   const handlCarToModify = (car, e) => {
     setTomodify(car);
     dispatch(carModification());
-    console.log("here i am not");
+    console.log("here i am");
   };
 
-  return toModifyStatus ? (
-   <>  <CarToAffect props={toModify}></CarToAffect><ChefAtelierGarage></ChefAtelierGarage>   </>
-  ) : (
+  return (<>
+  <TopNavBar>
     <SwiperStyle>
       <Swiper
         slidesPerView={3}
@@ -155,19 +163,30 @@ export default function ChefAtelierSwip() {
         className="mySwiper"
       >
         {carsList.map((car) => (
-          <SwiperSlide key={car.customerName}>
+          <SwiperSlide key={car.id}>
             <div
-              className="carsEParking"
-              key={car.customerName}
-              // disabled={car.restitutionTime == ""}
-              style={{ height: "27vh", width: "100%",}}
-              onClick={(e) => {car.restitutionTime? handlCarToModify(car, e):null}}
+              className=""
+              key={car.id}
+              style={{display:`${car.id==toModify.id&&toModifyStatus?"none":"flex"}`}}
+   
+              onClick={(e) => {
+                car.restitutionTime !=""?handlCarToModify(car, e):null;
+              }}
             >
-              <CarInSwiper key={car.customerName} props={car}></CarInSwiper>
-            </div>
+              <CarInSwiper key={car.id} props={car} user={user} ></CarInSwiper>
+              </div>
           </SwiperSlide>
         ))}
       </Swiper>
+      
     </SwiperStyle>
-  );
+    </TopNavBar>
+    <TopNavBar>
+    {toModifyStatus ? (
+    <CarToChangeByTech props={toModify} user={user}></CarToChangeByTech>
+  ) :<h2 style={{position:"absolute", left:"10vw"}}>EN ATTENTE</h2>} 
+  </TopNavBar>
+    </>
+  )
+  
 }

@@ -88,12 +88,17 @@ export default function CarToChangeByCs({ props }) {
       doc(docref, `${props.id}`),
       {
         // serviceAdvisor:choosenCs,
+        workToDo:{express:express,diagnostic: diagnostic,carrosserie: carrosserie,mecanique: mecanique},
+        isItInGoodPlace: false,
+        basyCar: false,
+        affected:"CA",
         express: express,
         diagnostic: diagnostic,
         carrosserie: carrosserie,
         mecanique: mecanique,
         restitutionTime: restitutionTime,
         restitutionDate: restitutionDate,
+        carStory:[{who:`${props.serviceAdvisor}`,when:new Date().toISOString().substring(0, 16),what:"FROM CS TO ATELIER"}],
       },
       { merge: true }
     ).then(dispatch(carModification()));

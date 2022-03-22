@@ -67,6 +67,8 @@ export default function CarToChangeByCPRV({ props }) {
       doc(docref, `${props.id}`),
       {
         serviceAdvisor: theCs,
+        workToDo:{express:express,diagnostic: diagnostic,carrosserie: carrosserie,mecanique: mecanique},
+
         express: express,
         diagnostic: diagnostic,
         carrosserie: carrosserie,

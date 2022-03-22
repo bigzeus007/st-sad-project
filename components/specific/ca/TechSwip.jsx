@@ -170,7 +170,7 @@ export default function TechSwip({ user }) {
               style={{display:`${car.id==toModify.id&&toModifyStatus?"none":"flex"}`}}
    
               onClick={(e) => {
-                car.restitutionTime !=""?handlCarToModify(car, e):null;
+                car.restitutionTime ==""?handlCarToModify(car, e):null;
               }}
             >
               <CarInSwiper key={car.id} props={car} user={user} ></CarInSwiper>
