@@ -96,7 +96,7 @@ export default function CarToAffect({ props }) {
     ).then(dispatch(carModification()), dispatch(resetState()));
   };
 
-  const listTechByWS = [{ nom: "", atelierAffectation: "" }];
+  // const listTechByWS = [{ nom: "", atelierAffectation: "" }];
   function allowDrop(event) {
     event.preventDefault();
   }

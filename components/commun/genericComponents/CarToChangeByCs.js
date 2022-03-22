@@ -89,7 +89,7 @@ export default function CarToChangeByCs({ props }) {
       {
         // serviceAdvisor:choosenCs,
         workToDo:{express:express,diagnostic: diagnostic,carrosserie: carrosserie,mecanique: mecanique},
-        isItInGoodPlace: false,
+       
         basyCar: false,
         affected:"CA",
         express: express,
