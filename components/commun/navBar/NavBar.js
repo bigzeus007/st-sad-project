@@ -46,6 +46,7 @@ import TechCard from "../genericComponents/TechCard";
 import AjouterUser from "../../AjouterUser";
 import TechSwip from "../../specific/ca/TechSwip";
 import { useSelector } from "react-redux";
+import P2Swip from "../../specific/ca/P2Swip";
 
 export default function NavBar() {
 
@@ -255,6 +256,7 @@ export default function NavBar() {
            
             
             {profil == "technicien" && <TechSwip user={user}></TechSwip>}
+            {profil == "Pisteur2" && <P2Swip user={user}></P2Swip>}
 
 
 

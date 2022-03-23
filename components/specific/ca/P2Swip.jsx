@@ -121,7 +121,7 @@ const SwiperStyle = styled.div`
   }
 `;
 
-export default function TechSwip({ user }) { 
+export default function P2Swip({ user }) { 
   const [carsList, setCarsList] = useState([]);
   const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
