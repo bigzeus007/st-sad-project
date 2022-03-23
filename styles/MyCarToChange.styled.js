@@ -8,7 +8,18 @@ export const MyCarToChange = styled.div`
   height: 40vh;
   padding-left: 2vw;
   font-size: 14px;
-
+  .techSelected{
+    background-color:gray;
+    color:white;
+    border-radius:2em;
+    padding:0.2em 0.5em 0.2em 0.5em ;
+    font-size:1em;
+    border:none;
+    :hover{
+      font-size:1.3em;
+    }
+    
+  }
   img {
     width: 20vw;
     

@@ -274,7 +274,7 @@ export default function NavBar() {
            {profil == "Test" && <AjouterUser user={user}></AjouterUser>} 
             {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
        
-
+            
             {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}  {/*******WORKING************/}
             {profil=="CPRV" &&<CPRVSwip user={user} ></CPRVSwip>} 
             {/* {profil=="CPRV"&&<CPRVCaroussel user={user} ></CPRVCaroussel>}  */}

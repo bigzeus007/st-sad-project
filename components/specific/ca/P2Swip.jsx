@@ -22,6 +22,7 @@ import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech"
 import NavBar from "../../commun/navBar/NavBar";
 import TopNavBar from "../../../styles/TopNavBar";
 import { Button } from "../../../styles/Button.styled";
+import CarToAffectByPisteur from "../../commun/genericComponents/CarToAffectByPisteur";
 
 const TechWorkPlaceStyled=styled.div`
   
@@ -125,7 +126,7 @@ export default function P2Swip({ user }) {
   const [carsList, setCarsList] = useState([]);
   const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where(`${user.atelierAffectation}`, "==", `${user.nom}`));
+  const myParking = query(carsRef, where("isItInGoodPlace", "==", false));
   
   useEffect(() =>  {
     let start = true;//reverifying
@@ -167,10 +168,10 @@ export default function P2Swip({ user }) {
             <div
               className=""
               key={car.id}
-              style={{display:`${car.id==toModify.id&&toModifyStatus?"none":"static"}`}}
-   
+              
+              
               onClick={(e) => {
-                car.restitutionTime ==""?null:handlCarToModify(car, e);
+                handlCarToModify(car, e);
               }}
             >
               <CarInSwiper key={car.id} props={car} user={user} ></CarInSwiper>
@@ -183,7 +184,7 @@ export default function P2Swip({ user }) {
     </TopNavBar>
     <TopNavBar>
     {toModifyStatus ? (
-    <CarToChangeByTech props={toModify} user={user}></CarToChangeByTech>
+    <CarToAffectByPisteur props={toModify} user={user}></CarToAffectByPisteur>
   ) :<h2 style={{position:"absolute", left:"10vw"}}>EN ATTENTE</h2>} 
   </TopNavBar>
     </>
