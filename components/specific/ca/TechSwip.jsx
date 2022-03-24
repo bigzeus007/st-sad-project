@@ -125,7 +125,7 @@ export default function TechSwip({ user }) {
   const [carsList, setCarsList] = useState([]);
   const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where(`${user.atelierAffectation}`, "==", `${user.nom}`));
+  const myParking = query(carsRef, where("whereIsTheCar", "==", `${user.nom}`));
   
   useEffect(() =>  {
     let start = true;//reverifying

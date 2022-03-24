@@ -65,10 +65,7 @@ export default function CarToAffectByPisteur({props,user}) {
 
   const handleSubmit = async () => {
 
-   if(user.atelierAffectation=="express") {await setDoc(doc(docref, `${props.id}`),{express:""},{merge: true })}
-   if(user.atelierAffectation=="mecanique") {await setDoc(doc(docref, `${props.id}`),{mecanique:""},{merge: true })}
-   if(user.atelierAffectation=="diagnostic") {await setDoc(doc(docref, `${props.id}`),{diagnostic:""},{merge: true })}
-   if(user.atelierAffectation=="carrosserie") {await setDoc(doc(docref, `${props.id}`),{carrosserie:""},{merge: true })}
+  
    await setDoc(
       doc(docref, `${props.id}`),
       {
@@ -79,7 +76,7 @@ export default function CarToAffectByPisteur({props,user}) {
           {
             who: `${user.nom}`,
             when: new Date().toISOString().substring(0, 16),
-            what: "carAffected",
+            what: `${"carAffected to "+techSelected}`,
           },
         ],
       },
