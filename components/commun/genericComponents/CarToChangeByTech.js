@@ -7,7 +7,7 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase";
 import CarDetailsOptions from "./CarDetailsOptions";
 import RadioStyled from "../../../styles/RadioStyled";
-import { doc, setDoc, serverTimestamp, collection } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp, collection, updateDoc } from "firebase/firestore";
 import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -64,10 +64,10 @@ export default function CarToChangeByTech({props,user}) {
 
   const handleSubmit = async () => {
 
-   if(user.atelierAffectation=="express") {await setDoc(doc(docref, `${props.id}`),{"express":"","workDone.express":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="mecanique") {await setDoc(doc(docref, `${props.id}`),{"mecanique":"","workDone.mecanique":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="diagnostic") {await setDoc(doc(docref, `${props.id}`),{"diagnostic":"","workDone.diagnostic":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="carrosserie") {await setDoc(doc(docref, `${props.id}`),{"carrosserie":"","workDone.carrosserie":`${user.nom}`},{merge: true })}
+   if(user.atelierAffectation=="express") {await updateDoc(doc(docref, `${props.id}`),{"express":"","workToDo.express":"","workDone.express":`${user.nom}`},{merge: true })}
+   if(user.atelierAffectation=="mecanique") {await updateDoc(doc(docref, `${props.id}`),{"mecanique":"","workToDo.mecanique":"","workDone.mecanique":`${user.nom}`},{merge: true })}
+   if(user.atelierAffectation=="diagnostic") {await updateDoc(doc(docref, `${props.id}`),{"diagnostic":"","workToDo.diagnostic":"","workDone.diagnostic":`${user.nom}`},{merge: true })}
+   if(user.atelierAffectation=="carrosserie") {await updateDoc(doc(docref, `${props.id}`),{"carrosserie":"","workToDo.carrosserie":"","workDone.carrosserie":`${user.nom}`},{merge: true })}
    if(props.express=="" && props.mecanique=="" && props.diagnostic=="" && props.carrosserie=="") {await setDoc(doc(docref, `${props.id}`),{affected:"CQ"},{merge: true })}
    await setDoc(
       doc(docref, `${props.id}`),

@@ -118,19 +118,29 @@ export default function CPRVSwip({ user }) {
   const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
   const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
+
+
+  useEffect(() =>  {
+    let start = true;//reverifying
+      onSnapshot(myParking, (snapshot) =>{if(start) setCarsList(snapshot.docs.map((doc) =>  doc.data()));
+      })
+       return () => { start = false };//reverifying
+    },
+    []
+  );
   
   // useEffect(() =>  {
   //   // let start = true;//reverifying
-    const unsub =  onSnapshot(myParking, (snapshot) =>setCarsList(snapshot.docs.map((doc) =>  doc.data())));
-        //start=false;
-
+    // const unsub =  onSnapshot(myParking, (snapshot) =>setCarsList(snapshot.docs.map((doc) =>  doc.data())));
+    //     //start=false;
+    //     unsub();
   //     })
   //     //  return () => { start = false };//reverifying
   //   },
 
   //   []
   // );
-  unsub();
+  
   
   const dispatch = useDispatch();
   const toModifyStatus = useSelector(
@@ -144,7 +154,7 @@ export default function CPRVSwip({ user }) {
     dispatch(carModification());
     console.log("here i am");
   };
-
+  
   return toModifyStatus ? (
     <CarToChangeByCPRV props={toModify}></CarToChangeByCPRV>
   ) : (
@@ -177,3 +187,5 @@ export default function CPRVSwip({ user }) {
     </SwiperStyle>
   );
 }
+
+
