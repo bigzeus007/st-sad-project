@@ -47,6 +47,7 @@ import AjouterUser from "../../AjouterUser";
 import TechSwip from "../../specific/ca/TechSwip";
 import { useSelector } from "react-redux";
 import P2Swip from "../../specific/ca/P2Swip";
+import CQSwip from "../../specific/ca/CQSwip";
 
 export default function NavBar() {
 
@@ -257,6 +258,7 @@ export default function NavBar() {
             
             {profil == "technicien" && <TechSwip user={user}></TechSwip>}
             {profil == "Pisteur2" && <P2Swip user={user}></P2Swip>}
+            {profil == "CQ" && <CQSwip user={user}></CQSwip>}
 
 
 

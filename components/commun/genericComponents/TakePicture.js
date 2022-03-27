@@ -174,6 +174,7 @@ return(
       isItInGoodPlace: true,
       basyCar: false,
       workToDo:{express:"",diagnostic: "",carrosserie: "",mecanique: ""},
+      workDone:{express:"",diagnostic: "",carrosserie: "",mecanique: ""},
       express: "",
       diagnostic: "",
       carrosserie: "",

@@ -119,16 +119,18 @@ export default function CPRVSwip({ user }) {
   const carsRef = collection(db, "cars");
   const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
   
-  useEffect(() =>  {
-    let start = true;//reverifying
-      onSnapshot(myParking, (snapshot) =>{if(start) setCarsList(snapshot.docs.map((doc) =>  doc.data()));
-      })
-       return () => { start = false };//reverifying
-    },
+  // useEffect(() =>  {
+  //   // let start = true;//reverifying
+    const unsub =  onSnapshot(myParking, (snapshot) =>setCarsList(snapshot.docs.map((doc) =>  doc.data())));
+        //start=false;
 
-    []
-  );
+  //     })
+  //     //  return () => { start = false };//reverifying
+  //   },
 
+  //   []
+  // );
+  unsub();
   
   const dispatch = useDispatch();
   const toModifyStatus = useSelector(

@@ -22,6 +22,8 @@ import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech"
 import NavBar from "../../commun/navBar/NavBar";
 import TopNavBar from "../../../styles/TopNavBar";
 import { Button } from "../../../styles/Button.styled";
+import CarToAffectByPisteur from "../../commun/genericComponents/CarToAffectByPisteur";
+import CarToCheckByCQ from "../../commun/genericComponents/CarToCheckByCQ.js";
 
 const TechWorkPlaceStyled=styled.div`
   
@@ -125,7 +127,7 @@ export default function CQSwip({ user }) {
   const [carsList, setCarsList] = useState([]);
   const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where(`${user.atelierAffectation}`, "==", `${user.nom}`));
+  const myParking = query(carsRef, where("affected","==","CQ"));
   
   useEffect(() =>  {
     let start = true;//reverifying
@@ -167,10 +169,10 @@ export default function CQSwip({ user }) {
             <div
               className=""
               key={car.id}
-              style={{display:`${car.id==toModify.id&&toModifyStatus?"none":"flex"}`}}
-   
+              
+              
               onClick={(e) => {
-                car.restitutionTime !=""?handlCarToModify(car, e):null;
+                handlCarToModify(car, e);
               }}
             >
               <CarInSwiper key={car.id} props={car} user={user} ></CarInSwiper>
@@ -183,10 +185,11 @@ export default function CQSwip({ user }) {
     </TopNavBar>
     <TopNavBar>
     {toModifyStatus ? (
-    <CarToChangeByTech props={toModify} user={user}></CarToChangeByTech>
+    <CarToCheckByCQ props={toModify} user={user}></CarToCheckByCQ>
   ) :<h2 style={{position:"absolute", left:"10vw"}}>EN ATTENTE</h2>} 
   </TopNavBar>
     </>
   )
   
 }
+

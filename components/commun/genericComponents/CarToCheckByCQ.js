@@ -27,7 +27,7 @@ import {
 import RdvOrNotInput from "../../../styles/RdvOrNotInput";
 import CsAffected from "./csAffected";
 
-export default function CarToChangeByTech({props,user}) {
+export default function CarToAffectByPisteur({props,user}) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
@@ -35,6 +35,7 @@ export default function CarToChangeByTech({props,user}) {
   const [diagnostic, setDiagnostic] = useState(props.diagnostic);
   const [mecanique, setMecanique] = useState(props.mecanique);
   const [carrosserie, setCarrosserie] = useState(props.carrosserie);
+  const[techSelected,setTechSelected]=useState(null)
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
   );
@@ -64,22 +65,18 @@ export default function CarToChangeByTech({props,user}) {
 
   const handleSubmit = async () => {
 
-   if(user.atelierAffectation=="express") {await setDoc(doc(docref, `${props.id}`),{"express":"","workDone.express":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="mecanique") {await setDoc(doc(docref, `${props.id}`),{"mecanique":"","workDone.mecanique":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="diagnostic") {await setDoc(doc(docref, `${props.id}`),{"diagnostic":"","workDone.diagnostic":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="carrosserie") {await setDoc(doc(docref, `${props.id}`),{"carrosserie":"","workDone.carrosserie":`${user.nom}`},{merge: true })}
-   if(props.express=="" && props.mecanique=="" && props.diagnostic=="" && props.carrosserie=="") {await setDoc(doc(docref, `${props.id}`),{affected:"CQ"},{merge: true })}
+  
    await setDoc(
       doc(docref, `${props.id}`),
       {
         isItInGoodPlace: false,
-
+        whereIsTheCar:"CQ",
         basyCar: false,
         carStory: [
           {
             who: `${user.nom}`,
             when: new Date().toISOString().substring(0, 16),
-            what: "workDone",
+            what: `${"CHECKED BY "+techSelected}`,
           },
         ],
       },
@@ -126,7 +123,7 @@ export default function CarToChangeByTech({props,user}) {
         </div>
         <div>
           <p>TRAVAUX</p>
-          <input
+          {express&&<><input
             className="trvx"
             type="checkbox"
             id="Revision"
@@ -135,9 +132,9 @@ export default function CarToChangeByTech({props,user}) {
             checked={express}
             readOnly={true}
           />
-          <label htmlFor="Revision">Revision</label>
-          <br />
-          <input
+          <label htmlFor="express">Express{" "}</label><button onClick={()=>{setTechSelected(express)}} className="techSelected">{props.express}{express==techSelected?"✅":" "}</button>
+          <br /></>}
+          {diagnostic&&<><input
             className="trvx"
             type="checkbox"
             id="diagnostic"
@@ -146,9 +143,9 @@ export default function CarToChangeByTech({props,user}) {
             checked={diagnostic}
             readOnly={true}
           />
-          <label htmlFor="diagnostic">Diag</label>
-          <br />
-          <input
+          <label htmlFor="diagnostic">Diag{" "}</label><button onClick={()=>{setTechSelected(diagnostic)}} className="techSelected">{props.diagnostic}{diagnostic==techSelected?"✅":" "}</button>
+          <br /></>}
+          {carrosserie&&<><input
             className="trvx"
             type="checkbox"
             id="Carrosserie"
@@ -157,9 +154,9 @@ export default function CarToChangeByTech({props,user}) {
             checked={carrosserie}
             readOnly={true}
           />
-          <label htmlFor="Carrosserie">Carrosserie</label>
-          <br />
-          <input
+          <label htmlFor="Carrosserie">Carrosserie{" "}</label><button onClick={()=>{setTechSelected(carrosserie)}} className="techSelected">{props.carrosserie}{carrosserie==techSelected?"✅":" "}</button>
+          <br /></>}
+          {mecanique&&<><input
             className="trvx"
             type="checkbox"
             id="mecanique"
@@ -168,13 +165,13 @@ export default function CarToChangeByTech({props,user}) {
             checked={mecanique}
             readOnly={true}
           />
-          <label htmlFor="mecanique">Mecanique</label>
-          <br />
+          <label htmlFor="mecanique">Mecanique{" "}</label><button onClick={()=>{setTechSelected(mecanique)}} className="techSelected">{props.mecanique}{mecanique==techSelected?"✅":" "}</button>
+          <br /></>}
           <div>Heure de restitution : {props.restitutionTime}</div>
         </div>
 
-        <div onClick={() => handleSubmit()}>
-          <MySubmitButton props="Terminer"></MySubmitButton>
+        <div style={{display:`${techSelected==null?"none":"inline-block"}`}} onClick={() => handleSubmit()}>
+          <MySubmitButton props="Affecter"></MySubmitButton>
         </div>
       </div>
       <div>

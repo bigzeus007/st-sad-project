@@ -4,28 +4,25 @@ export const MyCarToChange = styled.div`
   display: flex;
   flex-direction: row;
   float: right;
-  
+
   height: 40vh;
   padding-left: 2vw;
   font-size: 14px;
-  .techSelected{
-    background-color:gray;
-    color:white;
-    border-radius:2em;
-    padding:0.2em 0.5em 0.2em 0.5em ;
-    font-size:1em;
-    border:none;
-    :hover{
-      font-size:1.3em;
+  .techSelected {
+    background-color: gray;
+    color: white;
+    border-radius: 2em;
+    padding: 0.2em 0.5em 0.5em 1em;
+    font-size: 1em;
+    border: none;
+    :hover {
+      font-size: 1.3em;
     }
-    
   }
   img {
     width: 20vw;
-    
   }
   .dateNdTime {
-    
     width: 20vw;
   }
   .trvx {
@@ -33,7 +30,7 @@ export const MyCarToChange = styled.div`
   }
 
   .returnBack {
-      cursor: pointer;
+    cursor: pointer;
     position: absolute;
     top: 0px;
     left: 2.5vw;
@@ -45,9 +42,9 @@ export const MyCarToChange = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    transition:1.cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    :hover{
-        border-radius: 0%;
+    transition: 1cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    :hover {
+      border-radius: 0%;
     }
   }
 
@@ -72,29 +69,24 @@ export const MyCarToChange = styled.div`
         width: 10px;
       }
       .returnBack {
-        
-
-        
         background-color: royalblue;
-        
+
         font-size: 2vw;
         font-weight: bolder;
         width: 15vw;
         border-radius: 30%;
         height: 8vh;
 
-        
         left: 80%;
       }
     }
   }
   @media screen and (max-width: 350px) {
      {
-
       font-size: 10px;
       background-color: pink;
       .returnBack {
-          top:40%;
+        top: 40%;
       }
       img {
         display: none;
