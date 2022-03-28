@@ -68,7 +68,7 @@ export default function CarToChangeByTech({props,user}) {
    if(user.atelierAffectation=="mecanique") {await updateDoc(doc(docref, `${props.id}`),{"mecanique":"","workToDo.mecanique":"","workDone.mecanique":`${user.nom}`},{merge: true })}
    if(user.atelierAffectation=="diagnostic") {await updateDoc(doc(docref, `${props.id}`),{"diagnostic":"","workToDo.diagnostic":"","workDone.diagnostic":`${user.nom}`},{merge: true })}
    if(user.atelierAffectation=="carrosserie") {await updateDoc(doc(docref, `${props.id}`),{"carrosserie":"","workToDo.carrosserie":"","workDone.carrosserie":`${user.nom}`},{merge: true })}
-   if(props.express=="" && props.mecanique=="" && props.diagnostic=="" && props.carrosserie=="") {await setDoc(doc(docref, `${props.id}`),{affected:"CQ"},{merge: true })}
+   if(props.express=="" && props.mecanique=="" && props.diagnostic=="" && props.carrosserie=="") {await updateDoc(doc(docref, `${props.id}`),{affected:"CQ"},{merge: true })}
    await setDoc(
       doc(docref, `${props.id}`),
       {

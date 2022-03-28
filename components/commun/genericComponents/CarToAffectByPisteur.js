@@ -167,6 +167,29 @@ export default function CarToAffectByPisteur({props,user}) {
           />
           <label htmlFor="mecanique">Mecanique{" "}</label><button onClick={()=>{setTechSelected(mecanique)}} className="techSelected">{props.mecanique}{mecanique==techSelected?"✅":" "}</button>
           <br /></>}
+          {props.affected=="CQ"&&<><input
+            className="trvx"
+            type="checkbox"
+            id="CQ"
+            name="CQ"
+            value="niania"
+            checked={techSelected=="niania"}
+            readOnly={true}
+          />
+          <label htmlFor="CQ">Controle Qualite{" "}</label><button onClick={()=>{setTechSelected("niania")}} className="techSelected">{"niania"}{"niania"==techSelected?"✅":" "}</button>
+          <br /></>}
+          {props.affected=="CQ"&&<><input
+            className="trvx"
+            type="checkbox"
+            id="CQ"
+            name="CQ"
+            value="oumaima"
+            checked={techSelected=="oumaima"}
+            readOnly={true}
+          />
+          <label htmlFor="CQ">Controle Qualite{" "}</label><button onClick={()=>{setTechSelected("oumaima")}} className="techSelected">{"oumaima"}{"oumaima"==techSelected?"✅":" "}</button>
+          <br /></>}
+
           <div>Heure de restitution : {props.restitutionTime}</div>
         </div>
 
