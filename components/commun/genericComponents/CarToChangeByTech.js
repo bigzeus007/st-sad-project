@@ -63,12 +63,11 @@ export default function CarToChangeByTech({props,user}) {
   const docref = collection(db, "cars");
 
   const handleSubmit = async () => {
-
-   if(user.atelierAffectation=="express") {await updateDoc(doc(docref, `${props.id}`),{"express":"","workToDo.express":"","workDone.express":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="mecanique") {await updateDoc(doc(docref, `${props.id}`),{"mecanique":"","workToDo.mecanique":"","workDone.mecanique":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="diagnostic") {await updateDoc(doc(docref, `${props.id}`),{"diagnostic":"","workToDo.diagnostic":"","workDone.diagnostic":`${user.nom}`},{merge: true })}
-   if(user.atelierAffectation=="carrosserie") {await updateDoc(doc(docref, `${props.id}`),{"carrosserie":"","workToDo.carrosserie":"","workDone.carrosserie":`${user.nom}`},{merge: true })}
-   if(props.express=="" && props.mecanique=="" && props.diagnostic=="" && props.carrosserie=="") {await updateDoc(doc(docref, `${props.id}`),{affected:"CQ"},{merge: true })}
+   if(user.atelierAffectation=="express") {await updateDoc(doc(docref, `${props.id}`),{"express":"","workToDo.express":"","workDone.express":`${user.nom}`})}
+   if(user.atelierAffectation=="mecanique") {await updateDoc(doc(docref, `${props.id}`),{"mecanique":"","workToDo.mecanique":"","workDone.mecanique":`${user.nom}`})}
+   if(user.atelierAffectation=="diagnostic") {await updateDoc(doc(docref, `${props.id}`),{"diagnostic":"","workToDo.diagnostic":"","workDone.diagnostic":`${user.nom}`})}
+   if(user.atelierAffectation=="carrosserie") {await updateDoc(doc(docref, `${props.id}`),{"carrosserie":"","workToDo.carrosserie":"","workDone.carrosserie":`${user.nom}`})}
+   
    await setDoc(
       doc(docref, `${props.id}`),
       {
@@ -85,6 +84,7 @@ export default function CarToChangeByTech({props,user}) {
       },
       { merge: true }
     ).then(dispatch(carModification()));
+
   };
 
   const photoRef = useRef(null);

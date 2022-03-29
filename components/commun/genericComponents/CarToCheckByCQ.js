@@ -31,10 +31,10 @@ export default function CarToAffectByPisteur({props,user}) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
-  const [express, setExpress] = useState(props.express);
-  const [diagnostic, setDiagnostic] = useState(props.diagnostic);
-  const [mecanique, setMecanique] = useState(props.mecanique);
-  const [carrosserie, setCarrosserie] = useState(props.carrosserie);
+  const [express, setExpress] = useState(props.workDone.express);
+  const [diagnostic, setDiagnostic] = useState(props.workDone.diagnostic);
+  const [mecanique, setMecanique] = useState(props.workDone.mecanique);
+  const [carrosserie, setCarrosserie] = useState(props.workDone.carrosserie);
   const[techSelected,setTechSelected]=useState(null)
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
@@ -70,6 +70,7 @@ export default function CarToAffectByPisteur({props,user}) {
       doc(docref, `${props.id}`),
       {
         isItInGoodPlace: false,
+        affected:"Parking",
         whereIsTheCar:"CQ",
         basyCar: false,
         carStory: [
@@ -132,7 +133,7 @@ export default function CarToAffectByPisteur({props,user}) {
             checked={express}
             readOnly={true}
           />
-          <label htmlFor="express">Express{" "}</label><button onClick={()=>{setTechSelected(express)}} className="techSelected">{props.express}{express==techSelected?"✅":" "}</button>
+          <label htmlFor="express">Express{" "}</label><span className="">{props.workDone.express}</span>
           <br /></>}
           {diagnostic&&<><input
             className="trvx"
@@ -143,7 +144,7 @@ export default function CarToAffectByPisteur({props,user}) {
             checked={diagnostic}
             readOnly={true}
           />
-          <label htmlFor="diagnostic">Diag{" "}</label><button onClick={()=>{setTechSelected(diagnostic)}} className="techSelected">{props.diagnostic}{diagnostic==techSelected?"✅":" "}</button>
+          <label htmlFor="diagnostic">Diag{" "}</label><span className="">{props.workDone.diagnostic}</span>
           <br /></>}
           {carrosserie&&<><input
             className="trvx"
@@ -154,7 +155,7 @@ export default function CarToAffectByPisteur({props,user}) {
             checked={carrosserie}
             readOnly={true}
           />
-          <label htmlFor="Carrosserie">Carrosserie{" "}</label><button onClick={()=>{setTechSelected(carrosserie)}} className="techSelected">{props.carrosserie}{carrosserie==techSelected?"✅":" "}</button>
+          <label htmlFor="Carrosserie">Carrosserie{" "}</label><span  className="">{props.workDone.carrosserie}</span>
           <br /></>}
           {mecanique&&<><input
             className="trvx"
@@ -165,13 +166,13 @@ export default function CarToAffectByPisteur({props,user}) {
             checked={mecanique}
             readOnly={true}
           />
-          <label htmlFor="mecanique">Mecanique{" "}</label><button onClick={()=>{setTechSelected(mecanique)}} className="techSelected">{props.mecanique}{mecanique==techSelected?"✅":" "}</button>
+          <label htmlFor="mecanique">Mecanique{" "}</label><span className="">{props.workDone.mecanique}</span>
           <br /></>}
           <div>Heure de restitution : {props.restitutionTime}</div>
         </div>
 
-        <div style={{display:`${techSelected==null?"none":"inline-block"}`}} onClick={() => handleSubmit()}>
-          <MySubmitButton props="Affecter"></MySubmitButton>
+        <div onClick={() => handleSubmit()}>
+          <MySubmitButton props="TERMINER"></MySubmitButton>
         </div>
       </div>
       <div>

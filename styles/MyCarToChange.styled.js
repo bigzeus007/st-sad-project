@@ -8,6 +8,7 @@ export const MyCarToChange = styled.div`
   height: 40vh;
   padding-left: 2vw;
   font-size: 14px;
+  .place{color:blue;}
   .techSelected {
     background-color: gray;
     color: white;

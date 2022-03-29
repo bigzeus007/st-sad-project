@@ -35,7 +35,7 @@ export default function CarToAffectByPisteur({props,user}) {
   const [diagnostic, setDiagnostic] = useState(props.diagnostic);
   const [mecanique, setMecanique] = useState(props.mecanique);
   const [carrosserie, setCarrosserie] = useState(props.carrosserie);
-  const[techSelected,setTechSelected]=useState(null)
+  const[techSelected,setTechSelected]=useState(props.whereIsTheCar)
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
   );
@@ -119,10 +119,11 @@ export default function CarToAffectByPisteur({props,user}) {
           <p>Client : {props.customerName}</p>{" "}
         </div>
         <div>
-          <p>Emplacement : Poste {props.whereIsTheCar}</p>
+          <div >Emplacement <br/> Poste <span className="place">👉👉{props.whereIsTheCar}👈👈</span></div>
         </div>
         <div>
-          <p>TRAVAUX</p>
+          <div>Destination <br/>👇👇👇👇</div>
+          {props.affected}
           {express&&<><input
             className="trvx"
             type="checkbox"
@@ -167,7 +168,7 @@ export default function CarToAffectByPisteur({props,user}) {
           />
           <label htmlFor="mecanique">Mecanique{" "}</label><button onClick={()=>{setTechSelected(mecanique)}} className="techSelected">{props.mecanique}{mecanique==techSelected?"✅":" "}</button>
           <br /></>}
-          {props.affected=="CQ"&&<><input
+          {props.workToDo==`${{express:"",diagnostic:"",carrosserie:"",mecanique:""}}`&&<><input
             className="trvx"
             type="checkbox"
             id="CQ"
@@ -178,7 +179,7 @@ export default function CarToAffectByPisteur({props,user}) {
           />
           <label htmlFor="CQ">Controle Qualite{" "}</label><button onClick={()=>{setTechSelected("niania")}} className="techSelected">{"niania"}{"niania"==techSelected?"✅":" "}</button>
           <br /></>}
-          {props.affected=="CQ"&&<><input
+          {props.workToDo==`${{express:"",diagnostic:"",carrosserie:"",mecanique:""}}`&&<><input
             className="trvx"
             type="checkbox"
             id="CQ"
@@ -193,7 +194,7 @@ export default function CarToAffectByPisteur({props,user}) {
           <div>Heure de restitution : {props.restitutionTime}</div>
         </div>
 
-        <div style={{display:`${techSelected==null?"none":"inline-block"}`}} onClick={() => handleSubmit()}>
+        <div  onClick={() => handleSubmit()}>
           <MySubmitButton props="Affecter"></MySubmitButton>
         </div>
       </div>
