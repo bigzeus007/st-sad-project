@@ -123,9 +123,7 @@ export default function ChefAtelierSwip() {
     () =>
       onSnapshot(myParking, (snapshot) =>
         setCarsList(snapshot.docs.map((doc) => doc.data()))
-      ),
-
-    []
+      )
   );
 
   const dispatch = useDispatch();

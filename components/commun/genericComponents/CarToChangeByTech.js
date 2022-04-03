@@ -1,33 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
-import { Button } from "../../../styles/Button.styled";
+import Image from "next/image"
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import { auth, db } from "../../../firebase";
+import { db } from "../../../firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../../../firebase";
-import CarDetailsOptions from "./CarDetailsOptions";
-import RadioStyled from "../../../styles/RadioStyled";
-import { doc, setDoc, serverTimestamp, collection, updateDoc } from "firebase/firestore";
+
+import { doc, setDoc, collection, updateDoc } from "firebase/firestore";
 import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  rdvTimeSelected,
-  rdvStatus,
-  customerName,
-  selectCs,
-} from "../../../src/csReducer";
+import { rdvStatus, selectCs } from "../../../src/csReducer";
 import { carModification } from "../../../src/userReducer";
-import { async } from "@firebase/util";
-import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
-import NewButtonColored from "../../../styles/NewButtonColored.styled";
-import {
-  ChooseRdvStatus,
-  RdvInfo,
-} from "../../../styles/ChooseRdvStatus.style";
-import RdvOrNotInput from "../../../styles/RdvOrNotInput";
-import CsAffected from "./csAffected";
 
-export default function CarToChangeByTech({props,user}) {
+export default function CarToChangeByTech({ props, user }) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
@@ -58,17 +42,41 @@ export default function CarToChangeByTech({props,user}) {
         "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
       )
     );
-  console.log(props,user)
+  console.log(props, user);
 
   const docref = collection(db, "cars");
 
   const handleSubmit = async () => {
-   if(user.atelierAffectation=="express") {await updateDoc(doc(docref, `${props.id}`),{"express":"","workToDo.express":"","workDone.express":`${user.nom}`})}
-   if(user.atelierAffectation=="mecanique") {await updateDoc(doc(docref, `${props.id}`),{"mecanique":"","workToDo.mecanique":"","workDone.mecanique":`${user.nom}`})}
-   if(user.atelierAffectation=="diagnostic") {await updateDoc(doc(docref, `${props.id}`),{"diagnostic":"","workToDo.diagnostic":"","workDone.diagnostic":`${user.nom}`})}
-   if(user.atelierAffectation=="carrosserie") {await updateDoc(doc(docref, `${props.id}`),{"carrosserie":"","workToDo.carrosserie":"","workDone.carrosserie":`${user.nom}`})}
-   
-   await setDoc(
+    if (user.atelierAffectation == "express") {
+      await updateDoc(doc(docref, `${props.id}`), {
+        express: "",
+        "workToDo.express": "",
+        "workDone.express": `${user.nom}`,
+      });
+    }
+    if (user.atelierAffectation == "mecanique") {
+      await updateDoc(doc(docref, `${props.id}`), {
+        mecanique: "",
+        "workToDo.mecanique": "",
+        "workDone.mecanique": `${user.nom}`,
+      });
+    }
+    if (user.atelierAffectation == "diagnostic") {
+      await updateDoc(doc(docref, `${props.id}`), {
+        diagnostic: "",
+        "workToDo.diagnostic": "",
+        "workDone.diagnostic": `${user.nom}`,
+      });
+    }
+    if (user.atelierAffectation == "carrosserie") {
+      await updateDoc(doc(docref, `${props.id}`), {
+        carrosserie: "",
+        "workToDo.carrosserie": "",
+        "workDone.carrosserie": `${user.nom}`,
+      });
+    }
+
+    await setDoc(
       doc(docref, `${props.id}`),
       {
         isItInGoodPlace: false,
@@ -84,7 +92,6 @@ export default function CarToChangeByTech({props,user}) {
       },
       { merge: true }
     ).then(dispatch(carModification()));
-
   };
 
   const photoRef = useRef(null);
@@ -180,12 +187,13 @@ export default function CarToChangeByTech({props,user}) {
       <div>
         <h2>{props.serviceAdvisor}</h2>
       </div>
-      <img
+      <Image
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}
         width="55%"
         height="100%"
+        layout='fill'
         quality={10}
       />
     </MyCarToChange>

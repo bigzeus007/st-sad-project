@@ -1,38 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react"; 
 import Image from "next/image";
 import { carModification } from "../../../src/userReducer";
 
 import { db } from "../../../firebase";
-import {
-  getStorage,
-  getDownloadURL,
-  ref,
-  uploadString,
-} from "firebase/storage";
-import { storage } from "../../../firebase";
-import CarDetailsOptions from "./CarDetailsOptions";
-import RadioStyled from "../../../styles/RadioStyled";
-import {
-  doc,
-  setDoc,
-  serverTimestamp,
-  collection,
-  query,
-  where,
-  onSnapshot,
-  getDoc,
-} from "firebase/firestore";
+import { getStorage, getDownloadURL, ref } from "firebase/storage";
+
+import { doc, setDoc, collection } from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
-import {
-  rdvTimeSelected,
-  rdvStatus,
-  customerName,
-  selectCs,
-} from "../../../src/csReducer";
-import { async } from "@firebase/util";
+
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import CsAffected from "./csAffected";
+
 import { resetState, selectTech } from "../../../src/caReducer";
 import { CarToAffectStyled } from "../../../styles/CarToAffectStyled.styled";
 
@@ -85,7 +63,12 @@ export default function CarToAffect({ props }) {
       {
         isItInGoodPlace: false,
         affected: "technicien",
-        workToDo:{express:techAffected.express,diagnostic:techAffected.diagnostic,carrosserie:techAffected.carrosserie,mecanique:techAffected.mecanique},
+        workToDo: {
+          express: techAffected.express,
+          diagnostic: techAffected.diagnostic,
+          carrosserie: techAffected.carrosserie,
+          mecanique: techAffected.mecanique,
+        },
 
         express: techAffected.express,
         diagnostic: techAffected.diagnostic,
@@ -169,7 +152,7 @@ export default function CarToAffect({ props }) {
           </div>
         </div>
 
-        <img
+        <Image
           alt="photoVehicle"
           name="photoVehicle"
           src={carImage}

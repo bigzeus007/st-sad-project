@@ -16,13 +16,13 @@ export const Nav = styled.nav`
   }
 `
 
-export const Logo = styled.img`
+export const Logo = styled.Image`
   @media (max-width: ${({ theme }) => theme.mobile}) {
     margin-bottom: 40px;
   }
 `
 
-export const Image = styled.img`
+export const Image = styled.Image`
   width: 375px;
   margin-left: 40px;
 

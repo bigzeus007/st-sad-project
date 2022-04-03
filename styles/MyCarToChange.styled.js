@@ -20,7 +20,7 @@ export const MyCarToChange = styled.div`
       font-size: 1.3em;
     }
   }
-  img {
+  Image {
     width: 20vw;
   }
   .dateNdTime {
@@ -89,7 +89,7 @@ export const MyCarToChange = styled.div`
       .returnBack {
         top: 40%;
       }
-      img {
+      Image {
         display: none;
       }
     }

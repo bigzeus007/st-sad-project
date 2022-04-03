@@ -1,36 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { carModification } from "../../../src/userReducer";
 
 import { db } from "../../../firebase";
-import {
-  getStorage,
-  getDownloadURL,
-  ref,
-  uploadString,
-} from "firebase/storage";
-import { storage } from "../../../firebase";
-import CarDetailsOptions from "./CarDetailsOptions";
-import RadioStyled from "../../../styles/RadioStyled";
-import {
-  doc,
-  setDoc,
-  serverTimestamp,
-  collection,
-  query,
-  where,
-  onSnapshot,
-  getDoc,
-} from "firebase/firestore";
+import { getStorage, getDownloadURL, ref } from "firebase/storage";
+
+import { doc, setDoc, collection } from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
-import {
-  rdvTimeSelected,
-  rdvStatus,
-  customerName,
-  selectCs,
-} from "../../../src/csReducer";
-import { async } from "@firebase/util";
+
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import CsAffected from "./csAffected";
 
@@ -53,19 +31,14 @@ export default function CarToChange({ props }) {
   const [csName, setCsName] = useState("");
 
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
-  // const carsRef = doc(db, "cars",`${props.customerName}`);
-  // DANGEROUS getDoc(carsRef).then((doc)=>setMyCarToChange(doc.data()))
+
   const dispatch = useDispatch();
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
   const choosenCs = useSelector((state) => state.csSelected.serviceAdvisor);
 
-  // const csChoice = (e) => {
-  //   setCsName(e.target.id === csName ? "green" : "grey");
-  // };
 
-  //import car pictur from firestore
   const storage = getStorage();
   const spaceRef = ref(storage, `cars/${props.customerName}`);
 
@@ -111,7 +84,7 @@ export default function CarToChange({ props }) {
           style={{ width: "20vw" }}
           type="text"
           onChange={(e) => setCustomerNameToModify(e.target.value)}
-          // value={setCustomerName} // was added on 05/03/22
+        
           defaultValue={props.customerName}
         ></input>
 
@@ -168,7 +141,7 @@ export default function CarToChange({ props }) {
         {" "}
         <CsAffected defaultCs={props.serviceAdvisor} />
       </div>
-      <img
+      <Image
         style={{
           position: "absolute",
           left: "10px",

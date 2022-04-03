@@ -26,7 +26,7 @@ const GlobalStyles1 = createGlobalStyle`
     line-height: 1.5;
   }
 
-  img {
+  Image {
     max-width: 100%;
 }
 `
@@ -164,7 +164,7 @@ header .image-text .profession{
     justify-content: center;
 }
 
-.sidebar header .image img{
+.sidebar header .image Image{
     width: 40px;
     border-radius: 6px;
 }

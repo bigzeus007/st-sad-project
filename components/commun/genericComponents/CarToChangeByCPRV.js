@@ -1,30 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
-import { Button } from "../../../styles/Button.styled";
+import Image from "next/image";
+
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import { auth, db } from "../../../firebase";
+import { db } from "../../../firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../../../firebase";
-import CarDetailsOptions from "./CarDetailsOptions";
-import RadioStyled from "../../../styles/RadioStyled";
-import { doc, setDoc, serverTimestamp, collection } from "firebase/firestore";
+
+import { doc, setDoc, collection } from "firebase/firestore";
 import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  rdvTimeSelected,
-  rdvStatus,
-  customerName,
-  selectCs,
-} from "../../../src/csReducer";
+import { rdvStatus, selectCs } from "../../../src/csReducer";
 import { carModification } from "../../../src/userReducer";
-import { async } from "@firebase/util";
-import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
-import NewButtonColored from "../../../styles/NewButtonColored.styled";
-import {
-  ChooseRdvStatus,
-  RdvInfo,
-} from "../../../styles/ChooseRdvStatus.style";
-import RdvOrNotInput from "../../../styles/RdvOrNotInput";
+
 import CsAffected from "./csAffected";
 
 export default function CarToChangeByCPRV({ props }) {
@@ -67,7 +54,12 @@ export default function CarToChangeByCPRV({ props }) {
       doc(docref, `${props.id}`),
       {
         serviceAdvisor: theCs,
-        workToDo:{express:express,diagnostic: diagnostic,carrosserie: carrosserie,mecanique: mecanique},
+        workToDo: {
+          express: express,
+          diagnostic: diagnostic,
+          carrosserie: carrosserie,
+          mecanique: mecanique,
+        },
 
         express: express,
         diagnostic: diagnostic,
@@ -214,7 +206,7 @@ export default function CarToChangeByCPRV({ props }) {
         min={restitutionDate}
       ></input> */}
       </div>
-      <img
+      <Image
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}
@@ -223,105 +215,5 @@ export default function CarToChangeByCPRV({ props }) {
         quality={10}
       />
     </MyCarToChange>
-
-    // <div style={{display: "flex",justifyContent: "center",}} >
-    //   <div >
-    //         <ChooseRdvStatus>
-    //         <button onClick={() => handlReturn()}>SANS RDV</button>
-    //         <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
-    //         </ChooseRdvStatus>
-
-    //         <NewButtonColored>
-
-    //             <div className="subscribe">
-
-    //                   <a href="#" onClick={() => dispatch(carModification())} className="btn-3d-can"><span>cancel</span></a>
-    //                   <a href="#" onClick={() => handleSubmit(image)} style={{display:`${toggleSubmit() ? "block" : "none"}`}} className="btn-3d-sub"><span>submit</span></a><br />
-
-    //               </div>
-    //         </NewButtonColored>
-    //         <RdvInfo>
-    //             <div>
-
-    //             <input className="customerName" ref={inputRef} type="text" onChange={(e) => ( dispatch(customerName(e.target.value)),)} placeholder={`${customerNameToModify}`}></input>
-
-    //             <div
-    //                   style={{
-    //                     display: `${rdvState ? "flex" : "none"}`,
-    //                     flexWrap: "wrap",
-    //                   }}>
-    //              <input
-
-    //              className="rdvTime"
-    //                 type="time"
-    //                 onChange={(e) => setRdvTime(e.target.value)}
-    //                 value={rdvTime}>
-    //               </input>
-    //               <br/>
-    //               <RadioStyled></RadioStyled>
-    //             </div>
-    //             </div>
-    //             </RdvInfo>
-
-    //   </div>
-
-    //   <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
-
-    //   </div>
-    //   <div >
-    //       <p>TRAVAUX</p>
-    //       <input
-    //         type="checkbox"
-    //         id="Revision"
-    //         name="Revision"
-    //         value={express}
-    //         checked={express}
-    //         onChange={() => setExpress(!express)}
-    //       />
-    //       <label htmlFor="Revision">Revision</label>
-    //       <br />
-    //       <input
-    //         type="checkbox"
-    //         id="diagnostic"
-    //         name="diagnostic"
-    //         value={diagnostic}
-    //         checked={diagnostic}
-    //         onChange={() => setDiagnostic(!diagnostic)}
-    //       />
-    //       <label htmlFor="diagnostic">Diag</label>
-    //       <br />
-    //       <input
-    //         type="checkbox"
-    //         id="Carrosserie"
-    //         name="Carrosserie"
-    //         value={carrosserie}
-    //         checked={carrosserie}
-    //         onChange={() => setCarrosserie(!carrosserie)}
-    //       />
-    //       <label htmlFor="Carrosserie">Carrosserie</label>
-    //       <br />
-    //       <input
-    //         type="checkbox"
-    //         id="mecanique"
-    //         name="mecanique"
-    //         value={mecanique}
-    //         checked={mecanique}
-    //         onChange={() => setMecanique(!mecanique)}
-    //       />
-    //       <label htmlFor="mecanique">Mecanique</label>
-    //       <br />
-    //     </div>
-
-    //   <img
-    //   style={{position:"absolute",left:"10px",top:"5vh",borderRadius:"30px"}}
-    //     alt="photoVehicle"
-    //     name="photoVehicle"
-    //     src={carImage}
-    //     width="100vw"
-    //     height="200vh"
-    //     quality={10}
-    //   />
-
-    // </div>
   );
 }

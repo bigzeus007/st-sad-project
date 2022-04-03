@@ -1,48 +1,13 @@
-import react, { useEffect, useMemo } from "react";
-import { useRef, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import Image from "next/image";
 import { auth } from "../../../firebase";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-  query,
-  where,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../firebase";
-import RadioStyled from "../../../styles/RadioStyled";
-import RdvOrNotInput from "../../../styles/RdvOrNotInput";
-import TopNavBar from "../../../styles/TopNavBar";
-import NewCarEntry from "../../specific/accueil/NewCarEntry";
-import Pisteur from "../../specific/accueil/Pisteur";
-import Carousel from "../carousel/MyCarousel";
-
-import content, { initialCar } from "../flipCard/content";
-import { techList } from "../flipCard/techList";
-import CarEntry from "../genericComponents/TechCard";
 import TakePicture from "../genericComponents/TakePicture";
-import ChefAtelierAtelier from "../../specific/ca/ChefAtelierAtelier";
-
-import ToDo from "../genericComponents/ToDo";
-import MainCar from "../MainCar/MainCar";
-import { async } from "@firebase/util";
-import Accueil from "../../specific/accueil/Accueil";
-import CsAffected from "../genericComponents/csAffected";
-import AccueilNext from "../../specific/accueil/AccueilNext";
-import CsCs from "../../specific/cs/CsCs";
-import AccueilCA from "../../specific/accueil/AccueilCA";
-import ChefAtelierGarage from "../../specific/ca/ChefAtelierGarage";
-import AccueilTech from "../../specific/accueil/AccueilTech";
-import CsCaroussel from "../carousel/CsCaroussel";
-import CPRVCaroussel from "../carousel/CPRVCaroussel";
-import CarToChangeByCs from "../genericComponents/CarToChangeByCs";
 import ChefAtelierSwip from "../../specific/ca/ChefAtelierSwip";
 import CPRVSwip from "../../specific/ca/CPRVSwip";
 import CSSwip from "../../specific/ca/CSSwip";
-import TechCard from "../genericComponents/TechCard";
-
 import AjouterUser from "../../AjouterUser";
 import TechSwip from "../../specific/ca/TechSwip";
 import { useSelector } from "react-redux";
@@ -50,29 +15,29 @@ import P2Swip from "../../specific/ca/P2Swip";
 import CQSwip from "../../specific/ca/CQSwip";
 
 export default function NavBar() {
+  const [user, setUser] = useState({});
 
-  const [user,setUser]=useState({})
-
-    const actualUser = query(collection(db, "users"), where("email", "==", `${auth.currentUser.email}`));
-    useEffect(()=>
-    getDocs(actualUser).then((elem)=>elem.forEach(inUser=>setUser(inUser.data())))
-    ,[])
+  const actualUser = query(
+    collection(db, "users"),
+    where("email", "==", `${auth.currentUser.email}`)
+  );
+  useEffect(
+    () =>
+      getDocs(actualUser).then((elem) =>
+        elem.forEach((inUser) => setUser(inUser.data()))
+      )
+  );
 
   function checkProfilTech(checking) {
     return checking.email == auth.currentUser.email;
   }
-  // const user = techList.find(checkProfilTech);
 
-  // function checkDoing(checking) {
-  //   return checking.whereIsTheCar === `${user.nom}`;
-  // }
   const profil = user.job;
-  const carPic = auth.currentUser.photoURL?auth.currentUser.photoURL:false;
-  
+  const carPic = auth.currentUser.photoURL ? auth.currentUser.photoURL : false;
 
   const [toggle, setToggle] = useState("close");
   const [darkMode, setDarkMode] = useState("");
-  // const [carsList,setCarsList]=useState(null)
+
   const sideBarToggle = (toggle) => {
     toggle === "close" ? setToggle("") : setToggle("close");
   };
@@ -91,7 +56,7 @@ export default function NavBar() {
           <header>
             <div className="image-text">
               <span className="image">
-                <img src="" alt="" />
+               
               </span>
 
               <div className="text logo-text">
@@ -197,93 +162,49 @@ export default function NavBar() {
         <section className="home">
           <div
             style={{
-              
               width: "100%",
               height: "5.5vw",
-              color:"green",
-              marginLeft:"20px",
-              fontSize:"4vw",
-             
+              color: "green",
+              marginLeft: "20px",
+              fontSize: "4vw",
             }}
-            
           >
-            {" "}Babel{" "}
+            {" "}
+            Babel{" "}
             <div
               style={{
                 position: "absolute",
                 display: "flex",
-                color:"black",
+                color: "black",
                 width: "auto",
                 top: "1vh",
                 right: "0px",
               }}
             >
-              <p style={{fontSize:"3vw"}}>Bonjour : {user.nom}</p>
+              <p style={{ fontSize: "3vw" }}>Bonjour : {user.nom}</p>
 
-              <img
-                style={{
-                  fontSize:"10px",
-                  borderRadius: "50%",
-                  width: "5vw",
-                  objectFit: "contain",
-                }}
+              <Image
+              width={"5vw"}
+                height={"5vw"}
                 src={carPic}
+                
                 alt="photo profil"
-              ></img>
+              ></Image>
             </div>
           </div>
 
-          {/* <div style={{display:"flex"}}>
-          {content.map((car) => {return<ChefAtelierCs key={car.id} props={car} />;
-          })}
-          </div> */}
-          {/* <TopNavBar> */}
-          {profil == "CA" &&<ChefAtelierSwip></ChefAtelierSwip>}
-            {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
-            {profil=="Pisteur"&&<TakePicture ></TakePicture>}
-            {/******************PISTEUR*************PISTEUR**************PISTEUR**************PISTEUR**************PISTEUR*********/}
-            {/* {profil=="CA"&&<TechCard ></TechCard>} */}
-            {/******************ACCUEIL**************ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-            {/* {profil=="CPRV"&&<Accueil user={user} ></Accueil>} */}
-            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
-            {/* {profil == "CA" && <AccueilCA user={user}></AccueilCA>} */}
-            {/* <CsAffected></CsAffected> */}
-            {/* {profil == "CS" && <CsCs user={user}></CsCs>} */}
-            {/* {profil == "CS" && <CsCs user={user}></CsCs>} */}
-            {/* <MainCar/> */}
-            {/* <StyledFooter></StyledFooter> */}
-            {/* <Tech props={content}></Tech> */}
-            {/* {profil == "technicien" && <AccueilTech user={user}></AccueilTech>} */}
-           
-            
-            {profil == "technicien" && <TechSwip user={user}></TechSwip>}
-            {profil == "Pisteur2" && <P2Swip user={user}></P2Swip>}
-            {profil == "CQ" && <CQSwip user={user}></CQSwip>}
+          {profil == "CA" && <ChefAtelierSwip></ChefAtelierSwip>}
+          {profil == "Pisteur" && <TakePicture></TakePicture>}
 
+          {profil == "technicien" && <TechSwip user={user}></TechSwip>}
+          {profil == "Pisteur2" && <P2Swip user={user}></P2Swip>}
+          {profil == "CQ" && <CQSwip user={user}></CQSwip>}
 
-
-            {/* {profil == "CA" &&<ChefAtelierAtelier></ChefAtelierAtelier>} */}
-          {/* </TopNavBar>
-
-          <TopNavBar> */}
-
-          {/* {profil == "technicien" && toModifyStatus==true && <TechSwip user={user}></TechSwip>} */}
-          {/* {profil == "CS" && <CsCaroussel user={user}></CsCaroussel>} */}
           {profil == "CS" && <CSSwip user={user}></CSSwip>}
-            {/* <ToDo props={content}></ToDo> */}
-            {/* <RdvOrNotInput></RdvOrNotInput> */}
-            {/* <RadioStyled></RadioStyled> */}
-           {profil == "Test" && <AjouterUser user={user}></AjouterUser>} 
-            {/* {profil=="Pisteur"&&<Pisteur ></Pisteur>} */}
-       
-            
-            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}  {/*******WORKING************/}
-            {profil=="CPRV" &&<CPRVSwip user={user} ></CPRVSwip>} 
-            {/* {profil=="CPRV"&&<CPRVCaroussel user={user} ></CPRVCaroussel>}  */}
-            {/******************ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******ACCUEIL*******************/}
 
-            {/* <ToDo props={content,techList} ></ToDo> */}
-          {/* </TopNavBar> */}
+          {profil == "Test" && <AjouterUser user={user}></AjouterUser>}
+
+          {profil == "CPRV" && <CPRVSwip user={user}></CPRVSwip>}
         </section>
       </div>
     </>

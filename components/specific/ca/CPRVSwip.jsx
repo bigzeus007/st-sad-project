@@ -125,21 +125,10 @@ export default function CPRVSwip({ user }) {
       onSnapshot(myParking, (snapshot) =>{if(start) setCarsList(snapshot.docs.map((doc) =>  doc.data()));
       })
        return () => { start = false };//reverifying
-    },
-    []
+    }
   );
   
-  // useEffect(() =>  {
-  //   // let start = true;//reverifying
-    // const unsub =  onSnapshot(myParking, (snapshot) =>setCarsList(snapshot.docs.map((doc) =>  doc.data())));
-    //     //start=false;
-    //     unsub();
-  //     })
-  //     //  return () => { start = false };//reverifying
-  //   },
-
-  //   []
-  // );
+ 
   
   
   const dispatch = useDispatch();

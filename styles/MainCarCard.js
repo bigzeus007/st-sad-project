@@ -40,7 +40,7 @@ export const MainCarCard = styled.div`
     bottom: -5px;
   }
   
-  img {
+  Image {
   border-radius: 20%;
 }
 #cardDescription{

@@ -51,9 +51,7 @@ export default function AccueilTech({ user }) {
     () =>
       onSnapshot(myParking, (snapshot) =>
         setCarsList(snapshot.docs.map((doc) => doc.data()))
-      ),
-
-    []
+      )
   );
 
   console.log(carsList);

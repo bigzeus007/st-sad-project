@@ -1,31 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useEffect, useState } from "react";
 
-// Import Swiper styles
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
-
 import { db } from "../../../firebase";
-
-// import required modules
-import { Grid, Pagination } from "swiper";
+import { Pagination } from "swiper";
 import styled from "styled-components";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import CarInSwiper from "../../commun/genericComponents/CarInSwiper";
 import { useDispatch, useSelector } from "react-redux";
 import { carModification } from "../../../src/userReducer";
-import CarToAffect from "../../commun/genericComponents/CarToAffect";
-import CarToChangeByCPRV from "../../commun/genericComponents/CarToChangeByCPRV";
-import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech";
-import NavBar from "../../commun/navBar/NavBar";
-import TopNavBar from "../../../styles/TopNavBar";
-import { Button } from "../../../styles/Button.styled";
 
-const TechWorkPlaceStyled=styled.div`
-  
-`
+import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech";
+
+import TopNavBar from "../../../styles/TopNavBar";
+
+
 
 const SwiperStyle = styled.div`
   position: relative;
@@ -94,7 +85,7 @@ const SwiperStyle = styled.div`
   }
 
   .swiper-slide {
-    /* text-align: left; */
+  
     font-size: 1.2vw;
     padding-left: 1vw;
 
@@ -121,28 +112,30 @@ const SwiperStyle = styled.div`
   }
 `;
 
-export default function TechSwip({ user }) { 
+export default function TechSwip({ user }) {
   const [carsList, setCarsList] = useState([]);
   const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("whereIsTheCar", "==", `${user.nom}`),where("isItInGoodPlace","==",true));
-  
-  useEffect(() =>  {
-    let start = true;//reverifying
-      onSnapshot(myParking, (snapshot) =>{if(start) setCarsList(snapshot.docs.map((doc) =>  doc.data()));
-      })
-       return () => { start = false };//reverifying
-    },
-    []
+  const myParking = query(
+    carsRef,
+    where("whereIsTheCar", "==", `${user.nom}`),
+    where("isItInGoodPlace", "==", true)
   );
 
-  
+  useEffect(() => {
+    let start = true; //reverifying
+    onSnapshot(myParking, (snapshot) => {
+      if (start) setCarsList(snapshot.docs.map((doc) => doc.data()));
+    });
+    return () => {
+      start = false;
+    }; //reverifying
+  }, [myParking]);
+
   const dispatch = useDispatch();
   const toModifyStatus = useSelector(
     (state) => state.userOptions.carToModifyStatus
   );
-
-
 
   const handlCarToModify = (car, e) => {
     setTomodify(car);
@@ -150,43 +143,53 @@ export default function TechSwip({ user }) {
     console.log("here i am");
   };
 
-  return (<>
-  <TopNavBar>
-    <SwiperStyle>
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        {carsList.map((car) => (
-          <SwiperSlide key={car.id}>
-            <div
-              className=""
-              key={car.id}
-              style={{display:`${car.id==toModify.id&&toModifyStatus?"none":"static"}`}}
-   
-              onClick={(e) => {
-                car.restitutionTime ==""?null:handlCarToModify(car, e);
-              }}
-            >
-              <CarInSwiper key={car.id} props={car} user={user} ></CarInSwiper>
-              </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      
-    </SwiperStyle>
-    </TopNavBar>
-    <TopNavBar>
-    {toModifyStatus ? (
-    <CarToChangeByTech props={toModify} user={user}></CarToChangeByTech>
-  ) :<h2 style={{position:"absolute", left:"10vw"}}>EN ATTENTE</h2>} 
-  </TopNavBar>
+  return (
+    <>
+      <TopNavBar>
+        <SwiperStyle>
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+          >
+            {carsList.map((car) => (
+              <SwiperSlide key={car.id}>
+                <div
+                  className=""
+                  key={car.id}
+                  style={{
+                    display: `${
+                      car.id == toModify.id && toModifyStatus
+                        ? "none"
+                        : "static"
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    car.restitutionTime == "" ? null : handlCarToModify(car, e);
+                  }}
+                >
+                  <CarInSwiper
+                    key={car.id}
+                    props={car}
+                    user={user}
+                  ></CarInSwiper>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </SwiperStyle>
+      </TopNavBar>
+      <TopNavBar>
+        {toModifyStatus ? (
+          <CarToChangeByTech props={toModify} user={user}></CarToChangeByTech>
+        ) : (
+          <h2 style={{ position: "absolute", left: "10vw" }}>EN ATTENTE</h2>
+        )}
+      </TopNavBar>
     </>
-  )
-  
+  );
 }

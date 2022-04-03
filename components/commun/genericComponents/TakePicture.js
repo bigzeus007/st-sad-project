@@ -1,31 +1,28 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useRef } from "react";
-import { Button } from "../../../styles/Button.styled";
-import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import { auth, db } from "../../../firebase";
-import {
-  getStorage,
-  getDownloadURL,
-  ref,
-  uploadString,
-} from "firebase/storage";
+
+import { db } from "../../../firebase";
+import { ref, uploadString } from "firebase/storage";
 import { storage } from "../../../firebase";
-import CarDetailsOptions from "./CarDetailsOptions";
+
 import RadioStyled from "../../../styles/RadioStyled";
-import { doc,addDoc, setDoc, serverTimestamp, collection } from "firebase/firestore";
+import {
+  doc,
+  addDoc,
+  setDoc,
+  serverTimestamp,
+  collection,
+} from "firebase/firestore";
 
 import { useSelector, useDispatch } from "react-redux";
-import {
-  rdvTimeSelected,
-  rdvStatus,
-  customerName,
-  selectCs,
-} from "../../../src/csReducer";
-import { async } from "@firebase/util";
+import { rdvStatus, customerName, selectCs } from "../../../src/csReducer";
+
 import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
 import NewButtonColored from "../../../styles/NewButtonColored.styled";
-import { ChooseRdvStatus, RdvInfo } from "../../../styles/ChooseRdvStatus.style";
-import RdvOrNotInput from "../../../styles/RdvOrNotInput";
+import {
+  ChooseRdvStatus,
+  RdvInfo,
+} from "../../../styles/ChooseRdvStatus.style";
 
 export default function TakePicture() {
   const videoRef = useRef(null);
@@ -50,19 +47,16 @@ export default function TakePicture() {
     setCsName(e.target.id === csName ? "green" : "grey");
   };
 
-  
-
-  const submitMyCarPhot = (photo,photoId) => {
+  const submitMyCarPhot = (photo, photoId) => {
     const storageRef = ref(storage, `cars/${photoId}`);
     uploadString(storageRef, photo, "data_url").then(closePhoto);
   };
 
-  function handlReturn(){
+  function handlReturn() {
     setRdvTime("");
-   
+
     dispatch(selectCs(""));
     dispatch(rdvStatus(false));
-
   }
 
   const getVideo = () => {
@@ -127,12 +121,11 @@ export default function TakePicture() {
     stopStreamedVideo(video);
   };
 
-  const toggleSubmit=()=>{
-return(
-  customerIdentity!=""&&((theCs!=""&&rdvTime!="")||(!rdvState))
-)
-  }
-  
+  const toggleSubmit = () => {
+    return (
+      customerIdentity != "" && ((theCs != "" && rdvTime != "") || !rdvState)
+    );
+  };
 
   const closePhoto = () => {
     let photo = photoRef.current;
@@ -142,107 +135,120 @@ return(
     setRdvTime("");
     setHasPhoto(false);
     setLaboZone(false);
-    
     dispatch(selectCs(""));
-    
   };
-
-
-
   useEffect(() => {
     if (laboZone) {
       getVideo();
     }
-  }, [videoRef]);
+  }, [videoRef,laboZone]);
 
   const [carStatus, setCarStatus] = useState("none");
   const takePictureSwitch = hasPhoto ? "flex" : "none";
- 
 
   const handleSubmit = async (image) => {
-    const docRef= await addDoc(collection(db, "cars"), {
-      
+    const docRef = await addDoc(collection(db, "cars"), {
       customerName: customerIdentity,
-      customerNameModify:customerIdentity,//to use to modify customerName
+      customerNameModify: customerIdentity, //to use to modify customerName
       customerCategory: "Normal",
       createdAt: serverTimestamp(),
       rdvFixed: rdvState,
-      serviceAdvisor: rdvState ? theCs:"",
+      serviceAdvisor: rdvState ? theCs : "",
       rdvTimeFixed: rdvTime,
       whereIsTheCar: "Parking-E",
       affected: theCs,
       isItInGoodPlace: true,
       basyCar: false,
-      workToDo:{express:"",diagnostic: "",carrosserie: "",mecanique: ""},
-      workDone:{express:"",diagnostic: "",carrosserie: "",mecanique: ""},
+      workToDo: { express: "", diagnostic: "", carrosserie: "", mecanique: "" },
+      workDone: { express: "", diagnostic: "", carrosserie: "", mecanique: "" },
       express: "",
       diagnostic: "",
       carrosserie: "",
       mecanique: "",
       lavage: false,
-      restitutionTime:"",
-      restitutionDate:"",
-     
-   workingTeam:["CRV","CA","Pisteur"],  
-      carStory:[{who:"Pisteur",when:new Date().toISOString().substring(0, 16),what:"CarAdded"}],
+      restitutionTime: "",
+      restitutionDate: "",
 
-      historyComments:[{initiator:"",time:"",text:""}],
+      workingTeam: ["CRV", "CA", "Pisteur"],
+      carStory: [
+        {
+          who: "Pisteur",
+          when: new Date().toISOString().substring(0, 16),
+          what: "CarAdded",
+        },
+      ],
 
-
+      historyComments: [{ initiator: "", time: "", text: "" }],
     });
-    await submitMyCarPhot(image,docRef.id);
-    await setDoc(doc(db, "cars",docRef.id), {
-      id:docRef.id,
-    },{merge:true});
-    
+    await submitMyCarPhot(image, docRef.id);
+    await setDoc(
+      doc(db, "cars", docRef.id),
+      {
+        id: docRef.id,
+      },
+      { merge: true }
+    );
+
     dispatch(selectCs(null));
-    
-    
   };
 
-
   return laboZone ? (
-    <div style={{display: "flex",justifyContent: "center",}} >
-      <div style={{display: `${takePictureSwitch}`,}}
-                      >
-            <ChooseRdvStatus>
-            <button onClick={() => handlReturn()}>SANS RDV</button>
-            <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
-            </ChooseRdvStatus>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: `${takePictureSwitch}` }}>
+        <ChooseRdvStatus>
+          <button onClick={() => handlReturn()}>SANS RDV</button>
+          <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
+        </ChooseRdvStatus>
 
-            <NewButtonColored>
+        <NewButtonColored>
+          <div className="subscribe">
+            <a
+              href="#"
+              onClick={() => {
+                closePhoto();
+              }}
+              className="btn-3d-can"
+            >
+              <span>cancel</span>
+            </a>
+            <a
+              href="#"
+              onClick={() => handleSubmit(image)}
+              style={{ display: `${toggleSubmit() ? "block" : "none"}` }}
+              className="btn-3d-sub"
+            >
+              <span>submit</span>
+            </a>
+            <br />
+          </div>
+        </NewButtonColored>
+        <RdvInfo>
+          <div>
+            <input
+              className="customerName"
+              ref={inputRef}
+              type="text"
+              onChange={(e) => dispatch(customerName(e.target.value))}
+              placeholder="NOM CLIENT"
+            ></input>
 
-                <div className="subscribe">
-          
-                      <a href="#" onClick={() => {closePhoto();}} className="btn-3d-can"><span>cancel</span></a>
-                      <a href="#" onClick={() => handleSubmit(image)} style={{display:`${toggleSubmit() ? "block" : "none"}`}} className="btn-3d-sub"><span>submit</span></a><br />
-          
-                  </div>
-            </NewButtonColored>
-            <RdvInfo>
-                <div>
-             
-                <input className="customerName" ref={inputRef} type="text" onChange={(e) => ( dispatch(customerName(e.target.value)),)} placeholder="NOM CLIENT"></input>
-               
-                <div
-                      style={{
-                        display: `${rdvState ? "flex" : "none"}`,
-                        flexWrap: "wrap",
-                      }}>
-                 <input
-                 
-                 className="rdvTime"
-                    type="time"
-                    onChange={(e) => setRdvTime(e.target.value)}
-                    value={rdvTime}>
-                  </input>
-                  <br/>
-                  <RadioStyled></RadioStyled>
-                </div>
-                </div>   
-                </RdvInfo>
-                      
-        
+            <div
+              style={{
+                display: `${rdvState ? "flex" : "none"}`,
+                flexWrap: "wrap",
+              }}
+            >
+              <input
+                className="rdvTime"
+                type="time"
+                onChange={(e) => setRdvTime(e.target.value)}
+                value={rdvTime}
+              ></input>
+              <br />
+              <RadioStyled></RadioStyled>
+            </div>
+          </div>
+        </RdvInfo>
       </div>
 
       <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
@@ -250,7 +256,7 @@ return(
           onClick={takePhoto}
           style={{
             borderRadius: "20%",
-            height:"47vh",
+            height: "47vh",
             display: `${hasPhoto ? "none" : "flex"}`,
           }}
         >
@@ -267,8 +273,8 @@ return(
             borderRadius: "20%",
             width: "20vw",
             height: "47vh",
-            position:"absolute",
-            left:"10px",
+            position: "absolute",
+            left: "10px",
             display: `${takePictureSwitch}`,
           }}
           ref={photoRef}
@@ -281,7 +287,7 @@ return(
         setLaboZone(true), getVideo();
       }}
     >
-      <TakePitureButton props={"Demarrer"}/>
+      <TakePitureButton props={"Demarrer"} />
     </div>
   );
 }

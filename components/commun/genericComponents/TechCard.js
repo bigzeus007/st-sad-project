@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { auth } from "../../../firebase";
 import techPhoto from "../../../public/images/carPicture.jpg";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 const CardTechStyled = styled.div`
   position: absolute;

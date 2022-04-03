@@ -54,7 +54,7 @@ export default function AccueilNext({user}) {
   useEffect(()=>
     onSnapshot(myParking,(snapshot)=>setCarsList(snapshot.docs.map(doc=>doc.data())))
     
-  ,[])
+  )
 
 
 

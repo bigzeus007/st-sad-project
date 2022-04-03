@@ -134,8 +134,7 @@ export default function CQSwip({ user }) {
       onSnapshot(myParking, (snapshot) =>{if(start) setCarsList(snapshot.docs.map((doc) =>  doc.data()));
       })
        return () => { start = false };//reverifying
-    },
-    []
+    }
   );
 
   

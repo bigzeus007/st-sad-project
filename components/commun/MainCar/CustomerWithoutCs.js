@@ -1,24 +1,10 @@
 import React from "react";
-import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
-import MyIcons from "../../../src/images.js";
-
-import { MainCarCard } from "../../../styles/MainCarCard";
-import CardComponent from "../../../styles/CardComponent";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-
 import { useState } from "react";
-
-import { initialTech } from "../flipCard/content";
-import { initialCar } from "../flipCard/newContent";
 import { auth } from "../../../firebase";
-import { Timestamp } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
-import { carModification } from "../../../src/userReducer";
-import CarToChange from "../genericComponents/CarToChange";
-import MyServiceCarIcons from "../MyServiceCarIcons/MyServiceCarIcons";
 import techListFb from "../../../src/staffListBdd.js";
-
 function CustomerWithoutCs({ props }, { techList = techListFb }) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
@@ -27,8 +13,6 @@ function CustomerWithoutCs({ props }, { techList = techListFb }) {
   // user identification
 
   const storage = getStorage();
-  const [change, setChange] = useState(false);
-
   const dispatch = useDispatch();
   const toModify = useSelector((state) => state.userOptions.carToModifyStatus);
   // const carToLab = useSelector((state) => state.userOptions.carToModify);
@@ -57,7 +41,7 @@ function CustomerWithoutCs({ props }, { techList = techListFb }) {
         <p>Arr:{arrivedTime} </p>
         <p>RDV: {props.rdvTimeFixed}</p>
         <div className="visualData">
-          <img
+          <Image
             alt={props.customerName}
             name={props.customerName}
             src={carImage}
@@ -66,32 +50,32 @@ function CustomerWithoutCs({ props }, { techList = techListFb }) {
           />
           <div className="iconList">
             {props.express && (
-              <img
+              <Image
                 className="icon"
                 src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechExpress.jpg?alt=media&token=bf4f24de-7902-4285-afe6-e3e965cf9ca8"
                 alt="image-revision"
-              ></img>
+              ></Image>
             )}
             {props.mecanique && (
-              <img
+              <Image
                 className="icon"
                 src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechMecAlt.jpg?alt=media&token=0a2e1dc8-8309-4b19-841a-7582dde13481"
                 alt="image-mecanique"
-              ></img>
+              ></Image>
             )}
             {props.diagnostic && (
-              <img
+              <Image
                 className="icon"
                 src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechDiag.png?alt=media&token=a5bdaf9d-2345-4602-899b-0ced2aecb112"
                 alt="image-Diag-Auto"
-              ></img>
+              ></Image>
             )}
             {props.carrosserie && (
-              <img
+              <Image
                 className="icon"
                 src="https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/carServiceIcons%2FtechBody.png?alt=media&token=da893cc1-2903-4027-90dc-2d822e9a8c87"
                 alt="image-carrosserie"
-              ></img>
+              ></Image>
             )}
           </div>
         </div>

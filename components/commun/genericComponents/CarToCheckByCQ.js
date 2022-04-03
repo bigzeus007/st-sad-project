@@ -1,33 +1,18 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
-import { Button } from "../../../styles/Button.styled";
+import Image from "next/image";
+
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import { auth, db } from "../../../firebase";
+import { db } from "../../../firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../../../firebase";
-import CarDetailsOptions from "./CarDetailsOptions";
-import RadioStyled from "../../../styles/RadioStyled";
-import { doc, setDoc, serverTimestamp, collection } from "firebase/firestore";
+
+import { doc, setDoc, collection } from "firebase/firestore";
 import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  rdvTimeSelected,
-  rdvStatus,
-  customerName,
-  selectCs,
-} from "../../../src/csReducer";
+import { rdvStatus, selectCs } from "../../../src/csReducer";
 import { carModification } from "../../../src/userReducer";
-import { async } from "@firebase/util";
-import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
-import NewButtonColored from "../../../styles/NewButtonColored.styled";
-import {
-  ChooseRdvStatus,
-  RdvInfo,
-} from "../../../styles/ChooseRdvStatus.style";
-import RdvOrNotInput from "../../../styles/RdvOrNotInput";
-import CsAffected from "./csAffected";
 
-export default function CarToAffectByPisteur({props,user}) {
+export default function CarToAffectByPisteur({ props, user }) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
@@ -35,7 +20,7 @@ export default function CarToAffectByPisteur({props,user}) {
   const [diagnostic, setDiagnostic] = useState(props.workDone.diagnostic);
   const [mecanique, setMecanique] = useState(props.workDone.mecanique);
   const [carrosserie, setCarrosserie] = useState(props.workDone.carrosserie);
-  const[techSelected,setTechSelected]=useState(null)
+  const [techSelected, setTechSelected] = useState(null);
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
   );
@@ -59,25 +44,23 @@ export default function CarToAffectByPisteur({props,user}) {
         "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
       )
     );
-  console.log(props,user)
+  console.log(props, user);
 
   const docref = collection(db, "cars");
 
   const handleSubmit = async () => {
-
-  
-   await setDoc(
+    await setDoc(
       doc(docref, `${props.id}`),
       {
         isItInGoodPlace: false,
-        affected:"Parking",
-        
+        affected: "Parking",
+
         basyCar: false,
         carStory: [
           {
             who: `${user.nom}`,
             when: new Date().toISOString().substring(0, 16),
-            what: `${"CHECKED BY "+techSelected}`,
+            what: `${"CHECKED BY " + techSelected}`,
           },
         ],
       },
@@ -124,50 +107,70 @@ export default function CarToAffectByPisteur({props,user}) {
         </div>
         <div>
           <p>TRAVAUX</p>
-          {express&&<><input
-            className="trvx"
-            type="checkbox"
-            id="Revision"
-            name="Revision"
-            value={express}
-            checked={express}
-            readOnly={true}
-          />
-          <label htmlFor="express">Express{" "}</label><span className="">{props.workDone.express}</span>
-          <br /></>}
-          {diagnostic&&<><input
-            className="trvx"
-            type="checkbox"
-            id="diagnostic"
-            name="diagnostic"
-            value={diagnostic}
-            checked={diagnostic}
-            readOnly={true}
-          />
-          <label htmlFor="diagnostic">Diag{" "}</label><span className="">{props.workDone.diagnostic}</span>
-          <br /></>}
-          {carrosserie&&<><input
-            className="trvx"
-            type="checkbox"
-            id="Carrosserie"
-            name="Carrosserie"
-            value={carrosserie}
-            checked={carrosserie}
-            readOnly={true}
-          />
-          <label htmlFor="Carrosserie">Carrosserie{" "}</label><span  className="">{props.workDone.carrosserie}</span>
-          <br /></>}
-          {mecanique&&<><input
-            className="trvx"
-            type="checkbox"
-            id="mecanique"
-            name="mecanique"
-            value={mecanique}
-            checked={mecanique}
-            readOnly={true}
-          />
-          <label htmlFor="mecanique">Mecanique{" "}</label><span className="">{props.workDone.mecanique}</span>
-          <br /></>}
+          {express && (
+            <>
+              <input
+                className="trvx"
+                type="checkbox"
+                id="Revision"
+                name="Revision"
+                value={express}
+                checked={express}
+                readOnly={true}
+              />
+              <label htmlFor="express">Express </label>
+              <span className="">{props.workDone.express}</span>
+              <br />
+            </>
+          )}
+          {diagnostic && (
+            <>
+              <input
+                className="trvx"
+                type="checkbox"
+                id="diagnostic"
+                name="diagnostic"
+                value={diagnostic}
+                checked={diagnostic}
+                readOnly={true}
+              />
+              <label htmlFor="diagnostic">Diag </label>
+              <span className="">{props.workDone.diagnostic}</span>
+              <br />
+            </>
+          )}
+          {carrosserie && (
+            <>
+              <input
+                className="trvx"
+                type="checkbox"
+                id="Carrosserie"
+                name="Carrosserie"
+                value={carrosserie}
+                checked={carrosserie}
+                readOnly={true}
+              />
+              <label htmlFor="Carrosserie">Carrosserie </label>
+              <span className="">{props.workDone.carrosserie}</span>
+              <br />
+            </>
+          )}
+          {mecanique && (
+            <>
+              <input
+                className="trvx"
+                type="checkbox"
+                id="mecanique"
+                name="mecanique"
+                value={mecanique}
+                checked={mecanique}
+                readOnly={true}
+              />
+              <label htmlFor="mecanique">Mecanique </label>
+              <span className="">{props.workDone.mecanique}</span>
+              <br />
+            </>
+          )}
           <div>Heure de restitution : {props.restitutionTime}</div>
         </div>
 
@@ -178,7 +181,7 @@ export default function CarToAffectByPisteur({props,user}) {
       <div>
         <h2>{props.serviceAdvisor}</h2>
       </div>
-      <img
+      <Image
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}

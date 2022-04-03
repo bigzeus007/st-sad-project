@@ -9,7 +9,7 @@ export const CarToAffectStyled = styled.div`
   padding-left: 2vw;
   font-size: 14px;
 
-  img {
+  Image {
     position: absolute;
     top: 2vh;
     right: 0px;

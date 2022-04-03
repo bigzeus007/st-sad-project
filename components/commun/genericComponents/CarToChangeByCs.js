@@ -1,46 +1,17 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { carModification } from "../../../src/userReducer";
-import MyIcons from "../../../src/images";
 import { db } from "../../../firebase";
-import {
-  getStorage,
-  getDownloadURL,
-  ref,
-  uploadString,
-} from "firebase/storage";
-import { storage } from "../../../firebase";
-import CarDetailsOptions from "./CarDetailsOptions";
-import RadioStyled from "../../../styles/RadioStyled";
-import {
-  doc,
-  setDoc,
-  serverTimestamp,
-  collection,
-  query,
-  where,
-  onSnapshot,
-  getDoc,
-} from "firebase/firestore";
-
+import { getStorage, getDownloadURL, ref } from "firebase/storage";
+import { doc, setDoc, collection } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  rdvTimeSelected,
-  rdvStatus,
-  customerName,
-  selectCs,
-} from "../../../src/csReducer";
-import { async } from "@firebase/util";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import CsAffected from "./csAffected";
 import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
-
 export default function CarToChangeByCs({ props }) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
   const toDay = new Date().toISOString().substring(0, 10);
-
   const [carsList, setCarsList] = useState([]);
   const [express, setExpress] = useState(props.express);
   const [diagnostic, setDiagnostic] = useState(props.diagnostic);
@@ -52,24 +23,15 @@ export default function CarToChangeByCs({ props }) {
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
   );
-
   const inputRef = useRef(null);
-  // const [csName, setCsName] = useState("");
 
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
-  // const carsRef = doc(db, "cars",`${props.customerName}`);
-  // DANGEROUS getDoc(carsRef).then((doc)=>setMyCarToChange(doc.data()))
+
   const dispatch = useDispatch();
   const customerIdentity = useSelector(
     (state) => state.csSelected.customerSetName
   );
-  // const choosenCs=useSelector((state)=>state.csSelected.serviceAdvisor)
 
-  // const csChoice = (e) => {
-  //   setCsName(e.target.id === csName ? "green" : "grey");
-  // };
-
-  //import car pictur from firestore
   const storage = getStorage();
   const spaceRef = ref(storage, `cars/${props.id}`);
 
@@ -87,18 +49,28 @@ export default function CarToChangeByCs({ props }) {
     await setDoc(
       doc(docref, `${props.id}`),
       {
-        // serviceAdvisor:choosenCs,
-        workToDo:{express:express,diagnostic: diagnostic,carrosserie: carrosserie,mecanique: mecanique},
-       
+        workToDo: {
+          express: express,
+          diagnostic: diagnostic,
+          carrosserie: carrosserie,
+          mecanique: mecanique,
+        },
+
         basyCar: false,
-        affected:"CA",
+        affected: "CA",
         express: express,
         diagnostic: diagnostic,
         carrosserie: carrosserie,
         mecanique: mecanique,
         restitutionTime: restitutionTime,
         restitutionDate: restitutionDate,
-        carStory:[{who:`${props.serviceAdvisor}`,when:new Date().toISOString().substring(0, 16),what:"FROM CS TO ATELIER"}],
+        carStory: [
+          {
+            who: `${props.serviceAdvisor}`,
+            when: new Date().toISOString().substring(0, 16),
+            what: "FROM CS TO ATELIER",
+          },
+        ],
       },
       { merge: true }
     ).then(dispatch(carModification()));
@@ -197,7 +169,7 @@ export default function CarToChangeByCs({ props }) {
           min={restitutionDate}
         ></input>
       </div>
-      <img
+      <Image
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}

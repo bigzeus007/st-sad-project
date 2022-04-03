@@ -124,9 +124,7 @@ export default function CSSwip({user}) {
     () =>
       onSnapshot(myParking, (snapshot) =>
         setCarsList(snapshot.docs.map((doc) => doc.data()))
-      ),
-
-    []
+      )
   );
 
   const dispatch = useDispatch();
