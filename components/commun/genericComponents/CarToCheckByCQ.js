@@ -71,7 +71,7 @@ export default function CarToAffectByPisteur({props,user}) {
       {
         isItInGoodPlace: false,
         affected:"Parking",
-        whereIsTheCar:"CQ",
+        
         basyCar: false,
         carStory: [
           {

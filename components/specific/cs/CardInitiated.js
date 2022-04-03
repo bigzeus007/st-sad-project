@@ -1,19 +1,19 @@
-import react from "react";
+// import react from "react";
 
-export default function CardInitiated(){
+// export default function CardInitiated(){
    
 
-    return (
-        <div className="Card">
+//     return (
+//         <div className="Card">
             
 
-            <CarRestitution className="Card__CarRestitution"/>            
-            <CarImage className="Card__CarImage"/>
-            <CarInfo className="Card__CarInfo"/>
-            <CarOption className="Card__CarOption"/>
+//             <CarRestitution className="Card__CarRestitution"/>            
+//             <CarImage className="Card__CarImage"/>
+//             <CarInfo className="Card__CarInfo"/>
+//             <CarOption className="Card__CarOption"/>
 
             
 
-        </div>
-    )
-}
+//         </div>
+//     )
+// }

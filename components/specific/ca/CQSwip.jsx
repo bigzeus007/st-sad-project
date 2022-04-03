@@ -127,7 +127,7 @@ export default function CQSwip({ user }) {
   const [carsList, setCarsList] = useState([]);
   const [toModify, setTomodify] = useState("");
   const carsRef = collection(db, "cars");
-  const myParking = query(carsRef, where("affected","==","CQ"));
+  const myParking = query(carsRef, where("whereIsTheCar","==",`${user.nom}`));
   
   useEffect(() =>  {
     let start = true;//reverifying

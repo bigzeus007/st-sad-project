@@ -35,7 +35,7 @@ export default function CarToAffectByPisteur({props,user}) {
   const [diagnostic, setDiagnostic] = useState(props.diagnostic);
   const [mecanique, setMecanique] = useState(props.mecanique);
   const [carrosserie, setCarrosserie] = useState(props.carrosserie);
-  const[techSelected,setTechSelected]=useState(props.whereIsTheCar)
+  const[techSelected,setTechSelected]=useState(props.affected)
   const [customerNameToModify, setCustomerNameToModify] = useState(
     props.customerName
   );
@@ -71,6 +71,7 @@ export default function CarToAffectByPisteur({props,user}) {
       {
         isItInGoodPlace: true,
         whereIsTheCar:techSelected,
+        affected:techSelected,
         basyCar: false,
         carStory: [
           {
@@ -168,7 +169,7 @@ export default function CarToAffectByPisteur({props,user}) {
           />
           <label htmlFor="mecanique">Mecanique{" "}</label><button onClick={()=>{setTechSelected(mecanique)}} className="techSelected">{props.mecanique}{mecanique==techSelected?"✅":" "}</button>
           <br /></>}
-          {props.workToDo==`${{express:"",diagnostic:"",carrosserie:"",mecanique:""}}`&&<><input
+          {props.workToDo==`${{express:"",diagnostic:"",carrosserie:"",mecanique:""}}`&&props.affected!="Parking"&&<><input
             className="trvx"
             type="checkbox"
             id="CQ"
@@ -179,7 +180,7 @@ export default function CarToAffectByPisteur({props,user}) {
           />
           <label htmlFor="CQ">Controle Qualite{" "}</label><button onClick={()=>{setTechSelected("niania")}} className="techSelected">{"niania"}{"niania"==techSelected?"✅":" "}</button>
           <br /></>}
-          {props.workToDo==`${{express:"",diagnostic:"",carrosserie:"",mecanique:""}}`&&<><input
+          {props.workToDo==`${{express:"",diagnostic:"",carrosserie:"",mecanique:""}}`&&props.affected!="Parking"&&<><input
             className="trvx"
             type="checkbox"
             id="CQ"
@@ -195,7 +196,7 @@ export default function CarToAffectByPisteur({props,user}) {
         </div>
 
         <div  onClick={() => handleSubmit()}>
-          <MySubmitButton props="Affecter"></MySubmitButton>
+          <MySubmitButton props={props.affected=="Parking"?"Parking":"Affecter"}></MySubmitButton>
         </div>
       </div>
       <div>
