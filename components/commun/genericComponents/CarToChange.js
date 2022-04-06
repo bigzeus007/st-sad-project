@@ -1,14 +1,10 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { carModification } from "../../../src/userReducer";
-
 import { db } from "../../../firebase";
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
-
 import { doc, setDoc, collection } from "firebase/firestore";
-
 import { useSelector, useDispatch } from "react-redux";
-
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import CsAffected from "./csAffected";
 
@@ -17,8 +13,7 @@ export default function CarToChange({ props }) {
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
 
-  const [carsList, setCarsList] = useState([]);
-  const [express, setExpress] = useState(props.express);
+   const [express, setExpress] = useState(props.express);
   const [diagnostic, setDiagnostic] = useState(props.diagnostic);
   const [mecanique, setMecanique] = useState(props.mecanique);
   const [carrosserie, setCarrosserie] = useState(props.carrosserie);
@@ -27,15 +22,9 @@ export default function CarToChange({ props }) {
     props.customerName
   );
 
-  const inputRef = useRef(null);
-  const [csName, setCsName] = useState("");
-
-  const rdvState = useSelector((state) => state.csSelected.rdvFixed);
 
   const dispatch = useDispatch();
-  const customerIdentity = useSelector(
-    (state) => state.csSelected.customerSetName
-  );
+  
   const choosenCs = useSelector((state) => state.csSelected.serviceAdvisor);
 
 

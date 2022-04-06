@@ -20,11 +20,7 @@ export default function CarToAffectByPisteur({ props, user }) {
   const [mecanique, setMecanique] = useState(props.mecanique);
   const [carrosserie, setCarrosserie] = useState(props.carrosserie);
   const [techSelected, setTechSelected] = useState(props.affected);
-  const [customerNameToModify, setCustomerNameToModify] = useState(
-    props.customerName
-  );
-
-  const inputRef = useRef(null);
+ 
 
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
 

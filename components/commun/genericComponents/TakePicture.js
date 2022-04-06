@@ -1,10 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect,useState } from "react";
 import { useRef } from "react";
-
 import { db } from "../../../firebase";
 import { ref, uploadString } from "firebase/storage";
 import { storage } from "../../../firebase";
-
 import RadioStyled from "../../../styles/RadioStyled";
 import {
   doc,
@@ -13,10 +11,8 @@ import {
   serverTimestamp,
   collection,
 } from "firebase/firestore";
-
 import { useSelector, useDispatch } from "react-redux";
 import { rdvStatus, customerName, selectCs } from "../../../src/csReducer";
-
 import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
 import NewButtonColored from "../../../styles/NewButtonColored.styled";
 import {
@@ -27,8 +23,7 @@ import {
 export default function TakePicture() {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
-  const [hasPhoto, setHasPhoto] = useState(false);
-  const [cameraStatus, setCameraStatus] = useState(false);
+  const [hasPhoto, setHasPhoto] = useState(false);  
   const [laboZone, setLaboZone] = useState(false);
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
@@ -42,10 +37,6 @@ export default function TakePicture() {
     (state) => state.csSelected.customerSetName
   );
   const theCs = useSelector((state) => state.csSelected.serviceAdvisor);
-
-  const csChoice = (e) => {
-    setCsName(e.target.id === csName ? "green" : "grey");
-  };
 
   const submitMyCarPhot = (photo, photoId) => {
     const storageRef = ref(storage, `cars/${photoId}`);

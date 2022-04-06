@@ -1,5 +1,5 @@
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useEffect } from "react";
+
 import { db } from "../firebase";
 
 const techsRef = query(

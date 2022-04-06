@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import Image from "next/image";
-
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import { db } from "../../../firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-
 import { doc, setDoc, collection } from "firebase/firestore";
 import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 import { useSelector, useDispatch } from "react-redux";
@@ -191,20 +189,7 @@ export default function CarToChangeByCPRV({ props }) {
       </div>
       <div>
         <CsAffected defaultCs={props.serviceAdvisor}></CsAffected>
-        {/* <input
-      className="dateNdTime"
-        type="time"
-        onChange={(e) => setRestitutionTime(e.target.value)}
-        value={restitutionTime}
-      ></input> */}
-        {/* <input
-      className="dateNdTime"
-        type="date"
-        placeholder="dd-mm-yyyy"
-        onChange={(e) => setRestitutionDate(e.target.value)}
-        defaultValue={restitutionDate}
-        min={restitutionDate}
-      ></input> */}
+        
       </div>
       <Image
         alt="photoVehicle"

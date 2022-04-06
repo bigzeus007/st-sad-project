@@ -5,14 +5,9 @@ import Image from "next/image";
 export default function TechCarInSwiper({props}){
     const [carImage, setCarImage] = useState(
         "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
-      );
-    
-    
-    
+      );    
       const storage = getStorage();
-    //   const [change, setChange] = useState(false);
-    
-  
+    //   const [change, setChange] = useState(false);  
       const spaceRef = ref(storage, `cars/${props.id}`);
       getDownloadURL(spaceRef)
         .then((url) => setCarImage(url))
@@ -22,12 +17,6 @@ export default function TechCarInSwiper({props}){
           )
         );
     
-    //   const user = auth.currentUser;
-    
-    //   function checkProfilTech(checking) {
-    //     return checking.email === user.email;
-    //   }
-    //   const userBdd = techList.find(checkProfilTech);
     
       const arrivedTime = props.createdAt.toDate().toLocaleTimeString();
     

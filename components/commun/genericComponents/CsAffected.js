@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { selectCs } from "../../../src/csReducer";
-
 export default function CsAffected({ defaultCs }) {
   const dispatch = useDispatch();
-  const csToCheck = useSelector((state) => state.csSelected.serviceAdvisor);
-
-  const [csSelected, setCsSelected] = useState(defaultCs);
+    const [csSelected, setCsSelected] = useState(defaultCs);
 
   const handlSelectCs = (conseiller) => {
     setCsSelected(conseiller);

@@ -14,27 +14,3 @@ export default function Home() {
   );
 }
 
-/*
-
-
-function App() {
-
-  const [user] = useAuthState(auth);
-
-  return (
-    <div className="App">
-      <header>
-        <h1>ST-project Using React and Firebase</h1>
-        <SignOut />
-      </header>
-
-      <section>
-        {user ? <ChatRoom /> : <SignIn />}
-      </section>
-
-    </div>
-  );
-}
-
-export default App;
-*/

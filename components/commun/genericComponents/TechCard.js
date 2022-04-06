@@ -2,8 +2,6 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import { auth } from "../../../firebase";
-import techPhoto from "../../../public/images/carPicture.jpg";
-
 import { useState } from "react";
 
 const CardTechStyled = styled.div`
@@ -76,19 +74,7 @@ const CardTechStyled = styled.div`
 `;
 
 export default function TechCard({props}) {
-  // const props = {
-  //   photo: techPhoto,
-  //   nom: "SAID",
-  //   availability: false,
-  //   doingStartWorking: 9.5,
-  //   toDo: 2,
-  //   done: 3,
-  //   hToDo: 3,
-  //   hDone: 1.5,
-  //   hDoing: 1,
-  //   workDayHours: 9,
-  //   cardsHistory: ["cardID1", "cardID2"],
-  // };
+ 
 
   const [doingProgress, setDoingProgress] = useState("0");
 

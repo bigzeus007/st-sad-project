@@ -4,7 +4,6 @@ import Image from "next/image"
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
 import { db } from "../../../firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-
 import { doc, setDoc, collection, updateDoc } from "firebase/firestore";
 import { MyCarToChange } from "../../../styles/MyCarToChange.styled";
 import { useSelector, useDispatch } from "react-redux";
