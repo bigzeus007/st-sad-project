@@ -10,23 +10,18 @@ import "swiper/css/effect-coverflow";
 import { db } from "../../../firebase";
 
 // import required modules
-import { Grid, Pagination } from "swiper";
+import { Pagination } from "swiper";
 import styled from "styled-components";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import CarInSwiper from "../../commun/genericComponents/CarInSwiper";
 import { useDispatch, useSelector } from "react-redux";
 import { carModification } from "../../../src/userReducer";
-import CarToAffect from "../../commun/genericComponents/CarToAffect";
-import CarToChangeByCPRV from "../../commun/genericComponents/CarToChangeByCPRV";
-import CarToChangeByTech from "../../commun/genericComponents/CarToChangeByTech";
-import NavBar from "../../commun/navBar/NavBar";
+
 import TopNavBar from "../../../styles/TopNavBar";
-import { Button } from "../../../styles/Button.styled";
+
 import CarToAffectByPisteur from "../../commun/genericComponents/CarToAffectByPisteur";
 
-const TechWorkPlaceStyled=styled.div`
-  
-`
+
 
 const SwiperStyle = styled.div`
   position: relative;
