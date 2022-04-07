@@ -6,19 +6,13 @@ import { useState } from "react";
 
 const CardTechStyled = styled.div`
   position: absolute;
-  width:20%;
-  
+  width: 20%;
 
-
-
-  .techInfos, .techCard {
+  .techInfos,
+  .techCard {
     position: relative;
     border-radius: 3px 0px 0px 30px;
-    
-
-    
   }
-
 
   .progressIndicators {
     position: absolute;
@@ -28,7 +22,6 @@ const CardTechStyled = styled.div`
     right: 0;
     width: 10%;
     height: 100%;
-    
   }
   .progressBar {
     width: 50%;
@@ -42,10 +35,8 @@ const CardTechStyled = styled.div`
     background-color: green;
   }
 
-
-
   .techAffected {
-    border:0px;
+    border: 0px;
     position: absolute;
     top: 0;
     background-color: transparent;
@@ -58,24 +49,20 @@ const CardTechStyled = styled.div`
       color: green;
     }
   }
-  .carNumer{
-    padding-top:0px;
+  .carNumer {
+    padding-top: 0px;
   }
   .techParkStat {
-    display:inline-block;
-    margin-top:-10%;
-    height:25px;
-    font-size:14px;
+    display: inline-block;
+    margin-top: -10%;
+    height: 25px;
+    font-size: 14px;
     display: flex;
     justify-content: space-evenly;
-    
-  
   }
 `;
 
-export default function TechCard({props}) {
- 
-
+export default function TechCard({ props }) {
   const [doingProgress, setDoingProgress] = useState("0");
 
   // Future use For adding progress bar
@@ -93,11 +80,6 @@ export default function TechCard({props}) {
     setTxOccupation(`${(minutes / 60) * 100}%`);
   }, 200);
 
-  //user check
-  const checkUserEmail = auth.currentUser.email;
-  function checkProfilTech(checking) {
-    return checking.email === checkUserEmail;
-  }
   return (
     <CardTechStyled>
       <div className="techCard">
@@ -112,9 +94,8 @@ export default function TechCard({props}) {
               <p>{props.nom}</p>
             ) : (
               <Image
-                 width={110}
-                  height={90}
-                  
+                width={110}
+                height={90}
                 // layout="fill"
                 // objectFit="fill"
                 className="techPhoto"

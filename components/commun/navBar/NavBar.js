@@ -10,7 +10,7 @@ import CPRVSwip from "../../specific/ca/CPRVSwip";
 import CSSwip from "../../specific/ca/CSSwip";
 import AjouterUser from "../../AjouterUser";
 import TechSwip from "../../specific/ca/TechSwip";
-import { useSelector } from "react-redux";
+
 import P2Swip from "../../specific/ca/P2Swip";
 import CQSwip from "../../specific/ca/CQSwip";
 
@@ -21,16 +21,11 @@ export default function NavBar() {
     collection(db, "users"),
     where("email", "==", `${auth.currentUser.email}`)
   );
-  useEffect(
-    () =>
-      getDocs(actualUser).then((elem) =>
-        elem.forEach((inUser) => setUser(inUser.data()))
-      )
+  useEffect(() =>
+    getDocs(actualUser).then((elem) =>
+      elem.forEach((inUser) => setUser(inUser.data()))
+    )
   );
-
-  function checkProfilTech(checking) {
-    return checking.email == auth.currentUser.email;
-  }
 
   const profil = user.job;
   const carPic = auth.currentUser.photoURL ? auth.currentUser.photoURL : false;
@@ -45,19 +40,13 @@ export default function NavBar() {
     toggle === "dark" ? setDarkMode("light") : setDarkMode("dark");
   };
 
-  const toModifyStatus = useSelector(
-    (state) => state.userOptions.carToModifyStatus
-  );
-
   return (
     <>
       <div className={darkMode}>
         <nav className={`sidebar ${toggle}`}>
           <header>
             <div className="image-text">
-              <span className="image">
-               
-              </span>
+              <span className="image"></span>
 
               <div className="text logo-text">
                 <span className="name">Tarhi said</span>
@@ -184,10 +173,9 @@ export default function NavBar() {
               <p style={{ fontSize: "3vw" }}>Bonjour : {user.nom}</p>
 
               <Image
-              width={"5vw"}
+                width={"5vw"}
                 height={"5vw"}
                 src={carPic}
-                
                 alt="photo profil"
               ></Image>
             </div>

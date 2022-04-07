@@ -2,10 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
-import { auth } from "../../../firebase";
-import { useSelector, useDispatch } from "react-redux";
-import techListFb from "../../../src/staffListBdd.js";
-function CustomerWithoutCs({ props }, { techList = techListFb }) {
+
+function CustomerWithoutCs({ props }) {
   const [carImage, setCarImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
   );
@@ -13,9 +11,7 @@ function CustomerWithoutCs({ props }, { techList = techListFb }) {
   // user identification
 
   const storage = getStorage();
-  const dispatch = useDispatch();
-  const toModify = useSelector((state) => state.userOptions.carToModifyStatus);
-  // const carToLab = useSelector((state) => state.userOptions.carToModify);
+ 
   console.log(props.id.id, "hell");
   const spaceRef = ref(storage, `cars/${props.id}`);
   getDownloadURL(spaceRef)
@@ -26,12 +22,7 @@ function CustomerWithoutCs({ props }, { techList = techListFb }) {
       )
     );
 
-  const user = auth.currentUser;
-
-  function checkProfilTech(checking) {
-    return checking.email === user.email;
-  }
-  const userBdd = techList.find(checkProfilTech);
+ 
 
   const arrivedTime = props.createdAt.toDate().toLocaleTimeString();
 
