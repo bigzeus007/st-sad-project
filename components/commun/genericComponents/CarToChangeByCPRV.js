@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { rdvStatus, selectCs } from "../../../src/csReducer";
 import { carModification } from "../../../src/userReducer";
 
-import CsAffected from "./csAffected";
+import CsAffected from "./CsAffected";
 
 export default function CarToChangeByCPRV({ props }) {
   const [carImage, setCarImage] = useState(
