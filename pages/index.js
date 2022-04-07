@@ -1,6 +1,6 @@
 import React from "react";
 import "firebase/firestore";
-import { auth } from "../firebase";
+import { auth } from "../components/commun/genericComponents/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "./Login";
 import Accueil from "../components/commun/navBar/Accueil"; 

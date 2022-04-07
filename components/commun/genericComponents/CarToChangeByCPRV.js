@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import Image from "next/image";
 import { MySubmitButton } from "../../../styles/MySubmitButton.styled";
-import { db } from "../../../firebase";
+import { db } from "./firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { doc, setDoc, collection } from "firebase/firestore";
 import { MyCarToChange } from "../../../styles/MyCarToChange.styled";

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
-import { db } from "../../../firebase";
+import { db } from "../../commun/genericComponents/firebase";
 // import required modules
 import { Grid, Pagination } from "swiper";
 import styled from "styled-components";

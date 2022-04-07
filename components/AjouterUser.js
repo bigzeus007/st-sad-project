@@ -1,6 +1,6 @@
 import React from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "./commun/genericComponents/firebase";
 import { techList } from "./commun/flipCard/techList";
 
 export default function AjouterUser({ user }) {

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import Image from "next/image";
-import { auth } from "../../../firebase";
+import { auth } from "../genericComponents/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db } from "../genericComponents/firebase";
 import TakePicture from "../genericComponents/TakePicture";
 import ChefAtelierSwip from "../../specific/ca/ChefAtelierSwip";
 import CPRVSwip from "../../specific/ca/CPRVSwip";

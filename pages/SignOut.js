@@ -1,4 +1,4 @@
-import { auth } from "../firebase";
+import { auth } from "../components/commun/genericComponents/firebase";
 import React from "react";
 
 

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { carModification } from "../../../src/userReducer";
-import { db } from "../../../firebase";
+import { db } from "./firebase";
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
 import { doc, setDoc, collection } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Login.module.css";
 import { GoogleOutlined, FacebookOutlined } from "@ant-design/icons";
 import firebase from "firebase/compat/app";
-import { auth } from "../firebase";
+import { auth } from "../components/commun/genericComponents/firebase";
 
 export default function Login() {
   return (

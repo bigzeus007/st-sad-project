@@ -1,6 +1,6 @@
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-import { db } from "../firebase";
+import { db } from "../components/commun/genericComponents/firebase";
 
 const techsRef = query(
   collection(db, "users"),

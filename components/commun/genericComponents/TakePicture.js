@@ -1,8 +1,8 @@
 import React, { useEffect,useState } from "react";
 import { useRef } from "react";
-import { db } from "../../../firebase";
+import { db } from "./firebase";
 import { ref, uploadString } from "firebase/storage";
-import { storage } from "../../../firebase";
+import { storage } from "./firebase";
 import RadioStyled from "../../../styles/RadioStyled";
 import {
   doc,
