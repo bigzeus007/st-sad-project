@@ -1,6 +1,6 @@
-import SignOut from "./SignOut";
+import SignOut from "../../../pages/SignOut";
 
-import NavBar from "../components/commun/navBar/NavBar";
+import NavBar from "./NavBar";
 
 export default function Accueil() {
   return (

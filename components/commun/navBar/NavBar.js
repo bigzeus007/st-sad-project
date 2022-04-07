@@ -22,10 +22,10 @@ export default function NavBar() {
     where("email", "==", `${auth.currentUser.email}`)
   );
   useEffect(() =>
-    getDocs(actualUser).then((elem) =>
+  getDocs(actualUser).then((elem) =>
       elem.forEach((inUser) => setUser(inUser.data()))
     )
-  );
+  ,[]);
 
   const profil = user.job;
   const carPic = auth.currentUser.photoURL ? auth.currentUser.photoURL : false;
