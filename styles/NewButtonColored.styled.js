@@ -5,18 +5,21 @@ const NewButtonColored = styled.div`
 * {
   margin: 0;
   padding: 0;
+  font-size:17px;
+  
 }
 
 
 .subscribe {
   position: absolute;
-  right: -21vw;
-  top: 25vh;
+  display:flex;
+  left: 40vw;
+  bottom: -30vh;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 30vw;
+  width: 80vw;
   
 }
 

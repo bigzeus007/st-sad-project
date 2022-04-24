@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import { db } from "./firebase";
 import { ref, uploadString } from "firebase/storage";
@@ -16,6 +16,7 @@ import { rdvStatus, customerName, selectCs } from "../../../src/csReducer";
 import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
 import NewButtonColored from "../../../styles/NewButtonColored.styled";
 import {
+  CarInfos,
   ChooseRdvStatus,
   RdvInfo,
 } from "../../../styles/ChooseRdvStatus.style";
@@ -23,7 +24,7 @@ import {
 export default function TakePicture() {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
-  const [hasPhoto, setHasPhoto] = useState(false);  
+  const [hasPhoto, setHasPhoto] = useState(false);
   const [laboZone, setLaboZone] = useState(false);
   const [image, setImage] = useState(null);
   const [customer, setCustomer] = useState(null);
@@ -132,7 +133,7 @@ export default function TakePicture() {
     if (laboZone) {
       getVideo();
     }
-  }, [videoRef,laboZone]);
+  }, [videoRef, laboZone]);
 
   const [carStatus, setCarStatus] = useState("none");
   const takePictureSwitch = hasPhoto ? "flex" : "none";
@@ -185,36 +186,23 @@ export default function TakePicture() {
 
   return laboZone ? (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div style={{ display: `${takePictureSwitch}` }}>
-        <ChooseRdvStatus>
-          <button onClick={() => handlReturn()}>SANS RDV</button>
-          <button onClick={() => dispatch(rdvStatus(true))}>AVEC RDV</button>
-        </ChooseRdvStatus>
+      <CarInfos pictureTooked={takePictureSwitch}>
+        <canvas
+          style={{
+            display: `${takePictureSwitch}`,
+          }}
+          ref={photoRef}
+        />
+        <button className="SRDV" onClick={() => handlReturn()}>
+          SANS RDV
+        </button>
+        <button className="RDV" onClick={() => dispatch(rdvStatus(true))}>
+          AVEC RDV
+        </button>
 
-        <NewButtonColored>
-          <div className="subscribe">
-            <a
-              href="#"
-              onClick={() => {
-                closePhoto();
-              }}
-              className="btn-3d-can"
-            >
-              <span>cancel</span>
-            </a>
-            <a
-              href="#"
-              onClick={() => handleSubmit(image)}
-              style={{ display: `${toggleSubmit() ? "block" : "none"}` }}
-              className="btn-3d-sub"
-            >
-              <span>submit</span>
-            </a>
-            <br />
-          </div>
-        </NewButtonColored>
-        <RdvInfo>
-          <div>
+       
+        
+          
             <input
               className="customerName"
               ref={inputRef}
@@ -238,39 +226,53 @@ export default function TakePicture() {
               <br />
               <RadioStyled></RadioStyled>
             </div>
+            <NewButtonColored>
+          <div className="subscribe">
+            <a
+              href="#"
+              onClick={() => {
+                closePhoto();
+              }}
+              className="btn-3d-can"
+            >
+              <span>cancel</span>
+            </a>
+            <a
+              href="#"
+              onClick={() => handleSubmit(image)}
+              style={{ display: `${toggleSubmit() ? "block" : "none"}` }}
+              className="btn-3d-sub"
+            >
+              <span>submit</span>
+            </a>
+            <br />
           </div>
-        </RdvInfo>
-      </div>
+        </NewButtonColored>
+          
+        
+      </CarInfos>
 
       <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
-        <button
+        <div
           onClick={takePhoto}
           style={{
-            borderRadius: "20%",
-            height: "47vh",
+            position: "relative",
+            padding: "10% 10% 20% 15%",
+            height: "80vh",
+            width: "70vw",
             display: `${hasPhoto ? "none" : "flex"}`,
           }}
         >
           <video
             ref={videoRef}
-            style={{ borderRadius: "20%", objectFit: "fill" }}
-            width="100%"
-            height="100%"
+            style={{
+              borderRadius: "20%",
+              width: "100%",
+              height: "100%",
+              objectFit: "fill",
+            }}
           />
-        </button>
-
-        <canvas
-          style={{
-            borderRadius: "20%",
-            width: "30vw",
-            height: "40vh",
-            position: "absolute",
-            left: "30%",
-            bottom:"10%",
-            display: `${takePictureSwitch}`,
-          }}
-          ref={photoRef}
-        />
+        </div>
       </div>
     </div>
   ) : (

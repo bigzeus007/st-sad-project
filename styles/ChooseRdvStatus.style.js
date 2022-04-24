@@ -1,45 +1,69 @@
 import styled from "styled-components";
 
-export const ChooseRdvStatus = styled.div`
-  position: absolute;
-  left: 21.5vw;
-`;
+export const CarInfos=styled.div`
+display:${props=>props.pictureTooked};
+flex-direction:column;
+position: absolute;
+  
+  top: 5vw;
+  left: 2vw;
+  justify-content: space-between;
+canvas {
+    border-radius: 20%;
+    width: 30vw;
+    height: 40vh;
+    position: relative;
 
-export const RdvInfo = styled.div`
-  position: absolute;
-  top: 5vh;
-  left: 25vw;
+    
+  }
+  button {
+    border-radius: 20%;
+    height: 10vh;
+    width: 10vw;
+  }
+  .SRDV {
+    background-color: steelblue;
+  }
+  .RDV {
+    background-color: green;
+  }
   .customerName {
-    position: absolute;
-    top: -3.5vh;
-    left: 32vw;
     width: 20vw;
-    font-size: 1.7vw;
   }
   .rdvTime {
     position: absolute;
     left: 32vw;
     top: 2vh;
     width: 17vw;
-    font-size: 1.7vw;
   }
   @media screen and (max-width: 620px) {
-     {
+    font-size: 5px;
 
-      .customerName {
-    
-    top: 1vh;
-    left: 0vw;
-    width: 100px;
-    font-size: 10px;
-  }
-  .rdvTime {
-    
-    left: 0vw;
-    top: 5vh;
-    width: 100px;
-    font-size: 10px;
-  }
+    .customerName {
+      top: 1vh;
+      left: 0vw;
+      width: 100px;
+    }
+    .rdvTime {
+      left: 0vw;
+      top: 5vh;
+      width: 100px;
     }
   }
+
+`
+
+export const ChooseRdvStatus = styled.div`
+  
+ 
+`;
+
+export const RdvInfo = styled.div`
+  position: absolute;
+
+  top: 15vh;
+  left: 10vw;
+  font-size: 1.7vw;
+
+  
 `;
