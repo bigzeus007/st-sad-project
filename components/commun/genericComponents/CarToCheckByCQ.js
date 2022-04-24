@@ -38,7 +38,7 @@ export default function CarToAffectByPisteur({ props, user }) {
         "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
       )
     );
-  console.log(props, user);
+ 
 
   const docref = collection(db, "cars");
 

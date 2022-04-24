@@ -13,6 +13,7 @@ import TechSwip from "../../specific/ca/TechSwip";
 
 import P2Swip from "../../specific/ca/P2Swip";
 import CQSwip from "../../specific/ca/CQSwip";
+import Link from "next/link";
 
 export default function NavBar() {
   const [user, setUser] = useState({});
@@ -78,10 +79,12 @@ export default function NavBar() {
                 </li>
 
                 <li className="nav-link">
+                  <Link href="/Admin">
                   <a href="#">
                     <i className="bx bx-bar-chart-alt-2 icon"></i>
                     <span className="text nav-text">Revenue</span>
                   </a>
+                  </Link>
                 </li>
 
                 <li className="nav-link">
@@ -180,7 +183,7 @@ export default function NavBar() {
               ></Image>
             </div>
           </div>
-
+          
           {profil == "CA" && <ChefAtelierSwip></ChefAtelierSwip>}
           {profil == "Pisteur" && <TakePicture></TakePicture>}
 

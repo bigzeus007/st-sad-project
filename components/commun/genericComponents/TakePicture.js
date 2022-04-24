@@ -262,10 +262,11 @@ export default function TakePicture() {
         <canvas
           style={{
             borderRadius: "20%",
-            width: "20vw",
-            height: "47vh",
+            width: "30vw",
+            height: "40vh",
             position: "absolute",
-            left: "10px",
+            left: "30%",
+            bottom:"10%",
             display: `${takePictureSwitch}`,
           }}
           ref={photoRef}

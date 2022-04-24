@@ -10,26 +10,26 @@ export default function Login() {
       <div id="login-card" className={styles["login-card"]}>
         <h2>Welcome to one touch</h2>
 
-        <div
+        <button
           className={styles["login-button","google"]}
           onClick={() =>
             auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
           }
         >
           <GoogleOutlined /> Sign In with Google
-        </div>
+        </button>
 
         <br />
         <br />
 
-        <div
+        <button
           className={styles["login-button","facebook"]}
           onClick={() =>
             auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider())
           }
         >
           <FacebookOutlined /> Sign In with Facebook
-        </div>
+        </button>
       </div>
     </div>
   );

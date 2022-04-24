@@ -18,10 +18,7 @@ export default function CarToChangeByTech({ props, user }) {
   const [diagnostic, setDiagnostic] = useState(props.diagnostic);
   const [mecanique, setMecanique] = useState(props.mecanique);
   const [carrosserie, setCarrosserie] = useState(props.carrosserie);
-  const [customerNameToModify, setCustomerNameToModify] = useState(
-    props.customerName
-  );
-
+ 
   const inputRef = useRef(null);
 
   const rdvState = useSelector((state) => state.csSelected.rdvFixed);
@@ -41,7 +38,7 @@ export default function CarToChangeByTech({ props, user }) {
         "https://firebasestorage.googleapis.com/v0/b/one-touch-work.appspot.com/o/files%2Fimages%20(2).png?alt=media&token=c0ce54d8-4f47-4bd2-b997-776f8f6b65a9"
       )
     );
-  console.log(props, user);
+  
 
   const docref = collection(db, "cars");
 

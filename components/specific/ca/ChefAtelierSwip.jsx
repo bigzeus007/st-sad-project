@@ -17,7 +17,6 @@ import CarInSwiper from "../../commun/genericComponents/CarInSwiper";
 import { useDispatch, useSelector } from "react-redux";
 import { carModification } from "../../../src/userReducer";
 import CarToAffect from "../../commun/genericComponents/CarToAffect";
-import CarToChangeByCPRV from "../../commun/genericComponents/CarToChangeByCPRV";
 import ChefAtelierGarage from "./ChefAtelierGarage";
 
 const SwiperStyle = styled.div`
