@@ -176,8 +176,8 @@ export default function NavBar() {
               <p style={{ fontSize: "3vw" }}>Bonjour : {user.nom}</p>
 
               <Image
-                width={"5vw"}
-                height={"5vw"}
+                width={"50vw"}
+                height={"50vw"}
                 src={carPic}
                 alt="photo profil"
               ></Image>

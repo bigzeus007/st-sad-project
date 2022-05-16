@@ -59,6 +59,7 @@ canvas {
 
 export const CarCsSelection = styled.div`
 display:${props=>props.rdvState==false? "none" : "flex"};
+flex-direction:column;
 /* display:${props=>props.rdvSate=='--:-- --'? "none" : "flex"}; */
 
 `
