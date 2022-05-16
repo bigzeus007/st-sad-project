@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CarInfos=styled.div`
 display:${props=>props.pictureTooked};
-flex-direction:column;
+flex-direction:row;
 position: absolute;
   
   top: 5vw;
@@ -58,7 +58,9 @@ canvas {
 `
 
 export const CarCsSelection = styled.div`
-display:${props=>props.rdvSate=='--:-- --'? "none" : "flex"};
+display:${props=>props.rdvState==false? "none" : "flex"};
+/* display:${props=>props.rdvSate=='--:-- --'? "none" : "flex"}; */
+
 `
 
 export const ChooseRdvStatus = styled.div`

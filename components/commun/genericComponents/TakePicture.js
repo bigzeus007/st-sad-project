@@ -194,6 +194,7 @@ export default function TakePicture() {
           }}
           ref={photoRef}
         />
+        <div>
         <input
               className="customerName"
               ref={inputRef}
@@ -212,12 +213,12 @@ export default function TakePicture() {
           
             <CarCsSelection rdvState={rdvState}>
 
-            <div
+            {/* <div
               style={{
                 display: `${rdvState ? "flex" : "none"}`,
                 
               }}
-            >
+            > */}
               <input
                 className="rdvTime"
                 type="time"
@@ -226,7 +227,7 @@ export default function TakePicture() {
               ></input>
               <br/>
               <RadioStyled></RadioStyled>
-              </div>
+              {/* </div> */}
 
             </CarCsSelection>
 
@@ -254,7 +255,7 @@ export default function TakePicture() {
           </div>
         </NewButtonColored>
           
-        
+        </div>
       </CarInfos>
 
       <div id="laboZone" style={{ display: "flex", borderRadius: "20%" }}>
