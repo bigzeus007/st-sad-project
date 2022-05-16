@@ -16,6 +16,7 @@ import { rdvStatus, customerName, selectCs } from "../../../src/csReducer";
 import { TakePitureButton } from "../../../styles/TakePitureButton.styled";
 import NewButtonColored from "../../../styles/NewButtonColored.styled";
 import {
+  CarCsSelection,
   CarInfos,
   ChooseRdvStatus,
   RdvInfo,
@@ -193,28 +194,28 @@ export default function TakePicture() {
           }}
           ref={photoRef}
         />
-        <button className="SRDV" onClick={() => handlReturn()}>
-          SANS RDV
-        </button>
-        <button className="RDV" onClick={() => dispatch(rdvStatus(true))}>
-          AVEC RDV
-        </button>
-
-       
-        
-          
-            <input
+        <input
               className="customerName"
               ref={inputRef}
               type="text"
               onChange={(e) => dispatch(customerName(e.target.value))}
               placeholder="NOM CLIENT"
             ></input>
+            <div className="rdvSet">
+        <button className="SRDV" onClick={() => handlReturn()}>
+          SANS RDV
+        </button>
+        <button className="RDV" onClick={() => dispatch(rdvStatus(true))}>
+          AVEC RDV
+        </button>
+        </div>
+          
+            <CarCsSelection rdvState={rdvState}>
 
             <div
               style={{
                 display: `${rdvState ? "flex" : "none"}`,
-                flexWrap: "wrap",
+                
               }}
             >
               <input
@@ -223,9 +224,13 @@ export default function TakePicture() {
                 onChange={(e) => setRdvTime(e.target.value)}
                 value={rdvTime}
               ></input>
-              <br />
+              <br/>
               <RadioStyled></RadioStyled>
-            </div>
+              </div>
+
+            </CarCsSelection>
+
+
             <NewButtonColored>
           <div className="subscribe">
             <a

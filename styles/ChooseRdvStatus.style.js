@@ -16,6 +16,9 @@ canvas {
 
     
   }
+  .rdvSet{
+    display:flex;
+  }
   button {
     border-radius: 20%;
     height: 10vh;
@@ -31,10 +34,11 @@ canvas {
     width: 20vw;
   }
   .rdvTime {
-    position: absolute;
-    left: 32vw;
-    top: 2vh;
-    width: 17vw;
+    
+    
+    
+    width: 20vw;
+    height:5vh
   }
   @media screen and (max-width: 620px) {
     font-size: 5px;
@@ -51,6 +55,10 @@ canvas {
     }
   }
 
+`
+
+export const CarCsSelection = styled.div`
+display:${props=>props.rdvSate=='--:-- --'? "none" : "flex"};
 `
 
 export const ChooseRdvStatus = styled.div`

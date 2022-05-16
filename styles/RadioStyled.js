@@ -6,12 +6,11 @@ import { selectCs } from "../src/csReducer";
 
 
 const Selection = styled.section`
-position:absolute;
+position:relative;
 
     display: flex;
-    flex-direction:column;
-    top:-5vh;
-    left:20vw;
+    flex-direction:row;
+    
 
     color: hsla(215, 5%, 50%, 1);
 
@@ -53,17 +52,15 @@ position:absolute;
 
     @media screen and (max-width: 620px) {
      {
-      flex-direction:row;
-    top:15vh;
-    left:10vw;
+      
+    
       
     }
   }
   @media screen and (max-width: 450px) {
      {
-      flex-direction:column;
-    top:10vh;
-    left:0vw;
+      
+    
     height:20px;
     
     label {
