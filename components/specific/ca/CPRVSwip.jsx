@@ -120,12 +120,12 @@ export default function CPRVSwip({ user }) {
   const myParking = query(carsRef, where("serviceAdvisor", "==", ""));
 
 
-  useEffect(() =>  {
-    let start = true;//reverifying
-      onSnapshot(myParking, (snapshot) =>{if(start) setCarsList(snapshot.docs.map((doc) =>  doc.data()));
+  useEffect(() =>  
+  
+      onSnapshot(myParking, (snapshot) =>{setCarsList(snapshot.docs.map((doc) =>  doc.data()));
       })
-       return () => { start = false };//reverifying
-    }
+  
+    
   );
   
  
