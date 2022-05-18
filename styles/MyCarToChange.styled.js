@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const MyCarToChange = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   float: right;
 
-  height: 40vh;
+  height: 100vh;
   padding-left: 2vw;
   font-size: 14px;
   .place{color:blue;}
@@ -20,9 +20,7 @@ export const MyCarToChange = styled.div`
       font-size: 1.3em;
     }
   }
-  Image {
-    width: 20vw;
-  }
+ 
   .dateNdTime {
     width: 20vw;
   }
@@ -62,13 +60,18 @@ export const MyCarToChange = styled.div`
   @media screen and (max-width: 520px) {
      {
       font-size: 12px;
-      background-color: red;
+      background-color: none;
       padding-left: 4vw;
       width: 100%;
-
+      #enregistrer{
+        position:absolute;
+        right:5vw;
+        top:15%;
+      }
       .trvx {
         width: 10px;
       }
+      
       .returnBack {
         background-color: royalblue;
 
@@ -77,8 +80,8 @@ export const MyCarToChange = styled.div`
         width: 15vw;
         border-radius: 30%;
         height: 8vh;
-
-        left: 80%;
+        top:27%;
+        left: 73%;
       }
     }
   }

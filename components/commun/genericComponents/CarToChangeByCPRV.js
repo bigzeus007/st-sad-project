@@ -183,7 +183,7 @@ export default function CarToChangeByCPRV({ props }) {
           <br />
         </div>
 
-        <div onClick={() => handleSubmit()}>
+        <div id="enregistrer" onClick={() => handleSubmit()}>
           <MySubmitButton props="Enregistrer"></MySubmitButton>
         </div>
       </div>
@@ -195,8 +195,8 @@ export default function CarToChangeByCPRV({ props }) {
         alt="photoVehicle"
         name="photoVehicle"
         src={carImage}
-        width="55%"
-        height="100%"
+        width={300}
+        height={300}
         quality={10}
       />
     </MyCarToChange>
